@@ -3,8 +3,8 @@
     {
       "id": "peeweesys",
       "name": "PeeweeSys",
-      "badge": "Modern DIY Champion",
-      "cost": "$0 (Free & Open Source)",
+      "badge": "Modern DIY & Pro",
+      "cost": "Free Core + Per-VIN Lifetime",
       "hardware": "$15 FTDI K-Line / Tactrix CAN cable",
       "platform": "Browser (WebSerial) / Any PC",
       "no_vm": true,
@@ -102,15 +102,15 @@
           }
         },
         {
-          "name": "VIN Lockout / Car Count Limits",
-          "description": "Are you restricted to how many cars you can diagnose before paying more?",
+          "name": "Licensing Model & Car Limits",
+          "description": "How vehicle access is licensed and whether shops can pass value to vehicle owners.",
           "values": {
-            "peeweesys": "Unlimited (Zero VIN lockouts)",
-            "piwis": "Unlimited (Official dealer)",
-            "durametric": "Locked to 3 VINs (Pro upgrade: +$388)",
+            "peeweesys": "Free basic diagnostics. Advanced features licensed Per-VIN for the life of the car (transfers to future owners)",
+            "piwis": "Dealer licensing ($1,000s/yr or pirated VM)",
+            "durametric": "Locked to 3 VINs max (Pro cable upgrade: +$388)",
             "foxwell": "1 Brand included (Extra makes extra)",
             "icarsoft": "Multi-Porsche models, 1 brand",
-            "launch_autel": "Unlimited (Yearly subscription applies)",
+            "launch_autel": "Annual recurring subscription ($500+/yr)",
             "generic_elm": "Unlimited (Generic OBD2 only)"
           }
         }
