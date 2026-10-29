@@ -38,22 +38,10 @@ const {
     <meta property="twitter:image" content="/assets/brand/png/peeweesys-lockup-horizontal-on-dark@2x.png" />
   </head>
   <body class="bg-pw-bg text-pw-text antialiased min-h-screen flex flex-col font-sans selection:bg-pw-red selection:text-white">
-    <!-- Top Announcement Bar -->
-    <div class="bg-gradient-to-r from-pw-red/20 via-pw-panel to-pw-panel border-b border-pw-line text-xs py-2 px-4 text-center flex items-center justify-center gap-2">
-      <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-pw-green/20 text-pw-green font-mono font-medium text-[11px] border border-pw-green/30">
-        <span class="w-1.5 h-1.5 rounded-full bg-pw-green animate-pulse"></span>
-        CAR VERIFIED
-      </span>
-      <span class="text-pw-muted">986 & 996 field-tested on real vehicles. Interactive demo coming soon.</span>
-      <a href="#contact" class="text-pw-red hover:text-white font-medium ml-1 underline decoration-pw-red/50 hover:decoration-white transition-colors">
-        Join Early Access &rarr;
-      </a>
-    </div>
-
     <!-- Main Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-pw-bg/90 backdrop-blur-md border-b border-pw-line transition-all">
+    <header class="sticky top-0 z-50 bg-pw-bg/95 backdrop-blur-md border-b border-pw-line transition-all">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between h-18">
+        <div class="flex items-center justify-between h-20">
           <!-- Logo Lockup -->
           <a href="/" class="flex items-center gap-3 group">
             <img
@@ -68,8 +56,8 @@ const {
             <a href="#features" class="text-pw-muted hover:text-pw-text transition-colors">Killer Features</a>
             <a href="#comparison" class="text-pw-muted hover:text-pw-text transition-colors">Tool Matrix</a>
             <a href="#hardware" class="text-pw-muted hover:text-pw-text transition-colors">Cables & Pinouts</a>
-            <a href="#vehicles" class="text-pw-muted hover:text-pw-text transition-colors">Vehicle Coverage</a>
-            <a href="#pipeline" class="text-pw-muted hover:text-pw-text transition-colors">Engine Pipeline</a>
+            <a href="#vehicles" class="text-pw-muted hover:text-pw-text transition-colors">Vehicle Families</a>
+            <a href="#pipeline" class="text-pw-muted hover:text-pw-text transition-colors">Capability Tracker</a>
             <a href="#contact" class="text-pw-muted hover:text-pw-text transition-colors">Contact</a>
           </nav>
 
@@ -80,7 +68,7 @@ const {
               class="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-pw-panel hover:bg-pw-surface text-pw-text border border-pw-red/40 hover:border-pw-red font-semibold text-sm transition-all duration-200"
             >
               <span class="w-2 h-2 rounded-full bg-pw-amber animate-pulse"></span>
-              <span>Demo UI (Coming Soon)</span>
+              <span>Interactive Demo (Coming Soon)</span>
             </a>
           </div>
 
@@ -104,14 +92,14 @@ const {
           <a href="#features" class="block py-2 text-pw-muted hover:text-pw-text font-medium">Killer Features</a>
           <a href="#comparison" class="block py-2 text-pw-muted hover:text-pw-text font-medium">Tool Matrix</a>
           <a href="#hardware" class="block py-2 text-pw-muted hover:text-pw-text font-medium">Cables & Pinouts</a>
-          <a href="#vehicles" class="block py-2 text-pw-muted hover:text-pw-text font-medium">Vehicle Coverage</a>
-          <a href="#pipeline" class="block py-2 text-pw-muted hover:text-pw-text font-medium">Engine Pipeline</a>
+          <a href="#vehicles" class="block py-2 text-pw-muted hover:text-pw-text font-medium">Vehicle Families</a>
+          <a href="#pipeline" class="block py-2 text-pw-muted hover:text-pw-text font-medium">Capability Tracker</a>
           <a href="#contact" class="block py-2 text-pw-muted hover:text-pw-text font-medium">Contact</a>
           <a
             href="#contact"
             class="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-md bg-pw-panel border border-pw-red text-pw-text font-semibold text-sm"
           >
-            Demo UI (Coming Soon) &rarr;
+            Interactive Demo (Coming Soon) &rarr;
           </a>
         </div>
       </div>
@@ -134,28 +122,20 @@ const {
               class="h-8 w-auto object-contain"
             />
             <p class="text-xs text-pw-muted leading-relaxed">
-              Dealer-level (and beyond) Porsche diagnostics in your web browser. Free from $1,000 hardware locks, ancient laptops, and Windows XP virtual machines.
+              Modern Porsche diagnostics in your browser. Free core read diagnostics, community-driven knowledge, and affordable lifetime-per-car unlocks for advanced features.
             </p>
-            <div class="flex items-center gap-3 pt-2">
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono bg-pw-panel border border-pw-line text-pw-text">
-                OS: WebSerial / Chrome
-              </span>
-              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[11px] font-mono bg-pw-green/10 border border-pw-green/30 text-pw-green">
-                Car-Verified 986/996
-              </span>
-            </div>
           </div>
 
           <!-- Col 2: Diagnostics & Features -->
           <div>
             <h4 class="text-xs uppercase tracking-wider font-semibold text-pw-text mb-4">Diagnostics</h4>
             <ul class="space-y-2.5 text-xs">
-              <li><a href="#features" class="hover:text-pw-red transition-colors">Full ECU ROM Dumps (0x23)</a></li>
+              <li><a href="#features" class="hover:text-pw-red transition-colors">Guided PPI & Health Dossier</a></li>
+              <li><a href="#features" class="hover:text-pw-red transition-colors">Full ECU ROM Dumps</a></li>
               <li><a href="#features" class="hover:text-pw-red transition-colors">Coolant Gauge Linearization</a></li>
-              <li><a href="#features" class="hover:text-pw-red transition-colors">Kombi 93C86 EEPROM Read</a></li>
-              <li><a href="#features" class="hover:text-pw-red transition-colors">Over-Rev & Operating Hours</a></li>
-              <li><a href="#features" class="hover:text-pw-red transition-colors">Multi-Module Mileage Audit</a></li>
-              <li><a href="#features" class="hover:text-pw-red transition-colors">Pre-Clear Snapshot Reports</a></li>
+              <li><a href="#features" class="hover:text-pw-red transition-colors">Speedometer Recalibration</a></li>
+              <li><a href="#features" class="hover:text-pw-red transition-colors">Over-Rev & Hours Audit</a></li>
+              <li><a href="#features" class="hover:text-pw-red transition-colors">Safe Pre-Clear Reports</a></li>
             </ul>
           </div>
 
@@ -163,11 +143,11 @@ const {
           <div>
             <h4 class="text-xs uppercase tracking-wider font-semibold text-pw-text mb-4">Hardware & Vehicles</h4>
             <ul class="space-y-2.5 text-xs">
-              <li><a href="#vehicles" class="hover:text-pw-red transition-colors">Porsche 986 Boxster</a></li>
-              <li><a href="#vehicles" class="hover:text-pw-red transition-colors">Porsche 996 911 (Carrera/Turbo/GT3)</a></li>
-              <li><a href="#vehicles" class="hover:text-pw-red transition-colors">Porsche 987 Boxster / Cayman</a></li>
-              <li><a href="#vehicles" class="hover:text-pw-red transition-colors">Porsche 997 911</a></li>
-              <li><a href="#hardware" class="hover:text-pw-red transition-colors">$15 FTDI K-Line Pin 7/3 Switch Mod</a></li>
+              <li><a href="#vehicles" class="hover:text-pw-red transition-colors">Boxster & Cayman (986, 987)</a></li>
+              <li><a href="#vehicles" class="hover:text-pw-red transition-colors">911 Carrera (996, 997)</a></li>
+              <li><a href="#vehicles" class="hover:text-pw-red transition-colors">Air-Cooled & Transaxle Classics</a></li>
+              <li><a href="#vehicles" class="hover:text-pw-red transition-colors">Cayenne, Macan, Panamera</a></li>
+              <li><a href="#hardware" class="hover:text-pw-red transition-colors">$15 FTDI Cable & $1 Switch Mod</a></li>
               <li><a href="#hardware" class="hover:text-pw-red transition-colors">Tactrix OpenPort 2.0 (J2534)</a></li>
             </ul>
           </div>
@@ -179,13 +159,13 @@ const {
               <li>
                 <a href="#contact" class="text-pw-amber font-semibold hover:underline flex items-center gap-1.5">
                   <span class="w-2 h-2 rounded-full bg-pw-amber"></span>
-                  <span>Demo UI (Coming Soon) &rarr;</span>
+                  <span>Interactive Demo (Coming Soon) &rarr;</span>
                 </a>
               </li>
               <li><a href="#comparison" class="hover:text-pw-red transition-colors">Tool Comparison Matrix</a></li>
-              <li><a href="#pipeline" class="hover:text-pw-red transition-colors">Live Development Pipeline</a></li>
-              <li><a href="#contact" class="hover:text-pw-red transition-colors">Send Feedback or Inquiries</a></li>
-              <li><a href="mailto:galballyj@hotmail.com" class="hover:text-pw-red transition-colors">Email Maintainer</a></li>
+              <li><a href="#pipeline" class="hover:text-pw-red transition-colors">Live Capability Tracker</a></li>
+              <li><a href="#contact" class="hover:text-pw-red transition-colors">Send Inquiry or Feedback</a></li>
+              <li><a href="mailto:galballyj@hotmail.com" class="hover:text-pw-red transition-colors">galballyj@hotmail.com</a></li>
             </ul>
           </div>
         </div>

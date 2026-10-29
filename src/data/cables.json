@@ -23,7 +23,7 @@
     "buyTips": [
       "Ensure the listing explicitly specifies genuine FTDI (FT232RL or FT232RQ), NOT cheap CH340 or Prolific clone chips.",
       "Search terms: 'VAG KKL 409.1 FTDI FT232RL USB OBD2'.",
-      "Set USB serial COM port Latency Timer to 1ms (or let openpiwis-helper auto-configure it)."
+      "Set USB serial COM port Latency Timer to 1ms (or let peeweesys-helper auto-configure it)."
     ]
   },
   {

@@ -1,6 +1,6 @@
 # PeeweeSys Website (`peeweesys.com`)
 
-The official public website for **PeeweeSys** (OpenPIWIS) — dealer-level and beyond Porsche diagnostics running directly in your web browser.
+The official public website for **PeeweeSys** — dealer-level and beyond Porsche diagnostics running directly in your web browser.
 
 Built with **Astro 4**, **Tailwind CSS**, **Lucide Icons**, and **TypeScript**, styled to match the classic matte black, Guards Red, and precision typography of vintage Porsche instrument clusters.
 
@@ -67,7 +67,7 @@ peeweesys-website/
 │   ├── data/
 │   │   ├── cables.json              # Hardware and pinout data
 │   │   ├── comparisons.json         # Matrix comparison data
-│   │   ├── features.json            # Synced from core OpenPIWIS engine
+│   │   ├── features.json            # Synced from core PeeweeSys engine
 │   │   ├── killer_features.json     # Killer features dataset
 │   │   └── vehicles.json            # Vehicle platform & module support
 │   ├── layouts/

@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check && astro build",
+    "build": "python tools/check_branding.py && astro check && astro build",
+    "check:branding": "python tools/check_branding.py",
     "preview": "astro preview",
     "astro": "astro",
     "sync-features": "python tools/sync_from_app.py"

@@ -38,6 +38,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No feature changes detected."
           else
-            git commit -m "chore(data): sync latest features from OpenPIWIS core"
+            git commit -m "chore(data): sync latest features from PeeweeSys core"
             git push
           fi

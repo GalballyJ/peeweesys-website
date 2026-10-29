@@ -1,5 +1,8 @@
 ---
 import vehicles from '../data/vehicles.json';
+
+// Get unique families
+const families = [...new Set(vehicles.map((v) => v.family))];
 ---
 
 <section id="vehicles" class="py-24 bg-pw-card/30 relative border-t border-pw-line">
@@ -10,10 +13,10 @@ import vehicles from '../data/vehicles.json';
         Fleet Compatibility
       </div>
       <h2 class="text-3xl sm:text-4xl font-bold text-pw-text tracking-tight">
-        Vehicle Coverage & Module Support
+        Vehicle Coverage by Porsche Family
       </h2>
       <p class="text-base sm:text-lg text-pw-muted leading-relaxed">
-        Select a platform below to see real-world vehicle verification, bus architecture, and module support across DME, Kombi, ABS, Airbag, and more.
+        Select a platform below to see vehicle verification status, bus architecture, and module support across DME, Kombi, ABS/PSM, Airbag, and more.
       </p>
     </div>
 
@@ -21,46 +24,57 @@ import vehicles from '../data/vehicles.json';
     <div class="flex flex-wrap items-center justify-center gap-6 mb-12 text-xs font-mono">
       <div class="flex items-center gap-2">
         <span class="w-3 h-3 rounded-full bg-pw-green"></span>
-        <span class="text-pw-text">🟢 Tested & Verified on Vehicle</span>
+        <span class="text-pw-text">🟢 Supported on Car Now</span>
       </div>
       <div class="flex items-center gap-2">
         <span class="w-3 h-3 rounded-full bg-pw-amber"></span>
-        <span class="text-pw-text">🟡 Bench Extracted / Ready for Car</span>
+        <span class="text-pw-text">🟡 Bench Ready / Car Test Next</span>
       </div>
       <div class="flex items-center gap-2">
         <span class="w-3 h-3 rounded-full bg-pw-blue"></span>
-        <span class="text-pw-text">🔵 On Development Roadmap</span>
+        <span class="text-pw-text">🔵 Coming Soon</span>
       </div>
     </div>
 
-    <!-- Interactive Vehicle Tab Selector Buttons -->
-    <div class="flex flex-wrap items-center justify-center gap-2 mb-10" id="vehicle-tabs">
-      {vehicles.map((v, idx) => (
-        <button
-          type="button"
-          data-vehicle-id={v.id}
-          class={`px-5 py-3 rounded-xl border text-sm font-semibold transition-all duration-200 flex items-center gap-2 vehicle-tab-btn ${
-            idx === 0
-              ? 'bg-pw-panel border-pw-red text-pw-text shadow-glow-red ring-1 ring-pw-red'
-              : 'bg-pw-card border-pw-line text-pw-muted hover:text-pw-text hover:border-pw-muted/40'
-          }`}
-        >
-          <span class={`w-2 h-2 rounded-full ${
-            v.statusTier === 'green' ? 'bg-pw-green' : v.statusTier === 'amber' ? 'bg-pw-amber' : 'bg-pw-blue'
-          }`}></span>
-          <span>{v.name}</span>
-          <span class="text-[11px] font-mono text-pw-muted/80">({v.years})</span>
-        </button>
-      ))}
+    <!-- Interactive Vehicle Tab Selector Buttons Grouped by Family -->
+    <div class="space-y-6 mb-10" id="vehicle-tabs">
+      {families.map((fam) => {
+        const familyVehicles = vehicles.filter((v) => v.family === fam);
+        return (
+          <div class="bg-pw-panel/40 rounded-xl p-3 border border-pw-line/60">
+            <div class="text-[11px] font-mono uppercase text-pw-muted px-2 mb-2 font-bold tracking-wider">
+              {fam}
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {familyVehicles.map((v) => (
+                <button
+                  type="button"
+                  data-vehicle-id={v.id}
+                  class={`px-4 py-2.5 rounded-lg border text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-2 vehicle-tab-btn ${
+                    v.id === '986'
+                      ? 'bg-pw-panel border-pw-red text-pw-text shadow-glow-red ring-1 ring-pw-red'
+                      : 'bg-pw-card border-pw-line text-pw-muted hover:text-pw-text hover:border-pw-muted/40'
+                  }`}
+                >
+                  <span class={`w-2 h-2 rounded-full ${
+                    v.statusTier === 'green' ? 'bg-pw-green' : v.statusTier === 'amber' ? 'bg-pw-amber' : 'bg-pw-blue'
+                  }`}></span>
+                  <span>{v.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </div>
 
     <!-- Vehicle Detail Cards (One active at a time) -->
     <div id="vehicle-details-container">
-      {vehicles.map((v, idx) => (
+      {vehicles.map((v) => (
         <div
           id={`vehicle-card-${v.id}`}
           class={`vehicle-card rounded-2xl bg-pw-panel border border-pw-line p-6 sm:p-10 shadow-2xl ${
-            idx === 0 ? 'block' : 'hidden'
+            v.id === '986' ? 'block' : 'hidden'
           }`}
         >
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
@@ -69,7 +83,7 @@ import vehicles from '../data/vehicles.json';
               <!-- Header & Badges -->
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div class="space-y-1">
-                  <div class="text-xs font-mono text-pw-muted uppercase">{v.years} Generation</div>
+                  <div class="text-xs font-mono text-pw-muted uppercase">{v.family} &bull; {v.years}</div>
                   <h3 class="text-3xl font-bold text-pw-text">{v.name}</h3>
                 </div>
 
@@ -99,7 +113,7 @@ import vehicles from '../data/vehicles.json';
                   <span class="text-pw-text font-semibold">{v.protocol}</span>
                 </div>
                 <div class="flex items-center justify-between">
-                  <span class="text-pw-muted">OBD Pins Used:</span>
+                  <span class="text-pw-muted">Connection Pins:</span>
                   <span class="text-pw-amber font-semibold">{v.busPins}</span>
                 </div>
               </div>
@@ -127,27 +141,40 @@ import vehicles from '../data/vehicles.json';
 
             <!-- Right Vehicle Graphic & Key Capabilities -->
             <div class="lg:col-span-5 flex flex-col items-center">
-              <!-- Silhouette Render Box with Gauge Glow -->
-              <div class="w-full rounded-2xl bg-gradient-to-b from-pw-card via-pw-panel to-pw-bg border border-pw-line p-8 flex flex-col items-center justify-center relative overflow-hidden shadow-inner group">
-                <div class="absolute inset-0 bg-radial-fade opacity-50 pointer-events-none"></div>
+              {v.image ? (
+                <div class="w-full rounded-2xl bg-gradient-to-b from-pw-card via-pw-panel to-pw-bg border border-pw-line p-8 flex flex-col items-center justify-center relative overflow-hidden shadow-inner group">
+                  <div class="absolute inset-0 bg-radial-fade opacity-50 pointer-events-none"></div>
 
-                <!-- Vehicle Silhouette SVG -->
-                <div class="w-full h-44 flex items-center justify-center relative z-10">
-                  <img
-                    src={v.image}
-                    alt={`${v.name} Silhouette Vector`}
-                    class="max-h-36 max-w-full object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
+                  <!-- Vehicle Silhouette SVG -->
+                  <div class="w-full h-44 flex items-center justify-center relative z-10">
+                    <img
+                      src={v.image}
+                      alt={`${v.name} Silhouette Vector`}
+                      class="max-h-36 max-w-full object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
 
-                <div class="mt-4 text-center z-10">
-                  <span class="text-xs font-mono text-pw-muted">Official OpenPIWIS Vector Silhouette</span>
+                  <div class="mt-4 text-center z-10">
+                    <span class="text-xs font-mono text-pw-muted">Official PeeweeSys Vector Silhouette</span>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <div class="w-full rounded-2xl bg-gradient-to-b from-pw-card to-pw-panel border border-pw-line p-8 flex flex-col items-center justify-center text-center shadow-inner min-h-[220px]">
+                  <div class="w-12 h-12 rounded-full bg-pw-blue/10 border border-pw-blue/20 flex items-center justify-center text-pw-blue mb-3">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  </div>
+                  <h4 class="text-sm font-bold text-pw-text mb-1">Vector Silhouette In Progress</h4>
+                  <p class="text-xs text-pw-muted max-w-xs">
+                    Protocol and module reverse engineering underway for this generation.
+                  </p>
+                </div>
+              )}
 
               <!-- Key Capabilities for this platform -->
               <div class="w-full mt-6 space-y-2">
-                <div class="text-xs font-mono uppercase text-pw-text font-bold">Platform Capabilities:</div>
+                <div class="text-xs font-mono uppercase text-pw-text font-bold">Planned & Verified Capabilities:</div>
                 <ul class="space-y-1.5">
                   {v.features.map((feat) => (
                     <li class="flex items-center gap-2 text-xs text-pw-muted">
@@ -165,7 +192,7 @@ import vehicles from '../data/vehicles.json';
   </div>
 </section>
 
-<!-- Vanilla JS Tab Switching Script -->
+<!-- Tab Switching Script -->
 <script>
   const tabButtons = document.querySelectorAll('.vehicle-tab-btn');
   const cards = document.querySelectorAll('.vehicle-card');
