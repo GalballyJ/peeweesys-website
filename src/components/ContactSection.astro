@@ -1,6 +1,6 @@
 ---
 // Contact & Inquiry Section with Client-Side Mailto Generator
-const recipientEmail = "galballyj@hotmail.com";
+const recipientEmail = "info@peeweesys.com";
 ---
 
 <section id="contact" class="py-24 bg-pw-card/40 relative border-t border-pw-line">
@@ -133,7 +133,7 @@ const recipientEmail = "galballyj@hotmail.com";
 
       const subject = encodeURIComponent(`[PeeweeSys] ${topic} - ${vehicle}`);
       const body = encodeURIComponent(
-        `Hi Jamie,\n\n${message}\n\n---\nSender: ${name}\nEmail: ${email}\nVehicle: ${vehicle}\nTopic: ${topic}`
+        `Hi PeeweeSys Team,\n\n${message}\n\n---\nSender: ${name}\nEmail: ${email}\nVehicle: ${vehicle}\nTopic: ${topic}`
       );
 
       const mailtoUrl = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;

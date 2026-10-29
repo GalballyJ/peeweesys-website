@@ -38,7 +38,7 @@ Built with **Astro 4**, **Tailwind CSS**, **Lucide Icons**, and **TypeScript**, 
    - Automatically synchronizes live progress from `D:\PIWIS Reverse Engineering\docs\features.yaml` into `src/data/features.json`.
    - Proves live continuous build & deployment when new vehicle capabilities are verified.
 
-7. **Contact & Feedback (`galballyj@hotmail.com`):**
+7. **Contact & Feedback (`info@peeweesys.com`):**
    - Responsive inquiry form for cable advice, ECU queries, and vehicle log contributions.
 
 ---
