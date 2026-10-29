@@ -1,0 +1,23 @@
+{
+  "name": "peeweesys-website",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "PeeweeSys - Dealer-level and beyond Porsche diagnostics in your browser",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "sync-features": "python tools/sync_from_app.py"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/tailwind": "^5.1.5",
+    "@lucide/astro": "^1.64.0",
+    "astro": "^4.16.19",
+    "lucide-astro": "^0.556.0",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3"
+  }
+}

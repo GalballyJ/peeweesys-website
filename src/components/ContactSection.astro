@@ -1,0 +1,122 @@
+---
+// Contact & Inquiry Section configured for galballyj@hotmail.com
+---
+
+<section id="contact" class="py-24 bg-pw-card/40 relative border-t border-pw-line">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-2xl mx-auto mb-14 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pw-red/10 text-pw-red border border-pw-red/20 text-xs font-semibold uppercase tracking-wider">
+        Get in Touch
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-pw-text tracking-tight">
+        Questions, Feedback & Vehicle Inquiries
+      </h2>
+      <p class="text-base text-pw-muted leading-relaxed">
+        Need help choosing an FTDI cable, have a question about your specific Porsche ECU variant, or want to contribute test logs? We'd love to hear from you.
+      </p>
+    </div>
+
+    <!-- Contact Form Box -->
+    <div class="rounded-2xl bg-pw-panel border border-pw-line p-8 sm:p-10 shadow-2xl">
+      <form
+        action="https://formspree.io/f/galballyj@hotmail.com"
+        method="POST"
+        class="space-y-6"
+      >
+        <!-- Name & Email Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label for="name" class="block text-xs font-bold uppercase tracking-wider font-mono text-pw-text">
+              Your Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="e.g. Ferdinand"
+              class="w-full px-4 py-3 rounded-lg bg-pw-card border border-pw-line focus:border-pw-red focus:ring-1 focus:ring-pw-red text-sm text-pw-text placeholder-pw-muted/50 transition-colors"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="email" class="block text-xs font-bold uppercase tracking-wider font-mono text-pw-text">
+              Email Address
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="name@example.com"
+              class="w-full px-4 py-3 rounded-lg bg-pw-card border border-pw-line focus:border-pw-red focus:ring-1 focus:ring-pw-red text-sm text-pw-text placeholder-pw-muted/50 transition-colors"
+            />
+          </div>
+        </div>
+
+        <!-- Vehicle Model & Subject Row -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label for="vehicle" class="block text-xs font-bold uppercase tracking-wider font-mono text-pw-text">
+              Porsche Model & Year
+            </label>
+            <input
+              type="text"
+              id="vehicle"
+              name="vehicle"
+              placeholder="e.g. 2001 Boxster S 3.2L (986)"
+              class="w-full px-4 py-3 rounded-lg bg-pw-card border border-pw-line focus:border-pw-red focus:ring-1 focus:ring-pw-red text-sm text-pw-text placeholder-pw-muted/50 transition-colors"
+            />
+          </div>
+
+          <div class="space-y-2">
+            <label for="topic" class="block text-xs font-bold uppercase tracking-wider font-mono text-pw-text">
+              Topic / Inquiry Type
+            </label>
+            <select
+              id="topic"
+              name="topic"
+              class="w-full px-4 py-3 rounded-lg bg-pw-card border border-pw-line focus:border-pw-red focus:ring-1 focus:ring-pw-red text-sm text-pw-text transition-colors"
+            >
+              <option value="cable_hardware">FTDI Cable & Pin 3/7 Switch Advice</option>
+              <option value="diagnostic_question">Diagnostic & ECU Question</option>
+              <option value="gauge_speedo">Coolant Gauge / Speedo Linearization</option>
+              <option value="vehicle_testing">Vehicle Testing & Log Contribution</option>
+              <option value="other">General Feedback / Collaboration</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Message Field -->
+        <div class="space-y-2">
+          <label for="message" class="block text-xs font-bold uppercase tracking-wider font-mono text-pw-text">
+            Your Message
+          </label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            required
+            placeholder="Tell us what you're trying to diagnose, any error codes encountered, or your setup..."
+            class="w-full px-4 py-3 rounded-lg bg-pw-card border border-pw-line focus:border-pw-red focus:ring-1 focus:ring-pw-red text-sm text-pw-text placeholder-pw-muted/50 transition-colors resize-y"
+          ></textarea>
+        </div>
+
+        <!-- Form Footer & Submit -->
+        <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="text-xs text-pw-muted">
+            Direct email: <a href="mailto:galballyj@hotmail.com" class="text-pw-text hover:text-pw-red underline">galballyj@hotmail.com</a>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-pw-red hover:bg-pw-guardsred text-white font-bold text-sm shadow-glow-red transition-all duration-200 transform hover:-translate-y-0.5"
+          >
+            Send Inquiry &rarr;
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

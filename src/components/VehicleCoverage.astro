@@ -1,0 +1,197 @@
+---
+import vehicles from '../data/vehicles.json';
+---
+
+<section id="vehicles" class="py-24 bg-pw-card/30 relative border-t border-pw-line">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pw-red/10 text-pw-red border border-pw-red/20 text-xs font-semibold uppercase tracking-wider">
+        Fleet Compatibility
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-pw-text tracking-tight">
+        Vehicle Coverage & Module Support
+      </h2>
+      <p class="text-base sm:text-lg text-pw-muted leading-relaxed">
+        Select a platform below to see real-world vehicle verification, bus architecture, and module support across DME, Kombi, ABS, Airbag, and more.
+      </p>
+    </div>
+
+    <!-- Status Tier Legend -->
+    <div class="flex flex-wrap items-center justify-center gap-6 mb-12 text-xs font-mono">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-pw-green"></span>
+        <span class="text-pw-text">🟢 Tested & Verified on Vehicle</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-pw-amber"></span>
+        <span class="text-pw-text">🟡 Bench Extracted / Ready for Car</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-pw-blue"></span>
+        <span class="text-pw-text">🔵 On Development Roadmap</span>
+      </div>
+    </div>
+
+    <!-- Interactive Vehicle Tab Selector Buttons -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-10" id="vehicle-tabs">
+      {vehicles.map((v, idx) => (
+        <button
+          type="button"
+          data-vehicle-id={v.id}
+          class={`px-5 py-3 rounded-xl border text-sm font-semibold transition-all duration-200 flex items-center gap-2 vehicle-tab-btn ${
+            idx === 0
+              ? 'bg-pw-panel border-pw-red text-pw-text shadow-glow-red ring-1 ring-pw-red'
+              : 'bg-pw-card border-pw-line text-pw-muted hover:text-pw-text hover:border-pw-muted/40'
+          }`}
+        >
+          <span class={`w-2 h-2 rounded-full ${
+            v.statusTier === 'green' ? 'bg-pw-green' : v.statusTier === 'amber' ? 'bg-pw-amber' : 'bg-pw-blue'
+          }`}></span>
+          <span>{v.name}</span>
+          <span class="text-[11px] font-mono text-pw-muted/80">({v.years})</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- Vehicle Detail Cards (One active at a time) -->
+    <div id="vehicle-details-container">
+      {vehicles.map((v, idx) => (
+        <div
+          id={`vehicle-card-${v.id}`}
+          class={`vehicle-card rounded-2xl bg-pw-panel border border-pw-line p-6 sm:p-10 shadow-2xl ${
+            idx === 0 ? 'block' : 'hidden'
+          }`}
+        >
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <!-- Left Info Column -->
+            <div class="lg:col-span-7 space-y-6">
+              <!-- Header & Badges -->
+              <div class="flex flex-wrap items-center justify-between gap-3">
+                <div class="space-y-1">
+                  <div class="text-xs font-mono text-pw-muted uppercase">{v.years} Generation</div>
+                  <h3 class="text-3xl font-bold text-pw-text">{v.name}</h3>
+                </div>
+
+                <span class={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-mono font-semibold border ${
+                  v.statusTier === 'green'
+                    ? 'bg-pw-green/10 text-pw-green border-pw-green/30'
+                    : v.statusTier === 'amber'
+                    ? 'bg-pw-amber/10 text-pw-amber border-pw-amber/30'
+                    : 'bg-pw-blue/10 text-pw-blue border-pw-blue/30'
+                }`}>
+                  <span class={`w-2 h-2 rounded-full ${
+                    v.statusTier === 'green' ? 'bg-pw-green animate-pulse' : v.statusTier === 'amber' ? 'bg-pw-amber' : 'bg-pw-blue'
+                  }`}></span>
+                  {v.statusLabel}
+                </span>
+              </div>
+
+              <!-- Headline / Summary -->
+              <p class="text-base text-pw-muted leading-relaxed">
+                {v.headline}
+              </p>
+
+              <!-- Bus & Pins Specs Box -->
+              <div class="p-4 rounded-xl bg-pw-card border border-pw-line font-mono text-xs space-y-2">
+                <div class="flex items-center justify-between">
+                  <span class="text-pw-muted">Diagnostic Protocol:</span>
+                  <span class="text-pw-text font-semibold">{v.protocol}</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-pw-muted">OBD Pins Used:</span>
+                  <span class="text-pw-amber font-semibold">{v.busPins}</span>
+                </div>
+              </div>
+
+              <!-- Module Support Matrix Checklist -->
+              <div class="space-y-3">
+                <h4 class="text-xs font-bold uppercase tracking-wider font-mono text-pw-text">Module Coverage Breakdown:</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                  {Object.entries(v.modules).map(([modName, modInfo]: [string, any]) => (
+                    <div class="p-2.5 rounded-lg bg-pw-card border border-pw-line/70 flex items-start gap-2.5">
+                      <span class={`font-bold mt-0.5 ${
+                        modInfo.verified ? 'text-pw-green' : modInfo.supported ? 'text-pw-amber' : 'text-pw-muted'
+                      }`}>
+                        {modInfo.verified ? '✓✓' : modInfo.supported ? '✓' : '—'}
+                      </span>
+                      <div>
+                        <strong class="text-pw-text">{modName}:</strong>
+                        <span class="text-pw-muted block text-[11px]">{modInfo.note}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Vehicle Graphic & Key Capabilities -->
+            <div class="lg:col-span-5 flex flex-col items-center">
+              <!-- Silhouette Render Box with Gauge Glow -->
+              <div class="w-full rounded-2xl bg-gradient-to-b from-pw-card via-pw-panel to-pw-bg border border-pw-line p-8 flex flex-col items-center justify-center relative overflow-hidden shadow-inner group">
+                <div class="absolute inset-0 bg-radial-fade opacity-50 pointer-events-none"></div>
+
+                <!-- Vehicle Silhouette SVG -->
+                <div class="w-full h-44 flex items-center justify-center relative z-10">
+                  <img
+                    src={v.image}
+                    alt={`${v.name} Silhouette Vector`}
+                    class="max-h-36 max-w-full object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.85)] group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                <div class="mt-4 text-center z-10">
+                  <span class="text-xs font-mono text-pw-muted">Official OpenPIWIS Vector Silhouette</span>
+                </div>
+              </div>
+
+              <!-- Key Capabilities for this platform -->
+              <div class="w-full mt-6 space-y-2">
+                <div class="text-xs font-mono uppercase text-pw-text font-bold">Platform Capabilities:</div>
+                <ul class="space-y-1.5">
+                  {v.features.map((feat) => (
+                    <li class="flex items-center gap-2 text-xs text-pw-muted">
+                      <span class="text-pw-green">✓</span>
+                      <span>{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Vanilla JS Tab Switching Script -->
+<script>
+  const tabButtons = document.querySelectorAll('.vehicle-tab-btn');
+  const cards = document.querySelectorAll('.vehicle-card');
+
+  tabButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-vehicle-id');
+
+      // Update button styles
+      tabButtons.forEach((b) => {
+        b.classList.remove('bg-pw-panel', 'border-pw-red', 'text-pw-text', 'shadow-glow-red', 'ring-1', 'ring-pw-red');
+        b.classList.add('bg-pw-card', 'border-pw-line', 'text-pw-muted');
+      });
+      btn.classList.add('bg-pw-panel', 'border-pw-red', 'text-pw-text', 'shadow-glow-red', 'ring-1', 'ring-pw-red');
+      btn.classList.remove('bg-pw-card', 'border-pw-line', 'text-pw-muted');
+
+      // Update cards visibility
+      cards.forEach((card) => {
+        if (card.id === `vehicle-card-${targetId}`) {
+          card.classList.remove('hidden');
+          card.classList.add('block');
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('block');
+        }
+      });
+    });
+  });
+</script>

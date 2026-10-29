@@ -1,0 +1,76 @@
+[
+  {
+    "id": "ftdi_kkl",
+    "name": "Blue VAG KKL 409.1 (FTDI FT232RL/RQ)",
+    "tier": "Recommended for 986 & 996",
+    "price": "$15 - $20 on Amazon / eBay",
+    "status": "Verified on Car",
+    "statusColor": "green",
+    "icon": "cable",
+    "summary": "The gold standard for K-line Porsche diagnostics. Inexpensive, rock-solid, and easily modified for dual-K-line access.",
+    "protocol": "ISO 9141-2 / ISO 14230-4 (KWP2000)",
+    "pinout": [
+      { "pin": 4, "name": "Chassis Ground", "color": "black", "desc": "Ground reference" },
+      { "pin": 5, "name": "Signal Ground", "color": "gray", "desc": "Sensor ground reference" },
+      { "pin": 7, "name": "K-Line 1 (DME, Kombi, Tip)", "color": "blue", "desc": "Default primary diagnostic communication line" },
+      { "pin": 3, "name": "K-Line 2 (Switched / Porsche specific)", "color": "amber", "desc": "Porsche route for ABS/PSM, Alarm, Airbag, Climate, Soft top" },
+      { "pin": 16, "name": "+12V Battery Power", "color": "red", "desc": "Unswitched vehicle battery power" }
+    ],
+    "switchMod": {
+      "title": "The $1 Toggle Switch Mod",
+      "description": "Porsche 986/996 wired body & chassis modules to OBD Pin 3 instead of standard Pin 7. By installing an SPDT slide or toggle switch inside the transparent blue OBD connector shell, you can toggle the FTDI RX/TX between Pin 7 (Engine/Cluster) and Pin 3 (ABS/Alarm/Airbag/Top) with zero external boxes."
+    },
+    "buyTips": [
+      "Ensure the listing explicitly specifies genuine FTDI (FT232RL or FT232RQ), NOT cheap CH340 or Prolific clone chips.",
+      "Search terms: 'VAG KKL 409.1 FTDI FT232RL USB OBD2'.",
+      "Set USB serial COM port Latency Timer to 1ms (or let openpiwis-helper auto-configure it)."
+    ]
+  },
+  {
+    "id": "tactrix_openport",
+    "name": "Tactrix OpenPort 2.0 (J2534)",
+    "tier": "Recommended for 987, 997 & CAN Work",
+    "price": "$179 (OEM) / Reputable J2534 PassThru",
+    "status": "Bench Extracted / Ready",
+    "statusColor": "amber",
+    "icon": "cpu",
+    "summary": "Professional-grade J2534 PassThru hardware supporting high-speed ISO 15765 CAN Bus, ISO 9141, and software pin routing.",
+    "protocol": "ISO 15765-4 (CAN 500k), ISO 14229 (UDS), K-Line",
+    "pinout": [
+      { "pin": 4, "name": "Chassis Ground", "color": "black", "desc": "Ground" },
+      { "pin": 6, "name": "CAN-High", "color": "green", "desc": "High speed 500k powertrain & chassis CAN" },
+      { "pin": 14, "name": "CAN-Low", "color": "green", "desc": "Low speed differential CAN bus" },
+      { "pin": 7, "name": "K-Line", "color": "blue", "desc": "Legacy K-line fallback" },
+      { "pin": 16, "name": "+12V Battery Power", "color": "red", "desc": "Vehicle battery power" }
+    ],
+    "switchMod": null,
+    "buyTips": [
+      "Tactrix OpenPort natively switches multiplexed pins in software, eliminating physical switch mods.",
+      "Ideal for CAN probing, 987/997 ECU diagnostics, and UDS multi-frame ISO-TP messaging.",
+      "High reliability and clean hardware timing."
+    ]
+  },
+  {
+    "id": "obdlink_ex_sx",
+    "name": "OBDLink EX / SX USB",
+    "tier": "Alternative CAN / High-Speed Interface",
+    "price": "$30 - $60 on Amazon",
+    "status": "Bench Extracted / Ready",
+    "statusColor": "amber",
+    "icon": "zap",
+    "summary": "Fast STN-chip based USB adapter supporting full CAN bus messaging and high baud rates up to 2Mbps without packet loss.",
+    "protocol": "ISO 15765-4 (CAN), J1939, ISO 9141",
+    "pinout": [
+      { "pin": 4, "name": "Ground", "color": "black", "desc": "Ground" },
+      { "pin": 6, "name": "CAN-High", "color": "green", "desc": "CAN bus high line" },
+      { "pin": 14, "name": "CAN-Low", "color": "green", "desc": "CAN bus low line" },
+      { "pin": 7, "name": "K-Line", "color": "blue", "desc": "K-Line pin" },
+      { "pin": 16, "name": "+12V", "color": "red", "desc": "Power" }
+    ],
+    "switchMod": null,
+    "buyTips": [
+      "Select the OBDLink EX (USB cable version engineered for FORScan/high data throughput) or SX.",
+      "Direct FTDI-compatible virtual serial port with native buffer management."
+    ]
+  }
+]

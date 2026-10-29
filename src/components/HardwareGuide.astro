@@ -1,0 +1,161 @@
+---
+import cables from '../data/cables.json';
+---
+
+<section id="hardware" class="py-24 bg-pw-bg relative border-t border-pw-line">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pw-red/10 text-pw-red border border-pw-red/20 text-xs font-semibold uppercase tracking-wider">
+        Hardware Freedom
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-pw-text tracking-tight">
+        Supported Cables & Hardware Guide
+      </h2>
+      <p class="text-base sm:text-lg text-pw-muted leading-relaxed">
+        No proprietary $800 boxes. PeeweeSys talks directly to your Porsche using inexpensive, standard FTDI USB-to-OBD cables or professional J2534 PassThru adapters.
+      </p>
+    </div>
+
+    <!-- Cables Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+      {cables.map((cable) => {
+        const isFTDI = cable.id === 'ftdi_kkl';
+        return (
+          <div class={`rounded-xl bg-pw-panel border flex flex-col justify-between p-6 transition-all duration-200 ${
+            isFTDI ? 'border-pw-green/40 shadow-glow-green/20' : 'border-pw-line'
+          }`}>
+            <div>
+              <!-- Cable Badge & Title -->
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-pw-green/10 text-pw-green border border-pw-green/30">
+                  {cable.status}
+                </span>
+                <span class="text-xs font-mono text-pw-muted">
+                  {cable.price}
+                </span>
+              </div>
+
+              <h3 class="text-xl font-bold text-pw-text mb-1">{cable.name}</h3>
+              <p class="text-xs font-mono text-pw-red mb-3">{cable.tier}</p>
+              <p class="text-sm text-pw-muted leading-relaxed mb-6">{cable.summary}</p>
+
+              <!-- Pinout Breakdown Mini-Card -->
+              <div class="rounded-lg bg-pw-card border border-pw-line p-4 mb-6">
+                <div class="text-xs font-mono uppercase tracking-wider text-pw-text font-bold mb-3 flex items-center justify-between">
+                  <span>OBD-II 16-Pin Wiring</span>
+                  <span class="text-[10px] text-pw-muted">SAE J1962</span>
+                </div>
+                <div class="space-y-2">
+                  {cable.pinout.map((pin) => (
+                    <div class="flex items-center justify-between text-xs font-mono">
+                      <span class="flex items-center gap-2">
+                        <span class={`w-2 h-2 rounded-full ${
+                          pin.color === 'red' ? 'bg-pw-red' :
+                          pin.color === 'green' ? 'bg-pw-green' :
+                          pin.color === 'blue' ? 'bg-pw-blue' :
+                          pin.color === 'amber' ? 'bg-pw-amber' : 'bg-gray-500'
+                        }`}></span>
+                        <strong class="text-pw-text">Pin {pin.pin}:</strong>
+                      </span>
+                      <span class="text-pw-muted text-[11px] text-right truncate max-w-[170px]">{pin.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <!-- Buyer Tips -->
+              <div class="space-y-2 mb-6">
+                <div class="text-xs font-bold text-pw-text uppercase tracking-wider font-mono">Buying & Setup Tips:</div>
+                <ul class="space-y-1.5">
+                  {cable.buyTips.map((tip) => (
+                    <li class="flex items-start gap-2 text-xs text-pw-muted leading-relaxed">
+                      <span class="text-pw-green shrink-0 mt-0.5">&bull;</span>
+                      <span>{tip}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <!-- Protocol Badge -->
+            <div class="pt-4 border-t border-pw-line/70 flex items-center justify-between text-xs font-mono text-pw-muted">
+              <span>Bus:</span>
+              <span class="text-pw-text">{cable.protocol}</span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    <!-- The Famous $1 Toggle Switch Mod Deep-Dive Card -->
+    <div class="rounded-2xl bg-gradient-to-br from-pw-panel via-pw-card to-pw-panel border border-pw-line p-8 relative overflow-hidden shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Text Explanation -->
+        <div class="lg:col-span-7 space-y-4">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pw-amber/15 text-pw-amber border border-pw-amber/30 text-xs font-mono font-medium">
+            ESSENTIAL 986 / 996 PRO-TIP
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-bold text-pw-text">
+            The $1 Dual-K-Line Toggle Switch Mod
+          </h3>
+          <p class="text-sm sm:text-base text-pw-muted leading-relaxed">
+            In early Porsches (986 Boxster and 996 911), Porsche chose not to put all ECUs on a single shared diagnostic bus:
+          </p>
+          <ul class="space-y-2 text-sm text-pw-text">
+            <li class="flex items-start gap-2">
+              <span class="text-pw-green font-bold">Pin 7:</span>
+              <span class="text-pw-muted">DME Engine Computer, Kombi Instrument Cluster, Tiptronic Transmission.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span class="text-pw-amber font-bold">Pin 3:</span>
+              <span class="text-pw-muted">ABS / PSM, Airbag, Alarm / Immobilizer, Convertible Soft Top, Climate Control.</span>
+            </li>
+          </ul>
+          <p class="text-xs text-pw-muted leading-relaxed">
+            Standard blue VAG KKL cables connect the FTDI chip only to Pin 7. By opening the blue transparent casing and adding a small SPDT micro slide switch between Pin 7 and Pin 3 (or linking them), you give your cable 100% full-car access for less than the cost of a coffee.
+          </p>
+        </div>
+
+        <!-- Visual Schematic Diagram -->
+        <div class="lg:col-span-5 bg-pw-bg/80 rounded-xl border border-pw-line p-6 font-mono text-xs">
+          <div class="text-xs font-bold text-pw-text mb-4 text-center border-b border-pw-line pb-2">
+            OBD-II CONNECTOR PINOUT (SWITCH SCHEMATIC)
+          </div>
+
+          <div class="space-y-3">
+            <div class="p-2.5 rounded bg-pw-panel border border-pw-blue/30 flex items-center justify-between">
+              <div>
+                <span class="text-pw-blue font-bold">OBD Pin 7:</span>
+                <span class="text-pw-muted text-[11px] block">DME & Kombi Engine Bus</span>
+              </div>
+              <span class="px-2 py-1 rounded bg-pw-blue/20 text-pw-blue text-[11px]">Default Mode</span>
+            </div>
+
+            <!-- The Switch Toggle graphic -->
+            <div class="flex items-center justify-center py-1">
+              <div class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-pw-amber/20 border border-pw-amber/40 text-pw-amber font-bold text-[11px]">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                </svg>
+                <span>SPDT Toggle Switch (or Pin 3+7 Bridge)</span>
+              </div>
+            </div>
+
+            <div class="p-2.5 rounded bg-pw-panel border border-pw-amber/30 flex items-center justify-between">
+              <div>
+                <span class="text-pw-amber font-bold">OBD Pin 3:</span>
+                <span class="text-pw-muted text-[11px] block">ABS, Alarm, Airbag, Climate</span>
+              </div>
+              <span class="px-2 py-1 rounded bg-pw-amber/20 text-pw-amber text-[11px]">Switched Mode</span>
+            </div>
+
+            <div class="p-2 rounded bg-pw-card text-center text-[11px] text-pw-muted border border-pw-line/50">
+              FTDI RX/TX &rarr; Pin 7 (Engine) OR Pin 3 (Body/Chassis)
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

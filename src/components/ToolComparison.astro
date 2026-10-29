@@ -1,0 +1,159 @@
+---
+import comparisonsData from '../data/comparisons.json';
+const { tools, categories } = comparisonsData;
+
+function getToolVal(values: Record<string, any>, toolId: string): string {
+  return (values && values[toolId]) ? String(values[toolId]) : "—";
+}
+---
+
+<section id="comparison" class="py-24 bg-pw-card/50 relative border-t border-pw-line">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pw-red/10 text-pw-red border border-pw-red/20 text-xs font-semibold uppercase tracking-wider">
+        Honest Feature Comparison
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-pw-text tracking-tight">
+        Porsche Diagnostic Tool Matrix
+      </h2>
+      <p class="text-base sm:text-lg text-pw-muted leading-relaxed">
+        See how PeeweeSys compares against official dealer PIWIS rigs, proprietary Windows-locked cables like Durametric, and handheld scanners.
+      </p>
+    </div>
+
+    <!-- Quick Overview Cards for Mobile & At-a-Glance -->
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-10">
+      {tools.map((tool) => (
+        <div class={`p-4 rounded-xl border text-center flex flex-col justify-between ${
+          tool.highlight 
+            ? 'bg-pw-panel border-pw-red shadow-glow-red relative ring-1 ring-pw-red/50' 
+            : 'bg-pw-panel/40 border-pw-line text-pw-muted'
+        }`}>
+          <div>
+            <div class={`text-[10px] font-mono uppercase tracking-wider mb-1 ${
+              tool.highlight ? 'text-pw-red font-bold' : 'text-pw-muted'
+            }`}>
+              {tool.badge}
+            </div>
+            <div class={`text-sm font-bold leading-tight mb-2 ${
+              tool.highlight ? 'text-pw-text' : 'text-pw-text/80'
+            }`}>
+              {tool.name}
+            </div>
+          </div>
+          <div class="pt-2 border-t border-pw-line/40">
+            <div class={`text-xs font-mono font-semibold ${
+              tool.highlight ? 'text-pw-green' : 'text-pw-muted'
+            }`}>
+              {tool.cost}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Interactive / Scrollable Comparison Table -->
+    <div class="rounded-xl border border-pw-line bg-pw-panel overflow-hidden shadow-2xl">
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse min-w-[900px]">
+          <!-- Table Header -->
+          <thead>
+            <tr class="border-b border-pw-line bg-pw-card">
+              <th scope="col" class="py-4 px-6 text-sm font-bold text-pw-text w-1/4 sticky left-0 bg-pw-card z-10 shadow-r">
+                Capability / Metric
+              </th>
+              {tools.map((tool) => (
+                <th
+                  scope="col"
+                  class={`py-4 px-4 text-xs font-bold text-center ${
+                    tool.highlight
+                      ? 'bg-pw-red/10 text-pw-text border-x border-pw-red/40'
+                      : 'text-pw-muted'
+                  }`}
+                >
+                  <div class="text-[11px] font-mono uppercase text-pw-red">{tool.badge}</div>
+                  <div class="text-sm font-semibold text-pw-text mt-0.5">{tool.name}</div>
+                  <div class="text-[11px] font-mono text-pw-muted font-normal mt-1">{tool.cost}</div>
+                </th>
+              ))}
+            </tr>
+          </thead>
+
+          <!-- Table Body by Categories -->
+          <tbody>
+            {categories.map((cat) => (
+              <>
+                <!-- Category Separator Header Row -->
+                <tr class="bg-pw-card/80 border-y border-pw-line">
+                  <td
+                    colspan={tools.length + 1}
+                    class="py-2.5 px-6 text-xs font-bold uppercase tracking-wider text-pw-red font-mono"
+                  >
+                    // {cat.category}
+                  </td>
+                </tr>
+
+                <!-- Feature Rows -->
+                {cat.features.map((feat, featIdx) => (
+                  <tr class={`border-b border-pw-line/50 hover:bg-pw-card/40 transition-colors ${
+                    featIdx % 2 === 0 ? 'bg-pw-panel' : 'bg-pw-panel/60'
+                  }`}>
+                    <!-- Left Feature Title & Desc (Sticky on Mobile/Horizontal scroll) -->
+                    <td class="py-4 px-6 text-xs sticky left-0 bg-pw-panel z-10 border-r border-pw-line/70">
+                      <div class="font-bold text-pw-text text-sm mb-0.5">{feat.name}</div>
+                      <div class="text-pw-muted text-[11px] leading-relaxed max-w-xs">{feat.description}</div>
+                    </td>
+
+                    <!-- Tool Value Columns -->
+                    {tools.map((tool) => {
+                      const val = getToolVal(feat.values, tool.id);
+                      const isYes = val.toLowerCase().startsWith('yes');
+                      const isNo = val.toLowerCase().startsWith('no');
+
+                      return (
+                        <td
+                          class={`py-4 px-4 text-xs text-center align-middle ${
+                            tool.highlight
+                              ? 'bg-pw-red/5 font-semibold text-pw-text border-x border-pw-red/30'
+                              : 'text-pw-muted'
+                          }`}
+                        >
+                          <div class="flex flex-col items-center justify-center gap-1">
+                            {isYes && (
+                              <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pw-green/20 text-pw-green mb-0.5">
+                                ✓
+                              </span>
+                            )}
+                            {isNo && (
+                              <span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-pw-line text-pw-muted/60 mb-0.5">
+                                ✕
+                              </span>
+                            )}
+                            <span class={`text-[11px] leading-snug ${
+                              tool.highlight && isYes ? 'text-pw-green font-bold' : ''
+                            }`}>
+                              {val}
+                            </span>
+                          </div>
+                        </td>
+                      );
+                    })}
+                  </tr>
+                ))}
+              </>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Table Footnote -->
+      <div class="px-6 py-4 bg-pw-card border-t border-pw-line flex flex-col sm:flex-row items-center justify-between text-xs text-pw-muted gap-2">
+        <span>* Durametric is a registered trademark of Durametric LLC. All comparisons verified from actual software test benches.</span>
+        <a href="https://peeweesys.app" target="_blank" rel="noopener noreferrer" class="text-pw-red hover:text-white font-medium underline">
+          Test PeeweeSys in your browser &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

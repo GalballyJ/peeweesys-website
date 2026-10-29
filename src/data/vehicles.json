@@ -1,0 +1,170 @@
+[
+  {
+    "id": "986",
+    "name": "Boxster (986)",
+    "years": "1997 - 2004",
+    "status": "tested",
+    "statusLabel": "Tested & Working on Car",
+    "statusTier": "green",
+    "protocol": "K-Line (ISO 9141-2 / KWP2000)",
+    "busPins": "Pin 7 (DME, Kombi, Tip), Pin 3 (Alarm, ABS, Airbag, Top, AC)",
+    "image": "/assets/vehicles/svg/dark/986-1-s.svg",
+    "imageLight": "/assets/vehicles/svg/light/986-1-s.svg",
+    "headline": "First-generation mid-engine roadster. Full field test suite verified on 2001 Boxster S (ME7.2).",
+    "modules": {
+      "DME": { "supported": true, "verified": true, "note": "ME5.2.2 / ME7.2 / ME7.8" },
+      "Kombi": { "supported": true, "verified": true, "note": "Analog & digital cluster, full 93C86 dump" },
+      "ABS/PSM": { "supported": true, "verified": true, "note": "Bosch 5.3 / 5.7 ABS & PSM" },
+      "Airbag": { "supported": true, "verified": true, "note": "Posip airbag module" },
+      "Alarm": { "supported": true, "verified": true, "note": "Immobilizer & central locking diagnostics" },
+      "Climate": { "supported": true, "verified": true, "note": "Automatic HVAC unit read & flap test" },
+      "Tiptronic": { "supported": true, "verified": true, "note": "Bosch GS 7.32 / GS 7.33 transmission" }
+    },
+    "features": [
+      "Full DME ME7.2 ROM read over OBD (0x23)",
+      "Kombi 93C86 2048-byte EEPROM dump",
+      "Coolant temperature gauge linearization",
+      "Over-rev Range 1 & 2 counter and operating hours",
+      "Dual K-line Pin 7 / Pin 3 support"
+    ]
+  },
+  {
+    "id": "996",
+    "name": "911 Carrera / Turbo / GT3 (996)",
+    "years": "1998 - 2005",
+    "status": "tested",
+    "statusLabel": "Tested & Working on Car",
+    "statusTier": "green",
+    "protocol": "K-Line (ISO 9141-2 / KWP2000)",
+    "busPins": "Pin 7 (DME, Kombi, Tip), Pin 3 (Alarm, ABS, Airbag, AC, Sunroof)",
+    "image": "/assets/vehicles/svg/dark/996-2-carrera.svg",
+    "imageLight": "/assets/vehicles/svg/light/996-2-carrera.svg",
+    "headline": "Water-cooled 911 icons: MK1 3.4L, MK2 3.6L, Turbo (ME7.8), and GT3 (ME7.8).",
+    "modules": {
+      "DME": { "supported": true, "verified": true, "note": "ME5.2.2 / ME7.2 / ME7.8 (3.4L, 3.6L, TT, GT3)" },
+      "Kombi": { "supported": true, "verified": true, "note": "5-dial instrument cluster, 93C86 dump" },
+      "ABS/PSM": { "supported": true, "verified": true, "note": "Bosch 5.7 PSM" },
+      "Airbag": { "supported": true, "verified": true, "note": "Posip 8.4" },
+      "Alarm": { "supported": true, "verified": true, "note": "Central lock / alarm diagnostics" },
+      "Climate": { "supported": true, "verified": true, "note": "HVAC climate control" },
+      "Tiptronic": { "supported": true, "verified": true, "note": "ZF 5HP19 / Mercedes 722.6" }
+    },
+    "features": [
+      "Turbo & GT3 ME7.8 diagnostic identification",
+      "DME operating hours vs Kombi mileage audit",
+      "Instrument cluster EEPROM backup",
+      "Safe fault code clearing with pre-clear snapshot",
+      "DME RAM live variable polling"
+    ]
+  },
+  {
+    "id": "987",
+    "name": "Boxster & Cayman (987)",
+    "years": "2005 - 2012",
+    "status": "bench",
+    "statusLabel": "Bench Extracted & Ready",
+    "statusTier": "amber",
+    "protocol": "CAN Bus (ISO 15765-4 / UDS / KWP-on-CAN) + K-Line (987.1 early modules)",
+    "busPins": "Pin 6 (CAN-H), Pin 14 (CAN-L), Pin 7 (Gateway / Legacy)",
+    "image": "/assets/vehicles/svg/dark/987-1-cayman-s.svg",
+    "imageLight": "/assets/vehicles/svg/light/987-1-cayman-s.svg",
+    "headline": "Mid-engine Cayman & Boxster (987.1 & 987.2 DFI). Full PIWIS database decoded & bench extracted.",
+    "modules": {
+      "DME": { "supported": true, "verified": false, "note": "ME7.8.1 (987.1) / Continental SDI3 (987.2 DFI)" },
+      "Kombi": { "supported": true, "verified": false, "note": "CAN cluster diagnostic identifiers & coding catalog" },
+      "ABS/PSM": { "supported": true, "verified": false, "note": "Bosch 8.0 PSM via CAN" },
+      "Airbag": { "supported": true, "verified": false, "note": "CAN Posip" },
+      "Alarm": { "supported": true, "verified": false, "note": "Rear BCM / Front BCM module tree" },
+      "Climate": { "supported": true, "verified": false, "note": "CAN automatic climate unit" },
+      "Tiptronic": { "supported": true, "verified": false, "note": "Tiptronic S & PDK transmission" }
+    },
+    "features": [
+      "Extracted 9x7 ECU catalog (data/9x7/ecus.json)",
+      "CAN probe & Tactrix OpenPort 2.0 readiness",
+      "6-range over-rev DME breakdown schema",
+      "UDS service 0x22 / 0x19 mapping"
+    ]
+  },
+  {
+    "id": "997",
+    "name": "911 Carrera / Turbo / GT3 (997)",
+    "years": "2005 - 2012",
+    "status": "bench",
+    "statusLabel": "Bench Extracted & Ready",
+    "statusTier": "amber",
+    "protocol": "CAN Bus (ISO 15765 / UDS) + K-Line Gateway",
+    "busPins": "Pin 6 (CAN-H), Pin 14 (CAN-L)",
+    "image": "/assets/vehicles/svg/dark/997-1-carrera.svg",
+    "imageLight": "/assets/vehicles/svg/light/997-1-carrera.svg",
+    "headline": "Modern modern classic 911s: MK1 3.6L/3.8L, Mezger Turbo/GT3, and MK2 997.2 DFI.",
+    "modules": {
+      "DME": { "supported": true, "verified": false, "note": "ME7.8.1 / ME7.8.2 / SDI3 DFI" },
+      "Kombi": { "supported": true, "verified": false, "note": "CAN cluster & multi-function display" },
+      "ABS/PSM": { "supported": true, "verified": false, "note": "Bosch 8.0 / 8.2 PSM" },
+      "Airbag": { "supported": true, "verified": false, "note": "CAN SRS airbag control" },
+      "Alarm": { "supported": true, "verified": false, "note": "Front / Rear Control Units" },
+      "Climate": { "supported": true, "verified": false, "note": "CAN climate system" },
+      "Tiptronic": { "supported": true, "verified": false, "note": "Tiptronic / PDK 7DT45" }
+    },
+    "features": [
+      "Over-rev audit (Ranges 1 through 6)",
+      "UDS Diagnostic Sessions & live telemetry",
+      "Pre-clear snapshot report pipeline",
+      "Tactrix OpenPort & OBDLink pass-thru support"
+    ]
+  },
+  {
+    "id": "e1",
+    "name": "Cayenne (E1 / 955 / 957)",
+    "years": "2003 - 2010",
+    "status": "bench",
+    "statusLabel": "Bench Extracted & Ready",
+    "statusTier": "amber",
+    "protocol": "K-Line (early) & CAN (ISO 15765)",
+    "busPins": "Pin 7 & Pin 6/14 CAN",
+    "image": "/assets/vehicles/svg/dark/996-turbo.svg",
+    "imageLight": "/assets/vehicles/svg/light/996-turbo.svg",
+    "headline": "First-generation Cayenne V6, V8 S, and Turbo. Full diagnostic catalog extracted (WP15).",
+    "modules": {
+      "DME": { "supported": true, "verified": false, "note": "ME7.1.1 V8 / SDI4 DFI" },
+      "Kombi": { "supported": true, "verified": false, "note": "Kombi instrument cluster" },
+      "ABS/PSM": { "supported": true, "verified": false, "note": "Air suspension & PSM control" },
+      "Airbag": { "supported": true, "verified": false, "note": "Multi-stage airbag" },
+      "Alarm": { "supported": true, "verified": false, "note": "Kessy / Immobilizer" },
+      "Climate": { "supported": true, "verified": false, "note": "4-zone Climatronic" },
+      "Tiptronic": { "supported": true, "verified": false, "note": "Aisin 6-speed automatic" }
+    },
+    "features": [
+      "WP15 Cayenne dataset extracted",
+      "Air suspension height sensor actual values",
+      "Transfer case & differential module identification"
+    ]
+  },
+  {
+    "id": "roadmap_gen",
+    "name": "Next Gen (981, 991, 718, Macan)",
+    "years": "2012+",
+    "status": "roadmap",
+    "statusLabel": "On Roadmap",
+    "statusTier": "blue",
+    "protocol": "CAN FD / DoIP / UDS (ISO 14229)",
+    "busPins": "Pin 6/14 (CAN), Ethernet pins (DoIP)",
+    "image": "/assets/vehicles/svg/dark/997-2-turbo.svg",
+    "imageLight": "/assets/vehicles/svg/light/997-2-turbo.svg",
+    "headline": "Modern CAN FD & Ethernet DoIP architectures planned for future development.",
+    "modules": {
+      "DME": { "supported": false, "verified": false, "note": "SDI9 / SDI10 / SDI21" },
+      "Kombi": { "supported": false, "verified": false, "note": "Full digital instrument cluster" },
+      "ABS/PSM": { "supported": false, "verified": false, "note": "Bosch 9.0 / ESP" },
+      "Airbag": { "supported": false, "verified": false, "note": "CAN FD Airbag" },
+      "Alarm": { "supported": false, "verified": false, "note": "BCM1 & BCM2 gateway" },
+      "Climate": { "supported": false, "verified": false, "note": "CAN FD HVAC" },
+      "Tiptronic": { "supported": false, "verified": false, "note": "7-speed & 8-speed PDK" }
+    },
+    "features": [
+      "Planned DoIP (Diagnostics over IP) transport layer",
+      "Secure Gateway (SGW) research and unlock mapping",
+      "CAN FD high-speed bus decoding"
+    ]
+  }
+]

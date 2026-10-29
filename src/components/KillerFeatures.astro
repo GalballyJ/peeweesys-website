@@ -1,0 +1,106 @@
+---
+import killerFeatures from '../data/killer_features.json';
+---
+
+<section id="features" class="py-24 bg-pw-bg relative border-t border-pw-line">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pw-red/10 text-pw-red border border-pw-red/20 text-xs font-semibold uppercase tracking-wider">
+        Unrivaled Capability
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-pw-text tracking-tight">
+        What No Other Tool Does.
+      </h2>
+      <p class="text-base sm:text-lg text-pw-muted leading-relaxed">
+        Commercial handheld scanners and locked dealer software hide their algorithms and refuse low-level access. PeeweeSys unlocks deep forensic dumps, factory calibration tables, and cluster modifications straight over OBD.
+      </p>
+    </div>
+
+    <!-- 6 Killer Features Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {killerFeatures.map((feat) => {
+        const isGreen = feat.statusColor === 'green';
+        const isAmber = feat.statusColor === 'amber';
+        const statusColorClass = isGreen
+          ? 'bg-pw-green/10 text-pw-green border-pw-green/30'
+          : isAmber
+          ? 'bg-pw-amber/10 text-pw-amber border-pw-amber/30'
+          : 'bg-pw-blue/10 text-pw-blue border-pw-blue/30';
+        const dotColorClass = isGreen ? 'bg-pw-green' : isAmber ? 'bg-pw-amber' : 'bg-pw-blue';
+
+        return (
+          <div class="relative flex flex-col justify-between rounded-xl bg-pw-panel border border-pw-line p-6 hover:border-pw-muted/40 transition-all duration-300 group hover:shadow-xl hover:-translate-y-1">
+            <div>
+              <!-- Top Row: Badge & Status -->
+              <div class="flex items-center justify-between mb-4">
+                <span class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono font-medium border ${statusColorClass}`}>
+                  <span class={`w-1.5 h-1.5 rounded-full ${dotColorClass}`}></span>
+                  {feat.statusLabel}
+                </span>
+
+                <div class="w-8 h-8 rounded-lg bg-pw-card border border-pw-line flex items-center justify-center text-pw-red group-hover:scale-110 transition-transform">
+                  {feat.id === 'rom_dumps' && (
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7M4 7c0-2 1.5-3 3.5-3h9c2 0 3.5 1 3.5 3M4 7h16M4 12h16"></path>
+                    </svg>
+                  )}
+                  {feat.id === 'gauge_linearization' && (
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                  )}
+                  {feat.id === 'speedo_calibration' && (
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                  )}
+                  {feat.id === 'over_rev_audit' && (
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                  )}
+                  {feat.id === 'multi_module_mileage' && (
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                  )}
+                  {feat.id === 'safe_preclear_reports' && (
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
+                  )}
+                </div>
+              </div>
+
+              <!-- Title & Tagline -->
+              <h3 class="text-xl font-bold text-pw-text mb-1 group-hover:text-pw-red transition-colors">
+                {feat.title}
+              </h3>
+              <p class="text-xs font-mono text-pw-red mb-3">
+                {feat.tagline}
+              </p>
+
+              <!-- Description -->
+              <p class="text-sm text-pw-muted leading-relaxed mb-4">
+                {feat.description}
+              </p>
+            </div>
+
+            <!-- Bullet Highlights -->
+            <div class="pt-4 border-t border-pw-line/70">
+              <ul class="space-y-2">
+                {feat.highlights.map((item) => (
+                  <li class="flex items-start gap-2 text-xs text-pw-text/90">
+                    <span class="text-pw-green mt-0.5">✓</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

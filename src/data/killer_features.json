@@ -1,0 +1,92 @@
+[
+  {
+    "id": "rom_dumps",
+    "title": "Full ECU ROM & EEPROM Dumps Over OBD",
+    "tagline": "No bench harness, no opening the ECU casing, no desoldering.",
+    "status": "tested",
+    "statusLabel": "Tested on Car",
+    "statusColor": "green",
+    "icon": "database",
+    "description": "Standard diagnostic tools restrict you to reading fault codes. PeeweeSys unlocks full memory-read service 0x23 to stream raw flash and EEPROM data over the standard 16-pin OBD port. Verified on Bosch ME7.2 DME and Siemens / VDO Kombi instrument clusters (2048-byte 93C86 dumps).",
+    "highlights": [
+      "Exact byte-for-byte binary dump of cluster calibration & DME maps",
+      "Safely verified with non-destructive, read-only memory boundary checks",
+      "Instant offline backup before any instrument cluster modification"
+    ]
+  },
+  {
+    "id": "gauge_linearization",
+    "title": "Coolant Gauge Linearization",
+    "tagline": "Eliminate the factory 80°C–105°C dummy flat-spot buffer.",
+    "status": "bench",
+    "statusLabel": "Bench Ready / Car Test Next",
+    "statusColor": "amber",
+    "icon": "thermometer",
+    "description": "From the factory, Porsche programmed the 986 and 996 coolant gauge needle to sit dead-center at 80°C (180°F) whether your actual coolant temp is 80°C, 95°C, or 105°C. PeeweeSys identifies the exact Kombi interpolation curve table in EEPROM so your needle reflects true engine temperature in real-time.",
+    "highlights": [
+      "Prevents catastrophic M96 cylinder bore score and cracked heads from masked overheating",
+      "Inspect the exact 4-point temperature-to-impulse mapping table",
+      "Calculates the linearized curve so the needle actually moves when your car runs hot"
+    ]
+  },
+  {
+    "id": "speedo_calibration",
+    "title": "Speedometer Recalibration",
+    "tagline": "Fix 5–8% factory over-read and compensate for aftermarket wheels.",
+    "status": "bench",
+    "statusLabel": "Bench Ready",
+    "statusColor": "amber",
+    "icon": "gauge",
+    "description": "Nearly all 986 and 996 instrument clusters intentionally over-read speed by 4 to 8 km/h at highway velocity. PeeweeSys extracts the speedometer impulse factor `K-Zahl` stored in the cluster EEPROM, allowing you to dial in true GPS-accurate speedometer readings.",
+    "highlights": [
+      "Direct impulse coefficient calculation",
+      "Corrects odometer and speedometer mismatch on non-OEM wheel & tire diameters",
+      "Pre-verified against Porsche factory calibration guidelines"
+    ]
+  },
+  {
+    "id": "over_rev_audit",
+    "title": "Over-Rev & Operating Hours Forensics",
+    "tagline": "The true health scorecard of any modern Porsche.",
+    "status": "tested",
+    "statusLabel": "Tested on Car",
+    "statusColor": "green",
+    "icon": "activity",
+    "description": "Decode DME Range 1 and Range 2 (plus Range 3–6 on 9x7) ignition over-rev counts, the operating hour timestamp of the most recent event, and total DME run hours. PeeweeSys automatically computes your lifetime average speed to expose clocked or tampered cars.",
+    "highlights": [
+      "Total operating hours vs cluster odometer cross-audit",
+      "Pinpoint exact operating hour timestamp of mechanical money-shifts",
+      "Crucial pre-purchase inspection (PPI) proof sheet"
+    ]
+  },
+  {
+    "id": "multi_module_mileage",
+    "title": "Multi-Module Tamper Detection",
+    "tagline": "Compare independent odometer registers across the car.",
+    "status": "tested",
+    "statusLabel": "Tested on Car",
+    "statusColor": "green",
+    "icon": "shield-check",
+    "description": "Unscrupulous sellers can adjust the digits on the instrument cluster, but rarely know how to falsify the independent run-time registers stored in the DME, ABS unit, or Tiptronic transmission. PeeweeSys pulls all registers simultaneously into one tamper-audit view.",
+    "highlights": [
+      "Simultaneous reading of DME hours, Kombi odometer, and transmission operating time",
+      "Highlights statistical discrepancies (e.g. suspiciously low average speed under 20 km/h)",
+      "Zero VIN locks — scan every car you inspect before buying"
+    ]
+  },
+  {
+    "id": "safe_preclear_reports",
+    "title": "Pre-Clear Snapshot Reports",
+    "tagline": "Never lose critical diagnostic freeze frame data again.",
+    "status": "tested",
+    "statusLabel": "Tested on Car",
+    "statusColor": "green",
+    "icon": "file-text",
+    "description": "Handheld scan tools erase fault codes blindly with a single press, destroying freeze frame conditions (engine RPM, engine temp, load) needed to pinpoint intermittent misfires. PeeweeSys enforces a non-destructive snapshot workflow with structured export before clearing.",
+    "highlights": [
+      "Captures all DTCs, freeze frames, and module versions into a permanent HTML/PDF dossier",
+      "Strict car-tested whitelist prevents sending unverified clear commands to sensitive ECUs",
+      "Automatic post-clear re-scan confirms whether faults are static or transient"
+    ]
+  }
+]

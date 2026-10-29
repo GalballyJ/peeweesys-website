@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import KillerFeatures from '../components/KillerFeatures.astro';
+import ToolComparison from '../components/ToolComparison.astro';
+import HardwareGuide from '../components/HardwareGuide.astro';
+import VehicleCoverage from '../components/VehicleCoverage.astro';
+import DynamicFeatures from '../components/DynamicFeatures.astro';
+import ContactSection from '../components/ContactSection.astro';
+---
+
+<Layout
+  title="PeeweeSys | Dealer-Level (and Beyond) Porsche Diagnostics in Your Browser"
+  description="Plug any cheap $15 Amazon FTDI cable into your 986, 996, or 987 Porsche and diagnose in your browser. Full ECU ROM dumps, gauge linearization, and over-rev audits without virtual machines."
+>
+  <!-- Hero Section -->
+  <Hero />
+
+  <!-- Killer Features ("What No Other Tool Does") -->
+  <KillerFeatures />
+
+  <!-- Tool Comparison Matrix -->
+  <ToolComparison />
+
+  <!-- Supported Cables & Pinouts Guide -->
+  <HardwareGuide />
+
+  <!-- Vehicle Coverage Matrix -->
+  <VehicleCoverage />
+
+  <!-- Dynamic Feature Pipeline Status -->
+  <DynamicFeatures />
+
+  <!-- Contact & Enquiries -->
+  <ContactSection />
+</Layout>

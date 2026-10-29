@@ -1,0 +1,43 @@
+name: Sync Features from Core App
+
+on:
+  repository_dispatch:
+    types: [features-updated]
+  workflow_dispatch:
+  schedule:
+    # Run weekly as a fallback sync
+    - cron: '0 0 * * 0'
+
+permissions:
+  contents: write
+
+jobs:
+  sync-features:
+    runs-on: ubuntu-latest
+    name: Sync Features & Rebuild
+    steps:
+      - name: Checkout Website Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python Dependencies
+        run: pip install pyyaml
+
+      - name: Run Feature Sync Script
+        run: python tools/sync_from_app.py
+
+      - name: Check for Changes and Commit
+        run: |
+          git config user.name "PeeweeSys Bot"
+          git config user.email "bot@peeweesys.com"
+          git add src/data/features.json
+          if git diff --staged --quiet; then
+            echo "No feature changes detected."
+          else
+            git commit -m "chore(data): sync latest features from OpenPIWIS core"
+            git push
+          fi

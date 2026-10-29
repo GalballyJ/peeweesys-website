@@ -1,0 +1,134 @@
+---
+import featuresData from '../data/features.json';
+const { stats, highlighted, last_synced } = featuresData;
+const formattedDate = new Date(last_synced).toLocaleDateString('en-US', {
+  month: 'short',
+  day: 'numeric',
+  year: 'numeric',
+});
+---
+
+<section id="pipeline" class="py-24 bg-pw-bg relative border-t border-pw-line">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pw-green/10 text-pw-green border border-pw-green/20 text-xs font-semibold uppercase tracking-wider">
+        Continuous Live Sync
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-bold text-pw-text tracking-tight">
+        Dynamic OpenPIWIS Engine Status
+      </h2>
+      <p class="text-base sm:text-lg text-pw-muted leading-relaxed">
+        This public website is synced directly from the core OpenPIWIS diagnostic engine. Every car session, extracted service, and verified ECU routine automatically updates this build.
+      </p>
+    </div>
+
+    <!-- Live Metric Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+      <div class="p-6 rounded-xl bg-pw-panel border border-pw-line text-center">
+        <div class="text-3xl sm:text-4xl font-bold font-mono text-pw-text mb-1">
+          {stats.total}
+        </div>
+        <div class="text-xs uppercase tracking-wider text-pw-muted font-mono">Total Capabilities</div>
+      </div>
+
+      <div class="p-6 rounded-xl bg-pw-panel border border-pw-green/40 shadow-glow-green/10 text-center">
+        <div class="text-3xl sm:text-4xl font-bold font-mono text-pw-green mb-1">
+          {stats.done}
+        </div>
+        <div class="text-xs uppercase tracking-wider text-pw-green font-mono">Field Verified on Car</div>
+      </div>
+
+      <div class="p-6 rounded-xl bg-pw-panel border border-pw-line text-center">
+        <div class="text-3xl sm:text-4xl font-bold font-mono text-pw-red mb-1">
+          {stats.percent}%
+        </div>
+        <div class="text-xs uppercase tracking-wider text-pw-muted font-mono">Core Engine Completion</div>
+      </div>
+
+      <div class="p-6 rounded-xl bg-pw-panel border border-pw-line text-center">
+        <div class="text-sm font-bold font-mono text-pw-text mb-1 mt-2">
+          {formattedDate}
+        </div>
+        <div class="text-xs uppercase tracking-wider text-pw-muted font-mono">Last Engine Rebuild</div>
+      </div>
+    </div>
+
+    <!-- Engine Progress Bar -->
+    <div class="rounded-2xl bg-pw-panel border border-pw-line p-6 sm:p-8 mb-12 shadow-xl">
+      <div class="flex items-center justify-between mb-3 text-xs font-mono">
+        <span class="text-pw-text font-bold">Engine Milestone Verification Progress</span>
+        <span class="text-pw-green font-bold">{stats.done} of {stats.total} items completed</span>
+      </div>
+      <div class="w-full bg-pw-card h-4 rounded-full overflow-hidden p-0.5 border border-pw-line">
+        <div
+          class="bg-gradient-to-r from-pw-green via-emerald-400 to-green-500 h-full rounded-full transition-all duration-1000"
+          style={`width: ${stats.percent}%`}
+        ></div>
+      </div>
+      <div class="mt-3 flex items-center justify-between text-[11px] text-pw-muted font-mono">
+        <span>M0: Protocol & Comms</span>
+        <span>M1: Local Helper</span>
+        <span>M2: Diagnostics & Reports</span>
+        <span>M3: ROM & Forensics</span>
+        <span>M4: Kombi Coding</span>
+        <span>M5: 987 CAN</span>
+      </div>
+    </div>
+
+    <!-- Categorized Verified Items Highlights -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Car-Verified Features -->
+      <div class="rounded-xl bg-pw-panel border border-pw-line p-6">
+        <div class="flex items-center justify-between mb-4 pb-2 border-b border-pw-line">
+          <h3 class="text-base font-bold text-pw-text flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-pw-green animate-pulse"></span>
+            <span>Car-Verified 986 / 996 Capabilities</span>
+          </h3>
+          <span class="text-xs font-mono text-pw-green">{highlighted.car_verified_9x6.length} verified</span>
+        </div>
+        <ul class="space-y-3">
+          {highlighted.car_verified_9x6.slice(0, 6).map((item: any) => (
+            <li class="p-3 rounded-lg bg-pw-card border border-pw-line/60 flex flex-col gap-1 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-pw-text">{item.title}</span>
+                <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-pw-green/10 text-pw-green border border-pw-green/20">
+                  {item.id}
+                </span>
+              </div>
+              {item.notes && (
+                <p class="text-pw-muted text-[11px] line-clamp-1">{item.notes}</p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Power Features & Safety Snapshot -->
+      <div class="rounded-xl bg-pw-panel border border-pw-line p-6">
+        <div class="flex items-center justify-between mb-4 pb-2 border-b border-pw-line">
+          <h3 class="text-base font-bold text-pw-text flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-pw-red"></span>
+            <span>Advanced Forensics & Safety Clear</span>
+          </h3>
+          <span class="text-xs font-mono text-pw-red">{highlighted.power_features.length} routines</span>
+        </div>
+        <ul class="space-y-3">
+          {highlighted.power_features.slice(0, 6).map((item: any) => (
+            <li class="p-3 rounded-lg bg-pw-card border border-pw-line/60 flex flex-col gap-1 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-pw-text">{item.title}</span>
+                <span class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-pw-panel text-pw-muted border border-pw-line">
+                  {item.platform || 'Cross'}
+                </span>
+              </div>
+              {item.notes && (
+                <p class="text-pw-muted text-[11px] line-clamp-1">{item.notes}</p>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

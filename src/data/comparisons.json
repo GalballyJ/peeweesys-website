@@ -1,0 +1,234 @@
+{
+  "tools": [
+    {
+      "id": "peeweesys",
+      "name": "PeeweeSys",
+      "badge": "Modern DIY Champion",
+      "cost": "$0 (Free & Open Source)",
+      "hardware": "$15 FTDI K-Line / Tactrix CAN cable",
+      "platform": "Browser (WebSerial) / Any PC",
+      "no_vm": true,
+      "highlight": true
+    },
+    {
+      "id": "piwis",
+      "name": "Porsche PIWIS II / III (OEM / Clone)",
+      "badge": "Dealer Standard",
+      "cost": "$800 - $3,000+",
+      "hardware": "Proprietary Bosch/Samtec VCI multiplexer",
+      "platform": "Windows XP / 7 locked laptop or VM image",
+      "no_vm": false,
+      "highlight": false
+    },
+    {
+      "id": "durametric",
+      "name": "Durametric (Enthusiast / Pro)",
+      "badge": "Legacy PC Standard",
+      "cost": "$287 (3 VIN limit) / $675 (Pro)",
+      "hardware": "Proprietary locked USB cable",
+      "platform": "Legacy Windows desktop software",
+      "no_vm": false,
+      "highlight": false
+    },
+    {
+      "id": "foxwell",
+      "name": "Foxwell NT530 (Porsche Edition)",
+      "badge": "Handheld Scanner",
+      "cost": "$160 - $190",
+      "hardware": "Dedicated handheld scanner with OBD lead",
+      "platform": "Embedded RTOS on handheld unit",
+      "no_vm": true,
+      "highlight": false
+    },
+    {
+      "id": "icarsoft",
+      "name": "iCarsoft POR V2.0 / V3.0",
+      "badge": "Budget Handheld",
+      "cost": "$150 - $220",
+      "hardware": "Dedicated handheld scanner",
+      "platform": "Embedded handheld device",
+      "no_vm": true,
+      "highlight": false
+    },
+    {
+      "id": "launch_autel",
+      "name": "Launch X431 / Autel MaxiSys",
+      "badge": "Pro Multi-Brand",
+      "cost": "$900 - $2,500 + $500/yr sub",
+      "hardware": "Heavy rugged tablet + wireless VCI dongle",
+      "platform": "Locked Android tablet",
+      "no_vm": true,
+      "highlight": false
+    },
+    {
+      "id": "generic_elm",
+      "name": "Generic ELM327 Bluetooth",
+      "badge": "Generic OBD2 Only",
+      "cost": "$10 - $25",
+      "hardware": "Generic ELM327 clone",
+      "platform": "Phone apps (Torque, Car Scanner)",
+      "no_vm": true,
+      "highlight": false
+    }
+  ],
+  "categories": [
+    {
+      "category": "Setup & Architecture",
+      "features": [
+        {
+          "name": "Zero-Install Web App (WebSerial)",
+          "description": "Run straight inside Chrome / Edge / Opera without installing drivers or bloated software.",
+          "values": {
+            "peeweesys": "Yes (Native WebSerial + local helper)",
+            "piwis": "No (Requires 100GB VM image / Win XP)",
+            "durametric": "No (Legacy Win32 driver installer)",
+            "foxwell": "No (Handheld firmware updates via SD card)",
+            "icarsoft": "No (Handheld firmware updates)",
+            "launch_autel": "No (Tablet OS updates)",
+            "generic_elm": "No (Phone app required)"
+          }
+        },
+        {
+          "name": "Hardware Cable Cost",
+          "description": "Cost of the physical interface cable required to communicate with the vehicle.",
+          "values": {
+            "peeweesys": "$15 - $20 (Standard FTDI KKL cable)",
+            "piwis": "$600 - $2,500+ (Proprietary multiplexer)",
+            "durametric": "$287 - $675 (Proprietary locked cable)",
+            "foxwell": "Included with $170 tool",
+            "icarsoft": "Included with $180 tool",
+            "launch_autel": "Included with $1,500+ tablet",
+            "generic_elm": "$10 - $20"
+          }
+        },
+        {
+          "name": "VIN Lockout / Car Count Limits",
+          "description": "Are you restricted to how many cars you can diagnose before paying more?",
+          "values": {
+            "peeweesys": "Unlimited (Zero VIN lockouts)",
+            "piwis": "Unlimited (Official dealer)",
+            "durametric": "Locked to 3 VINs (Pro upgrade: +$388)",
+            "foxwell": "1 Brand included (Extra makes extra)",
+            "icarsoft": "Multi-Porsche models, 1 brand",
+            "launch_autel": "Unlimited (Yearly subscription applies)",
+            "generic_elm": "Unlimited (Generic OBD2 only)"
+          }
+        }
+      ]
+    },
+    {
+      "category": "Exclusive Advanced Deep-Dives",
+      "features": [
+        {
+          "name": "Full DME ROM Read over OBD (0x23)",
+          "description": "Read complete Flash / ROM directly through the diagnostic port without opening the ECU.",
+          "values": {
+            "peeweesys": "Yes (Car-verified ME7.2 / 5.2.2)",
+            "piwis": "No (Flash flashing only, no user dump)",
+            "durametric": "No",
+            "foxwell": "No",
+            "icarsoft": "No",
+            "launch_autel": "No",
+            "generic_elm": "No"
+          }
+        },
+        {
+          "name": "Kombi 93C86 EEPROM Read over K-Line",
+          "description": "Extract full instrument cluster memory for backup, repair, and coding verification.",
+          "values": {
+            "peeweesys": "Yes (Full 2048-byte EEPROM dump)",
+            "piwis": "No (Only dealer coding parameters)",
+            "durametric": "No",
+            "foxwell": "No",
+            "icarsoft": "No",
+            "launch_autel": "No",
+            "generic_elm": "No"
+          }
+        },
+        {
+          "name": "Coolant Gauge Linearization",
+          "description": "Remove the notorious 80°C–105°C factory dummy buffer so the needle shows real engine temps.",
+          "values": {
+            "peeweesys": "Yes (Pre-configured curve & calculator)",
+            "piwis": "No (Factory dummy curve locked)",
+            "durametric": "No",
+            "foxwell": "No",
+            "icarsoft": "No",
+            "launch_autel": "No",
+            "generic_elm": "No"
+          }
+        },
+        {
+          "name": "Speedometer Correction & Recalibration",
+          "description": "Correct factory 4-7% over-read speedometers or custom tire sizes directly in Kombi memory.",
+          "values": {
+            "peeweesys": "Yes (Exact impulse factor adjustments)",
+            "piwis": "No (Preset wheel circumferences only)",
+            "durametric": "No",
+            "foxwell": "No",
+            "icarsoft": "No",
+            "launch_autel": "No",
+            "generic_elm": "No"
+          }
+        }
+      ]
+    },
+    {
+      "category": "Diagnostics & Forensics",
+      "features": [
+        {
+          "name": "Over-Rev (Ignition Ranges) & Operating Hours",
+          "description": "Comprehensive report of Range 1 / Range 2 (or 1-6 on 9x7) over-revs and DME operating hours.",
+          "values": {
+            "peeweesys": "Yes (Live values + historical audit)",
+            "piwis": "Yes",
+            "durametric": "Yes",
+            "foxwell": "Partial (Live data stream)",
+            "icarsoft": "Partial (Selected models)",
+            "launch_autel": "Yes",
+            "generic_elm": "No (Non-standard OBD)"
+          }
+        },
+        {
+          "name": "Cross-Module Mileage / Tamper Audit",
+          "description": "Cross-reference recorded distance in DME, Kombi cluster, and Tiptronic TCU to spot rollbacks.",
+          "values": {
+            "peeweesys": "Yes (Multi-ECU synchronized check)",
+            "piwis": "Manual navigation between ECUs",
+            "durametric": "Manual navigation",
+            "foxwell": "No",
+            "icarsoft": "No",
+            "launch_autel": "Manual checking",
+            "generic_elm": "No"
+          }
+        },
+        {
+          "name": "Pre-Clear Diagnostic Snapshot & PDF",
+          "description": "Safety workflow: snapshot all DTCs, freeze frames, and module status before clearing fault memory.",
+          "values": {
+            "peeweesys": "Built-in Mandatory Snapshot & Export",
+            "piwis": "Manual print-to-PDF / FAP log",
+            "durametric": "Manual screenshot / log",
+            "foxwell": "No (Clears instantly)",
+            "icarsoft": "No (Clears instantly)",
+            "launch_autel": "Basic report generator",
+            "generic_elm": "No"
+          }
+        },
+        {
+          "name": "Non-Engine Module Coverage (Alarm, ABS, Airbag, Roof)",
+          "description": "Direct communication with Porsche body & chassis modules on switched K-lines (Pin 3 / Pin 7).",
+          "values": {
+            "peeweesys": "Yes (All 20+ 9x6/9x7 modules)",
+            "piwis": "Yes (Full dealer coverage)",
+            "durametric": "Yes (Most modules)",
+            "foxwell": "Yes (Chassis/body modules)",
+            "icarsoft": "Partial (Varies by module)",
+            "launch_autel": "Yes (Most modules)",
+            "generic_elm": "No (Engine emission codes only)"
+          }
+        }
+      ]
+    }
+  ]
+}
