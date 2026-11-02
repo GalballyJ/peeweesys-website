@@ -1,5 +1,5 @@
 ---
-// Contact & Inquiry Section with Client-Side Mailto Generator
+// Contact & Inquiry Section with Client-Side Mailto Generator & Webmail / Clipboard Fallbacks
 const recipientEmail = "info@peeweesys.com";
 ---
 
@@ -14,12 +14,12 @@ const recipientEmail = "info@peeweesys.com";
         Questions, Early Access & Vehicle Logs
       </h2>
       <p class="text-base text-pw-muted leading-relaxed">
-        Have questions about cable setups, want to test your Porsche with the demo interface, or have vehicle traces to contribute? Fill in the details below to draft an email directly to the maintainer.
+        Have questions about cable setups, want to test your Porsche with the demo interface, or have vehicle traces to contribute? Draft an email directly to the maintainer.
       </p>
     </div>
 
     <!-- Contact Form Box -->
-    <div class="rounded-2xl bg-pw-panel border border-pw-line p-8 sm:p-10 shadow-2xl">
+    <div class="rounded-2xl bg-pw-panel border border-pw-line p-8 sm:p-10 shadow-2xl space-y-6">
       <form id="contact-form" class="space-y-6">
         <!-- Name & Email Row -->
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -73,6 +73,7 @@ const recipientEmail = "info@peeweesys.com";
               class="w-full px-4 py-3 rounded-lg bg-pw-card border border-pw-line focus:border-pw-red focus:ring-1 focus:ring-pw-red text-sm text-pw-text transition-colors"
             >
               <option value="Demo UI & Early Access">Demo UI & Early Access Invitation</option>
+              <option value="Donor Cluster Migration">Used Donor Cluster Migration Wizard</option>
               <option value="Commercial & Shop Licensing">Commercial / Independent Shop Inquiries</option>
               <option value="Cable & Hardware Advice">FTDI Cable & Pin 3/7 Switch Advice</option>
               <option value="ECU Diagnostic Question">ECU Diagnostic Question</option>
@@ -100,12 +101,13 @@ const recipientEmail = "info@peeweesys.com";
         <!-- Form Footer & Submit -->
         <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div class="text-xs text-pw-muted">
-            Direct Email: <a href={`mailto:${recipientEmail}`} class="text-pw-text hover:text-pw-red underline">{recipientEmail}</a>
+            Direct Email: <a href={`mailto:${recipientEmail}`} class="text-pw-text hover:text-pw-red underline font-mono">{recipientEmail}</a>
           </div>
 
           <button
             type="submit"
-            class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-pw-red hover:bg-pw-guardsred text-white font-bold text-sm shadow-glow-red transition-all duration-200 transform hover:-translate-y-0.5 flex items-center justify-center gap-2"
+            id="contact-submit-btn"
+            class="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-pw-red hover:bg-pw-guardsred text-white font-bold text-sm shadow-glow-red transition-all duration-200 transform hover:-translate-y-0.5 flex items-center justify-center gap-2 cursor-pointer"
           >
             <span>Draft Email in Mail Client</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -114,6 +116,55 @@ const recipientEmail = "info@peeweesys.com";
           </button>
         </div>
       </form>
+
+      <!-- Feedback / Fallback Card (shown upon submit) -->
+      <div id="contact-fallback" class="hidden rounded-xl border border-pw-green/40 bg-pw-green/10 p-5 space-y-4 text-xs animate-fade-in">
+        <div class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded-full bg-pw-green text-black flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+            ✓
+          </div>
+          <div class="space-y-1">
+            <h4 class="text-sm font-bold text-pw-text">Email Draft Prepared!</h4>
+            <p class="text-pw-muted leading-relaxed">
+              We attempted to launch your operating system’s default mail app. If your mail client did not open automatically (for instance, inside an embedded browser preview or if you use webmail), choose an option below:
+            </p>
+          </div>
+        </div>
+
+        <!-- Fallback Action Buttons -->
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <button
+            type="button"
+            id="copy-email-btn"
+            class="px-4 py-2 rounded-lg bg-pw-card hover:bg-pw-surface border border-pw-line text-pw-text font-mono font-medium flex items-center gap-2 transition-colors cursor-pointer"
+          >
+            <svg class="w-4 h-4 text-pw-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span id="copy-btn-text">Copy Message to Clipboard</span>
+          </button>
+
+          <a
+            id="gmail-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-lg bg-pw-card hover:bg-pw-surface border border-pw-line text-pw-text font-medium flex items-center gap-2 transition-colors"
+          >
+            <span>Open in Gmail Web &rarr;</span>
+          </a>
+
+          <a
+            id="outlook-link"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-4 py-2 rounded-lg bg-pw-card hover:bg-pw-surface border border-pw-line text-pw-text font-medium flex items-center gap-2 transition-colors"
+          >
+            <span>Open in Outlook Web &rarr;</span>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -121,23 +172,78 @@ const recipientEmail = "info@peeweesys.com";
 <!-- Client-side Mailto Dispatcher Script -->
 <script define:vars={{ recipientEmail }}>
   const form = document.getElementById('contact-form');
+  const fallbackBox = document.getElementById('contact-fallback');
+  const copyBtn = document.getElementById('copy-email-btn');
+  const copyBtnText = document.getElementById('copy-btn-text');
+  const gmailLink = document.getElementById('gmail-link');
+  const outlookLink = document.getElementById('outlook-link');
+
+  let currentPlainText = '';
+
   if (form) {
     form.addEventListener('submit', (e) => {
       e.preventDefault();
 
-      const name = document.getElementById('contact-name')?.value || '';
-      const email = document.getElementById('contact-email')?.value || '';
-      const vehicle = document.getElementById('contact-vehicle')?.value || 'Not Specified';
-      const topic = document.getElementById('contact-topic')?.value || 'General Inquiry';
-      const message = document.getElementById('contact-message')?.value || '';
+      const name = (document.getElementById('contact-name')?.value || '').trim();
+      const email = (document.getElementById('contact-email')?.value || '').trim();
+      const vehicle = (document.getElementById('contact-vehicle')?.value || '').trim() || 'Not Specified';
+      const topic = (document.getElementById('contact-topic')?.value || '').trim() || 'General Inquiry';
+      const message = (document.getElementById('contact-message')?.value || '').trim();
 
-      const subject = encodeURIComponent(`[PeeweeSys] ${topic} - ${vehicle}`);
-      const body = encodeURIComponent(
-        `Hi PeeweeSys Team,\n\n${message}\n\n---\nSender: ${name}\nEmail: ${email}\nVehicle: ${vehicle}\nTopic: ${topic}`
-      );
+      const rawSubject = `[PeeweeSys] ${topic} - ${vehicle}`;
+      const rawBody = `Hi PeeweeSys Team,\n\n${message}\n\n---\nSender: ${name}\nEmail: ${email}\nVehicle: ${vehicle}\nTopic: ${topic}`;
 
-      const mailtoUrl = `mailto:${recipientEmail}?subject=${subject}&body=${body}`;
-      window.location.href = mailtoUrl;
+      currentPlainText = `To: ${recipientEmail}\nSubject: ${rawSubject}\n\n${rawBody}`;
+
+      const subjectEncoded = encodeURIComponent(rawSubject);
+      const bodyEncoded = encodeURIComponent(rawBody);
+
+      // Webmail URLs
+      if (gmailLink) {
+        gmailLink.href = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(recipientEmail)}&su=${subjectEncoded}&body=${bodyEncoded}`;
+      }
+      if (outlookLink) {
+        outlookLink.href = `https://outlook.live.com/mail/0/deeplink/compose?to=${encodeURIComponent(recipientEmail)}&subject=${subjectEncoded}&body=${bodyEncoded}`;
+      }
+
+      // Show fallback UI immediately so user is never left wondering
+      if (fallbackBox) {
+        fallbackBox.classList.remove('hidden');
+        fallbackBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+
+      // Attempt to launch mailto client via hidden anchor (more reliable in sandboxed webviews)
+      const mailtoUrl = `mailto:${recipientEmail}?subject=${subjectEncoded}&body=${bodyEncoded}`;
+      try {
+        const tempLink = document.createElement('a');
+        tempLink.href = mailtoUrl;
+        tempLink.target = '_blank';
+        tempLink.rel = 'noopener noreferrer';
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        tempLink.remove();
+      } catch (err) {
+        // Fallback to direct location assignment
+        try {
+          window.location.href = mailtoUrl;
+        } catch (e2) {}
+      }
+    });
+  }
+
+  // Copy to clipboard handler
+  if (copyBtn && copyBtnText) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(currentPlainText);
+        copyBtnText.textContent = '✓ Copied to Clipboard!';
+        setTimeout(() => {
+          copyBtnText.textContent = 'Copy Message to Clipboard';
+        }, 3000);
+      } catch (err) {
+        // Fallback prompt if clipboard API is restricted
+        window.prompt('Copy message text:', currentPlainText);
+      }
     });
   }
 </script>
