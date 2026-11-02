@@ -1,17 +1,77 @@
 [
   {
-    "id": "guided_ppi",
-    "title": "Guided Pre-Purchase Inspection (PPI)",
-    "tagline": "Step-by-step diagnostic test plans and live health logging.",
-    "status": "bench",
-    "statusLabel": "In Development",
-    "statusColor": "amber",
-    "icon": "clipboard-check",
-    "description": "Standard scanners passively read fault codes. PeeweeSys guides you through an active diagnostic inspection plan: checking module states, guiding you through cold and hot engine startup routines, logging real-time telemetry, and compiling an authoritative PDF health dossier for prospective buyers and owners.",
+    "id": "rom_dumps",
+    "title": "Full ECU ROM & EEPROM Dumps Over OBD",
+    "tagline": "Direct memory extraction without desoldering or opening the ECU.",
+    "status": "tested",
+    "statusLabel": "Tested on Car",
+    "statusColor": "green",
+    "icon": "database",
+    "description": "Standard diagnostic tools restrict you to basic OBD-II codes. PeeweeSys unlocks full memory-read service 0x23 to stream raw flash and EEPROM data over the standard 16-pin OBD port. Verified on Bosch ME7.2 DME and Siemens / VDO Kombi instrument clusters (2048-byte 93C86 dumps).",
     "highlights": [
-      "Guided interactive workflows: ignition on, engine crank, warm-up logging, actuator testing",
-      "Automatic multi-module consistency check (DME hours, Kombi mileage, transmission run-time)",
-      "Generates an immutable inspection dossier with freeze frames and live sensor graphs"
+      "Exact byte-for-byte binary dump of cluster calibration & DME maps",
+      "Safely verified with non-destructive, read-only memory boundary checks",
+      "Instant offline backup before any instrument cluster modification"
+    ]
+  },
+  {
+    "id": "multi_module_mileage",
+    "title": "Multi-Module Tamper Detection",
+    "tagline": "Cross-reference independent odometer & operating registers.",
+    "status": "tested",
+    "statusLabel": "Tested on Car",
+    "statusColor": "green",
+    "icon": "shield-check",
+    "description": "Unscrupulous sellers can adjust the digits on the instrument cluster, but rarely know how to falsify the independent run-time registers stored in the DME, ABS unit, or Tiptronic transmission. Integrated into our PPI workflow, PeeweeSys pulls all registers simultaneously into one tamper-audit view.",
+    "highlights": [
+      "Simultaneous reading of DME hours, Kombi odometer, and transmission operating time",
+      "Highlights statistical discrepancies (e.g. suspiciously low average speed under 20 km/h)",
+      "Zero subscription lock-in — scan any car before you buy"
+    ]
+  },
+  {
+    "id": "dtc_library",
+    "title": "17,000+ Enriched Fault Code Library",
+    "tagline": "Decoded Porsche-specific dealer DTC definitions in plain English & German.",
+    "status": "tested",
+    "statusLabel": "Database Ready",
+    "statusColor": "green",
+    "icon": "book-open",
+    "description": "Generic scanners display vague 'Unknown Fault PXXXX' messages for proprietary Porsche body, alarm, climate, and chassis codes. PeeweeSys features a comprehensive library of over 17,400 factory fault definitions with official freeze frame descriptors and diagnostic context.",
+    "highlights": [
+      "17,437 decoded Porsche trouble codes across DME, ABS/PSM, Alarm, Airbag, Climate, and Kombi",
+      "Full dual-language support: official factory English and authentic German engineering terminology",
+      "Decodes complex freeze frames and environmental conditions for intermittent glitches"
+    ]
+  },
+  {
+    "id": "safe_preclear_reports",
+    "title": "Pre-Clear Snapshot Reports",
+    "tagline": "Never lose critical diagnostic freeze frame data again.",
+    "status": "tested",
+    "statusLabel": "Tested on Car",
+    "statusColor": "green",
+    "icon": "file-text",
+    "description": "Generic scan tools erase fault codes blindly with a single press, destroying freeze frame conditions (engine RPM, engine temp, load) needed to pinpoint intermittent misfires. PeeweeSys enforces a non-destructive snapshot workflow with structured export before clearing.",
+    "highlights": [
+      "Captures all DTCs, freeze frames, and module versions into a permanent HTML/PDF dossier",
+      "Strict car-tested whitelist prevents sending unverified clear commands to sensitive ECUs",
+      "Automatic post-clear re-scan confirms whether faults are static or transient"
+    ]
+  },
+  {
+    "id": "cluster_migration",
+    "title": "Used Donor Cluster Migration Wizard",
+    "tagline": "Pair replacement clusters with authentic VIN & true mileage without $2,500 dealer virgin parts.",
+    "status": "bench",
+    "statusLabel": "Bench Verified / Car Ready",
+    "statusColor": "amber",
+    "icon": "refresh-cw",
+    "description": "Faded LCD pixels or failing stepper motors are common on 986 and 996 dashboards. Dealership PIWIS tools enforce an artificial software lock that permanently rejects used replacement clusters with over 100 km, forcing owners to purchase $2,500 virgin units. PeeweeSys provides a legitimate donor migration wizard: cryptographically backup your original cluster, transfer tank/oil calibration curves and equipment coding, and safely pair the replacement cluster to your car's genuine VIN and verified DME mileage.",
+    "highlights": [
+      "Bypasses official dealer software block on used donor instrument clusters (>100 km)",
+      "Transfers tank sensor curves, oil level calibration, and regional country equipment coding",
+      "Pairs the donor cluster to your authentic VIN and verified DME odometer record"
     ]
   },
   {
@@ -45,48 +105,33 @@
     ]
   },
   {
-    "id": "rom_dumps",
-    "title": "Full ECU ROM & EEPROM Dumps Over OBD",
-    "tagline": "Direct memory extraction without desoldering or opening the ECU.",
-    "status": "tested",
-    "statusLabel": "Tested on Car",
-    "statusColor": "green",
-    "icon": "database",
-    "description": "Standard diagnostic tools restrict you to basic OBD-II codes. PeeweeSys unlocks full memory-read service 0x23 to stream raw flash and EEPROM data over the standard 16-pin OBD port. Verified on Bosch ME7.2 DME and Siemens / VDO Kombi instrument clusters (2048-byte 93C86 dumps).",
+    "id": "guided_ppi",
+    "title": "Guided Pre-Purchase Inspection (PPI)",
+    "tagline": "Step-by-step diagnostic test plans and live health logging.",
+    "status": "bench",
+    "statusLabel": "In Development",
+    "statusColor": "amber",
+    "icon": "clipboard-check",
+    "description": "Standard scanners passively read fault codes. PeeweeSys guides you through an active diagnostic inspection plan: checking module states, guiding you through cold and hot engine startup routines, logging real-time telemetry, and compiling an authoritative PDF health dossier for prospective buyers and owners.",
     "highlights": [
-      "Exact byte-for-byte binary dump of cluster calibration & DME maps",
-      "Safely verified with non-destructive, read-only memory boundary checks",
-      "Instant offline backup before any instrument cluster modification"
+      "Guided interactive workflows: ignition on, engine crank, warm-up logging, actuator testing",
+      "Automatic multi-module consistency check (DME hours, Kombi mileage, transmission run-time)",
+      "Generates an immutable inspection dossier with freeze frames and live sensor graphs"
     ]
   },
   {
-    "id": "multi_module_mileage",
-    "title": "Multi-Module Tamper Detection",
-    "tagline": "Cross-reference independent odometer & operating registers.",
-    "status": "tested",
-    "statusLabel": "Tested on Car",
-    "statusColor": "green",
-    "icon": "shield-check",
-    "description": "Unscrupulous sellers can adjust the digits on the instrument cluster, but rarely know how to falsify the independent run-time registers stored in the DME, ABS unit, or Tiptronic transmission. Integrated into our PPI workflow, PeeweeSys pulls all registers simultaneously into one tamper-audit view.",
+    "id": "digital_dash",
+    "title": "Digital Dash & Live Telemetry",
+    "tagline": "Live cluster internals: true unbuffered coolant, battery voltage, and raw sensors.",
+    "status": "coming_soon",
+    "statusLabel": "Coming Soon",
+    "statusColor": "blue",
+    "icon": "activity",
+    "description": "Stream raw instrument cluster memory directly in your browser. Surfaces real-time unbuffered coolant temperature in exact °C (free from factory gauge damping), battery charging voltage at 0.05V resolution, fuel tank sender resistance in ohms, and internal decoded digital speed.",
     "highlights": [
-      "Simultaneous reading of DME hours, Kombi odometer, and transmission operating time",
-      "Highlights statistical discrepancies (e.g. suspiciously low average speed under 20 km/h)",
-      "Zero subscription lock-in — scan any car before you buy"
-    ]
-  },
-  {
-    "id": "safe_preclear_reports",
-    "title": "Pre-Clear Snapshot Reports",
-    "tagline": "Never lose critical diagnostic freeze frame data again.",
-    "status": "tested",
-    "statusLabel": "Tested on Car",
-    "statusColor": "green",
-    "icon": "file-text",
-    "description": "Generic scan tools erase fault codes blindly with a single press, destroying freeze frame conditions (engine RPM, engine temp, load) needed to pinpoint intermittent misfires. PeeweeSys enforces a non-destructive snapshot workflow with structured export before clearing.",
-    "highlights": [
-      "Captures all DTCs, freeze frames, and module versions into a permanent HTML/PDF dossier",
-      "Strict car-tested whitelist prevents sending unverified clear commands to sensitive ECUs",
-      "Automatic post-clear re-scan confirms whether faults are static or transient"
+      "Direct memory-mapped telemetry stream from cluster MCU",
+      "Reveals true engine temperature and charging system health before dash warning lamps illuminate",
+      "Live logging and export for diagnosing intermittent electrical or cooling faults"
     ]
   }
 ]

@@ -2,7 +2,7 @@
   {
     "id": "ftdi_kkl",
     "name": "Blue VAG KKL 409.1 (FTDI FT232RL/RQ)",
-    "tier": "Recommended for 986 & 996",
+    "tier": "Recommended for 986 & 996 (K-Line)",
     "price": "$15 - $20 on Amazon / eBay",
     "status": "Verified on Car",
     "statusColor": "green",
@@ -52,14 +52,14 @@
   },
   {
     "id": "obdlink_ex_sx",
-    "name": "OBDLink EX / SX USB",
-    "tier": "Alternative CAN / High-Speed Interface",
-    "price": "$30 - $60 on Amazon",
-    "status": "Bench Extracted / Ready",
-    "statusColor": "amber",
-    "icon": "zap",
-    "summary": "Fast STN-chip based USB adapter supporting full CAN bus messaging and high baud rates up to 2Mbps without packet loss.",
-    "protocol": "ISO 15765-4 (CAN), J1939, ISO 9141",
+    "name": "OBDLink & ELM327 Bluetooth (Wireless)",
+    "tier": "Wireless Bluetooth Interface",
+    "price": "$30 - $80 on Amazon",
+    "status": "Supported in Engine",
+    "statusColor": "green",
+    "icon": "wifi",
+    "summary": "Wireless Bluetooth OBD adapters supporting standard K-line and high-speed CAN messaging without USB cables across the cabin.",
+    "protocol": "Bluetooth SPP / BLE, ISO 15765-4 (CAN), ISO 9141",
     "pinout": [
       { "pin": 4, "name": "Ground", "color": "black", "desc": "Ground" },
       { "pin": 6, "name": "CAN-High", "color": "green", "desc": "CAN bus high line" },
@@ -69,8 +69,31 @@
     ],
     "switchMod": null,
     "buyTips": [
-      "Select the OBDLink EX (USB cable version engineered for FORScan/high data throughput) or SX.",
-      "Direct FTDI-compatible virtual serial port with native buffer management."
+      "Select OBDLink MX+, LX, or genuine ELM327 v1.4/v2.1 compatible Bluetooth hardware.",
+      "Supports wireless Web Bluetooth and WebSocket relay."
+    ]
+  },
+  {
+    "id": "vas_6154a",
+    "name": "VAS 6154A Wi-Fi VCI",
+    "tier": "Workshop Wireless VCI",
+    "price": "$80 - $130 (Clone / OEM)",
+    "status": "Bench Extracted / Ready",
+    "statusColor": "amber",
+    "icon": "zap",
+    "summary": "Professional wireless workshop diagnostic interface supporting Wi-Fi infrastructure mode and DoIP diagnostics.",
+    "protocol": "Wi-Fi (802.11 b/g/n), ISO 13400 (DoIP), CAN & K-Line",
+    "pinout": [
+      { "pin": 4, "name": "Ground", "color": "black", "desc": "Ground" },
+      { "pin": 6, "name": "CAN-High", "color": "green", "desc": "CAN high line" },
+      { "pin": 14, "name": "CAN-Low", "color": "green", "desc": "CAN low line" },
+      { "pin": 7, "name": "K-Line", "color": "blue", "desc": "K-Line" },
+      { "pin": 16, "name": "+12V", "color": "red", "desc": "Power" }
+    ],
+    "switchMod": null,
+    "buyTips": [
+      "Connects via direct Wi-Fi hotspot or workshop LAN.",
+      "High data rates with zero cable strain."
     ]
   }
 ]
