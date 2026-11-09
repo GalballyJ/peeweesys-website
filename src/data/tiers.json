@@ -36,8 +36,8 @@
         "Up to 5 Vehicle VINs in your personal garage",
         "Everything in Driver Tier included",
         "Used Donor Cluster Migration Wizard (VIN pairing & DME sync)",
-        "Speedometer Recalibration (K-Zahl impulse table adjustment)",
-        "Coolant Gauge Linearization (removes 80°C–105°C dummy flat-spot)",
+        "Speedometer Recalibration (In Beta: K-Zahl impulse table adjustment)",
+        "Future access to Coolant Gauge Linearization (In Development)",
         "Kombi configuration & comfort coding backup and restore",
         "High-resolution CSV telemetry logging & freeze-frame inspection",
         "Structured PDF pre-purchase inspection (PPI) health dossiers"

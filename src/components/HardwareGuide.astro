@@ -5,72 +5,159 @@ import cables from '../data/cables.json';
 <section id="hardware" class="py-24 bg-pw-bg relative border-t border-pw-line">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Section Header -->
-    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+    <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
       <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pw-red/10 text-pw-red border border-pw-red/20 text-xs font-semibold uppercase tracking-wider">
         Hardware Freedom
       </div>
       <h2 class="text-3xl sm:text-4xl font-bold text-pw-text tracking-tight">
-        Supported Cables & Hardware Guide
+        Supported Cables & Interface Guide
       </h2>
       <p class="text-base sm:text-lg text-pw-muted leading-relaxed">
         No proprietary $800 boxes. PeeweeSys talks directly to your Porsche using inexpensive, standard FTDI USB-to-OBD cables or professional J2534 PassThru adapters.
       </p>
     </div>
 
+    <!-- Platform Selector Filter Tabs -->
+    <div class="flex flex-wrap items-center justify-center gap-2 mb-12 font-mono text-xs">
+      <span class="text-pw-muted mr-2 font-bold uppercase text-[11px]">Select Your Porsche:</span>
+      <button
+        type="button"
+        class="cable-filter-btn px-4 py-2 rounded-lg bg-pw-red text-white font-bold transition-all shadow-sm"
+        data-filter="all"
+      >
+        All Cables
+      </button>
+      <button
+        type="button"
+        class="cable-filter-btn px-4 py-2 rounded-lg bg-pw-card hover:bg-pw-surface text-pw-muted hover:text-pw-text border border-pw-line transition-all"
+        data-filter="986"
+      >
+        986 Boxster
+      </button>
+      <button
+        type="button"
+        class="cable-filter-btn px-4 py-2 rounded-lg bg-pw-card hover:bg-pw-surface text-pw-muted hover:text-pw-text border border-pw-line transition-all"
+        data-filter="996"
+      >
+        996 911
+      </button>
+      <button
+        type="button"
+        class="cable-filter-btn px-4 py-2 rounded-lg bg-pw-card hover:bg-pw-surface text-pw-muted hover:text-pw-text border border-pw-line transition-all"
+        data-filter="987"
+      >
+        987 Boxster / Cayman
+      </button>
+      <button
+        type="button"
+        class="cable-filter-btn px-4 py-2 rounded-lg bg-pw-card hover:bg-pw-surface text-pw-muted hover:text-pw-text border border-pw-line transition-all"
+        data-filter="997"
+      >
+        997 911
+      </button>
+      <button
+        type="button"
+        class="cable-filter-btn px-4 py-2 rounded-lg bg-pw-card hover:bg-pw-surface text-pw-muted hover:text-pw-text border border-pw-line transition-all"
+        data-filter="cayenne"
+      >
+        Cayenne E1
+      </button>
+    </div>
+
     <!-- Cables Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12" id="cables-grid">
       {cables.map((cable) => {
-        const isFTDI = cable.id === 'ftdi_kkl';
+        const isSupported = cable.statusColor === 'green';
+        const isBeta = cable.statusColor === 'amber';
+        const statusBadgeClass = isSupported
+          ? 'bg-pw-green/10 text-pw-green border-pw-green/30'
+          : isBeta
+          ? 'bg-pw-amber/10 text-pw-amber border-pw-amber/30'
+          : 'bg-zinc-800 text-zinc-400 border-zinc-700';
+
+        const dotClass = isSupported
+          ? 'bg-pw-green'
+          : isBeta
+          ? 'bg-pw-amber'
+          : 'bg-zinc-500';
+
         return (
-          <div class={`rounded-xl bg-pw-panel border flex flex-col justify-between p-6 transition-all duration-200 ${
-            isFTDI ? 'border-pw-green/40 shadow-glow-green/20' : 'border-pw-line'
-          }`}>
-            <div>
-              <!-- Cable Badge & Title -->
-              <div class="flex items-center justify-between mb-3">
-                <span class="text-xs font-mono font-medium px-2.5 py-1 rounded-full bg-pw-green/10 text-pw-green border border-pw-green/30">
+          <div
+            class={`cable-card rounded-xl bg-pw-panel border flex flex-col justify-between p-6 transition-all duration-300 ${
+              isSupported
+                ? 'border-pw-green/50 shadow-glow-green/15 ring-1 ring-pw-green/30'
+                : isBeta
+                ? 'border-pw-amber/40 shadow-lg'
+                : 'border-pw-line opacity-85 hover:opacity-100'
+            }`}
+            data-platforms={cable.platformCodes.join(',')}
+          >
+            <div class="space-y-4">
+              <!-- Top Row: Status & Price -->
+              <div class="flex items-center justify-between gap-2">
+                <span class={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono font-bold border ${statusBadgeClass}`}>
+                  <span class={`w-1.5 h-1.5 rounded-full ${dotClass}`}></span>
                   {cable.status}
                 </span>
-                <span class="text-xs font-mono text-pw-muted">
+                <span class="text-xs font-mono font-bold text-pw-text">
                   {cable.price}
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold text-pw-text mb-1">{cable.name}</h3>
-              <p class="text-xs font-mono text-pw-red mb-3">{cable.tier}</p>
-              <p class="text-sm text-pw-muted leading-relaxed mb-6">{cable.summary}</p>
+              <!-- Cable Name & Tier -->
+              <div>
+                <h3 class="text-base font-bold text-pw-text leading-tight">{cable.name}</h3>
+                <p class="text-xs font-mono text-pw-red mt-0.5">{cable.tier}</p>
+              </div>
 
-              <!-- Pinout Breakdown Mini-Card -->
-              <div class="rounded-lg bg-pw-card border border-pw-line p-4 mb-6">
-                <div class="text-xs font-mono uppercase tracking-wider text-pw-text font-bold mb-3 flex items-center justify-between">
-                  <span>OBD-II 16-Pin Wiring</span>
-                  <span class="text-[10px] text-pw-muted">SAE J1962</span>
+              <!-- Supported Platforms Tags / Buttons -->
+              <div class="space-y-1.5 pt-2 border-t border-pw-line/60">
+                <div class="text-[10px] font-mono uppercase tracking-wider text-pw-muted font-bold">
+                  Vehicle Compatibility:
                 </div>
-                <div class="space-y-2">
-                  {cable.pinout.map((pin) => (
-                    <div class="flex items-center justify-between text-xs font-mono">
-                      <span class="flex items-center gap-2">
-                        <span class={`w-2 h-2 rounded-full ${
-                          pin.color === 'red' ? 'bg-pw-red' :
-                          pin.color === 'green' ? 'bg-pw-green' :
-                          pin.color === 'blue' ? 'bg-pw-blue' :
-                          pin.color === 'amber' ? 'bg-pw-amber' : 'bg-gray-500'
-                        }`}></span>
-                        <strong class="text-pw-text">Pin {pin.pin}:</strong>
-                      </span>
-                      <span class="text-pw-muted text-[11px] text-right truncate max-w-[170px]">{pin.name}</span>
-                    </div>
+                <div class="flex flex-wrap gap-1.5">
+                  {cable.supportedPlatforms.map((plat) => (
+                    <span class={`text-[10px] font-mono px-2 py-0.5 rounded border ${
+                      isSupported
+                        ? 'bg-pw-card border-pw-green/30 text-pw-green font-semibold'
+                        : isBeta
+                        ? 'bg-pw-card border-pw-amber/30 text-pw-amber font-semibold'
+                        : 'bg-pw-card border-pw-line text-pw-muted'
+                    }`}>
+                      {plat}
+                    </span>
                   ))}
                 </div>
               </div>
 
-              <!-- Buyer Tips -->
-              <div class="space-y-2 mb-6">
-                <div class="text-xs font-bold text-pw-text uppercase tracking-wider font-mono">Buying & Setup Tips:</div>
-                <ul class="space-y-1.5">
+              <!-- Summary Description -->
+              <p class="text-xs text-pw-muted leading-relaxed pt-1">
+                {cable.summary}
+              </p>
+
+              <!-- Optional Popout Action: Toggle Switch Mod for K-Line -->
+              {cable.switchMod && (
+                <div class="pt-2">
+                  <button
+                    type="button"
+                    id="open-switchmod-modal"
+                    class="w-full py-2.5 px-3 rounded-lg bg-pw-amber/10 hover:bg-pw-amber/20 border border-pw-amber/40 hover:border-pw-amber text-pw-amber text-xs font-mono font-bold flex items-center justify-center gap-2 transition-all cursor-pointer shadow-sm group"
+                  >
+                    <span>The $1 Switch Mod Guide</span>
+                    <span class="group-hover:translate-x-0.5 transition-transform">&rarr;</span>
+                  </button>
+                </div>
+              )}
+
+              <!-- Buying & Setup Tips -->
+              <div class="pt-3 border-t border-pw-line/60 space-y-1.5">
+                <div class="text-[10px] font-mono uppercase tracking-wider text-pw-text font-bold">
+                  Hardware Notes:
+                </div>
+                <ul class="space-y-1">
                   {cable.buyTips.map((tip) => (
-                    <li class="flex items-start gap-2 text-xs text-pw-muted leading-relaxed">
-                      <span class="text-pw-green shrink-0 mt-0.5">&bull;</span>
+                    <li class="flex items-start gap-1.5 text-[11px] text-pw-muted leading-relaxed">
+                      <span class="text-pw-red shrink-0 mt-0.5">&bull;</span>
                       <span>{tip}</span>
                     </li>
                   ))}
@@ -78,84 +165,182 @@ import cables from '../data/cables.json';
               </div>
             </div>
 
-            <!-- Protocol Badge -->
-            <div class="pt-4 border-t border-pw-line/70 flex items-center justify-between text-xs font-mono text-pw-muted">
-              <span>Bus:</span>
-              <span class="text-pw-text">{cable.protocol}</span>
+            <!-- Protocol Footer -->
+            <div class="pt-4 mt-4 border-t border-pw-line/70 flex items-center justify-between text-[11px] font-mono text-pw-muted">
+              <span>Protocol:</span>
+              <span class="text-pw-text truncate max-w-[140px] text-right font-medium">{cable.protocol}</span>
             </div>
           </div>
         );
       })}
     </div>
 
-    <!-- The Famous $1 Toggle Switch Mod Deep-Dive Card -->
-    <div class="rounded-2xl bg-gradient-to-br from-pw-panel via-pw-card to-pw-panel border border-pw-line p-8 relative overflow-hidden shadow-2xl">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-        <!-- Text Explanation -->
-        <div class="lg:col-span-7 space-y-4">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pw-amber/15 text-pw-amber border border-pw-amber/30 text-xs font-mono font-medium">
-            ESSENTIAL 986 / 996 PRO-TIP
+    <!-- Modal Popout: The $1 Toggle Switch Mod -->
+    <div
+      id="switchmod-modal"
+      class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm p-4 sm:p-6 overflow-y-auto flex items-center justify-center animate-fade-in"
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="relative w-full max-w-2xl rounded-2xl bg-pw-panel border-2 border-pw-amber shadow-2xl p-6 sm:p-8 space-y-6 text-left my-8">
+        <!-- Modal Header -->
+        <div class="flex items-start justify-between border-b border-pw-line pb-4">
+          <div class="space-y-1">
+            <span class="inline-block px-2.5 py-0.5 rounded-full bg-pw-amber/20 border border-pw-amber/40 text-pw-amber text-xs font-mono font-bold uppercase">
+              Essential 986 / 996 Hardware Modification
+            </span>
+            <h3 id="modal-title" class="text-2xl font-bold text-pw-text">
+              The $1 Dual K-Line Toggle Switch Mod
+            </h3>
           </div>
-          <h3 class="text-2xl sm:text-3xl font-bold text-pw-text">
-            The $1 Dual-K-Line Toggle Switch Mod
-          </h3>
-          <p class="text-sm sm:text-base text-pw-muted leading-relaxed">
-            In early Porsches (986 Boxster and 996 911), Porsche chose not to put all ECUs on a single shared diagnostic bus:
+          <button
+            type="button"
+            id="close-switchmod-modal"
+            class="p-2 rounded-lg bg-pw-card hover:bg-pw-surface border border-pw-line text-pw-muted hover:text-white transition-colors cursor-pointer"
+            aria-label="Close dialog"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Why It's Needed -->
+        <div class="space-y-3 text-xs sm:text-sm text-pw-muted leading-relaxed">
+          <p>
+            In early water-cooled Porsches (<strong>986 Boxster</strong> and <strong>996 911</strong>), Porsche separated vehicle electronics across two distinct K-Line bus pins inside the standard 16-pin OBD port:
           </p>
-          <ul class="space-y-2 text-sm text-pw-text">
-            <li class="flex items-start gap-2">
-              <span class="text-pw-green font-bold">Pin 7:</span>
-              <span class="text-pw-muted">DME Engine Computer, Kombi Instrument Cluster, Tiptronic Transmission.</span>
-            </li>
-            <li class="flex items-start gap-2">
-              <span class="text-pw-amber font-bold">Pin 3:</span>
-              <span class="text-pw-muted">ABS / PSM, Airbag, Alarm / Immobilizer, Convertible Soft Top, Climate Control.</span>
-            </li>
-          </ul>
-          <p class="text-xs text-pw-muted leading-relaxed">
-            Standard blue VAG KKL cables connect the FTDI chip only to Pin 7. By opening the blue transparent casing and adding a small SPDT micro slide switch between Pin 7 and Pin 3 (or linking them), you give your cable 100% full-car access for less than the cost of a coffee.
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 font-mono text-xs">
+            <div class="p-3 rounded-lg bg-pw-card border border-pw-blue/40 space-y-1">
+              <div class="font-bold text-pw-blue">OBD Pin 7 (Default)</div>
+              <div class="text-[11px] text-pw-text">DME Engine Computer (0x11), Kombi Instrument Cluster (0x64), Tiptronic (0x18).</div>
+            </div>
+
+            <div class="p-3 rounded-lg bg-pw-card border border-pw-amber/40 space-y-1">
+              <div class="font-bold text-pw-amber">OBD Pin 3 (Switched)</div>
+              <div class="text-[11px] text-pw-text">ABS / PSM 5.7 (0x1F), Alarm M534 (0xC0), Airbag POSIP (0x57), Climate HKL (0x98), Soft Top (0x28).</div>
+            </div>
+          </div>
+
+          <p class="text-xs pt-1">
+            Standard blue VAG KKL cables connect the FTDI chip only to Pin 7. Adding a simple micro switch lets you diagnose the entire vehicle with zero expensive multiplexer boxes.
           </p>
         </div>
 
-        <!-- Visual Schematic Diagram -->
-        <div class="lg:col-span-5 bg-pw-bg/80 rounded-xl border border-pw-line p-6 font-mono text-xs">
-          <div class="text-xs font-bold text-pw-text mb-4 text-center border-b border-pw-line pb-2">
-            OBD-II CONNECTOR PINOUT (SWITCH SCHEMATIC)
+        <!-- Schematic Diagram -->
+        <div class="rounded-xl bg-pw-card border border-pw-line p-4 font-mono text-xs space-y-3">
+          <div class="text-xs font-bold text-pw-text border-b border-pw-line pb-2 flex items-center justify-between">
+            <span>WIRING DIAGRAM (SPDT MICRO SLIDE SWITCH)</span>
+            <span class="text-pw-green">SAE J1962</span>
           </div>
 
-          <div class="space-y-3">
-            <div class="p-2.5 rounded bg-pw-panel border border-pw-blue/30 flex items-center justify-between">
-              <div>
-                <span class="text-pw-blue font-bold">OBD Pin 7:</span>
-                <span class="text-pw-muted text-[11px] block">DME & Kombi Engine Bus</span>
-              </div>
-              <span class="px-2 py-1 rounded bg-pw-blue/20 text-pw-blue text-[11px]">Default Mode</span>
+          <div class="p-3 rounded bg-black/60 border border-pw-line space-y-2 text-[11px]">
+            <div class="flex items-center justify-between">
+              <span class="text-pw-blue font-bold">Switch Pos A:</span>
+              <span class="text-pw-text">FTDI TX/RX &rarr; OBD Pin 7 (Powertrain Bus)</span>
             </div>
-
-            <!-- The Switch Toggle graphic -->
-            <div class="flex items-center justify-center py-1">
-              <div class="flex items-center gap-2 px-4 py-1.5 rounded-full bg-pw-amber/20 border border-pw-amber/40 text-pw-amber font-bold text-[11px]">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-                </svg>
-                <span>SPDT Toggle Switch (or Pin 3+7 Bridge)</span>
-              </div>
-            </div>
-
-            <div class="p-2.5 rounded bg-pw-panel border border-pw-amber/30 flex items-center justify-between">
-              <div>
-                <span class="text-pw-amber font-bold">OBD Pin 3:</span>
-                <span class="text-pw-muted text-[11px] block">ABS, Alarm, Airbag, Climate</span>
-              </div>
-              <span class="px-2 py-1 rounded bg-pw-amber/20 text-pw-amber text-[11px]">Switched Mode</span>
-            </div>
-
-            <div class="p-2 rounded bg-pw-card text-center text-[11px] text-pw-muted border border-pw-line/50">
-              FTDI RX/TX &rarr; Pin 7 (Engine) OR Pin 3 (Body/Chassis)
+            <div class="flex items-center justify-between">
+              <span class="text-pw-amber font-bold">Switch Pos B:</span>
+              <span class="text-pw-text">FTDI TX/RX &rarr; OBD Pin 3 (Chassis & Body Bus)</span>
             </div>
           </div>
+        </div>
+
+        <!-- Step-by-Step Instructions -->
+        <div class="space-y-2 font-mono text-xs">
+          <div class="font-bold text-pw-text uppercase text-[11px]">Assembly Steps:</div>
+          <ol class="space-y-1.5 text-[11px] text-pw-muted list-decimal list-inside leading-relaxed">
+            <li>Unscrew the blue transparent plastic shell of your $15 VAG KKL cable.</li>
+            <li>Locate the wire running from the FTDI circuit board to OBD Pin 7.</li>
+            <li>Cut or desolder the Pin 7 wire and connect it to the center terminal of a miniature SPDT slide switch.</li>
+            <li>Connect position 1 to Pin 7, and run a short wire from position 2 to OBD Pin 3.</li>
+            <li><em>Optional shortcut:</em> Solder a small wire jumper directly bridging Pin 7 and Pin 3 together (verified to work cleanly on most 986/996 cars without bus cross-talk).</li>
+          </ol>
+        </div>
+
+        <!-- Modal Footer -->
+        <div class="pt-4 border-t border-pw-line flex items-center justify-between">
+          <span class="text-[11px] font-mono text-pw-muted">Total Mod Cost: &lt; $1.00</span>
+          <button
+            type="button"
+            id="close-switchmod-btn"
+            class="px-5 py-2 rounded-lg bg-pw-card hover:bg-pw-surface border border-pw-line text-pw-text font-mono text-xs font-bold transition-colors cursor-pointer"
+          >
+            Close Guide
+          </button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Hardware Filter & Modal Popout Controller -->
+<script>
+  // Platform Filter Logic
+  const filterButtons = document.querySelectorAll('.cable-filter-btn');
+  const cards = document.querySelectorAll('.cable-card');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter') || 'all';
+
+      // Update button active state
+      filterButtons.forEach((b) => {
+        b.classList.remove('bg-pw-red', 'text-white', 'font-bold');
+        b.classList.add('bg-pw-card', 'text-pw-muted');
+      });
+      btn.classList.remove('bg-pw-card', 'text-pw-muted');
+      btn.classList.add('bg-pw-red', 'text-white', 'font-bold');
+
+      // Filter cards
+      cards.forEach((card) => {
+        const platforms = (card.getAttribute('data-platforms') || '').split(',');
+        if (filter === 'all' || platforms.includes(filter) || platforms.includes('all')) {
+          card.classList.remove('hidden');
+          card.classList.add('flex');
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('flex');
+        }
+      });
+    });
+  });
+
+  // Toggle Switch Mod Popout Modal
+  const openModalBtn = document.getElementById('open-switchmod-modal');
+  const closeModalBtn = document.getElementById('close-switchmod-modal');
+  const closeModalFooterBtn = document.getElementById('close-switchmod-btn');
+  const modal = document.getElementById('switchmod-modal');
+
+  function openModal() {
+    if (modal) {
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    }
+  }
+
+  function closeModal() {
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+  }
+
+  if (openModalBtn) openModalBtn.addEventListener('click', openModal);
+  if (closeModalBtn) closeModalBtn.addEventListener('click', closeModal);
+  if (closeModalFooterBtn) closeModalFooterBtn.addEventListener('click', closeModal);
+
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+</script>

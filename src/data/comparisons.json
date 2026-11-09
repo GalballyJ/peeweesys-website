@@ -149,7 +149,7 @@
           "name": "Coolant Gauge Linearization",
           "description": "Remove the notorious 80°C–105°C factory dummy buffer so the needle shows real engine temps.",
           "values": {
-            "peeweesys": "Yes (Pre-configured curve & calculator)",
+            "peeweesys": "In Development (Plateau curve mapping)",
             "piwis": "No (Factory dummy curve locked)",
             "durametric": "No",
             "foxwell": "No",
@@ -162,7 +162,7 @@
           "name": "Speedometer Correction & Recalibration",
           "description": "Correct factory 4-7% over-read speedometers or custom tire sizes directly in Kombi memory.",
           "values": {
-            "peeweesys": "Yes (Car-verified uk_1to1 on K24 cluster)",
+            "peeweesys": "In Beta (uk_1to1 verified on K24 cluster)",
             "piwis": "No (Preset wheel circumferences only)",
             "durametric": "No",
             "foxwell": "No",
