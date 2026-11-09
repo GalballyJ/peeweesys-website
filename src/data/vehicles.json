@@ -23,7 +23,7 @@
     "features": [
       "Full DME ME7.2 ROM read over OBD (0x23)",
       "Kombi 93C86 2048-byte EEPROM dump",
-      "Coolant temperature gauge linearization",
+      "Coolant temperature gauge linearization research",
       "Over-rev Range 1 & 2 counter and operating hours",
       "Dual K-line Pin 7 / Pin 3 switched support"
     ]
@@ -33,8 +33,8 @@
     "family": "Boxster & Cayman Series",
     "name": "Boxster & Cayman (987)",
     "years": "2005 - 2012",
-    "status": "bench",
-    "statusLabel": "Bench Ready / Car Test Next",
+    "status": "in_beta",
+    "statusLabel": "In Beta",
     "statusTier": "amber",
     "protocol": "CAN Bus (ISO 15765-4 / UDS / KWP-on-CAN) + K-Line (early modules)",
     "busPins": "Pin 6 (CAN-H), Pin 14 (CAN-L), Pin 7 (Gateway)",
@@ -57,29 +57,54 @@
     ]
   },
   {
-    "id": "981_718",
+    "id": "981",
     "family": "Boxster & Cayman Series",
-    "name": "Boxster & Cayman (981 & 718)",
-    "years": "2013+",
-    "status": "coming_soon",
-    "statusLabel": "Coming Soon",
+    "name": "Boxster & Cayman (981)",
+    "years": "2013 - 2016",
+    "status": "in_development",
+    "statusLabel": "In Development",
     "statusTier": "blue",
-    "protocol": "CAN FD / High-Speed CAN / UDS (ISO 14229)",
+    "protocol": "High-Speed CAN Bus & UDS (ISO 14229)",
     "busPins": "Pin 6 (CAN-H), Pin 14 (CAN-L)",
     "image": null,
-    "headline": "Modern mid-engine generations (981 2.7L/3.4L/GT4 and 718 2.0T/2.5T/4.0L).",
+    "headline": "Third-generation mid-engine roadster & coupe (981 2.7L, 3.4L S/GTS, and Cayman GT4).",
     "modules": {
-      "DME Engine": { "supported": false, "verified": false, "note": "Continental SDI9 / SDI21" },
-      "Kombi Cluster": { "supported": false, "verified": false, "note": "Digital multi-function TFT display" },
-      "ABS / PSM": { "supported": false, "verified": false, "note": "Bosch 9.0 ESP" },
-      "Airbag": { "supported": false, "verified": false, "note": "Modern multi-stage SRS" },
-      "Gateway BCM": { "supported": false, "verified": false, "note": "Central Gateway (CGW)" },
+      "DME Engine": { "supported": false, "verified": false, "note": "Continental SDI9 powertrain control" },
+      "Kombi Cluster": { "supported": false, "verified": false, "note": "Right-hand multi-function TFT color display" },
+      "ABS / PSM": { "supported": false, "verified": false, "note": "Bosch 9.0 ESP stability system" },
+      "Airbag": { "supported": false, "verified": false, "note": "CAN SRS airbag control unit" },
+      "Central Gateway (CGW)": { "supported": false, "verified": false, "note": "CAN network gateway controller" },
       "PDK Transmission": { "supported": false, "verified": false, "note": "7-speed dual-clutch transmission" }
     },
     "features": [
-      "CAN FD protocol pipeline",
-      "UDS standard diagnostic routines",
-      "Electronic parking brake service mode research"
+      "High-speed UDS diagnostic session initiation",
+      "Electronic parking brake (EPB) service mode research",
+      "Live sensor telemetry mapping"
+    ]
+  },
+  {
+    "id": "718",
+    "family": "Boxster & Cayman Series",
+    "name": "718 Boxster & Cayman (982)",
+    "years": "2017+",
+    "status": "in_development",
+    "statusLabel": "In Development",
+    "statusTier": "blue",
+    "protocol": "CAN FD & High-Speed CAN / UDS (ISO 14229)",
+    "busPins": "Pin 6 (CAN-H), Pin 14 (CAN-L)",
+    "image": null,
+    "headline": "Turbocharged 4-cylinder (2.0T/2.5T) and naturally aspirated 4.0L flat-six (GT4, Spyder, GTS 4.0).",
+    "modules": {
+      "DME Engine": { "supported": false, "verified": false, "note": "Continental SDI21 / Bosch DME" },
+      "Kombi Cluster": { "supported": false, "verified": false, "note": "Digital TFT display & trip computer" },
+      "ABS / PSM": { "supported": false, "verified": false, "note": "Bosch ESP 9.0 stability management" },
+      "Electric Power Steering": { "supported": false, "verified": false, "note": "EPS rack module diagnostics" },
+      "PDK Transmission": { "supported": false, "verified": false, "note": "7-speed dual-clutch control" }
+    },
+    "features": [
+      "Modern UDS multi-frame ISO-TP transport",
+      "Launch control counter and over-rev audit",
+      "Track precision telemetry and sensor data logging"
     ]
   },
   {
@@ -116,8 +141,8 @@
     "family": "911 Carrera Series",
     "name": "911 Carrera / Turbo / GT3 (997)",
     "years": "2005 - 2012",
-    "status": "bench",
-    "statusLabel": "Bench Ready / Car Test Next",
+    "status": "in_beta",
+    "statusLabel": "In Beta",
     "statusTier": "amber",
     "protocol": "CAN Bus (ISO 15765 / UDS) + K-Line Gateway",
     "busPins": "Pin 6 (CAN-H), Pin 14 (CAN-L)",
@@ -140,46 +165,192 @@
     ]
   },
   {
-    "id": "991_992",
+    "id": "991",
     "family": "911 Carrera Series",
-    "name": "911 Carrera / Turbo (991 & 992)",
-    "years": "2012+",
-    "status": "coming_soon",
-    "statusLabel": "Coming Soon",
+    "name": "911 Carrera / Turbo / GT3 (991)",
+    "years": "2012 - 2019",
+    "status": "in_development",
+    "statusLabel": "In Development",
     "statusTier": "blue",
-    "protocol": "CAN FD / DoIP / UDS (ISO 14229)",
-    "busPins": "Pin 6/14 (CAN), Ethernet pins (DoIP)",
+    "protocol": "High-Speed CAN Bus / UDS (ISO 14229)",
+    "busPins": "Pin 6 (CAN-H), Pin 14 (CAN-L)",
     "image": null,
-    "headline": "Modern 991 and 992 platforms with high-speed CAN FD and Ethernet DoIP architectures.",
+    "headline": "Seventh-generation 911: 991.1 naturally aspirated (3.4L/3.8L/GT3) and 991.2 twin-turbo 3.0L / GT3 RS.",
     "modules": {
-      "DME Engine": { "supported": false, "verified": false, "note": "Continental SDI9 / Bosch MG1" },
-      "Kombi Cluster": { "supported": false, "verified": false, "note": "Twin digital screen cluster" },
+      "DME Engine": { "supported": false, "verified": false, "note": "Continental SDI9 / SDI10 / SDI21 DME" },
+      "Kombi Cluster": { "supported": false, "verified": false, "note": "High-res TFT multi-function display" },
       "ABS / PSM": { "supported": false, "verified": false, "note": "Bosch ESP 9.0" },
-      "Central Gateway": { "supported": false, "verified": false, "note": "High-security gateway" },
-      "Transmission": { "supported": false, "verified": false, "note": "7-speed & 8-speed PDK" }
+      "Rear-Axle Steering": { "supported": false, "verified": false, "note": "Active rear steering control" },
+      "PDK Transmission": { "supported": false, "verified": false, "note": "7-speed dual-clutch transmission" }
+    },
+    "features": [
+      "Full UDS routine execution",
+      "Over-rev audit (Ranges 1 through 6)",
+      "Dynamic engine mount & PASM diagnostics"
+    ]
+  },
+  {
+    "id": "992",
+    "family": "911 Carrera Series",
+    "name": "911 Carrera / Turbo / GT3 (992)",
+    "years": "2019+",
+    "status": "in_development",
+    "statusLabel": "In Development",
+    "statusTier": "blue",
+    "protocol": "CAN FD / DoIP Ethernet / UDS (ISO 14229)",
+    "busPins": "Pin 6/14 (CAN FD), Ethernet Pins (DoIP)",
+    "image": null,
+    "headline": "Eighth-generation 911 with twin digital cockpit displays and high-speed DoIP diagnostic network.",
+    "modules": {
+      "DME Engine": { "supported": false, "verified": false, "note": "Bosch MG1 powertrain control" },
+      "Kombi Cluster": { "supported": false, "verified": false, "note": "Dual 7-inch digital cockpit displays" },
+      "ABS / PSM": { "supported": false, "verified": false, "note": "Integrated brake & stability system" },
+      "Central Gateway (CGW)": { "supported": false, "verified": false, "note": "High-security gateway" },
+      "PDK Transmission": { "supported": false, "verified": false, "note": "8-speed dual-clutch PDK" }
     },
     "features": [
       "Diagnostics over IP (DoIP) transport layer",
       "High-speed multi-frame UDS messaging",
-      "Secure Gateway (SGW) research"
+      "Secure Gateway (SGW) architecture research"
     ]
   },
   {
-    "id": "classics",
-    "family": "Air-Cooled & Transaxle Classics",
-    "name": "Classics (993, 964, 944, 928, 968)",
-    "years": "1985 - 1998",
-    "status": "coming_soon",
-    "statusLabel": "Coming Soon",
-    "statusTier": "blue",
-    "protocol": "Early K-Line / 19-Pin Round Diagnostic Port",
-    "busPins": "Round 19-Pin Adapter & OBD-1 / K-Line",
+    "id": "cayenne_e1",
+    "family": "SUVs & Grand Tourers",
+    "name": "Cayenne (E1 / 955 / 957)",
+    "years": "2003 - 2010",
+    "status": "in_beta",
+    "statusLabel": "In Beta",
+    "statusTier": "amber",
+    "protocol": "K-Line & High-Speed CAN Bus (ISO 15765-4 / KWP2000)",
+    "busPins": "Pin 7 (K-Line), Pin 6 (CAN-H), Pin 14 (CAN-L)",
     "image": null,
-    "headline": "Air-cooled 911s (964, 993) and transaxle legends (944 S2/Turbo, 968, 928 S4/GTS).",
+    "headline": "First-generation Cayenne (V6 3.2L/3.6L, V8 4.5L/4.8L S & Turbo). Diagnostic database extracted and bench-verified.",
     "modules": {
-      "DME Engine": { "supported": false, "verified": false, "note": "Bosch Motronic ML3.1 / M2.1 / M5.2" },
-      "ABS Module": { "supported": false, "verified": false, "note": "Bosch 2U / 2E ABS" },
-      "Climate Control Unit (CCU)": { "supported": false, "verified": false, "note": "993/964 dual-fan CCU diagnostics" },
+      "DME Engine": { "supported": true, "verified": false, "note": "Bosch ME7.1.1 V8 / ME7.1.1 V6" },
+      "Air Suspension (PASM)": { "supported": true, "verified": false, "note": "Ride height sensors & compressor valve block" },
+      "All-Wheel Drive (PTM)": { "supported": true, "verified": false, "note": "Transfer case & locking diffs" },
+      "Kombi Cluster": { "supported": true, "verified": false, "note": "Instrument cluster & center display" },
+      "Transmission": { "supported": true, "verified": false, "note": "Aisin 6-speed Tiptronic" }
+    },
+    "features": [
+      "Cayenne E1 diagnostic protocol mapping",
+      "Air suspension height sensor actual values",
+      "Transfer case & differential module identification"
+    ]
+  },
+  {
+    "id": "cayenne_e2_e3",
+    "family": "SUVs & Grand Tourers",
+    "name": "Cayenne (E2 & E3 / 958 & 9YA)",
+    "years": "2011+",
+    "status": "in_development",
+    "statusLabel": "In Development",
+    "statusTier": "blue",
+    "protocol": "High-Speed CAN FD & DoIP (ISO 13400 / ISO 14229)",
+    "busPins": "Pin 6/14 (CAN), Ethernet (DoIP)",
+    "image": null,
+    "headline": "Second and third generation Cayenne platforms (958.1, 958.2, and 9YA Turbo / E-Hybrid).",
+    "modules": {
+      "DME Engine": { "supported": false, "verified": false, "note": "Continental SDI / Bosch MG1 DME" },
+      "Hybrid Power Electronics": { "supported": false, "verified": false, "note": "High-voltage inverter & battery" },
+      "PASM Air Suspension": { "supported": false, "verified": false, "note": "3-chamber adaptive air suspension" },
+      "Transmission": { "supported": false, "verified": false, "note": "8-speed Tiptronic S" }
+    },
+    "features": [
+      "Hybrid battery state-of-health (SoH) diagnostics",
+      "Brake bleed service routines",
+      "Panoramic roof calibration"
+    ]
+  },
+  {
+    "id": "macan",
+    "family": "SUVs & Grand Tourers",
+    "name": "Macan (95B)",
+    "years": "2014+",
+    "status": "in_development",
+    "statusLabel": "In Development",
+    "statusTier": "blue",
+    "protocol": "High-Speed CAN & UDS (ISO 14229)",
+    "busPins": "Pin 6 (CAN-H), Pin 14 (CAN-L)",
+    "image": null,
+    "headline": "Compact performance SUV (Macan 2.0T, S 3.0T, GTS, Turbo 3.6T / 2.9T).",
+    "modules": {
+      "DME Engine": { "supported": false, "verified": false, "note": "Continental SDI10 / SDI21 DME" },
+      "PDK Transmission": { "supported": false, "verified": false, "note": "7-speed dual-clutch transmission" },
+      "PASM Suspension": { "supported": false, "verified": false, "note": "Active damper / air suspension" },
+      "PTM Transfer Case": { "supported": false, "verified": false, "note": "All-wheel drive transfer case" }
+    },
+    "features": [
+      "Transfer case fluid degradation monitor",
+      "PDK clutch calibration & adaptations",
+      "Oil and maintenance interval reset"
+    ]
+  },
+  {
+    "id": "panamera",
+    "family": "SUVs & Grand Tourers",
+    "name": "Panamera (970 & 971)",
+    "years": "2010+",
+    "status": "in_development",
+    "statusLabel": "In Development",
+    "statusTier": "blue",
+    "protocol": "High-Speed CAN, CAN FD & DoIP (UDS)",
+    "busPins": "Pin 6/14 (CAN), Ethernet (DoIP)",
+    "image": null,
+    "headline": "Luxury performance sports sedan (970.1, 970.2, and 971 twin-turbo V6/V8 and E-Hybrid).",
+    "modules": {
+      "DME Engine": { "supported": false, "verified": false, "note": "Continental SDI / Bosch DME" },
+      "Transmission": { "supported": false, "verified": false, "note": "7-speed / 8-speed PDK" },
+      "Air Suspension": { "supported": false, "verified": false, "note": "3-chamber air suspension" },
+      "Active Aerodynamics": { "supported": false, "verified": false, "note": "Multi-stage extending rear spoiler" }
+    },
+    "features": [
+      "Active aerodynamics calibration",
+      "Adaptive air suspension height learning",
+      "High-voltage hybrid battery monitor"
+    ]
+  },
+  {
+    "id": "taycan",
+    "family": "SUVs & Grand Tourers",
+    "name": "Taycan (Y1A EV)",
+    "years": "2020+",
+    "status": "in_development",
+    "statusLabel": "In Development",
+    "statusTier": "blue",
+    "protocol": "DoIP Ethernet & CAN FD (ISO 13400 / ISO 14229)",
+    "busPins": "Ethernet Rx/Tx Pins, Pin 6/14 (CAN FD)",
+    "image": null,
+    "headline": "800V all-electric sports saloon and Cross Turismo (Taycan 4S, GTS, Turbo, Turbo S).",
+    "modules": {
+      "Power Electronics": { "supported": false, "verified": false, "note": "Front & Rear Inverter / Motors" },
+      "BMS Battery Manager": { "supported": false, "verified": false, "note": "800V Performance Battery Plus" },
+      "Curved Cockpit Display": { "supported": false, "verified": false, "note": "16.8-inch curved digital instrument cluster" },
+      "Thermal Management": { "supported": false, "verified": false, "note": "High-voltage heat pump & cooling circuits" }
+    },
+    "features": [
+      "800V battery cell balance & capacity readout",
+      "Thermal management heat-pump telemetry",
+      "Charging port door actuator tests"
+    ]
+  },
+  {
+    "id": "aircooled",
+    "family": "Air-Cooled & Transaxle Classics",
+    "name": "993 & 964 Air-Cooled 911",
+    "years": "1989 - 1998",
+    "status": "in_development",
+    "statusLabel": "In Development",
+    "statusTier": "blue",
+    "protocol": "Early Slow-Baud K-Line (ISO 9141) via 19-Pin Round Adapter",
+    "busPins": "19-Pin Round Porsche Diagnostic Connector (Pin 19 Ground, Pin 18 +12V, Pin 13 K-Line)",
+    "image": null,
+    "headline": "The legendary air-cooled flat-six icons: 964 (Carrera 2/4, RS, Turbo) and 993 (Varioram, Twin Turbo, GT2).",
+    "modules": {
+      "DME Engine": { "supported": false, "verified": false, "note": "Bosch Motronic M2.1 / M5.2 DME" },
+      "Climate Control Unit (CCU)": { "supported": false, "verified": false, "note": "Dual-fan climate control diagnostics" },
+      "ABS Module": { "supported": false, "verified": false, "note": "Bosch 2U / 5.0 ABS" },
       "Alarm / Immobilizer": { "supported": false, "verified": false, "note": "Early drive-block immobilizer" }
     },
     "features": [
@@ -189,27 +360,27 @@
     ]
   },
   {
-    "id": "suvs_gt",
-    "family": "Cayenne, Macan & Panamera",
-    "name": "Cayenne (E1 / 955 / 957), Macan & Panamera",
-    "years": "2003+",
-    "status": "coming_soon",
-    "statusLabel": "Coming Soon",
+    "id": "transaxle",
+    "family": "Air-Cooled & Transaxle Classics",
+    "name": "944, 968 & 928 Transaxle",
+    "years": "1982 - 1995",
+    "status": "in_development",
+    "statusLabel": "In Development",
     "statusTier": "blue",
-    "protocol": "K-Line (early E1) & High-Speed CAN Bus (ISO 15765)",
-    "busPins": "Pin 6/14 (CAN), Pin 7 (K-Line)",
+    "protocol": "Early Porsche Diagnostic Bus via Round / 12-Pin Adapter",
+    "busPins": "19-Pin / 12-Pin Round Diagnostic Port",
     "image": null,
-    "headline": "First-generation Cayenne (V6, V8 S, Turbo), Macan, and Panamera grand tourers.",
+    "headline": "Front-engine water-cooled transaxle classics: 944 (S2/Turbo), 968 (Variocam), and 928 (S4/GT/GTS V8).",
     "modules": {
-      "DME Engine": { "supported": false, "verified": false, "note": "Bosch ME7.1.1 V8 / SDI4 DFI" },
-      "Air Suspension (PASM)": { "supported": false, "verified": false, "note": "Ride height sensors & compressor" },
-      "All-Wheel Drive (PTM)": { "supported": false, "verified": false, "note": "Transfer case & locking diffs" },
-      "Transmission": { "supported": false, "verified": false, "note": "Aisin 6-speed / 8-speed Tiptronic" }
+      "DME Engine": { "supported": false, "verified": false, "note": "Bosch Motronic ML3.1 / M2.1 DME" },
+      "ABS Module": { "supported": false, "verified": false, "note": "Early Bosch ABS" },
+      "PSD Differential (928)": { "supported": false, "verified": false, "note": "Electronic locking differential" },
+      "RDK System": { "supported": false, "verified": false, "note": "Early tire pressure monitoring system" }
     },
     "features": [
-      "Cayenne E1 diagnostic protocol mapping",
-      "Air suspension height sensor actual values",
-      "Transfer case & differential module identification"
+      "PSD differential flush & bleed routine mapping",
+      "Motronic fault flash code reading",
+      "RDK sensor frequency decoding"
     ]
   }
 ]

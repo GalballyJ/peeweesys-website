@@ -10,12 +10,11 @@
     "summary": "The gold standard for K-line Porsche diagnostics. Rock-solid communication, tested on live vehicles, and easily modified for dual K-line access.",
     "protocol": "ISO 9141-2 / ISO 14230-4 (KWP2000)",
     "supportedPlatforms": [
-      "986 Boxster (1997–2004)",
-      "996 911 (1998–2005)",
-      "993 / 964 (with 19-pin adapter)",
-      "944 / 968 (with round adapter)"
+      "986 Boxster (1997–2004) & 996 911 (1998–2005)",
+      "993 / 964 Air-Cooled (with 19-pin round adapter)",
+      "944 / 968 / 928 Transaxle (with round adapter)"
     ],
-    "platformCodes": ["986", "996", "classic"],
+    "platformCodes": ["986_996", "classic"],
     "pinout": [
       { "pin": 4, "name": "Chassis Ground", "color": "black", "desc": "Ground reference" },
       { "pin": 5, "name": "Signal Ground", "color": "gray", "desc": "Sensor ground reference" },
@@ -50,17 +49,17 @@
     "name": "Tactrix OpenPort 2.0 (J2534)",
     "tier": "CAN Bus & J2534 PassThru",
     "price": "$179 (OEM) / Reputable J2534 PassThru",
-    "status": "In Beta (Untested on Car)",
+    "status": "In Beta",
     "statusColor": "amber",
     "icon": "cpu",
     "summary": "Professional-grade J2534 PassThru hardware with automatic software pin routing. Protocol stack implemented and bench-tested; awaiting live vehicle session.",
     "protocol": "ISO 15765-4 (CAN 500k), ISO 14229 (UDS), K-Line",
     "supportedPlatforms": [
       "987.1 & 987.2 Boxster / Cayman (2005–2012)",
-      "997.1 & 997.2 911 (2005–2012)",
+      "997.1 & 997.2 911 Carrera / Turbo (2005–2012)",
       "Cayenne E1 (9PA / 2003–2010)"
     ],
-    "platformCodes": ["987", "997", "cayenne"],
+    "platformCodes": ["987_997", "cayenne"],
     "pinout": [
       { "pin": 4, "name": "Chassis Ground", "color": "black", "desc": "Ground" },
       { "pin": 6, "name": "CAN-High", "color": "green", "desc": "High speed 500k powertrain & chassis CAN" },
@@ -80,17 +79,17 @@
     "name": "OBDLink & ELM327 Bluetooth (Wireless)",
     "tier": "Wireless Bluetooth Interface",
     "price": "$30 - $80 on Amazon",
-    "status": "In Development (Untested)",
+    "status": "In Development",
     "statusColor": "slate",
     "icon": "wifi",
     "summary": "Wireless Bluetooth OBD adapters for cabin freedom. Protocol drivers currently in development; not yet verified on hardware.",
     "protocol": "Bluetooth SPP / BLE, ISO 15765-4 (CAN), ISO 9141",
     "supportedPlatforms": [
-      "Planned: 986 Boxster / 996 911",
-      "Planned: 987 Cayman / 997 911",
-      "Web Bluetooth (Chrome & Edge)"
+      "Planned: 986 / 996 & 987 / 997",
+      "Planned: 981 / 991 & 718 / 992",
+      "Planned: Cayenne, Macan, Panamera"
     ],
-    "platformCodes": ["986", "996", "987", "997"],
+    "platformCodes": ["986_996", "987_997", "981_991", "718_992", "cayenne", "macan", "panamera"],
     "pinout": [
       { "pin": 4, "name": "Ground", "color": "black", "desc": "Ground" },
       { "pin": 6, "name": "CAN-High", "color": "green", "desc": "CAN bus high line" },
@@ -109,16 +108,17 @@
     "name": "VAS 6154A Wi-Fi VCI",
     "tier": "Workshop Wireless VCI",
     "price": "$80 - $130 (Clone / OEM)",
-    "status": "In Development (Untested)",
+    "status": "In Development",
     "statusColor": "slate",
     "icon": "zap",
     "summary": "Professional wireless workshop diagnostic interface supporting Wi-Fi infrastructure mode and DoIP. Architecture in design; hardware untested.",
     "protocol": "Wi-Fi (802.11 b/g/n), ISO 13400 (DoIP), CAN & K-Line",
     "supportedPlatforms": [
-      "Planned: Multi-Platform Workshop VCI",
-      "Planned: 987, 997, Cayenne E1, Macan"
+      "Planned: 987 / 997 & Cayenne E1",
+      "Planned: 981 / 991 & 718 / 992 (CAN FD / UDS)",
+      "Planned: Cayenne E2/E3, Macan, Panamera, Taycan (DoIP)"
     ],
-    "platformCodes": ["987", "997", "cayenne"],
+    "platformCodes": ["987_997", "981_991", "718_992", "cayenne", "macan", "panamera", "taycan"],
     "pinout": [
       { "pin": 4, "name": "Ground", "color": "black", "desc": "Ground" },
       { "pin": 6, "name": "CAN-High", "color": "green", "desc": "CAN high line" },
