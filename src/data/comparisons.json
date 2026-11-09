@@ -4,7 +4,7 @@
       "id": "peeweesys",
       "name": "PeeweeSys",
       "badge": "Modern DIY & Pro",
-      "cost": "Free Core + Per-VIN Lifetime",
+      "cost": "Free Core + $49 Garage Lifetime",
       "hardware": "$15 FTDI K-Line / Tactrix CAN cable",
       "platform": "Browser (WebSerial) / Any PC",
       "no_vm": true,
@@ -105,7 +105,7 @@
           "name": "Licensing Model & Car Limits",
           "description": "How vehicle access is licensed and whether shops can pass value to vehicle owners.",
           "values": {
-            "peeweesys": "Free basic diagnostics. Advanced features licensed Per-VIN for the life of the car (transfers to future owners)",
+            "peeweesys": "100% Free DIY Diagnostics. $49 Enthusiast Garage (5 VINs) with 'Pay the Difference' lifetime spend credit.",
             "piwis": "Dealer licensing ($1,000s/yr or pirated VM)",
             "durametric": "Locked to 3 VINs max (Pro cable upgrade: +$388)",
             "foxwell": "1 Brand included (Extra makes extra)",
@@ -120,10 +120,10 @@
       "category": "Exclusive Advanced Deep-Dives",
       "features": [
         {
-          "name": "Full DME ROM Read over OBD (0x23)",
-          "description": "Read complete Flash / ROM directly through the diagnostic port without opening the ECU.",
+          "name": "Full DME ROM & ST 95040 SPI EEPROM Read (0x23)",
+          "description": "Read complete Flash / ROM and SPI EEPROM mirror directly through OBD without opening the ECU.",
           "values": {
-            "peeweesys": "Yes (Car-verified ME7.2 / 5.2.2)",
+            "peeweesys": "Yes (Car-verified ME7.2 SPI EEPROM & ROM)",
             "piwis": "No (Flash flashing only, no user dump)",
             "durametric": "No",
             "foxwell": "No",
@@ -162,7 +162,7 @@
           "name": "Speedometer Correction & Recalibration",
           "description": "Correct factory 4-7% over-read speedometers or custom tire sizes directly in Kombi memory.",
           "values": {
-            "peeweesys": "Yes (Exact impulse factor adjustments)",
+            "peeweesys": "Yes (Car-verified uk_1to1 on K24 cluster)",
             "piwis": "No (Preset wheel circumferences only)",
             "durametric": "No",
             "foxwell": "No",

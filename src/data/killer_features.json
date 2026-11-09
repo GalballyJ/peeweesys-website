@@ -7,11 +7,26 @@
     "statusLabel": "Tested on Car",
     "statusColor": "green",
     "icon": "database",
-    "description": "Standard diagnostic tools restrict you to basic OBD-II codes. PeeweeSys unlocks full memory-read service 0x23 to stream raw flash and EEPROM data over the standard 16-pin OBD port. Verified on Bosch ME7.2 DME and Siemens / VDO Kombi instrument clusters (2048-byte 93C86 dumps).",
+    "description": "Standard diagnostic tools restrict you to basic OBD-II codes. PeeweeSys unlocks full memory-read service 0x23 to stream raw flash and EEPROM data over the standard 16-pin OBD port. Verified on Bosch ME7.2 DME (including complete ST 95040 SPI EEPROM mirror backups) and Siemens / VDO Kombi instrument clusters (2048-byte 93C86 dumps).",
     "highlights": [
-      "Exact byte-for-byte binary dump of cluster calibration & DME maps",
-      "Safely verified with non-destructive, read-only memory boundary checks",
+      "Exact byte-for-byte binary dump of cluster calibration, DME maps, and ST 95040 SPI EEPROM",
+      "Safely verified with non-destructive, read-only memory boundary checks over standard K-Line",
       "Instant offline backup before any instrument cluster modification"
+    ]
+  },
+  {
+    "id": "speedo_calibration",
+    "title": "Speedometer Recalibration",
+    "tagline": "Fix 4–7% factory over-read and compensate for aftermarket wheels.",
+    "status": "tested",
+    "statusLabel": "Tested on Car",
+    "statusColor": "green",
+    "icon": "gauge",
+    "description": "Nearly all modern classic Porsche instrument clusters intentionally over-read speed by 4 to 8 km/h at highway speeds. True enthusiasts want GPS-calibrated precision. PeeweeSys extracts and adjusts the speedometer impulse factor `K-Zahl` stored in the cluster EEPROM, letting you dial in true vehicle speed or compensate for custom tire diameters. Car-verified live on K24 cluster.",
+    "highlights": [
+      "Surgically verified on live vehicle K24 cluster (uk_1to1 calibration curve) with clean DTC log",
+      "Compensates for aftermarket wheel diameters and tire aspect ratios",
+      "100% preservation of vehicle Parameterkodierung and Menuekonfiguration records"
     ]
   },
   {
@@ -52,7 +67,7 @@
     "statusLabel": "Tested on Car",
     "statusColor": "green",
     "icon": "file-text",
-    "description": "Generic scan tools erase fault codes blindly with a single press, destroying freeze frame conditions (engine RPM, engine temp, load) needed to pinpoint intermittent misfires. PeeweeSys enforces a non-destructive snapshot workflow with structured export before clearing.",
+    "description": "Generic scan tools erase fault codes blindly with a single press, destroying freeze frame conditions (engine RPM, engine temp, load) needed to pinpoint intermittent misfires. PeeweeSys enforces a non-destructive snapshot workflow with structured export before clearing. Verified across 5 modules simultaneously.",
     "highlights": [
       "Captures all DTCs, freeze frames, and module versions into a permanent HTML/PDF dossier",
       "Strict car-tested whitelist prevents sending unverified clear commands to sensitive ECUs",
@@ -87,21 +102,6 @@
       "Removes factory artificial dampening so your needle tells the truth",
       "Inspect the exact 4-point temperature-to-impulse calibration table in cluster memory",
       "Calculates the linearized curve so you actually see your engine warming up and cooling down"
-    ]
-  },
-  {
-    "id": "speedo_calibration",
-    "title": "Speedometer Recalibration",
-    "tagline": "Fix 4–7% factory over-read and compensate for aftermarket wheels.",
-    "status": "bench",
-    "statusLabel": "Bench Ready",
-    "statusColor": "amber",
-    "icon": "gauge",
-    "description": "Nearly all modern classic Porsche instrument clusters intentionally over-read speed by 4 to 8 km/h at highway speeds. True enthusiasts want GPS-calibrated precision. PeeweeSys extracts and adjusts the speedometer impulse factor `K-Zahl` stored in the cluster EEPROM, letting you dial in true vehicle speed or compensate for custom tire diameters.",
-    "highlights": [
-      "Direct impulse coefficient calculation for GPS accuracy",
-      "Compensates for aftermarket wheel diameters and tire aspect ratios",
-      "Pre-verified against Porsche factory calibration guidelines"
     ]
   },
   {

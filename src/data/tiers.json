@@ -1,0 +1,70 @@
+{
+  "guarantee": {
+    "title": "Anti-Penalty \"Pay the Difference\" Spend Guarantee",
+    "description": "Every single dollar or pound spent on modular add-ons (like an extra VIN unlock or coding module) is 100% credited toward upgrading to a higher lifetime tier. You never pay twice and you are never penalized for starting small."
+  },
+  "tiers": [
+    {
+      "id": "driver",
+      "name": "Driver",
+      "badge": "Community DIY",
+      "price": "Free Forever",
+      "priceSub": "$0 / £0",
+      "highlight": false,
+      "tagline": "For the weekend Porsche owner checking codes and monitoring car health.",
+      "features": [
+        "1 Vehicle VIN included with full diagnostic history",
+        "Complete multi-module DTC scanning (DME, Kombi, ABS/PSM, Alarm, Airbag, Climate)",
+        "Read and safe clear fault memory (verified 14 FF 00 safe protocol)",
+        "Curated real-time live sensor gauges (coolant, voltage, RPM, lambda)",
+        "Safe pre-clear freeze-frame snapshot reports",
+        "Full Multi-Platform Virtual Simulator (986, 996, 987, 997, Cayenne E1)",
+        "Dual-language English & authentic German engineering terminology"
+      ],
+      "cta": "Start Diagnosing Free",
+      "ctaLink": "#simulator"
+    },
+    {
+      "id": "enthusiast",
+      "name": "Enthusiast",
+      "badge": "Most Popular Garage Tier",
+      "price": "$49",
+      "priceSub": "One-time / Lifetime per garage",
+      "highlight": true,
+      "tagline": "For the hands-on owner maintaining multiple Porsches or doing custom retrofits.",
+      "features": [
+        "Up to 5 Vehicle VINs in your personal garage",
+        "Everything in Driver Tier included",
+        "Used Donor Cluster Migration Wizard (VIN pairing & DME sync)",
+        "Speedometer Recalibration (K-Zahl impulse table adjustment)",
+        "Coolant Gauge Linearization (removes 80°C–105°C dummy flat-spot)",
+        "Kombi configuration & comfort coding backup and restore",
+        "High-resolution CSV telemetry logging & freeze-frame inspection",
+        "Structured PDF pre-purchase inspection (PPI) health dossiers"
+      ],
+      "cta": "Unlock Enthusiast Garage",
+      "ctaLink": "#contact"
+    },
+    {
+      "id": "tuner",
+      "name": "Tuner / Specialist",
+      "badge": "Track & Specialist",
+      "price": "$129",
+      "priceSub": "One-time / Lifetime unlimited",
+      "highlight": false,
+      "tagline": "For track-day drivers, YouTubers, independent specialists, and tuners.",
+      "features": [
+        "Unlimited Vehicle VINs across all supported platforms",
+        "Everything in Enthusiast Tier included",
+        "High-speed RAM variable live telemetry stream",
+        "Full ECU ROM & ST 95040 SPI EEPROM memory extraction (0x23)",
+        "Early access to beta vehicle protocols (987/997 CAN, Cayenne E1)",
+        "Multi-Module tamper audit & over-rev operating hours forensics",
+        "Exportable clean UI mode for video creators & track-day logging",
+        "Direct maintainer priority support channel"
+      ],
+      "cta": "Unlock Specialist License",
+      "ctaLink": "#contact"
+    }
+  ]
+}
