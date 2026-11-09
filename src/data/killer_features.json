@@ -2,7 +2,7 @@
   {
     "id": "rom_dumps",
     "title": "Full ECU ROM & EEPROM Dumps Over OBD",
-    "tagline": "Direct memory extraction without desoldering or opening the ECU.",
+    "tagline": "Direct memory backup over OBD without desoldering or opening the ECU.",
     "status": "supported",
     "statusLabel": "Supported Right Now",
     "statusColor": "green",
@@ -97,7 +97,7 @@
     "statusLabel": "In Development",
     "statusColor": "blue",
     "icon": "thermometer",
-    "description": "From the factory, Porsche programmed the 986 and 996 coolant gauge needle to stay dead-center at 80°C (180°F) whether your actual engine coolant is 80°C, 95°C, or 105°C to avoid customer service inquiries. This feature is currently in active development: reverse engineering the needle plateau interpolation curve in cluster memory so we can safely linearize it without unintended side effects.",
+    "description": "From the factory, Porsche programmed the 986 and 996 coolant gauge needle to stay dead-center at 80°C (180°F) whether your actual engine coolant is 80°C, 95°C, or 105°C to avoid customer service inquiries. This feature is currently in active development: mapping the needle plateau interpolation curve in cluster memory so we can safely linearize it without unintended side effects.",
     "highlights": [
       "Active research phase to identify exact needle plateau curve in cluster memory",
       "Non-destructive memory mapping to verify sensor response before writing",

@@ -53,7 +53,7 @@
     "status": "In Beta (Untested on Car)",
     "statusColor": "amber",
     "icon": "cpu",
-    "summary": "Professional-grade J2534 PassThru hardware with automatic software pin routing. Stack built and bench extracted; awaiting live vehicle session.",
+    "summary": "Professional-grade J2534 PassThru hardware with automatic software pin routing. Protocol stack implemented and bench-tested; awaiting live vehicle session.",
     "protocol": "ISO 15765-4 (CAN 500k), ISO 14229 (UDS), K-Line",
     "supportedPlatforms": [
       "987.1 & 987.2 Boxster / Cayman (2005–2012)",

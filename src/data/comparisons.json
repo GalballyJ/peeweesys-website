@@ -4,7 +4,7 @@
       "id": "peeweesys",
       "name": "PeeweeSys",
       "badge": "Modern DIY & Pro",
-      "cost": "Free Core + $49 Garage Lifetime",
+      "cost": "Free & Open Core",
       "hardware": "$15 FTDI K-Line / Tactrix CAN cable",
       "platform": "Browser (WebSerial) / Any PC",
       "no_vm": true,
@@ -105,7 +105,7 @@
           "name": "Licensing Model & Car Limits",
           "description": "How vehicle access is licensed and whether shops can pass value to vehicle owners.",
           "values": {
-            "peeweesys": "100% Free DIY Diagnostics. $49 Enthusiast Garage (5 VINs) with 'Pay the Difference' lifetime spend credit.",
+            "peeweesys": "Free community diagnostics. No subscriptions, no artificial lockouts, and no paywalls for basic fault clearing.",
             "piwis": "Dealer licensing ($1,000s/yr or pirated VM)",
             "durametric": "Locked to 3 VINs max (Pro cable upgrade: +$388)",
             "foxwell": "1 Brand included (Extra makes extra)",

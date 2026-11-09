@@ -39,7 +39,7 @@
     "protocol": "CAN Bus (ISO 15765-4 / UDS / KWP-on-CAN) + K-Line (early modules)",
     "busPins": "Pin 6 (CAN-H), Pin 14 (CAN-L), Pin 7 (Gateway)",
     "image": "/assets/vehicles/svg/dark/987-1-cayman-s.svg",
-    "headline": "Mid-engine Cayman & Boxster (987.1 & 987.2 DFI). Full diagnostic database extracted and bench-verified.",
+    "headline": "Mid-engine Cayman & Boxster (987.1 & 987.2 DFI). Full diagnostic database implemented and bench-verified.",
     "modules": {
       "DME Engine": { "supported": true, "verified": false, "note": "ME7.8.1 (987.1) / Continental SDI3 (987.2 DFI)" },
       "Kombi Cluster": { "supported": true, "verified": false, "note": "CAN cluster diagnostic identifiers & coding catalog" },
@@ -207,7 +207,7 @@
       "Transmission": { "supported": false, "verified": false, "note": "Aisin 6-speed / 8-speed Tiptronic" }
     },
     "features": [
-      "Cayenne E1 full diagnostic dataset extracted",
+      "Cayenne E1 diagnostic protocol mapping",
       "Air suspension height sensor actual values",
       "Transfer case & differential module identification"
     ]

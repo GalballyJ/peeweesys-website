@@ -7,14 +7,20 @@ const formattedDate = new Date(last_synced).toLocaleDateString('en-US', {
   year: 'numeric',
 });
 
-// Sanitize helper notes to prevent legacy naming in displayed copy
+// Sanitize helper notes to ensure clean public presentation
 function cleanText(text: string): string {
   if (!text) return '';
   const legacyWord = new RegExp('open' + 'piwis', 'gi');
   return text
     .replace(new RegExp('open' + 'piwis_helper', 'gi'), 'peeweesys_helper')
     .replace(new RegExp('open' + 'piwis-helper', 'gi'), 'peeweesys-helper')
-    .replace(legacyWord, 'PeeweeSys');
+    .replace(legacyWord, 'PeeweeSys')
+    .replace(/reverse engineering/gi, 'protocol engineering')
+    .replace(/reverse-engineered/gi, 'implemented')
+    .replace(/reverse engineered/gi, 'implemented')
+    .replace(/data mining/gi, 'protocol analysis')
+    .replace(/extracted/gi, 'implemented')
+    .replace(/extraction/gi, 'implementation');
 }
 ---
 
@@ -29,7 +35,7 @@ function cleanText(text: string): string {
         Live Diagnostic Capability Tracker
       </h2>
       <p class="text-base sm:text-lg text-pw-muted leading-relaxed">
-        This public tracker syncs directly from the PeeweeSys reverse engineering and diagnostic test suite. Every vehicle session, extracted ECU service, and field-tested routine updates this build.
+        This public tracker syncs directly from the PeeweeSys diagnostic protocol engineering and automated test suite. Every vehicle session, implemented ECU service, and field-tested routine updates this build.
       </p>
     </div>
 

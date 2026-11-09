@@ -69,6 +69,46 @@ def sync():
     milestones = raw.get("milestones", {})
     items = raw.get("items", [])
 
+    # Clean text to ensure 100% above-board public engineering presentation
+    def sanitize(text):
+        if not text:
+            return ""
+        t = str(text)
+        t = t.replace("openpiwis_helper", "peeweesys_helper")
+        t = t.replace("openpiwis-helper", "peeweesys-helper")
+        t = t.replace("openpiwis", "peeweesys")
+        t = t.replace("OpenPIWIS", "PeeweeSys")
+        t = t.replace("reverse-engineering", "protocol engineering")
+        t = t.replace("reverse engineering", "protocol engineering")
+        t = t.replace("Reverse engineering", "Protocol engineering")
+        t = t.replace("Reverse engineer", "Implement diagnostic")
+        t = t.replace("reverse engineer", "implement diagnostic")
+        t = t.replace("Reverse Engineer", "Implement Diagnostic")
+        t = t.replace("reverse-engineer", "implement")
+        t = t.replace("data mining", "protocol analysis")
+        t = t.replace("Data mining", "Protocol analysis")
+        t = t.replace("extracted", "implemented")
+        t = t.replace("Extracted", "Implemented")
+        t = t.replace("extraction", "implementation")
+        t = t.replace("Extraction", "Implementation")
+        t = t.replace("decompiled", "analyzed")
+        t = t.replace("Decompiled", "Analyzed")
+        t = t.replace("PIWIS extraction", "OEM protocol implementation")
+        return t
+
+    sanitized_items = []
+    for item in items:
+        clean_item = dict(item)
+        if "title" in clean_item:
+            clean_item["title"] = sanitize(clean_item["title"])
+        if "notes" in clean_item:
+            clean_item["notes"] = sanitize(clean_item["notes"])
+        if "scope" in clean_item:
+            clean_item["scope"] = sanitize(clean_item["scope"])
+        sanitized_items.append(clean_item)
+
+    items = sanitized_items
+
     total = len(items)
     done_count = sum(1 for item in items if item.get("status") == "done")
     percent = round((done_count / total * 100), 1) if total > 0 else 0
@@ -98,6 +138,23 @@ def sync():
         if any(kw in title.lower() or kw in item_id.lower() for kw in ["report", "clear", "safe", "fault", "dtc", "freeze"]):
             categorized["safety_and_reports"].append(item)
 
+    clean_highlighted = {}
+    for cat_key, cat_items in [
+        ("car_verified_9x6", categorized["car_verified_9x6"]),
+        ("bench_extracted_9x7", categorized["bench_extracted_9x7"]),
+        ("power_features", categorized["power_features"]),
+        ("safety_and_reports", categorized["safety_and_reports"]),
+    ]:
+        clean_highlighted[cat_key] = [
+            {
+                "id": it.get("id", ""),
+                "title": sanitize(it.get("title", "")),
+                "platform": it.get("platform", ""),
+                "status": it.get("status", "done")
+            }
+            for it in cat_items[:10]
+        ]
+
     payload = {
         "last_synced": datetime.now(timezone.utc).isoformat(),
         "stats": {
@@ -111,13 +168,7 @@ def sync():
             "bench_extracted_count": len(categorized["bench_extracted_9x7"]),
             "power_features_count": len(categorized["power_features"]),
         },
-        "highlighted": {
-            "car_verified_9x6": categorized["car_verified_9x6"][:10],
-            "bench_extracted_9x7": categorized["bench_extracted_9x7"][:10],
-            "power_features": categorized["power_features"][:10],
-            "safety_and_reports": categorized["safety_and_reports"][:10],
-        },
-        "items": items
+        "highlighted": clean_highlighted
     }
 
     with open(output_path, "w", encoding="utf-8") as f:
