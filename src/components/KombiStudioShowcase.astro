@@ -1,5 +1,27 @@
 ---
 // KombiStudioShowcase.astro - Interactive WYSIC Instrument Cluster & Pro EEPROM Suite Showcase
+import { renderClusterSvg } from '../lib/pws_cluster.js';
+
+// Pre-render default 986 Boxster cluster with black faces and K24 dot-matrix display for instant SSR
+const defaultSvg = renderClusterSvg({
+  dials: 3,
+  faceTheme: 'black',
+  display: 'k24',
+  numerals: 'italic',
+  scaleId: '180_mph',
+  speedPred: { indicatedDisplay: 60, trueDisplay: 60 },
+  digitalSpeed: 60,
+  rpm: 4000,
+  coolantPred: { indicatedC: 80 },
+  fuelPred: { indicatedPct: 75 },
+  odometer: '064120',
+  trip: '228.7',
+  clock: '14:25',
+  clockFormat: '24',
+  pm: { obc_enabled: true, cruise: false },
+  idPrefix: 'wysic-live',
+  embedFonts: true
+});
 ---
 
 <section id="kombi-studio" class="py-24 bg-pw-card/40 relative border-t border-pw-line overflow-hidden">
@@ -13,7 +35,7 @@
         What You See Is What You Code.
       </h2>
       <p class="text-base sm:text-lg text-pw-muted leading-relaxed">
-        Say goodbye to cryptic hexadecimal bitmasks and risky dealer coding. PeeweeSys renders your exact 986 / 996 instrument cluster in real-time SVG — letting you preview retrofits, needle calibrations, and dial scales visually before writing a single byte.
+        Say goodbye to cryptic hexadecimal bitmasks and risky dealer coding. PeeweeSys renders your exact 986 / 996 VDO instrument cluster in real-time SVG — letting you preview retrofits, needle calibrations, dial scales, and OBC displays visually before writing a single byte.
       </p>
     </div>
 
@@ -27,177 +49,76 @@
 
         <!-- Interactive Preset Buttons -->
         <div class="flex flex-wrap items-center gap-2">
+          <!-- Cluster Platform: 986 (3-dial) vs 996 (5-dial) -->
           <button
             type="button"
-            id="wysic-btn-obc"
+            id="wysic-btn-dials"
             class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+            title="Toggle between 986 Boxster 3-dial and 996 911 5-dial cluster"
           >
-            <span class="w-2 h-2 rounded-full bg-amber-400" id="wysic-dot-obc"></span>
-            <span>Toggle OBC Display</span>
+            <span class="w-2 h-2 rounded-full bg-pw-red" id="wysic-dot-dials"></span>
+            <span id="wysic-text-dials">986 Boxster (3-Dial)</span>
           </button>
 
+          <!-- Dial Face Theme: Black vs White/Chrome -->
+          <button
+            type="button"
+            id="wysic-btn-theme"
+            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+            title="Toggle dial face color between Factory Black and Carrera White / Silver"
+          >
+            <span class="w-2 h-2 rounded-full bg-zinc-400" id="wysic-dot-theme"></span>
+            <span id="wysic-text-theme">Factory Black</span>
+          </button>
+
+          <!-- Speedo Calibration: 1:1 GPS Calibrated vs OEM Over-Read -->
           <button
             type="button"
             id="wysic-btn-speedo"
             class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+            title="Toggle speedometer impulse ratio between 1:1 GPS calibrated and OEM +7% over-read"
           >
             <span class="w-2 h-2 rounded-full bg-pw-green" id="wysic-dot-speedo"></span>
-            <span>1:1 True Speedo</span>
+            <span id="wysic-text-speedo">1:1 True Speedo</span>
           </button>
 
+          <!-- Speedo Scale: 180 MPH vs 300 km/h -->
           <button
             type="button"
             id="wysic-btn-scale"
             class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+            title="Toggle speedometer dial face units between Imperial 180 MPH and Metric 300 km/h"
           >
             <span class="w-2 h-2 rounded-full bg-pw-blue" id="wysic-dot-scale"></span>
             <span id="wysic-text-scale">180 MPH (UK/US)</span>
           </button>
 
+          <!-- OBC Display Toggle -->
+          <button
+            type="button"
+            id="wysic-btn-obc"
+            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+            title="Toggle OBC stalk retrofit display"
+          >
+            <span class="w-2 h-2 rounded-full bg-amber-400" id="wysic-dot-obc"></span>
+            <span id="wysic-text-obc">OBC Retrofit: ON</span>
+          </button>
+
+          <!-- Cruise Lamp Indicator Toggle -->
           <button
             type="button"
             id="wysic-btn-cruise"
             class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+            title="Toggle cruise control telltale indicator"
           >
-            <span class="w-2 h-2 rounded-full bg-zinc-500" id="wysic-dot-cruise"></span>
+            <span class="w-2 h-2 rounded-full bg-zinc-600" id="wysic-dot-cruise"></span>
             <span>Cruise Lamp</span>
           </button>
         </div>
       </div>
 
-      <!-- SVG Cluster Display -->
-      <div class="w-full flex justify-center py-4 sm:py-6 overflow-x-auto">
-        <svg
-          id="wysic-cluster-svg"
-          viewBox="0 0 760 300"
-          class="w-full max-w-[760px] h-auto select-none drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)]"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <linearGradient id="wysicBezel" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#4a5568" />
-              <stop offset="50%" stop-color="#1a202c" />
-              <stop offset="100%" stop-color="#0d1117" />
-            </linearGradient>
-            <radialGradient id="wysicFaceDark" cx="50%" cy="50%" r="50%">
-              <stop offset="70%" stop-color="#14181f" />
-              <stop offset="100%" stop-color="#090b0e" />
-            </radialGradient>
-            <linearGradient id="wysicNeedle" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#ff3b4e" />
-              <stop offset="100%" stop-color="#c5001a" />
-            </linearGradient>
-          </defs>
-
-          <!-- Instrument Housing Arch Backdrop -->
-          <path
-            d="M 60 260 C 60 110, 160 50, 380 50 C 600 50, 700 110, 700 260 Z"
-            fill="#090c10"
-            stroke="#1c2430"
-            stroke-width="3"
-          />
-
-          <!-- LEFT DIAL: Speedometer (Center X: 210, Y: 170, R: 85) -->
-          <g id="dial-speedo">
-            <circle cx="210" cy="170" r="88" fill="none" stroke="url(#wysicBezel)" stroke-width="4.5" />
-            <circle cx="210" cy="170" r="85" fill="#14181f" stroke="#0e141c" stroke-width="2" />
-            <circle cx="210" cy="170" r="83" fill="url(#wysicFaceDark)" opacity="0.8" />
-
-            <!-- Dial Title & Units -->
-            <text x="210" y="145" text-anchor="middle" font-size="9" font-weight="700" fill="#a0aec0" id="wysic-speedo-unit">MPH</text>
-
-            <!-- Speedometer Ticks (0 to 180 mph) -->
-            <g id="speedo-ticks-group">
-              <!-- Rendered dynamically via JS -->
-            </g>
-
-            <!-- Digital Speed LCD in Speedo Face -->
-            <rect x="180" y="195" width="60" height="20" rx="3" fill="#10141b" stroke="#2d3748" stroke-width="1.2" />
-            <text x="210" y="209" text-anchor="middle" font-size="10.5" font-family="monospace" font-weight="700" fill="#e2e8f0" id="wysic-digital-speed">60 MPH</text>
-
-            <!-- Needle -->
-            <g id="wysic-speedo-needle-g" transform="rotate(-45 210 170)">
-              <polygon points="208,170 212,170 211,98 209,98" fill="url(#wysicNeedle)" />
-              <polygon points="207.5,170 212.5,170 212,184 208,184" fill="#2d3748" />
-              <circle cx="210" cy="170" r="8.5" fill="#1a202c" stroke="#718096" stroke-width="1.5" />
-              <circle cx="210" cy="170" r="3.5" fill="#090b0e" />
-            </g>
-          </g>
-
-          <!-- CENTER DIAL: Tachometer & OBC (Center X: 380, Y: 155, R: 105) -->
-          <g id="dial-tacho">
-            <circle cx="380" cy="155" r="109" fill="none" stroke="url(#wysicBezel)" stroke-width="5.5" />
-            <circle cx="380" cy="155" r="105" fill="#14181f" stroke="#0e141c" stroke-width="2" />
-            <circle cx="380" cy="155" r="103" fill="url(#wysicFaceDark)" opacity="0.85" />
-
-            <!-- Tachometer Title -->
-            <text x="380" y="105" text-anchor="middle" font-size="9" font-weight="700" fill="#a0aec0">RPM x 1000</text>
-
-            <!-- Tachometer Numbers 0 to 8 -->
-            <text x="305" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">0</text>
-            <text x="295" y="170" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">1</text>
-            <text x="310" y="125" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">2</text>
-            <text x="340" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">3</text>
-            <text x="380" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">4</text>
-            <text x="420" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">5</text>
-            <text x="450" y="125" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">6</text>
-            <text x="465" y="170" text-anchor="middle" font-size="12" font-weight="700" fill="#e53e3e">7</text>
-            <text x="455" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#e53e3e">8</text>
-
-            <!-- Cruise Control Lamp Indicator -->
-            <g id="wysic-cruise-lamp" opacity="0.15" transform="translate(372, 115)">
-              <circle cx="8" cy="8" r="7" fill="#48bb78" />
-              <path d="M 5 8 L 7 10 L 11 6" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
-            </g>
-
-            <!-- Central Multi-Function LCD (OBC) -->
-            <g id="wysic-lcd-obc">
-              <rect x="305" y="180" width="150" height="42" rx="4" fill="#17120a" stroke="#744210" stroke-width="1.5" id="wysic-lcd-rect" />
-              <!-- Default Odometer text -->
-              <text x="380" y="197" text-anchor="middle" font-size="9" font-family="monospace" font-weight="700" fill="#f6e05e" id="wysic-lcd-l1">RANGE 245 mi &bull; 28.4 MPG</text>
-              <text x="380" y="212" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#ecc94b" id="wysic-lcd-l2">ODO 064,120 mi &bull; 14:25</text>
-            </g>
-
-            <!-- Tacho Needle (Pointing at 4,000 RPM at 60 mph cruise) -->
-            <g id="wysic-tacho-needle-g" transform="rotate(0 380 155)">
-              <polygon points="378,155 382,155 381,68 379,68" fill="url(#wysicNeedle)" />
-              <polygon points="377.5,155 382.5,155 382,172 378,172" fill="#2d3748" />
-              <circle cx="380" cy="155" r="9" fill="#1a202c" stroke="#718096" stroke-width="1.6" />
-              <circle cx="380" cy="155" r="4" fill="#090b0e" />
-            </g>
-          </g>
-
-          <!-- RIGHT DIAL: Coolant & Fuel (Center X: 550, Y: 170, R: 85) -->
-          <g id="dial-fuel-temp">
-            <circle cx="550" cy="170" r="88" fill="none" stroke="url(#wysicBezel)" stroke-width="4.5" />
-            <circle cx="550" cy="170" r="85" fill="#14181f" stroke="#0e141c" stroke-width="2" />
-            <circle cx="550" cy="170" r="83" fill="url(#wysicFaceDark)" opacity="0.8" />
-
-            <!-- Labels -->
-            <text x="515" y="130" text-anchor="middle" font-size="9" font-weight="700" fill="#a0aec0">&deg;C TEMP</text>
-            <text x="585" y="130" text-anchor="middle" font-size="9" font-weight="700" fill="#a0aec0">FUEL 4/4</text>
-
-            <text x="490" y="170" text-anchor="middle" font-size="8" font-weight="700" fill="#f7fafc">80&deg;</text>
-            <text x="495" y="195" text-anchor="middle" font-size="8" font-weight="700" fill="#e53e3e">120&deg;</text>
-
-            <text x="610" y="170" text-anchor="middle" font-size="8" font-weight="700" fill="#f7fafc">1/2</text>
-            <text x="605" y="195" text-anchor="middle" font-size="8" font-weight="700" fill="#e53e3e">R</text>
-
-            <!-- Small Needles -->
-            <!-- Coolant Needle -->
-            <g transform="rotate(-15 515 170)">
-              <polygon points="513.5,170 516.5,170 515.5,125 514.5,125" fill="url(#wysicNeedle)" />
-              <circle cx="515" cy="170" r="6" fill="#1a202c" stroke="#718096" stroke-width="1.2" />
-            </g>
-
-            <!-- Fuel Needle -->
-            <g transform="rotate(20 585 170)">
-              <polygon points="583.5,170 586.5,170 585.5,125 584.5,125" fill="url(#wysicNeedle)" />
-              <circle cx="585" cy="170" r="6" fill="#1a202c" stroke="#718096" stroke-width="1.2" />
-            </g>
-          </g>
-        </svg>
-      </div>
+      <!-- Real-Time SVG Cluster Display Container -->
+      <div id="wysic-cluster-container" class="w-full flex justify-center py-4 sm:py-6 overflow-x-auto select-none" set:html={defaultSvg} />
 
       <!-- Feature Callout Badges Under Cluster -->
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-pw-line/70 text-xs font-mono">
@@ -213,7 +134,7 @@
           <div class="w-8 h-8 rounded-full bg-pw-green/10 border border-pw-green/30 flex items-center justify-center text-pw-green shrink-0 font-bold">2</div>
           <div>
             <div class="text-pw-text font-bold">GPS 1:1 Speedo Calibration</div>
-            <div class="text-pw-muted text-[11px]">Simulates OEM +7% over-read vs calibrated uk_1to1 impulse ratio</div>
+            <div class="text-pw-muted text-[11px]">Simulates OEM +7% over-read vs calibrated uk_1to1 impulse ratio with green calibration mark</div>
           </div>
         </div>
 
@@ -298,135 +219,169 @@
   </div>
 </section>
 
-<!-- Interactive Cluster Script -->
+<!-- Interactive Cluster Client Controller -->
 <script>
+  import { renderClusterSvg } from '../lib/pws_cluster.js';
+
   (function () {
-    const btnObc = document.getElementById('wysic-btn-obc');
-    const dotObc = document.getElementById('wysic-dot-obc');
-    const lcdRect = document.getElementById('wysic-lcd-rect');
-    const lcdL1 = document.getElementById('wysic-lcd-l1');
-    const lcdL2 = document.getElementById('wysic-lcd-l2');
+    const container = document.getElementById('wysic-cluster-container');
+    if (!container) return;
+
+    // Buttons & Labels
+    const btnDials = document.getElementById('wysic-btn-dials');
+    const dotDials = document.getElementById('wysic-dot-dials');
+    const textDials = document.getElementById('wysic-text-dials');
+
+    const btnTheme = document.getElementById('wysic-btn-theme');
+    const dotTheme = document.getElementById('wysic-dot-theme');
+    const textTheme = document.getElementById('wysic-text-theme');
 
     const btnSpeedo = document.getElementById('wysic-btn-speedo');
     const dotSpeedo = document.getElementById('wysic-dot-speedo');
-    const speedoNeedle = document.getElementById('wysic-speedo-needle-g');
-    const digitalSpeed = document.getElementById('wysic-digital-speed');
+    const textSpeedo = document.getElementById('wysic-text-speedo');
 
     const btnScale = document.getElementById('wysic-btn-scale');
+    const dotScale = document.getElementById('wysic-dot-scale');
     const textScale = document.getElementById('wysic-text-scale');
-    const speedoUnit = document.getElementById('wysic-speedo-unit');
-    const speedoTicksGroup = document.getElementById('speedo-ticks-group');
+
+    const btnObc = document.getElementById('wysic-btn-obc');
+    const dotObc = document.getElementById('wysic-dot-obc');
+    const textObc = document.getElementById('wysic-text-obc');
 
     const btnCruise = document.getElementById('wysic-btn-cruise');
     const dotCruise = document.getElementById('wysic-dot-cruise');
-    const cruiseLamp = document.getElementById('wysic-cruise-lamp');
 
+    // Studio State
+    let dials = 3; // 3 = 986, 5 = 996
+    let faceTheme = 'black'; // 'black' | 'white'
+    let isTrueSpeed = true; // 1:1 GPS calibrated vs +7% over-read
+    let isMetric = false; // 180 MPH vs 300 km/h
     let isObcOn = true;
-    let isTrueSpeed = true;
-    let isMetric = false;
     let isCruiseOn = false;
 
-    // Dial tick rendering helper
-    function renderSpeedoTicks(maxSpeed: number) {
-      if (!speedoTicksGroup) return;
-      let ticks = '';
-      const step = isMetric ? 50 : 20;
-      const count = maxSpeed / step;
-      for (let i = 0; i <= count; i++) {
-        const val = i * step;
-        const angle = -135 + (val / maxSpeed) * 270;
-        const rad = ((angle - 90) * Math.PI) / 180;
-        const x1 = 210 + 77 * Math.cos(rad);
-        const y1 = 170 + 77 * Math.sin(rad);
-        const x2 = 210 + 68 * Math.cos(rad);
-        const y2 = 170 + 68 * Math.sin(rad);
-        const xL = 210 + 56 * Math.cos(rad);
-        const yL = 170 + 56 * Math.sin(rad);
+    function updateCluster() {
+      if (!container) return;
+      const speedVal = isMetric ? 100 : 60;
+      const indicated = isTrueSpeed ? speedVal : (isMetric ? 108 : 66);
+      const scaleId = isMetric ? '300_kmh' : (dials === 5 ? '200_mph' : '180_mph');
 
-        ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#cbd5e0" stroke-width="2"/>`;
-        ticks += `<text x="${xL.toFixed(1)}" y="${(yL + 3.5).toFixed(1)}" text-anchor="middle" font-size="9" font-weight="700" fill="#f7fafc">${val}</text>`;
-      }
-      speedoTicksGroup.innerHTML = ticks;
+      const svg = renderClusterSvg({
+        dials: dials,
+        faceTheme: faceTheme,
+        display: 'k24',
+        numerals: dials === 5 ? 'upright' : 'italic',
+        scaleId: scaleId,
+        speedPred: {
+          indicatedDisplay: indicated,
+          trueDisplay: speedVal
+        },
+        digitalSpeed: speedVal,
+        rpm: 4000,
+        coolantPred: { indicatedC: 80 },
+        fuelPred: { indicatedPct: 75 },
+        volts: 13.8,
+        oilBar: 3.2,
+        odometer: isMetric ? '103194' : '064120',
+        trip: '228.7',
+        clock: '14:25',
+        clockFormat: '24',
+        pm: {
+          obc_enabled: isObcOn,
+          cruise: isCruiseOn,
+          spoiler: dials === 5
+        },
+        idPrefix: 'wysic-live',
+        embedFonts: true
+      });
+
+      container.innerHTML = svg;
     }
 
-    renderSpeedoTicks(180);
+    // Toggle 986 (3-dial) vs 996 (5-dial)
+    if (btnDials && dotDials && textDials) {
+      btnDials.addEventListener('click', () => {
+        dials = dials === 3 ? 5 : 3;
+        if (dials === 5) {
+          dotDials.className = 'w-2 h-2 rounded-full bg-pw-blue';
+          textDials.textContent = '996 911 (5-Dial)';
+        } else {
+          dotDials.className = 'w-2 h-2 rounded-full bg-pw-red';
+          textDials.textContent = '986 Boxster (3-Dial)';
+        }
+        updateCluster();
+      });
+    }
 
-    // OBC Toggle
-    if (btnObc && dotObc && lcdRect && lcdL1 && lcdL2) {
+    // Toggle Face Theme (Black vs White/Chrome)
+    if (btnTheme && dotTheme && textTheme) {
+      btnTheme.addEventListener('click', () => {
+        faceTheme = faceTheme === 'black' ? 'white' : 'black';
+        if (faceTheme === 'white') {
+          dotTheme.className = 'w-2 h-2 rounded-full bg-white';
+          textTheme.textContent = 'Carrera White / Chrome';
+        } else {
+          dotTheme.className = 'w-2 h-2 rounded-full bg-zinc-400';
+          textTheme.textContent = 'Factory Black';
+        }
+        updateCluster();
+      });
+    }
+
+    // Toggle Speedo Calibration (1:1 GPS Calibrated vs OEM +7% Over-Read)
+    if (btnSpeedo && dotSpeedo && textSpeedo) {
+      btnSpeedo.addEventListener('click', () => {
+        isTrueSpeed = !isTrueSpeed;
+        if (isTrueSpeed) {
+          dotSpeedo.className = 'w-2 h-2 rounded-full bg-pw-green';
+          textSpeedo.textContent = '1:1 True Speedo';
+        } else {
+          dotSpeedo.className = 'w-2 h-2 rounded-full bg-amber-400';
+          textSpeedo.textContent = 'OEM Over-Read (+7%)';
+        }
+        updateCluster();
+      });
+    }
+
+    // Toggle Dial Scale (180 MPH vs 300 km/h)
+    if (btnScale && dotScale && textScale) {
+      btnScale.addEventListener('click', () => {
+        isMetric = !isMetric;
+        if (isMetric) {
+          dotScale.className = 'w-2 h-2 rounded-full bg-amber-400';
+          textScale.textContent = '300 km/h (Metric)';
+        } else {
+          dotScale.className = 'w-2 h-2 rounded-full bg-pw-blue';
+          textScale.textContent = dials === 5 ? '200 MPH (911)' : '180 MPH (UK/US)';
+        }
+        updateCluster();
+      });
+    }
+
+    // Toggle OBC Retrofit Display
+    if (btnObc && dotObc && textObc) {
       btnObc.addEventListener('click', () => {
         isObcOn = !isObcOn;
         if (isObcOn) {
           dotObc.className = 'w-2 h-2 rounded-full bg-amber-400';
-          lcdRect.setAttribute('fill', '#17120a');
-          lcdRect.setAttribute('stroke', '#744210');
-          lcdL1.textContent = isMetric ? 'RANGE 394 km • 10.0 L/100' : 'RANGE 245 mi • 28.4 MPG';
-          lcdL1.setAttribute('fill', '#f6e05e');
-          lcdL2.textContent = isMetric ? 'ODO 103,190 km • 14:25' : 'ODO 064,120 mi • 14:25';
-          lcdL2.setAttribute('fill', '#ecc94b');
+          textObc.textContent = 'OBC Retrofit: ON';
         } else {
           dotObc.className = 'w-2 h-2 rounded-full bg-zinc-600';
-          lcdRect.setAttribute('fill', '#10141b');
-          lcdRect.setAttribute('stroke', '#2d3748');
-          lcdL1.textContent = isMetric ? 'ODO 103,190 km' : 'ODO 064,120 mi';
-          lcdL1.setAttribute('fill', '#cbd5e0');
-          lcdL2.textContent = isMetric ? 'TRIP 0.0 km • 14:25' : 'TRIP 0.0 mi • 14:25';
-          lcdL2.setAttribute('fill', '#a0aec0');
+          textObc.textContent = 'OBC Retrofit: OFF';
         }
+        updateCluster();
       });
     }
 
-    // Speedo Calibration Toggle
-    if (btnSpeedo && dotSpeedo && speedoNeedle && digitalSpeed) {
-      btnSpeedo.addEventListener('click', () => {
-        isTrueSpeed = !isTrueSpeed;
-        const labelSpan = btnSpeedo.querySelector('span:last-child');
-        if (isTrueSpeed) {
-          dotSpeedo.className = 'w-2 h-2 rounded-full bg-pw-green';
-          if (labelSpan) labelSpan.textContent = '1:1 True Speedo';
-          // 60 mph true speed on 180 mph dial is -45 degrees
-          speedoNeedle.setAttribute('transform', isMetric ? 'rotate(-45 210 170)' : 'rotate(-45 210 170)');
-          digitalSpeed.textContent = isMetric ? '100 km/h' : '60 MPH';
-          digitalSpeed.setAttribute('fill', '#48bb78');
-        } else {
-          dotSpeedo.className = 'w-2 h-2 rounded-full bg-amber-400';
-          if (labelSpan) labelSpan.textContent = 'OEM Over-Read (+7%)';
-          // 66 mph indicated on 180 mph dial is -36 degrees
-          speedoNeedle.setAttribute('transform', isMetric ? 'rotate(-33 210 170)' : 'rotate(-36 210 170)');
-          digitalSpeed.textContent = isMetric ? '108 km/h' : '66 MPH';
-          digitalSpeed.setAttribute('fill', '#ecc94b');
-        }
-      });
-    }
-
-    // Dial Scale Toggle (180 MPH vs 300 km/h)
-    if (btnScale && textScale && speedoUnit) {
-      btnScale.addEventListener('click', () => {
-        isMetric = !isMetric;
-        if (isMetric) {
-          textScale.textContent = '300 km/h (Metric)';
-          speedoUnit.textContent = 'km/h';
-          renderSpeedoTicks(300);
-          if (digitalSpeed) digitalSpeed.textContent = isTrueSpeed ? '100 km/h' : '108 km/h';
-        } else {
-          textScale.textContent = '180 MPH (UK/US)';
-          speedoUnit.textContent = 'MPH';
-          renderSpeedoTicks(180);
-          if (digitalSpeed) digitalSpeed.textContent = isTrueSpeed ? '60 MPH' : '66 MPH';
-        }
-      });
-    }
-
-    // Cruise Control Lamp Toggle
-    if (btnCruise && dotCruise && cruiseLamp) {
+    // Toggle Cruise Lamp
+    if (btnCruise && dotCruise) {
       btnCruise.addEventListener('click', () => {
         isCruiseOn = !isCruiseOn;
         if (isCruiseOn) {
           dotCruise.className = 'w-2 h-2 rounded-full bg-pw-green animate-pulse';
-          cruiseLamp.setAttribute('opacity', '1.0');
         } else {
-          dotCruise.className = 'w-2 h-2 rounded-full bg-zinc-500';
-          cruiseLamp.setAttribute('opacity', '0.15');
+          dotCruise.className = 'w-2 h-2 rounded-full bg-zinc-600';
         }
+        updateCluster();
       });
     }
   })();
