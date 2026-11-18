@@ -284,14 +284,13 @@
       else o += line(cx, cy, R * (half ? .855 : .875), R * .93, a, sub, R * (half ? .017 : .011));
     }
     for (var w = rl; w <= 8000; w += 200) { var q = pt(cx, cy, R * .965, lerp(sw, w)); o += '<circle cx="' + f(q[0]) + '" cy="' + f(q[1]) + '" r="' + f(R * .02) + '" fill="' + red + '"/>'; }
-    for (var n = 0; n <= 8; n++) {
-      if (st.dials === 5 && (n === 0 || n === 8)) continue;
+    for (var n = 1; n <= 7; n++) {
       var p = pt(cx, cy, R * .63, lerp(sw, n * 1000));
-      o += text(p[0], p[1] - (n === 0 || n === 8 ? R * .04 : 0), n, R * (ital ? .2 : .19), ink, numFont(st));
+      o += text(p[0], p[1], n, R * (ital ? .2 : .19), ink, numFont(st));
     }
     var g = pt(cx, cy, R * .5, 100);
     o += '<circle cx="' + f(g[0]) + '" cy="' + f(g[1]) + '" r="' + f(R * .045) + '" fill="' + COL.lens[theme] + '"/>';
-    var lbl = st.tachLabel != null ? st.tachLabel : (st.dials === 5 ? 'RPM' : '');
+    var lbl = st.tachLabel != null ? st.tachLabel : 'RPM';
     if (lbl) o += text(cx, cy + R * .17, lbl, R * .075, sub, { weight: 600, spacing: '.06em' });
     return o;
   }

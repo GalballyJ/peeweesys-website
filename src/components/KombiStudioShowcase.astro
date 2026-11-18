@@ -2,7 +2,7 @@
 // KombiStudioShowcase.astro - Interactive WYSIC Instrument Cluster & Pro EEPROM Suite Showcase
 import { renderClusterSvg } from '../lib/pws_cluster.js';
 
-// Pre-render default 986 Boxster cluster with black faces and K24 dot-matrix display for instant SSR
+// Pre-render default 986.2 Boxster S (3-dial, K24 dot-matrix, 180 MPH) for instant SSR
 const defaultSvg = renderClusterSvg({
   dials: 3,
   faceTheme: 'black',
@@ -41,79 +41,112 @@ const defaultSvg = renderClusterSvg({
 
     <!-- Interactive Visual Cluster Showcase Card -->
     <div class="rounded-2xl bg-pw-panel border border-pw-line shadow-2xl p-6 sm:p-10 mb-16 relative">
-      <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-pw-line/70 mb-8">
-        <div>
-          <span class="text-xs font-mono text-pw-red uppercase tracking-wider font-bold">Interactive Live Preview</span>
-          <h3 class="text-xl sm:text-2xl font-bold text-pw-text">Kombi 2000 Visual Coding Studio</h3>
+      <!-- Top Bar: Preset Selection Tabs & Coding Toggles -->
+      <div class="space-y-6 pb-6 border-b border-pw-line/70 mb-8">
+        <!-- Row 1: Cluster Platform / Generation Selector -->
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+          <div>
+            <span class="text-xs font-mono text-pw-red uppercase tracking-wider font-bold">Step 1 &bull; Select Instrument Cluster</span>
+            <h3 class="text-xl sm:text-2xl font-bold text-pw-text">Kombi 2000 Visual Coding Studio</h3>
+          </div>
+
+          <!-- 3-Way Cluster Generation Selector Tabs -->
+          <div class="inline-flex p-1 rounded-xl bg-pw-card border border-pw-line gap-1 self-start lg:self-auto" role="tablist">
+            <button
+              type="button"
+              id="preset-986-1"
+              data-preset="986.1-lcd"
+              class="wysic-preset-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold transition-all text-pw-muted hover:text-pw-text flex items-center gap-2"
+              title="986.1 Boxster with classic segment LCD displays"
+            >
+              <span>986.1 LCD</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-pw-surface border border-pw-line text-zinc-400">1997–00</span>
+            </button>
+
+            <button
+              type="button"
+              id="preset-986-2"
+              data-preset="986.2-dot"
+              class="wysic-preset-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold transition-all bg-pw-red text-white shadow-md shadow-pw-red/20 font-bold border border-pw-red flex items-center gap-2"
+              title="986.2 Boxster S with K24 high-res amber dot-matrix display and 180 MPH scale"
+            >
+              <span>986.2 Dot-Matrix</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-black/30 border border-white/20 text-white font-mono">180 MPH S</span>
+            </button>
+
+            <button
+              type="button"
+              id="preset-996-2"
+              data-preset="996.2-dot"
+              class="wysic-preset-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold transition-all text-pw-muted hover:text-pw-text flex items-center gap-2"
+              title="996.2 911 Carrera with 5 dials (voltmeter and oil pressure pods) and dot-matrix center"
+            >
+              <span>996.2 5-Dial</span>
+              <span class="text-[10px] px-1.5 py-0.5 rounded bg-pw-surface border border-pw-line text-zinc-400">911 VDO</span>
+            </button>
+          </div>
         </div>
 
-        <!-- Interactive Preset Buttons -->
-        <div class="flex flex-wrap items-center gap-2">
-          <!-- Cluster Platform: 986 (3-dial) vs 996 (5-dial) -->
-          <button
-            type="button"
-            id="wysic-btn-dials"
-            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
-            title="Toggle between 986 Boxster 3-dial and 996 911 5-dial cluster"
-          >
-            <span class="w-2 h-2 rounded-full bg-pw-red" id="wysic-dot-dials"></span>
-            <span id="wysic-text-dials">986 Boxster (3-Dial)</span>
-          </button>
+        <!-- Row 2: Live Feature & Calibration Toggles -->
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-4 border-t border-pw-line/40">
+          <span class="text-xs font-mono text-pw-muted uppercase tracking-wider font-semibold">Step 2 &bull; Toggle Features &amp; Calibrations:</span>
 
-          <!-- Dial Face Theme: Black vs White/Chrome -->
-          <button
-            type="button"
-            id="wysic-btn-theme"
-            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
-            title="Toggle dial face color between Factory Black and Carrera White / Silver"
-          >
-            <span class="w-2 h-2 rounded-full bg-zinc-400" id="wysic-dot-theme"></span>
-            <span id="wysic-text-theme">Factory Black</span>
-          </button>
+          <div class="flex flex-wrap items-center gap-2">
+            <!-- 1:1 Speedo vs OEM Over-Read -->
+            <button
+              type="button"
+              id="wysic-btn-speedo"
+              class="px-3 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+              title="Toggle speedometer calibration between 1:1 GPS true speed and OEM +7% over-read"
+            >
+              <span class="w-2 h-2 rounded-full bg-pw-green" id="wysic-dot-speedo"></span>
+              <span id="wysic-text-speedo">1:1 True Speedo</span>
+            </button>
 
-          <!-- Speedo Calibration: 1:1 GPS Calibrated vs OEM Over-Read -->
-          <button
-            type="button"
-            id="wysic-btn-speedo"
-            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
-            title="Toggle speedometer impulse ratio between 1:1 GPS calibrated and OEM +7% over-read"
-          >
-            <span class="w-2 h-2 rounded-full bg-pw-green" id="wysic-dot-speedo"></span>
-            <span id="wysic-text-speedo">1:1 True Speedo</span>
-          </button>
+            <!-- OBC Retrofit Toggle -->
+            <button
+              type="button"
+              id="wysic-btn-obc"
+              class="px-3 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+              title="Enable or disable 4-stalk On-Board Computer retrofit display"
+            >
+              <span class="w-2 h-2 rounded-full bg-amber-400" id="wysic-dot-obc"></span>
+              <span id="wysic-text-obc">OBC: Enabled</span>
+            </button>
 
-          <!-- Speedo Scale: 180 MPH vs 300 km/h -->
-          <button
-            type="button"
-            id="wysic-btn-scale"
-            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
-            title="Toggle speedometer dial face units between Imperial 180 MPH and Metric 300 km/h"
-          >
-            <span class="w-2 h-2 rounded-full bg-pw-blue" id="wysic-dot-scale"></span>
-            <span id="wysic-text-scale">180 MPH (UK/US)</span>
-          </button>
+            <!-- Cruise Control Lamp Toggle -->
+            <button
+              type="button"
+              id="wysic-btn-cruise"
+              class="px-3 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+              title="Toggle cruise control telltale indicator"
+            >
+              <span class="w-2 h-2 rounded-full bg-zinc-600" id="wysic-dot-cruise"></span>
+              <span id="wysic-text-cruise">Cruise Lamp: Off</span>
+            </button>
 
-          <!-- OBC Display Toggle -->
-          <button
-            type="button"
-            id="wysic-btn-obc"
-            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
-            title="Toggle OBC stalk retrofit display"
-          >
-            <span class="w-2 h-2 rounded-full bg-amber-400" id="wysic-dot-obc"></span>
-            <span id="wysic-text-obc">OBC Retrofit: ON</span>
-          </button>
+            <!-- Imperial vs Metric Toggle -->
+            <button
+              type="button"
+              id="wysic-btn-scale"
+              class="px-3 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+              title="Toggle between Imperial (MPH / °F) and Metric (km/h / °C)"
+            >
+              <span class="w-2 h-2 rounded-full bg-pw-blue" id="wysic-dot-scale"></span>
+              <span id="wysic-text-scale">Imperial (MPH / &deg;F)</span>
+            </button>
 
-          <!-- Cruise Lamp Indicator Toggle -->
-          <button
-            type="button"
-            id="wysic-btn-cruise"
-            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
-            title="Toggle cruise control telltale indicator"
-          >
-            <span class="w-2 h-2 rounded-full bg-zinc-600" id="wysic-dot-cruise"></span>
-            <span>Cruise Lamp</span>
-          </button>
+            <!-- Dial Face Theme: Black vs White/Chrome -->
+            <button
+              type="button"
+              id="wysic-btn-theme"
+              class="px-3 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+              title="Toggle dial face color between Factory Black and Carrera White / Silver with chrome bezels"
+            >
+              <span class="w-2 h-2 rounded-full bg-zinc-400" id="wysic-dot-theme"></span>
+              <span id="wysic-text-theme">Black Faces</span>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -125,8 +158,8 @@ const defaultSvg = renderClusterSvg({
         <div class="p-3 rounded-lg bg-pw-card/80 border border-pw-line flex items-center gap-3">
           <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0 font-bold">1</div>
           <div>
-            <div class="text-pw-text font-bold">OBC Stalk & Telltale Preview</div>
-            <div class="text-pw-muted text-[11px]">Preview Range, MPG & Temp displays before adding 4-stalk assembly</div>
+            <div class="text-pw-text font-bold">OBC Stalk &amp; Telltale Preview</div>
+            <div class="text-pw-muted text-[11px]">Preview Range, MPG &amp; Temp displays before adding 4-stalk assembly</div>
           </div>
         </div>
 
@@ -227,22 +260,13 @@ const defaultSvg = renderClusterSvg({
     const container = document.getElementById('wysic-cluster-container');
     if (!container) return;
 
-    // Buttons & Labels
-    const btnDials = document.getElementById('wysic-btn-dials');
-    const dotDials = document.getElementById('wysic-dot-dials');
-    const textDials = document.getElementById('wysic-text-dials');
+    // Preset Selection Buttons
+    const presetBtns = document.querySelectorAll('.wysic-preset-btn');
 
-    const btnTheme = document.getElementById('wysic-btn-theme');
-    const dotTheme = document.getElementById('wysic-dot-theme');
-    const textTheme = document.getElementById('wysic-text-theme');
-
+    // Feature Toggle Buttons
     const btnSpeedo = document.getElementById('wysic-btn-speedo');
     const dotSpeedo = document.getElementById('wysic-dot-speedo');
     const textSpeedo = document.getElementById('wysic-text-speedo');
-
-    const btnScale = document.getElementById('wysic-btn-scale');
-    const dotScale = document.getElementById('wysic-dot-scale');
-    const textScale = document.getElementById('wysic-text-scale');
 
     const btnObc = document.getElementById('wysic-btn-obc');
     const dotObc = document.getElementById('wysic-dot-obc');
@@ -250,26 +274,58 @@ const defaultSvg = renderClusterSvg({
 
     const btnCruise = document.getElementById('wysic-btn-cruise');
     const dotCruise = document.getElementById('wysic-dot-cruise');
+    const textCruise = document.getElementById('wysic-text-cruise');
 
-    // Studio State
-    let dials = 3; // 3 = 986, 5 = 996
-    let faceTheme = 'black'; // 'black' | 'white'
-    let isTrueSpeed = true; // 1:1 GPS calibrated vs +7% over-read
-    let isMetric = false; // 180 MPH vs 300 km/h
+    const btnScale = document.getElementById('wysic-btn-scale');
+    const dotScale = document.getElementById('wysic-dot-scale');
+    const textScale = document.getElementById('wysic-text-scale');
+
+    const btnTheme = document.getElementById('wysic-btn-theme');
+    const dotTheme = document.getElementById('wysic-dot-theme');
+    const textTheme = document.getElementById('wysic-text-theme');
+
+    // Studio Configuration State
+    // Preset: '986.1-lcd' | '986.2-dot' | '996.2-dot'
+    let currentPreset = '986.2-dot';
+    let isTrueSpeed = true; // 1:1 GPS calibrated vs OEM +7% over-read
     let isObcOn = true;
     let isCruiseOn = false;
+    let isMetric = false; // Imperial (MPH/°F) vs Metric (km/h/°C)
+    let faceTheme = 'black'; // 'black' | 'white'
 
     function updateCluster() {
       if (!container) return;
+
+      let dials = 3;
+      let display = 'k24';
+      let scaleId = '180_mph';
+      let numerals = 'italic';
+
+      if (currentPreset === '986.1-lcd') {
+        dials = 3;
+        display = 'early';
+        scaleId = isMetric ? '250_kmh' : '160_mph';
+        numerals = 'italic';
+      } else if (currentPreset === '986.2-dot') {
+        dials = 3;
+        display = 'k24';
+        scaleId = isMetric ? '300_kmh' : '180_mph'; // 180 MPH Boxster S
+        numerals = 'italic';
+      } else if (currentPreset === '996.2-dot') {
+        dials = 5;
+        display = 'k24';
+        scaleId = isMetric ? '300_kmh' : '200_mph';
+        numerals = 'upright';
+      }
+
       const speedVal = isMetric ? 100 : 60;
       const indicated = isTrueSpeed ? speedVal : (isMetric ? 108 : 66);
-      const scaleId = isMetric ? '300_kmh' : (dials === 5 ? '200_mph' : '180_mph');
 
       const svg = renderClusterSvg({
         dials: dials,
         faceTheme: faceTheme,
-        display: 'k24',
-        numerals: dials === 5 ? 'upright' : 'italic',
+        display: display,
+        numerals: numerals,
         scaleId: scaleId,
         speedPred: {
           indicatedDisplay: indicated,
@@ -278,6 +334,7 @@ const defaultSvg = renderClusterSvg({
         digitalSpeed: speedVal,
         rpm: 4000,
         coolantPred: { indicatedC: 80 },
+        tempUnit: isMetric ? 'C' : 'F',
         fuelPred: { indicatedPct: 75 },
         volts: 13.8,
         oilBar: 3.2,
@@ -285,6 +342,7 @@ const defaultSvg = renderClusterSvg({
         trip: '228.7',
         clock: '14:25',
         clockFormat: '24',
+        ambient: isMetric ? '14.5' : '52',
         pm: {
           obc_enabled: isObcOn,
           cruise: isCruiseOn,
@@ -297,37 +355,29 @@ const defaultSvg = renderClusterSvg({
       container.innerHTML = svg;
     }
 
-    // Toggle 986 (3-dial) vs 996 (5-dial)
-    if (btnDials && dotDials && textDials) {
-      btnDials.addEventListener('click', () => {
-        dials = dials === 3 ? 5 : 3;
-        if (dials === 5) {
-          dotDials.className = 'w-2 h-2 rounded-full bg-pw-blue';
-          textDials.textContent = '996 911 (5-Dial)';
-        } else {
-          dotDials.className = 'w-2 h-2 rounded-full bg-pw-red';
-          textDials.textContent = '986 Boxster (3-Dial)';
-        }
+    // Handle Preset Switching
+    presetBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const selected = btn.getAttribute('data-preset');
+        if (!selected || selected === currentPreset) return;
+        currentPreset = selected;
+
+        // Update active tab styling
+        presetBtns.forEach(b => {
+          b.className = 'wysic-preset-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold transition-all text-pw-muted hover:text-pw-text flex items-center gap-2';
+          const badge = b.querySelector('span:last-child');
+          if (badge) badge.className = 'text-[10px] px-1.5 py-0.5 rounded bg-pw-surface border border-pw-line text-zinc-400';
+        });
+
+        btn.className = 'wysic-preset-btn px-3.5 py-2 rounded-lg text-xs font-mono font-semibold transition-all bg-pw-red text-white shadow-md shadow-pw-red/20 font-bold border border-pw-red flex items-center gap-2';
+        const activeBadge = btn.querySelector('span:last-child');
+        if (activeBadge) activeBadge.className = 'text-[10px] px-1.5 py-0.5 rounded bg-black/30 border border-white/20 text-white font-mono';
+
         updateCluster();
       });
-    }
+    });
 
-    // Toggle Face Theme (Black vs White/Chrome)
-    if (btnTheme && dotTheme && textTheme) {
-      btnTheme.addEventListener('click', () => {
-        faceTheme = faceTheme === 'black' ? 'white' : 'black';
-        if (faceTheme === 'white') {
-          dotTheme.className = 'w-2 h-2 rounded-full bg-white';
-          textTheme.textContent = 'Carrera White / Chrome';
-        } else {
-          dotTheme.className = 'w-2 h-2 rounded-full bg-zinc-400';
-          textTheme.textContent = 'Factory Black';
-        }
-        updateCluster();
-      });
-    }
-
-    // Toggle Speedo Calibration (1:1 GPS Calibrated vs OEM +7% Over-Read)
+    // Toggle 1:1 GPS Calibrated Speedo
     if (btnSpeedo && dotSpeedo && textSpeedo) {
       btnSpeedo.addEventListener('click', () => {
         isTrueSpeed = !isTrueSpeed;
@@ -342,44 +392,61 @@ const defaultSvg = renderClusterSvg({
       });
     }
 
-    // Toggle Dial Scale (180 MPH vs 300 km/h)
-    if (btnScale && dotScale && textScale) {
-      btnScale.addEventListener('click', () => {
-        isMetric = !isMetric;
-        if (isMetric) {
-          dotScale.className = 'w-2 h-2 rounded-full bg-amber-400';
-          textScale.textContent = '300 km/h (Metric)';
-        } else {
-          dotScale.className = 'w-2 h-2 rounded-full bg-pw-blue';
-          textScale.textContent = dials === 5 ? '200 MPH (911)' : '180 MPH (UK/US)';
-        }
-        updateCluster();
-      });
-    }
-
-    // Toggle OBC Retrofit Display
+    // Toggle OBC Retrofit
     if (btnObc && dotObc && textObc) {
       btnObc.addEventListener('click', () => {
         isObcOn = !isObcOn;
         if (isObcOn) {
           dotObc.className = 'w-2 h-2 rounded-full bg-amber-400';
-          textObc.textContent = 'OBC Retrofit: ON';
+          textObc.textContent = 'OBC: Enabled';
         } else {
           dotObc.className = 'w-2 h-2 rounded-full bg-zinc-600';
-          textObc.textContent = 'OBC Retrofit: OFF';
+          textObc.textContent = 'OBC: Disabled (Odo Only)';
         }
         updateCluster();
       });
     }
 
     // Toggle Cruise Lamp
-    if (btnCruise && dotCruise) {
+    if (btnCruise && dotCruise && textCruise) {
       btnCruise.addEventListener('click', () => {
         isCruiseOn = !isCruiseOn;
         if (isCruiseOn) {
           dotCruise.className = 'w-2 h-2 rounded-full bg-pw-green animate-pulse';
+          textCruise.textContent = 'Cruise Lamp: Active';
         } else {
           dotCruise.className = 'w-2 h-2 rounded-full bg-zinc-600';
+          textCruise.textContent = 'Cruise Lamp: Off';
+        }
+        updateCluster();
+      });
+    }
+
+    // Toggle Imperial vs Metric
+    if (btnScale && dotScale && textScale) {
+      btnScale.addEventListener('click', () => {
+        isMetric = !isMetric;
+        if (isMetric) {
+          dotScale.className = 'w-2 h-2 rounded-full bg-amber-400';
+          textScale.textContent = 'Metric (km/h / \u00B0C)';
+        } else {
+          dotScale.className = 'w-2 h-2 rounded-full bg-pw-blue';
+          textScale.textContent = 'Imperial (MPH / \u00B0F)';
+        }
+        updateCluster();
+      });
+    }
+
+    // Toggle Face Theme (Black vs White/Chrome)
+    if (btnTheme && dotTheme && textTheme) {
+      btnTheme.addEventListener('click', () => {
+        faceTheme = faceTheme === 'black' ? 'white' : 'black';
+        if (faceTheme === 'white') {
+          dotTheme.className = 'w-2 h-2 rounded-full bg-white';
+          textTheme.textContent = 'Carrera White / Chrome';
+        } else {
+          dotTheme.className = 'w-2 h-2 rounded-full bg-zinc-400';
+          textTheme.textContent = 'Black Faces';
         }
         updateCluster();
       });
