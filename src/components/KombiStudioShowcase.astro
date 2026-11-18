@@ -1,0 +1,433 @@
+---
+// KombiStudioShowcase.astro - Interactive WYSIC Instrument Cluster & Pro EEPROM Suite Showcase
+---
+
+<section id="kombi-studio" class="py-24 bg-pw-card/40 relative border-t border-pw-line overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-pw-red/10 text-pw-red border border-pw-red/20 text-xs font-semibold uppercase tracking-wider font-mono">
+        World-First Innovation &bull; WYSIC Studio
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-bold text-pw-text tracking-tight">
+        What You See Is What You Code.
+      </h2>
+      <p class="text-base sm:text-lg text-pw-muted leading-relaxed">
+        Say goodbye to cryptic hexadecimal bitmasks and risky dealer coding. PeeweeSys renders your exact 986 / 996 instrument cluster in real-time SVG — letting you preview retrofits, needle calibrations, and dial scales visually before writing a single byte.
+      </p>
+    </div>
+
+    <!-- Interactive Visual Cluster Showcase Card -->
+    <div class="rounded-2xl bg-pw-panel border border-pw-line shadow-2xl p-6 sm:p-10 mb-16 relative">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-pw-line/70 mb-8">
+        <div>
+          <span class="text-xs font-mono text-pw-red uppercase tracking-wider font-bold">Interactive Live Preview</span>
+          <h3 class="text-xl sm:text-2xl font-bold text-pw-text">Kombi 2000 Visual Coding Studio</h3>
+        </div>
+
+        <!-- Interactive Preset Buttons -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button
+            type="button"
+            id="wysic-btn-obc"
+            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+          >
+            <span class="w-2 h-2 rounded-full bg-amber-400" id="wysic-dot-obc"></span>
+            <span>Toggle OBC Display</span>
+          </button>
+
+          <button
+            type="button"
+            id="wysic-btn-speedo"
+            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+          >
+            <span class="w-2 h-2 rounded-full bg-pw-green" id="wysic-dot-speedo"></span>
+            <span>1:1 True Speedo</span>
+          </button>
+
+          <button
+            type="button"
+            id="wysic-btn-scale"
+            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+          >
+            <span class="w-2 h-2 rounded-full bg-pw-blue" id="wysic-dot-scale"></span>
+            <span id="wysic-text-scale">180 MPH (UK/US)</span>
+          </button>
+
+          <button
+            type="button"
+            id="wysic-btn-cruise"
+            class="px-3.5 py-1.5 rounded-lg border border-pw-line bg-pw-card hover:bg-pw-surface text-pw-text text-xs font-mono font-semibold transition-all flex items-center gap-2 shadow-sm"
+          >
+            <span class="w-2 h-2 rounded-full bg-zinc-500" id="wysic-dot-cruise"></span>
+            <span>Cruise Lamp</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- SVG Cluster Display -->
+      <div class="w-full flex justify-center py-4 sm:py-6 overflow-x-auto">
+        <svg
+          id="wysic-cluster-svg"
+          viewBox="0 0 760 300"
+          class="w-full max-w-[760px] h-auto select-none drop-shadow-[0_20px_35px_rgba(0,0,0,0.9)]"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <linearGradient id="wysicBezel" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#4a5568" />
+              <stop offset="50%" stop-color="#1a202c" />
+              <stop offset="100%" stop-color="#0d1117" />
+            </linearGradient>
+            <radialGradient id="wysicFaceDark" cx="50%" cy="50%" r="50%">
+              <stop offset="70%" stop-color="#14181f" />
+              <stop offset="100%" stop-color="#090b0e" />
+            </radialGradient>
+            <linearGradient id="wysicNeedle" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#ff3b4e" />
+              <stop offset="100%" stop-color="#c5001a" />
+            </linearGradient>
+          </defs>
+
+          <!-- Instrument Housing Arch Backdrop -->
+          <path
+            d="M 60 260 C 60 110, 160 50, 380 50 C 600 50, 700 110, 700 260 Z"
+            fill="#090c10"
+            stroke="#1c2430"
+            stroke-width="3"
+          />
+
+          <!-- LEFT DIAL: Speedometer (Center X: 210, Y: 170, R: 85) -->
+          <g id="dial-speedo">
+            <circle cx="210" cy="170" r="88" fill="none" stroke="url(#wysicBezel)" stroke-width="4.5" />
+            <circle cx="210" cy="170" r="85" fill="#14181f" stroke="#0e141c" stroke-width="2" />
+            <circle cx="210" cy="170" r="83" fill="url(#wysicFaceDark)" opacity="0.8" />
+
+            <!-- Dial Title & Units -->
+            <text x="210" y="145" text-anchor="middle" font-size="9" font-weight="700" fill="#a0aec0" id="wysic-speedo-unit">MPH</text>
+
+            <!-- Speedometer Ticks (0 to 180 mph) -->
+            <g id="speedo-ticks-group">
+              <!-- Rendered dynamically via JS -->
+            </g>
+
+            <!-- Digital Speed LCD in Speedo Face -->
+            <rect x="180" y="195" width="60" height="20" rx="3" fill="#10141b" stroke="#2d3748" stroke-width="1.2" />
+            <text x="210" y="209" text-anchor="middle" font-size="10.5" font-family="monospace" font-weight="700" fill="#e2e8f0" id="wysic-digital-speed">60 MPH</text>
+
+            <!-- Needle -->
+            <g id="wysic-speedo-needle-g" transform="rotate(-45 210 170)">
+              <polygon points="208,170 212,170 211,98 209,98" fill="url(#wysicNeedle)" />
+              <polygon points="207.5,170 212.5,170 212,184 208,184" fill="#2d3748" />
+              <circle cx="210" cy="170" r="8.5" fill="#1a202c" stroke="#718096" stroke-width="1.5" />
+              <circle cx="210" cy="170" r="3.5" fill="#090b0e" />
+            </g>
+          </g>
+
+          <!-- CENTER DIAL: Tachometer & OBC (Center X: 380, Y: 155, R: 105) -->
+          <g id="dial-tacho">
+            <circle cx="380" cy="155" r="109" fill="none" stroke="url(#wysicBezel)" stroke-width="5.5" />
+            <circle cx="380" cy="155" r="105" fill="#14181f" stroke="#0e141c" stroke-width="2" />
+            <circle cx="380" cy="155" r="103" fill="url(#wysicFaceDark)" opacity="0.85" />
+
+            <!-- Tachometer Title -->
+            <text x="380" y="105" text-anchor="middle" font-size="9" font-weight="700" fill="#a0aec0">RPM x 1000</text>
+
+            <!-- Tachometer Numbers 0 to 8 -->
+            <text x="305" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">0</text>
+            <text x="295" y="170" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">1</text>
+            <text x="310" y="125" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">2</text>
+            <text x="340" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">3</text>
+            <text x="380" y="80" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">4</text>
+            <text x="420" y="92" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">5</text>
+            <text x="450" y="125" text-anchor="middle" font-size="12" font-weight="700" fill="#f7fafc">6</text>
+            <text x="465" y="170" text-anchor="middle" font-size="12" font-weight="700" fill="#e53e3e">7</text>
+            <text x="455" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="#e53e3e">8</text>
+
+            <!-- Cruise Control Lamp Indicator -->
+            <g id="wysic-cruise-lamp" opacity="0.15" transform="translate(372, 115)">
+              <circle cx="8" cy="8" r="7" fill="#48bb78" />
+              <path d="M 5 8 L 7 10 L 11 6" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" />
+            </g>
+
+            <!-- Central Multi-Function LCD (OBC) -->
+            <g id="wysic-lcd-obc">
+              <rect x="305" y="180" width="150" height="42" rx="4" fill="#17120a" stroke="#744210" stroke-width="1.5" id="wysic-lcd-rect" />
+              <!-- Default Odometer text -->
+              <text x="380" y="197" text-anchor="middle" font-size="9" font-family="monospace" font-weight="700" fill="#f6e05e" id="wysic-lcd-l1">RANGE 245 mi &bull; 28.4 MPG</text>
+              <text x="380" y="212" text-anchor="middle" font-size="8.5" font-family="monospace" fill="#ecc94b" id="wysic-lcd-l2">ODO 064,120 mi &bull; 14:25</text>
+            </g>
+
+            <!-- Tacho Needle (Pointing at 4,000 RPM at 60 mph cruise) -->
+            <g id="wysic-tacho-needle-g" transform="rotate(0 380 155)">
+              <polygon points="378,155 382,155 381,68 379,68" fill="url(#wysicNeedle)" />
+              <polygon points="377.5,155 382.5,155 382,172 378,172" fill="#2d3748" />
+              <circle cx="380" cy="155" r="9" fill="#1a202c" stroke="#718096" stroke-width="1.6" />
+              <circle cx="380" cy="155" r="4" fill="#090b0e" />
+            </g>
+          </g>
+
+          <!-- RIGHT DIAL: Coolant & Fuel (Center X: 550, Y: 170, R: 85) -->
+          <g id="dial-fuel-temp">
+            <circle cx="550" cy="170" r="88" fill="none" stroke="url(#wysicBezel)" stroke-width="4.5" />
+            <circle cx="550" cy="170" r="85" fill="#14181f" stroke="#0e141c" stroke-width="2" />
+            <circle cx="550" cy="170" r="83" fill="url(#wysicFaceDark)" opacity="0.8" />
+
+            <!-- Labels -->
+            <text x="515" y="130" text-anchor="middle" font-size="9" font-weight="700" fill="#a0aec0">&deg;C TEMP</text>
+            <text x="585" y="130" text-anchor="middle" font-size="9" font-weight="700" fill="#a0aec0">FUEL 4/4</text>
+
+            <text x="490" y="170" text-anchor="middle" font-size="8" font-weight="700" fill="#f7fafc">80&deg;</text>
+            <text x="495" y="195" text-anchor="middle" font-size="8" font-weight="700" fill="#e53e3e">120&deg;</text>
+
+            <text x="610" y="170" text-anchor="middle" font-size="8" font-weight="700" fill="#f7fafc">1/2</text>
+            <text x="605" y="195" text-anchor="middle" font-size="8" font-weight="700" fill="#e53e3e">R</text>
+
+            <!-- Small Needles -->
+            <!-- Coolant Needle -->
+            <g transform="rotate(-15 515 170)">
+              <polygon points="513.5,170 516.5,170 515.5,125 514.5,125" fill="url(#wysicNeedle)" />
+              <circle cx="515" cy="170" r="6" fill="#1a202c" stroke="#718096" stroke-width="1.2" />
+            </g>
+
+            <!-- Fuel Needle -->
+            <g transform="rotate(20 585 170)">
+              <polygon points="583.5,170 586.5,170 585.5,125 584.5,125" fill="url(#wysicNeedle)" />
+              <circle cx="585" cy="170" r="6" fill="#1a202c" stroke="#718096" stroke-width="1.2" />
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Feature Callout Badges Under Cluster -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-pw-line/70 text-xs font-mono">
+        <div class="p-3 rounded-lg bg-pw-card/80 border border-pw-line flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400 shrink-0 font-bold">1</div>
+          <div>
+            <div class="text-pw-text font-bold">OBC Stalk & Telltale Preview</div>
+            <div class="text-pw-muted text-[11px]">Preview Range, MPG & Temp displays before adding 4-stalk assembly</div>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-lg bg-pw-card/80 border border-pw-line flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-pw-green/10 border border-pw-green/30 flex items-center justify-center text-pw-green shrink-0 font-bold">2</div>
+          <div>
+            <div class="text-pw-text font-bold">GPS 1:1 Speedo Calibration</div>
+            <div class="text-pw-muted text-[11px]">Simulates OEM +7% over-read vs calibrated uk_1to1 impulse ratio</div>
+          </div>
+        </div>
+
+        <div class="p-3 rounded-lg bg-pw-card/80 border border-pw-line flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-pw-blue/10 border border-pw-blue/30 flex items-center justify-center text-pw-blue shrink-0 font-bold">3</div>
+          <div>
+            <div class="text-pw-text font-bold">Instant Safe Rollback</div>
+            <div class="text-pw-muted text-[11px]">Cryptographic byte backup taken before any write with one-click restore</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pro Auto Electrician EEPROM Suite Grid -->
+    <div class="space-y-6">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-400/10 text-amber-400 border border-amber-400/20 text-xs font-semibold uppercase tracking-wider font-mono">
+          Specialist Capability &bull; In Beta
+        </div>
+        <h3 class="text-2xl sm:text-3xl font-bold text-pw-text">Pro Auto Electrician &amp; EEPROM Suite</h3>
+        <p class="text-sm text-pw-muted">
+          Designed for independent Porsche specialists, auto electricians, and cluster repair technicians.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Feature 1: OBD EEPROM Write -->
+        <div class="p-6 rounded-xl bg-pw-panel border border-pw-line hover:border-amber-400/40 transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-amber-400/10 border border-amber-400/30 flex items-center justify-center text-amber-400">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+              </svg>
+            </div>
+            <h4 class="text-base font-bold text-pw-text">OBD EEPROM Flashing (0x3D)</h4>
+            <p class="text-xs text-pw-muted leading-relaxed">
+              Read and write the late VDO Kombi 2000 (93C86 2048-byte) EEPROM directly over OBD. Completely eliminates instrument cluster removal, needle pulling, crystal grounding, and SOIC clip bench programming.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-pw-line/60 flex items-center gap-2 text-[11px] font-mono text-amber-400">
+            <span>&check; 93C86 2048B OBD Support</span>
+          </div>
+        </div>
+
+        <!-- Feature 2: One-Click Virginize -->
+        <div class="p-6 rounded-xl bg-pw-panel border border-pw-line hover:border-pw-green/40 transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-pw-green/10 border border-pw-green/30 flex items-center justify-center text-pw-green">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+              </svg>
+            </div>
+            <h4 class="text-base font-bold text-pw-text">Donor Cluster Virginizer</h4>
+            <p class="text-xs text-pw-muted leading-relaxed">
+              Official dealer tools permanently lock out used donor clusters with over 100 km, demanding $2,500 new replacement parts. Our suite wipes the odometer block below 100 km and resets commissioning flags for factory PST2/PIWIS pairing.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-pw-line/60 flex items-center gap-2 text-[11px] font-mono text-pw-green">
+            <span>&check; Bypass 100 km Lockout</span>
+          </div>
+        </div>
+
+        <!-- Feature 3: DVSA MOT Mileage Cross-Check -->
+        <div class="p-6 rounded-xl bg-pw-panel border border-pw-line hover:border-pw-blue/40 transition-all flex flex-col justify-between">
+          <div class="space-y-3">
+            <div class="w-10 h-10 rounded-lg bg-pw-blue/10 border border-pw-blue/30 flex items-center justify-center text-pw-blue">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+              </svg>
+            </div>
+            <h4 class="text-base font-bold text-pw-text">Gov MOT History Odometer Audit</h4>
+            <p class="text-xs text-pw-muted leading-relaxed">
+              Connects directly to the UK DVSA / DVLA MOT History database. Automatically compares multi-module VINs across DME (0x11), Kombi (0x64), and Alarm (0xC0) against official government test station records to instantly uncover odometer tampering.
+            </p>
+          </div>
+          <div class="pt-4 mt-4 border-t border-pw-line/60 flex items-center gap-2 text-[11px] font-mono text-pw-blue">
+            <span>&check; Live DVSA API Integration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Interactive Cluster Script -->
+<script>
+  (function () {
+    const btnObc = document.getElementById('wysic-btn-obc');
+    const dotObc = document.getElementById('wysic-dot-obc');
+    const lcdRect = document.getElementById('wysic-lcd-rect');
+    const lcdL1 = document.getElementById('wysic-lcd-l1');
+    const lcdL2 = document.getElementById('wysic-lcd-l2');
+
+    const btnSpeedo = document.getElementById('wysic-btn-speedo');
+    const dotSpeedo = document.getElementById('wysic-dot-speedo');
+    const speedoNeedle = document.getElementById('wysic-speedo-needle-g');
+    const digitalSpeed = document.getElementById('wysic-digital-speed');
+
+    const btnScale = document.getElementById('wysic-btn-scale');
+    const textScale = document.getElementById('wysic-text-scale');
+    const speedoUnit = document.getElementById('wysic-speedo-unit');
+    const speedoTicksGroup = document.getElementById('speedo-ticks-group');
+
+    const btnCruise = document.getElementById('wysic-btn-cruise');
+    const dotCruise = document.getElementById('wysic-dot-cruise');
+    const cruiseLamp = document.getElementById('wysic-cruise-lamp');
+
+    let isObcOn = true;
+    let isTrueSpeed = true;
+    let isMetric = false;
+    let isCruiseOn = false;
+
+    // Dial tick rendering helper
+    function renderSpeedoTicks(maxSpeed: number) {
+      if (!speedoTicksGroup) return;
+      let ticks = '';
+      const step = isMetric ? 50 : 20;
+      const count = maxSpeed / step;
+      for (let i = 0; i <= count; i++) {
+        const val = i * step;
+        const angle = -135 + (val / maxSpeed) * 270;
+        const rad = ((angle - 90) * Math.PI) / 180;
+        const x1 = 210 + 77 * Math.cos(rad);
+        const y1 = 170 + 77 * Math.sin(rad);
+        const x2 = 210 + 68 * Math.cos(rad);
+        const y2 = 170 + 68 * Math.sin(rad);
+        const xL = 210 + 56 * Math.cos(rad);
+        const yL = 170 + 56 * Math.sin(rad);
+
+        ticks += `<line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="#cbd5e0" stroke-width="2"/>`;
+        ticks += `<text x="${xL.toFixed(1)}" y="${(yL + 3.5).toFixed(1)}" text-anchor="middle" font-size="9" font-weight="700" fill="#f7fafc">${val}</text>`;
+      }
+      speedoTicksGroup.innerHTML = ticks;
+    }
+
+    renderSpeedoTicks(180);
+
+    // OBC Toggle
+    if (btnObc && dotObc && lcdRect && lcdL1 && lcdL2) {
+      btnObc.addEventListener('click', () => {
+        isObcOn = !isObcOn;
+        if (isObcOn) {
+          dotObc.className = 'w-2 h-2 rounded-full bg-amber-400';
+          lcdRect.setAttribute('fill', '#17120a');
+          lcdRect.setAttribute('stroke', '#744210');
+          lcdL1.textContent = isMetric ? 'RANGE 394 km • 10.0 L/100' : 'RANGE 245 mi • 28.4 MPG';
+          lcdL1.setAttribute('fill', '#f6e05e');
+          lcdL2.textContent = isMetric ? 'ODO 103,190 km • 14:25' : 'ODO 064,120 mi • 14:25';
+          lcdL2.setAttribute('fill', '#ecc94b');
+        } else {
+          dotObc.className = 'w-2 h-2 rounded-full bg-zinc-600';
+          lcdRect.setAttribute('fill', '#10141b');
+          lcdRect.setAttribute('stroke', '#2d3748');
+          lcdL1.textContent = isMetric ? 'ODO 103,190 km' : 'ODO 064,120 mi';
+          lcdL1.setAttribute('fill', '#cbd5e0');
+          lcdL2.textContent = isMetric ? 'TRIP 0.0 km • 14:25' : 'TRIP 0.0 mi • 14:25';
+          lcdL2.setAttribute('fill', '#a0aec0');
+        }
+      });
+    }
+
+    // Speedo Calibration Toggle
+    if (btnSpeedo && dotSpeedo && speedoNeedle && digitalSpeed) {
+      btnSpeedo.addEventListener('click', () => {
+        isTrueSpeed = !isTrueSpeed;
+        const labelSpan = btnSpeedo.querySelector('span:last-child');
+        if (isTrueSpeed) {
+          dotSpeedo.className = 'w-2 h-2 rounded-full bg-pw-green';
+          if (labelSpan) labelSpan.textContent = '1:1 True Speedo';
+          // 60 mph true speed on 180 mph dial is -45 degrees
+          speedoNeedle.setAttribute('transform', isMetric ? 'rotate(-45 210 170)' : 'rotate(-45 210 170)');
+          digitalSpeed.textContent = isMetric ? '100 km/h' : '60 MPH';
+          digitalSpeed.setAttribute('fill', '#48bb78');
+        } else {
+          dotSpeedo.className = 'w-2 h-2 rounded-full bg-amber-400';
+          if (labelSpan) labelSpan.textContent = 'OEM Over-Read (+7%)';
+          // 66 mph indicated on 180 mph dial is -36 degrees
+          speedoNeedle.setAttribute('transform', isMetric ? 'rotate(-33 210 170)' : 'rotate(-36 210 170)');
+          digitalSpeed.textContent = isMetric ? '108 km/h' : '66 MPH';
+          digitalSpeed.setAttribute('fill', '#ecc94b');
+        }
+      });
+    }
+
+    // Dial Scale Toggle (180 MPH vs 300 km/h)
+    if (btnScale && textScale && speedoUnit) {
+      btnScale.addEventListener('click', () => {
+        isMetric = !isMetric;
+        if (isMetric) {
+          textScale.textContent = '300 km/h (Metric)';
+          speedoUnit.textContent = 'km/h';
+          renderSpeedoTicks(300);
+          if (digitalSpeed) digitalSpeed.textContent = isTrueSpeed ? '100 km/h' : '108 km/h';
+        } else {
+          textScale.textContent = '180 MPH (UK/US)';
+          speedoUnit.textContent = 'MPH';
+          renderSpeedoTicks(180);
+          if (digitalSpeed) digitalSpeed.textContent = isTrueSpeed ? '60 MPH' : '66 MPH';
+        }
+      });
+    }
+
+    // Cruise Control Lamp Toggle
+    if (btnCruise && dotCruise && cruiseLamp) {
+      btnCruise.addEventListener('click', () => {
+        isCruiseOn = !isCruiseOn;
+        if (isCruiseOn) {
+          dotCruise.className = 'w-2 h-2 rounded-full bg-pw-green animate-pulse';
+          cruiseLamp.setAttribute('opacity', '1.0');
+        } else {
+          dotCruise.className = 'w-2 h-2 rounded-full bg-zinc-500';
+          cruiseLamp.setAttribute('opacity', '0.15');
+        }
+      });
+    }
+  })();
+</script>

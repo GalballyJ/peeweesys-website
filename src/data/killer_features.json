@@ -76,17 +76,17 @@
   },
   {
     "id": "cluster_migration",
-    "title": "Used Donor Cluster Migration Wizard",
-    "tagline": "Pair replacement clusters with authentic VIN & true mileage without $2,500 dealer virgin parts.",
+    "title": "Pro Auto Electrician Suite & OBD EEPROM Flasher",
+    "tagline": "Direct OBD EEPROM write (0x3D), donor cluster migration, virginizing & live DVSA MOT mileage audits.",
     "status": "in_beta",
     "statusLabel": "In Beta",
     "statusColor": "amber",
     "icon": "refresh-cw",
-    "description": "Faded LCD pixels or failing stepper motors are common on 986 and 996 dashboards. Dealership PIWIS tools enforce an artificial software lock that permanently rejects used replacement clusters with over 100 km, forcing owners to purchase $2,500 virgin units. PeeweeSys donor migration wizard is in beta: cryptographically backup your original cluster, transfer tank/oil calibration curves and equipment coding, and safely pair the replacement cluster to your car's genuine VIN and verified DME mileage.",
+    "description": "Faded LCD pixels or failing stepper motors are common on 986 and 996 dashboards. Dealership PIWIS tools enforce an artificial software lock that permanently rejects used replacement clusters with over 100 km, forcing owners to purchase $2,500 virgin units. PeeweeSys Pro Auto Electrician Suite unlocks low-level KWP2000 service 0x3D to flash late VDO Kombi 2000 (93C86 2048-byte) EEPROMs directly over OBD without bench removal, SOIC clips, or crystal shorting. Includes one-click cluster virginizing and live UK DVSA / DVLA MOT history odometer cross-referencing.",
     "highlights": [
-      "Bypasses official dealer software block on used donor instrument clusters (>100 km)",
-      "Transfers tank sensor curves, oil level calibration, and regional country equipment coding",
-      "Pairs the donor cluster to your authentic VIN and verified DME odometer record"
+      "Direct OBD read & write of 93C86 2048-byte EEPROM (0x3D) without bench disassembly or SOIC clips",
+      "One-click 'Virginize KOMBI' routine: resets mileage <100 km for factory PIWIS / PST2 new commissioning",
+      "Live DVSA MOT History API cross-check: verifies DME hours, Kombi odometer, and government test records"
     ]
   },
   {
