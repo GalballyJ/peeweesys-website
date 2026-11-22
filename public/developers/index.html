@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PeeWeeSys Developers — Porsche 986 / 996 Bosch ME7.2 Reverse Engineering &amp; Definitions</title>
+<style>
+  :root {
+    --bg: #0d1117; --panel: #161b22; --border: #30363d; --text: #c9d1d9; --head: #f0f6fc;
+    --blue: #58a6ff; --green: #3fb950; --amber: #d29922; --purple: #bc8cff;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+  header { background: var(--panel); border-bottom: 1px solid var(--border); padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; }
+  header h1 { margin: 0; font-size: 21px; color: var(--head); }
+  header .sub { font-size: 13px; color: #8b949e; margin-top: 3px; }
+  .btn { background: #21262d; color: var(--blue); border: 1px solid var(--border); padding: 8px 14px; border-radius: 6px; text-decoration: none; font-size: 13px; font-weight: 600; display: inline-block; }
+  .btn:hover { background: #30363d; }
+  .btn.primary { background: #1f6feb; color: #fff; border-color: #1f6feb; }
+  .btn.green { background: #238636; color: #fff; border-color: #2ea043; }
+  .container { max-width: 1240px; margin: 0 auto; padding: 28px 32px; }
+  .hero { background: linear-gradient(135deg, #161b22 0%, #0d1117 100%); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 28px; }
+  .hero h2 { margin: 0 0 10px 0; font-size: 20px; color: var(--head); }
+  .hero p { margin: 0 0 16px 0; font-size: 14.5px; color: var(--text); max-width: 920px; }
+  .dl-bar { display: flex; gap: 12px; flex-wrap: wrap; }
+  h2.sec { font-size: 18px; color: var(--head); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin: 32px 0 16px 0; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 18px; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between; }
+  .card h3 { margin: 0 0 8px 0; font-size: 16px; color: var(--head); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .card p { font-size: 13.5px; margin: 0 0 16px 0; color: var(--text); }
+  .badge { font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 700; text-transform: uppercase; }
+  .b-green { background: rgba(63,185,80,0.18); color: var(--green); border: 1px solid rgba(63,185,80,0.4); }
+  .b-blue { background: rgba(88,166,255,0.18); color: var(--blue); border: 1px solid rgba(88,166,255,0.4); }
+  .b-amber { background: rgba(210,153,34,0.18); color: var(--amber); border: 1px solid rgba(210,153,34,0.4); }
+  .b-purple { background: rgba(188,140,255,0.18); color: var(--purple); border: 1px solid rgba(188,140,255,0.4); }
+  table.spec { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--panel); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  table.spec th, table.spec td { border: 1px solid var(--border); padding: 8px 12px; text-align: left; }
+  table.spec th { background: #21262d; color: var(--head); font-weight: 600; }
+  code { font-family: Consolas, monospace; font-size: 12px; background: #0d1117; padding: 2px 6px; border-radius: 4px; border: 1px solid var(--border); color: #e6edf3; }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>PeeWeeSys Developers — Porsche 986 / 996 Bosch ME7.2 Reverse Engineering Portal</h1>
+    <div class="sub">Unlisted Engineering Workspace • Base ROM: <code>y966ohc.ori</code> (986 Boxster S 3.2L EU, Bosch <code>0261204790</code> / SW <code>1037357109</code>)</div>
+  </div>
+  <div>
+    <a class="btn" href="/">← Back to PeeWeeSys App</a>
+  </div>
+</header>
+
+<div class="container">
+
+  <div class="hero">
+    <h2>Open-Source Porsche ME7.2 Disassembly, Definitions &amp; Live Telemetry</h2>
+    <p>Unlike later Porsche ME7.8 ECUs where a factory A2L/DAMOS leaked years ago, no factory A2L exists in the wild for early electronic-throttle Porsche 986 Boxster (2.7 / 3.2S) and 996 Carrera (3.4) Bosch ME7.2 ECUs. This portal hosts our clean-room C167CR disassembly, cross-ECU structural correlation against the ME7.8 3.2S golden reference, live KWP2000 RAM &amp; <code>0x2C</code> DDLI telemetry maps, and free community WinOLS <code>.A2L</code> &amp; TunerPro <code>.XDF</code> definition files.</p>
+    <div class="dl-bar">
+      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_WinOLS_FileOffset.a2l" download>⬇ Download WinOLS .A2L (File Offset 0x00000)</a>
+      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_Standard_CPU.a2l" download>⬇ Download WinOLS .A2L (CPU 0x800000)</a>
+      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_Community.xdf" download>⬇ Download TunerPro .XDF (v2.0.0-CP18)</a>
+    </div>
+  </div>
+
+  <h2 class="sec">1. Interactive Calibration &amp; Disassembly Dashboards</h2>
+  <div class="grid">
+    <div class="card">
+      <div>
+        <h3><span class="badge b-green">342 Objects</span> ME7.2 Interactive Calibration Workstation</h3>
+        <p>Full offline 2D spreadsheet, 360° rotatable 3D surface plots, raw 512 KB hex inspector, and C167 code consumer evidence traces for 342 calibration maps, curves, and scalars in <code>y966ohc.ori</code> (<code>SW 1037357109</code>).</p>
+      </div>
+      <div><a class="btn primary" href="/developers/dashboard.html">Launch 342-Map Workstation →</a></div>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3><span class="badge b-blue">321 Shared Maps</span> ME7.2 vs. ME7.8 3.2L Boxster S Explorer</h3>
+        <p>Side-by-side comparison of the 2001 ME7.2 Boxster S 3.2L (<code>y966ohc.ori</code>) against the later ME7.8 Boxster S 3.2L (<code>S_EU_47203728.bin</code>), showing how Porsche evolved ignition, torque, fueling, and VarioCam calibrations on the M96.21/M96.24 engine.</p>
+      </div>
+      <div><a class="btn primary" href="/developers/dual.html">Launch Dual-ECU Explorer →</a></div>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3><span class="badge b-purple">Byte Coverage</span> 512 KB ROM Hex &amp; Axis Explorer</h3>
+        <p>Interactive memory-map visualizer of the <code>0x10000..0x1FFFF</code> calibration segment showing placed tables, shared axis blocks (<code>[count][values...]</code> vs inline descriptors), and remaining unmapped regions.</p>
+      </div>
+      <div><a class="btn primary" href="/developers/hex.html">Launch ROM Hex Explorer →</a></div>
+    </div>
+
+    <div class="card">
+      <div>
+        <h3><span class="badge b-amber">Tech Article</span> 68mm vs 74mm vs 82mm Throttle Body Maths</h3>
+        <p>Engineering breakdown of the Bosch ME7.2 <code>BGMSZS</code> throttle-body airflow model (<code>KFMSNWDK @ 0x15182</code>, <code>KFWDKMSN @ 0x15B08</code>, and the fused-immediate <code>#50F2h = 20,722</code> WDC flow gate at <code>0x5DBC6</code>) vs factory 996 3.4L 74mm calibration.</p>
+      </div>
+      <div><a class="btn" href="/blog/porsche-986-996-throttle-body-upgrade-myth-vs-maths.html">Read Throttle Body Engineering Article →</a></div>
+    </div>
+  </div>
+
+  <h2 class="sec">2. Code-Verified Core Map Reference (<code>y966ohc.ori</code> — SW <code>1037357109</code>)</h2>
+  <p style="font-size:13.5px;margin-top:0;">Every map below has been verified both by content correlation against the ME7.8 factory A2L and by tracing its C167 code consumer and DPP/EXTP paging in <code>y966ohc.ori</code> (<code>DPP0=0x0204 → 0x810000</code>, <code>DPP1=0x0205 → 0x814000</code>, <code>DPP2=0x00E0 → 0x380000 XRAM</code>):</p>
+
+  <table class="spec">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>File Offset (Data)</th>
+        <th>Geometry &amp; Type</th>
+        <th>Axes (File Offset)</th>
+        <th>C167 Code Consumer &amp; Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>KFZW</code> / <code>KFZW2</code></td>
+        <td><code>0x11D60</code> / <code>0x11EE0</code></td>
+        <td><code>24×16 SBYTE</code> (<code>×0.75° BTDC</code>)</td>
+        <td>X: <code>0x106DD</code> (16× load <code>×0.75%</code>)<br>Y: shared RPM axis</td>
+        <td><code>CPU 0x82A610</code> — Base ignition timing variants 1 &amp; 2 (VarioCam state).</td>
+      </tr>
+      <tr>
+        <td><code>KFZWOP1</code> / <code>KFZWOP2</code></td>
+        <td><code>0x1023A</code> / <code>0x1033A</code></td>
+        <td><code>16×16 SBYTE</code> (<code>×0.75° BTDC</code>)</td>
+        <td>X: <code>0x106DD</code> (16× load <code>×0.75%</code>)<br>Y: <code>0x10682</code> (16× RPM <code>×40</code>)</td>
+        <td>Optimal ignition angle torque-reference maps (contiguous, no header byte between <code>0x10339</code> and <code>0x1033A</code>).</td>
+      </tr>
+      <tr>
+        <td><code>KFZWMN</code> / <code>KFZWMNX</code> / <code>KFZWMS</code></td>
+        <td><code>0x12060</code> / <code>0x12120</code> / <code>0x121E0</code></td>
+        <td><code>16×12 SBYTE</code> (<code>×0.75° BTDC</code>)</td>
+        <td>X: <code>0x106D0</code> (12× load <code>×0.75%</code>)<br>Y: <code>0x10682</code> (16× RPM <code>×40</code>)</td>
+        <td><code>CPU 0x87C2B6</code> — Minimum ignition angle floors. <code>KFZWMN</code> &amp; <code>KFZWMNX</code> blend by <code>[0x3826BC] → [0x380CED]</code>; <code>KFZWMS → [0x380CEE]</code>; <code>min(CED,CEE) → [0x380CEF] → zwout (0x00F90B)</code>.</td>
+      </tr>
+      <tr>
+        <td><code>KFTVSA</code></td>
+        <td><code>0x1A2B6</code></td>
+        <td><code>5×8 UBYTE</code> (<code>×0.01 s</code>)</td>
+        <td>X: <code>0x10654</code> (8× RPM <code>×40</code>: 1200..7000)<br>Y: <code>0x192B5</code> (5× tmot: -30..50.2°C)</td>
+        <td><code>CPU 0x86C540</code> — Overrun fuel-cut delay timer. Reloads countdown latch <code>A24E / A24D</code> (10 ms tick); expiry sets <code>8BCA.1</code> → fuel cut bit <code>FD24.10</code>.</td>
+      </tr>
+      <tr>
+        <td><code>LAMFA</code></td>
+        <td><code>0x1B430</code> (desc <code>0x1B414</code>)</td>
+        <td><code>13×6 UBYTE</code> (<code>×0.0078125 λ</code>)</td>
+        <td>X: <code>0x1B424</code> (6× UWORD LE torque %)<br>Y: <code>0x1B416</code> (13× UBYTE RPM <code>×40</code>)</td>
+        <td><code>CPU 0x866A4E..0x866ACE</code> — Driver-wish lambda. Note: OEM X-axis at <code>0x1B424</code> is set to <code>101.9..115.6%</code> (inactive unless rescaled below 100%).</td>
+      </tr>
+      <tr>
+        <td><code>KFPED</code> / <code>KFPEDR</code></td>
+        <td><code>0x1646C</code> / <code>0x16640</code></td>
+        <td><code>16×13</code> &amp; <code>16×8 UWORD LE</code></td>
+        <td>Inline descriptors at <code>0x1642E</code> &amp; <code>0x1660C</code></td>
+        <td><code>CPU 0x86EFE2..0x86F044</code> &amp; <code>0x86F6FC → [0x38A372]</code> — Pedal-to-torque request (normal &amp; reverse).</td>
+      </tr>
+      <tr>
+        <td><code>KFMIRL</code> / <code>KFMIOP</code></td>
+        <td><code>0x15C46</code> / <code>0x14376</code></td>
+        <td><code>16×16 UWORD LE</code></td>
+        <td><code>KFMIRL</code> inline desc at <code>0x15C02</code><br><code>KFMIOP</code> shared axes <code>0x106DD</code> / <code>0x10682</code></td>
+        <td><code>KFMIRL</code> consumed at <code>CPU 0x8611CE</code> (clamped at <code>0x10AA = 100.0%</code>). <code>KFMIOP</code> TOC entry at <code>0x17944 = 0x4376</code>.</td>
+      </tr>
+      <tr>
+        <td><code>MLHFM</code> / <code>KFKHFM</code></td>
+        <td><code>0x15694</code> / <code>0x10E59</code></td>
+        <td><code>512×1 UWORD LE</code> (<code>×0.1 kg/h</code>)<br><code>14×14 UBYTE</code></td>
+        <td><code>KFKHFM</code> axes at <code>0x10E3D</code> (14× RPM) &amp; <code>0x10E4B</code> (14× load)</td>
+        <td>512-point HFM5 MAF linearization curve (<code>46.6..1285.0 kg/h</code>) and multiplicative MAF correction table.</td>
+      </tr>
+      <tr>
+        <td><code>KFMSNWDK</code> / <code>KFWDKMSN</code></td>
+        <td><code>0x15182</code> / <code>0x15B08</code></td>
+        <td><code>16×6 UWORD LE</code></td>
+        <td>Inline descriptors at <code>0x15152</code> &amp; <code>0x15AD8</code></td>
+        <td><code>CPU 0x85EA32</code>, <code>0x86276E</code> &amp; <code>0x860C76 → [0x38A01C]</code> — Electronic throttle-body mass-flow model &amp; inverse angle lookup.</td>
+      </tr>
+      <tr>
+        <td><code>KFSU</code> / <code>KFSU2</code></td>
+        <td><code>0x19794</code> / <code>0x197C6</code></td>
+        <td><code>6×6 UBYTE</code></td>
+        <td>X: <code>0x19788</code> / <code>0x197BA</code> (6× RPM)<br>Y: <code>0x1978E</code> / <code>0x197C0</code> (6× load)</td>
+        <td><code>CPU 0x861880 → [0x382052]</code> — <em>Saugrohrumschaltung</em> (intake manifold resonance flap switching thresholds).</td>
+      </tr>
+      <tr>
+        <td><code>CRC32 Descriptors</code> / <code>Values</code></td>
+        <td><code>0x1EAE0..0x1EAFF</code> / <code>0x1FC00..0x1FC5F</code></td>
+        <td>4× 8-byte descriptors + 3× CRC-32 LE</td>
+        <td> Covers <code>0x10000..0x1EADF</code>, <code>0x14252..0x17A02</code>, <code>0x18000..0x183DC</code></td>
+        <td><code>CPU 0x829A0E</code> (<code>Verify_CRC32_Block</code>) + multipoint sums so blocks 2..4 sum to <code>0x02000000</code> (otherwise DTC <code>P1601</code>).</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>

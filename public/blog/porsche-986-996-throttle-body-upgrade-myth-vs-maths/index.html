@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Porsche 986 / 996 Larger Throttle Body Upgrade (68mm → 74mm → 82mm): Myth, Maths &amp; Tuning Guide | PeeWeeSys Blog</title>
+  <meta name="description" content="Does swapping a 74mm (996) or 82mm (GT3) throttle body onto a Porsche 986 Boxster S unlock real horsepower, or just fake 'Sport Mode' pedal response? Here is the Bosch ME7.2 / ME7.8 disassembly and airflow physics.">
+  <meta property="og:title" content="Porsche 986 / 996 Throttle Body Upgrade (68mm → 74mm → 82mm): Myth, Maths &amp; What Your Tuner Needs to Edit">
+  <meta property="og:description" content="We disassembled the Bosch ME7.2 &amp; ME7.8 E-Gas throttle airflow model and compared factory 986 S (68mm) vs 996 (74mm) calibrations. Here is what actually happens—and which maps a tuner must edit.">
+  <meta property="og:type" content="article">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/svg/peeweesys-mark-colour.svg">
+  <style>
+    :root {
+      --bg: #0d0f12;
+      --bg-card: #15181e;
+      --bg-elevated: #1c2028;
+      --border: #282e38;
+      --text: #eef0f4;
+      --text-muted: #a0a8b8;
+      --accent: #ff3b4e;
+      --accent-soft: rgba(255, 59, 78, 0.14);
+      --amber: #f5a623;
+      --amber-soft: rgba(245, 166, 35, 0.13);
+      --green: #2ecc71;
+      --green-soft: rgba(46, 204, 113, 0.13);
+      --blue: #4da3ff;
+      --blue-soft: rgba(77, 163, 255, 0.13);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.72;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.75rem;
+      background: rgba(21, 24, 30, 0.94);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-title {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+    }
+    .brand-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-left: 0.4rem;
+      padding-left: 0.6rem;
+      border-left: 1px solid var(--border);
+    }
+    .nav-links { display: flex; gap: 0.75rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--bg-elevated);
+    }
+    .btn:hover { border-color: var(--accent); color: #fff; }
+    article {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 2.55rem;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .byline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2.25rem;
+    }
+    h2 {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 1.85rem;
+      color: #fff;
+      margin: 2.6rem 0 0.9rem;
+      line-height: 1.25;
+    }
+    h3 {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 1.35rem;
+      color: #fff;
+      margin: 1.75rem 0 0.6rem;
+    }
+    p { margin-bottom: 1.15rem; color: #dce0e8; }
+    ul, ol { margin: 0 0 1.25rem 1.4rem; color: #dce0e8; }
+    li { margin-bottom: 0.5rem; }
+    strong { color: #fff; }
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.88em;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 0.12rem 0.42rem;
+      border-radius: 4px;
+      color: #ff9aa5;
+    }
+    .callout {
+      border-radius: 10px;
+      padding: 1.35rem 1.5rem;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+    }
+    .callout.tldr {
+      border-left: 4px solid var(--accent);
+      background: linear-gradient(90deg, rgba(255,59,78,0.09), var(--bg-card) 45%);
+    }
+    .callout.good {
+      border-left: 4px solid var(--green);
+      background: linear-gradient(90deg, var(--green-soft), var(--bg-card) 45%);
+    }
+    .callout.warn {
+      border-left: 4px solid var(--amber);
+      background: linear-gradient(90deg, var(--amber-soft), var(--bg-card) 45%);
+    }
+    .callout.info {
+      border-left: 4px solid var(--blue);
+      background: linear-gradient(90deg, var(--blue-soft), var(--bg-card) 45%);
+    }
+    .callout-title {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .compare-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.15rem;
+      margin: 1.5rem 0;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.3rem 1.4rem;
+    }
+    .card h4 {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.45rem;
+      color: #fff;
+    }
+    .stat-big {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1.1;
+      margin: 0.35rem 0;
+    }
+    .table-wrap {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-card);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.92rem;
+    }
+    th, td {
+      padding: 0.8rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    th {
+      background: var(--bg-elevated);
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 0.98rem;
+      letter-spacing: 0.02em;
+      color: #fff;
+    }
+    tr:last-child td { border-bottom: none; }
+    .mono { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; }
+    .chart-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 1.6rem 0;
+    }
+    .chart-caption {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.86rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/blog/">
+      <svg viewBox="3.5 19.5 93 60" width="38" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 57a19 19 0 1 0 38 0a19 19 0 1 0 -38 0Z" fill="#141619" stroke="#CBD0D4" stroke-width="2.2"/>
+        <path d="M56 57a19 19 0 1 0 38 0a19 19 0 1 0 -38 0Z" fill="#141619" stroke="#CBD0D4" stroke-width="2.2"/>
+        <path d="M22 50a28 28 0 1 0 56 0a28 28 0 1 0 -56 0Z" fill="#141619" stroke="#F3F4F5" stroke-width="2.4"/>
+        <path d="M71.494 56.984A22.6 22.6 0 0 1 65.981 65.981" stroke="#FF3B4E" stroke-width="3.4"/>
+        <path d="M45.955 52.939L66.989 37.657" stroke="#FF3B4E" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-title">PeeWeeSys</span>
+      <span class="brand-sub">Tech Blog</span>
+    </a>
+    <nav class="nav-links">
+      <a class="btn" href="/blog/">← All Articles</a>
+      <a class="btn" href="https://www.peeweesys.app" target="_blank" rel="noopener noreferrer">Launch Diagnostic App ↗</a>
+    </nav>
+  </header>
+
+  <article>
+    <span class="eyebrow">ECU Reverse Engineering &amp; Airflow Physics</span>
+    <h1>The 68mm → 74mm → 82mm Throttle Body Upgrade on Porsche 986 &amp; 996: Myth, Maths &amp; What Your Tuner Actually Needs to Edit</h1>
+    <p class="subtitle">Every week on Porsche 986 and 996 groups, the same debate comes up: does bolting on a larger 74mm (996 Carrera / 987 S) or 82mm (GT3 / Cayenne) throttle body unlock real horsepower—and do you need an ECU tune for it? We disassembled the factory Bosch ME7.2 and ME7.8 ROMs and ran the orifice physics to settle it once and for all.</p>
+    <div class="byline">
+      <span>Published: 22 Nov 2026</span>
+      <span>•</span>
+      <span>Scope: 986 Boxster / Boxster S &amp; 996 Carrera (Bosch ME7.2 &amp; ME7.8 E-Gas)</span>
+      <span>•</span>
+      <span>Evidence: Factory ROM Disassembly + Orifice Flow Physics</span>
+    </div>
+
+    <div class="callout tldr">
+      <div class="callout-title">⚡ The 30-Second Verdict (TL;DR for Normal Humans)</div>
+      <ul>
+        <li><strong>On a stock 3.2L Boxster S at full throttle (WOT), the stock 68mm throttle body is NOT a meaningful restriction.</strong> At 6,250 rpm (252 PS), the 3.2L engine swallows about <strong>725 kg/h</strong> of air—less than half of what the 68mm throttle body can flow (<strong>1,780 kg/h</strong>).</li>
+        <li><strong>The real WOT horsepower gain from 68mm → 74mm alone is ~1.5 to 2 hp</strong> (recovering just ~0.6 kPa / 0.09 psi of manifold vacuum at redline). Going to <strong>82mm</strong> adds roughly <strong>~1 hp more</strong> while making idle and low-speed throttle control coarser.</li>
+        <li><strong>Why does everyone swear a bolt-on 74mm throttle body "feels way faster"?</strong> Because if you bolt it on <em>without</em> retuning the ECU, the ECU still opens the bigger 74mm butterfly to the <em>old 68mm angles</em>. At 15%–40% pedal travel, that lets <strong>15%–25% more air</strong> into the engine than your foot asked for. You haven't gained 15 hp—you've accidentally given yourself a built-in <strong>"Sport Mode / Sprint Booster"</strong> pedal curve!</li>
+        <li><strong>If you DO tune the ECU properly for the larger throttle body</strong>, the ECU automatically opens the larger blade slightly <em>less</em> at part throttle to deliver the exact same factory pedal linearity and prevent airflow plausibility faults.</li>
+      </ul>
+    </div>
+
+    <h2>1. The "Normal Person" Explanation: What Actually Happens When You Swap the Throttle Body?</h2>
+    <p>If your 986 Boxster (2000+) or 996 Carrera has electronic throttle (<strong>Bosch E-Gas</strong>, running on the Bosch <strong>ME7.2</strong> or <strong>ME7.8</strong> ECU), there is no physical cable between your right foot and the throttle butterfly on the plenum.</p>
+    <p>Instead, every time you press the accelerator pedal, the ECU runs a two-step translation:</p>
+    <ol>
+      <li><strong>Step 1 — Pedal to Demanded Airflow:</strong> The ECU reads your pedal sensor (say, 25% pedal) and looks up how much torque and airflow you are asking for.</li>
+      <li><strong>Step 2 — Demanded Airflow to Blade Angle:</strong> The ECU looks up a calibration table for your specific throttle body size that answers: <em>"At this RPM, what angle do I need to open a 68mm butterfly to let 150 kg/h of air through?"</em></li>
+    </ol>
+
+    <div class="compare-grid">
+      <div class="card">
+        <h4>Scenario A: Un-Tuned Bolt-On ("Accidental Sport Mode")</h4>
+        <p>You bolt a <strong>74mm (996)</strong> throttle body onto your 986 S without touching the ECU software.</p>
+        <p>You press the pedal 25%. The ECU still thinks a <strong>68mm</strong> butterfly is bolted to the manifold, so it commands, say, a <strong>15° blade angle</strong>. But a 74mm disc has <strong>18.4% more cross-sectional area</strong>—so at 15° it rushes <strong>~20% more air</strong> into the engine than the ECU intended! The Mass Air Flow (MAF) sensor sees the extra air, injects matching fuel, and the car surges forward eagerly at part throttle.</p>
+        <p style="margin-bottom:0; color:var(--amber);"><strong>The catch:</strong> Top-end full-throttle power hasn't changed by more than ~1.5–2 hp; you've just compressed most of the engine's response into the first half of pedal travel (and on big jumps like 82mm, the ECU's throttle-vs-MAF sanity check can trip a limp/fault code).</p>
+      </div>
+      <div class="card">
+        <h4>Scenario B: Properly Calibrated ("Factory Linearity")</h4>
+        <p>Your tuner updates the throttle-body airflow tables in the ECU to match the <strong>74mm</strong> geometry (just like Porsche did at the factory on the 3.4L 996 Carrera).</p>
+        <p>Now when you press the pedal 25%, the ECU knows the 74mm plate flows more air per degree, so it commands a slightly <strong>smaller blade angle (~12.5°)</strong> to deliver the <strong>exact same airflow</strong> you asked for. Part-throttle modulation stays 100% silky-smooth and linear like OEM, the ECU's airflow plausibility monitor stays happy, and at 100% WOT the blade opens fully to give you the small top-end breathing reduction.</p>
+      </div>
+    </div>
+
+    <h2>2. The Physics &amp; Maths: Is the Stock 68mm Throttle Body Restricting a 3.2L Engine?</h2>
+    <p>When we disassembled the stock 986 Boxster S 3.2L ROM and compared it against the factory 996 Carrera 3.4L ROM (which runs the 74mm throttle body from the factory on the exact same Bosch ME7.2 ECU family), the maximum flow numbers in the throttle table jumped out immediately:</p>
+    <ul>
+      <li><strong>986 Boxster 2.7L (stock TB):</strong> table peaks at <code>1,103 kg/h</code> normalized flow</li>
+      <li><strong>986 Boxster S 3.2L (68mm TB):</strong> table peaks at <code>1,780 kg/h</code> normalized flow</li>
+      <li><strong>996 Carrera 3.4L (74mm TB):</strong> table peaks at <code>2,045–2,060 kg/h</code> normalized flow</li>
+    </ul>
+    <p>At first glance, seeing <code>1,780 kg/h</code> vs <code>2,045 kg/h</code> (+15%) makes people think: <em>"The 74mm throttle body flows 15% more air, so it must make more power!"</em></p>
+    <p><strong>Here is why that is a trap:</strong> <code>1,780 kg/h</code> is the 68mm throttle body's <em>own</em> choked (sonic) flow capacity if you connected it to a giant vacuum pump. A naturally aspirated <strong>3.2-litre (3,179 cc)</strong> four-stroke engine is a fixed-displacement air pump. Even at <strong>98%–100% volumetric efficiency</strong>, the total mass of air a 3.2L engine can physically inhale is:</p>
+
+    <div class="chart-box">
+      <svg viewBox="0 0 760 270" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="3.2L Engine Airflow Demand vs Throttle Body Capacity">
+        <rect width="760" height="270" fill="#15181e" rx="8"/>
+        <text x="24" y="32" fill="#ffffff" font-family="Barlow Semi Condensed, sans-serif" font-size="18" font-weight="700">3.2L Boxster S Actual Air Demand vs. Throttle Body Maximum Capacity (kg/h)</text>
+        
+        <!-- Bar 1: 3.2L @ 6250 rpm -->
+        <text x="24" y="72" fill="#dce0e8" font-family="Inter, sans-serif" font-size="13" font-weight="600">3.2L Engine WOT @ 6,250 rpm (252 PS Peak)</text>
+        <rect x="280" y="55" width="165" height="24" fill="#2ecc71" rx="4"/>
+        <text x="455" y="72" fill="#2ecc71" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">~725 kg/h (Actual Engine Demand)</text>
+
+        <!-- Bar 2: 3.2L @ 7000 rpm -->
+        <text x="24" y="114" fill="#dce0e8" font-family="Inter, sans-serif" font-size="13" font-weight="600">3.2L Engine WOT @ 7,000 rpm (Redline)</text>
+        <rect x="280" y="97" width="180" height="24" fill="#4da3ff" rx="4"/>
+        <text x="470" y="114" fill="#4da3ff" font-family="JetBrains Mono, monospace" font-size="13" font-weight="600">~790 kg/h</text>
+
+        <!-- Bar 3: 68mm TB -->
+        <text x="24" y="162" fill="#a0a8b8" font-family="Inter, sans-serif" font-size="13">68mm Stock 986 S TB Capacity</text>
+        <rect x="280" y="145" width="356" height="24" fill="#3a4252" stroke="#ff3b4e" stroke-width="1.5" rx="4"/>
+        <text x="646" y="162" fill="#ff7b88" font-family="JetBrains Mono, monospace" font-size="13">1,780 kg/h (2.4× engine need)</text>
+
+        <!-- Bar 4: 74mm TB -->
+        <text x="24" y="202" fill="#a0a8b8" font-family="Inter, sans-serif" font-size="13">74mm 996 Carrera TB Capacity</text>
+        <rect x="280" y="185" width="409" height="24" fill="#3a4252" stroke="#f5a623" stroke-width="1.5" rx="4"/>
+        <text x="697" y="202" fill="#f5a623" font-family="JetBrains Mono, monospace" font-size="13">2,045 kg/h</text>
+
+        <!-- Bar 5: 82mm TB -->
+        <text x="24" y="242" fill="#a0a8b8" font-family="Inter, sans-serif" font-size="13">82mm GT3 / Cayenne TB Capacity</text>
+        <rect x="280" y="225" width="460" height="24" fill="#3a4252" stroke="#9aa2b1" stroke-width="1.5" rx="4"/>
+        <text x="585" y="242" fill="#ffffff" font-family="JetBrains Mono, monospace" font-size="12">~2,580 kg/h</text>
+      </svg>
+      <div class="chart-caption">Even at 7,000 rpm, a 3.2L flat-6 only consumes ~790 kg/h of air—less than 45% of the stock 68mm throttle body's rated capacity.</div>
+    </div>
+
+    <h3>So How Much Pressure Drop (Vacuum Loss) Does Each Throttle Body Actually Have at WOT?</h3>
+    <p>In fluid dynamics, a wide-open throttle body isn't a hard wall—it's a subsonic orifice that causes a small pressure drop ($\Delta P$) proportional to the square of air velocity. The smaller the pressure drop across the throttle plate, the closer your intake plenum pressure stays to outside atmospheric pressure (`101.3 kPa`). Here is the exact orifice calculation for a 3.2L engine pulling <strong>725 kg/h at 6,250 rpm</strong> and <strong>790 kg/h at 7,000 rpm</strong> (accounting for the throttle shaft, $C_d \approx 0.80$):</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Throttle Body Bore</th>
+            <th>Effective Bore Area</th>
+            <th>Air Velocity @ 6,250 rpm</th>
+            <th>Pressure Drop ($\Delta P$) @ 6,250 rpm</th>
+            <th>Pressure Drop ($\Delta P$) @ 7,000 rpm</th>
+            <th>Theoretical Max WOT Power Gain (3.2L)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>68mm</strong> (Stock 986 S)</td>
+            <td class="mono">3,632 mm² (1.00×)</td>
+            <td class="mono">58.5 m/s</td>
+            <td class="mono"><strong>2.03 kPa</strong> (2.00% loss)</td>
+            <td class="mono"><strong>2.41 kPa</strong> (2.38% loss)</td>
+            <td><em>Baseline (252 PS)</em></td>
+          </tr>
+          <tr>
+            <td><strong>74mm</strong> (996 Carrera / 987 S)</td>
+            <td class="mono">4,301 mm² (1.184×)</td>
+            <td class="mono">49.4 m/s</td>
+            <td class="mono"><strong>1.45 kPa</strong> (1.43% loss)</td>
+            <td class="mono"><strong>1.72 kPa</strong> (1.70% loss)</td>
+            <td><strong style="color:var(--green);">+0.57% to +0.68% (≈ +1.5 to +2 hp)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>82mm</strong> (996/997 GT3 / Cayenne)</td>
+            <td class="mono">5,281 mm² (1.454×)</td>
+            <td class="mono">40.3 m/s</td>
+            <td class="mono"><strong>0.96 kPa</strong> (0.95% loss)</td>
+            <td class="mono"><strong>1.14 kPa</strong> (1.12% loss)</td>
+            <td><strong style="color:var(--amber);">+1.05% to +1.26% (≈ +2.5 to +3 hp)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-title">💡 When Does a 74mm or 82mm Throttle Body Actually Make Sense?</div>
+      <p style="margin-bottom:0;">Because pressure drop grows with the <strong>square of airflow</strong> ($\Delta P \propto \dot{m}^2$), a 68mm throttle body only starts becoming a real bottleneck once engine airflow rises past <strong>~850–950 kg/h</strong> (300+ hp)—for example on a <strong>3.4L / 3.6L / 3.8L engine swap</strong>, or a high-RPM build with <strong>headers, high-flow cats, larger plenum/runners, cams, and a 7,400+ rpm rev limit</strong>. As a supporting mod on a breathing package, 74mm is the sweet spot.</p>
+    </div>
+
+    <h2>3. Why a Lazy "+18.4% Across the Whole Table" Tune Ruins Low-Speed Driveability</h2>
+    <p>Some tuners look at the area ratio between a 68mm and 74mm circle—$(74/68)^2 = 1.184$ (+18.4%)—and simply highlight the entire throttle airflow table in WinOLS and multiply every cell by <code>1.184</code>.</p>
+    <p>When we extracted Porsche's own factory <strong>986 Boxster S (68mm)</strong> and <strong>996 Carrera 3.4 (74mm)</strong> calibrations and compared all 16 throttle-angle rows side by side, we saw why Porsche's engineers <strong>did not</strong> use a flat multiplier:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Map Row</th>
+            <th>Throttle Blade Angle (%)</th>
+            <th>986 S Factory 68mm Flow (6,000 rpm col)</th>
+            <th>996 Factory 74mm Flow (6,800 rpm col)</th>
+            <th>Actual Porsche Factory Ratio (74mm / 68mm)</th>
+            <th>Physical Reason</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td class="mono">Row 1</td><td class="mono">1.49% (Idle / crack-open)</td><td class="mono">8.6 kg/h</td><td class="mono">9.0 kg/h</td><td class="mono" style="color:var(--blue);"><strong>1.047× (+4.7%)</strong></td><td>Throttle shaft &amp; bore lip clearance dominate</td></tr>
+          <tr><td class="mono">Row 2</td><td class="mono">3.03% (Light town tip-in)</td><td class="mono">18.3 kg/h</td><td class="mono">19.0 kg/h</td><td class="mono" style="color:var(--blue);"><strong>1.038× (+3.8%)</strong></td><td>Curved edge gap grows slowly off the stop</td></tr>
+          <tr><td class="mono">Row 3</td><td class="mono">4.57% (Gentle cruise)</td><td class="mono">27.0 kg/h</td><td class="mono">28.5 kg/h</td><td class="mono" style="color:var(--blue);"><strong>1.056× (+5.6%)</strong></td><td>Still shaft/lip boundary-layer limited</td></tr>
+          <tr><td class="mono">Row 5</td><td class="mono">9.06% (Part throttle)</td><td class="mono">67.7 kg/h</td><td class="mono">72.6 kg/h</td><td class="mono" style="color:var(--blue);"><strong>1.072× (+7.2%)</strong></td><td>Transition from lip gap to open curtain area</td></tr>
+          <tr><td class="mono">Row 7</td><td class="mono">15.09% (Mid throttle)</td><td class="mono">137.5 kg/h</td><td class="mono">160.0 kg/h</td><td class="mono" style="color:var(--green);"><strong>1.164× (+16.4%)</strong></td><td>Full circular curtain area now active</td></tr>
+          <tr><td class="mono">Row 9</td><td class="mono">25.10% (Brisk acceleration)</td><td class="mono">340.4 kg/h</td><td class="mono">405.0 kg/h</td><td class="mono" style="color:var(--green);"><strong>1.190× (+19.0%)</strong></td><td>Matches $(74/68)^2 = 1.184\times$ geometric area ratio</td></tr>
+          <tr><td class="mono">Row 12</td><td class="mono">56.67% (Heavy load)</td><td class="mono">1,420.0 kg/h</td><td class="mono">1,700.0 kg/h</td><td class="mono" style="color:var(--green);"><strong>1.197× (+19.7%)</strong></td><td>Full geometric area advantage</td></tr>
+          <tr><td class="mono">Row 15</td><td class="mono">100.0% (Wide Open Throttle)</td><td class="mono">1,780.0 kg/h</td><td class="mono">2,045.0 kg/h</td><td class="mono" style="color:var(--green);"><strong>1.149× (+14.9%)</strong></td><td>WOT plateau (wider shaft slightly offsets bore)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Look at rows 1 to 5 (1.5% to 9% blade opening—where you spend 80% of town driving, parking, and idle): a 74mm butterfly only flows <strong>+3.8% to +7.2%</strong> more air than a 68mm butterfly at those tiny angles. If a tuner blindly multiplies rows 1–5 by <code>+18.4%</code>, the ECU will <em>under-open</em> the throttle blade on initial tip-in, creating a dead spot right off idle!</p>
+
+    <h2>4. What to Tell Your Tuner: The Exact Bosch Maps That Must Be Edited</h2>
+    <p>If you are fitting a <strong>74mm (996)</strong> or <strong>82mm (GT3/Cayenne)</strong> throttle body and want your tuner to calibrate it properly—preserving 100% factory part-throttle linearity and preventing plausibility fault codes—hand them this checklist.</p>
+    <p><em>(Note: We deliberately list the canonical Bosch function-sheet map names and mathematical rules below, without raw hex memory offsets. Any competent Porsche ME7.2 / ME7.8 tuner with proper map definitions will recognize these immediately, while keeping copy-paste laptop flashers without definitions out of trouble.)</em></p>
+
+    <div class="callout good">
+      <div class="callout-title">🛠️ Tuner Specification Sheet — Bosch ME7.2 &amp; ME7.8 Throttle Body Calibration</div>
+      <ol>
+        <li>
+          <strong><code>KFMSNWDK</code> (<em>Kennfeld normierter Massenstrom über Drosselklappe</em> — Forward Angle → Airflow Map, 16 Angle Rows × 6 RPM Cols, 16-bit Little-Endian):</strong>
+          <ul>
+            <li>This table models the normalized mass airflow (<code>msdk_w</code>) across the throttle plate as a function of throttle angle % (rows) and engine speed (columns). It feeds the manifold filling model and the MAF-vs-throttle plausibility monitor.</li>
+            <li><strong>For 68mm → 74mm:</strong> Do <em>not</em> apply a flat 1.184× multiplier across all 16 rows. Use Porsche's factory 996 74mm tapered scaling profile (+4% to +9% on rows 1–5 from 1.5%–9% angle; +15% to +22% on rows 6–15 from 12%–100% angle, peaking at <code>2,045–2,060 kg/h</code> / <code>20,450–20,600</code> raw units at WOT)—or transplant the factory 996 3.4L ME7.2 <code>KFMSNWDK</code> table directly.</li>
+            <li><strong>For 68mm → 82mm:</strong> Apply the same tapered profile scaled to the 82mm bore ratio (+8% to +18% on rows 1–5; +38% to +45% on rows 6–15, peaking at <code>~2,550–2,588 kg/h</code> / <code>25,500–25,880</code> raw units).</li>
+          </ul>
+        </li>
+        <li>
+          <strong><code>KFWDKMSN</code> (<em>Kennfeld für Drosselklappen-Sollwinkel</em> — Inverse Desired Airflow → Target Angle Map, 16 Flow Rows × 6 RPM Cols, 16-bit Little-Endian):</strong>
+          <ul>
+            <li>This table is the <strong>strict mathematical inverse</strong> of <code>KFMSNWDK</code>: it converts the ECU's demanded mass airflow into the physical target throttle blade angle.</li>
+            <li><strong>Mandatory Structural Invariant 1:</strong> The 16-point Flow Axis of <code>KFWDKMSN</code> <strong>must equal</strong> the highest-RPM column (column 5) of your new <code>KFMSNWDK</code> table.</li>
+            <li><strong>Mandatory Structural Invariant 2:</strong> Recompute all 16×6 angle cells of <code>KFWDKMSN</code> by piecewise-linear inverse interpolation of each RPM column of your new <code>KFMSNWDK</code> table (keeping column 5 equal to the 16-point Angle Axis of <code>KFMSNWDK</code>, and row 15 at 100% WOT).</li>
+            <li><em>(Note for ME7.8 986.2 Boxster S calibrations: standard 986.2 files taper the top of <code>KFWDKMSN</code> to ~92% at high RPM; ensure the top WOT row reaches 100% as Porsche did on the 550 Anniversary Edition and 996.)</em></li>
+          </ul>
+        </li>
+        <li>
+          <strong><code>WDKUGDN</code> (<em>ME7.8 Only</em> — 1-D Unthrottled Angle Threshold Curve vs. RPM in module <code>BGMSZS</code>):</strong>
+          <ul>
+            <li>On <strong>ME7.8</strong> (2003–2004 986.2 / 996.2 / 987.1), update <code>WDKUGDN</code> (the throttle angle curve above which no further pressure drop/throttling occurs) from the matching 74mm (996.2 3.6) or 82mm (996.2 GT3) calibration. On <strong>ME7.2</strong>, no separate <code>WDKUGDN</code> table is used, and the companion 1-D opening curve before <code>KFMSNWDK</code> is byte-identical between the factory 68mm 986 S and 74mm 996 3.4 ROMs (leave it stock).</li>
+          </ul>
+        </li>
+      </ol>
+    </div>
+
+    <div class="callout warn">
+      <div class="callout-title">⚠️ Critical Note for 82mm Throttle Bodies on Bosch ME7.2: The Hidden Code Clamp</div>
+      <p>Our disassembly of the Bosch ME7.2 code uncovered a detail that catches almost everyone out on <strong>82mm</strong> swaps:</p>
+      <p>Inside the ME7.2 throttle plausibility gate routine (<code>WDC</code> gate), there is a <strong>hardcoded immediate comparison in the program code</strong> that clamps the pedal flow-demand path at <strong><code>20,722</code> raw units (<code>2,072.2 kg/h</code>)</strong>.</p>
+      <ul>
+        <li><strong>Why did Porsche pick <code>20,722</code>?</strong> Because the factory <strong>74mm 996 throttle body</strong> peaks at <strong><code>20,450–20,600</code></strong> raw units—sitting right underneath <code>20,722</code>! So a <strong>74mm swap needs zero code changes</strong> (calibration tables only).</li>
+        <li><strong>What happens on an 82mm swap?</strong> An 82mm throttle body scales up to <strong><code>~25,500–25,880</code></strong> raw units. If a tuner only rescales <code>KFMSNWDK</code> and <code>KFWDKMSN</code> without raising that hardcoded <code>20,722</code> immediate value in the ME7.2 program code, the WDC plausibility gate silently clips that path at ~80% of WOT flow!</li>
+      </ul>
+    </div>
+
+    <h3>What Your Tuner Should NOT Touch for a Throttle-Body-Only Swap</h3>
+    <ul>
+      <li><strong>Leave <code>KFPED</code> and <code>KFPEDR</code> (Pedal Position → Torque Request) untouched</strong> if your goal is authentic OEM pedal progression. Because <code>KFWDKMSN</code> has been properly re-inverted for the larger butterfly, the ECU already adjusts the blade angle automatically. Editing <code>KFPED</code> on top of a throttle body swap just layers artificial pedal sensitivity over the hardware change.</li>
+      <li><strong>Leave <code>MLHFM</code> and <code>KFKHFM</code> (MAF Sensor Linearization &amp; Correction) untouched</strong> <em>unless</em> you have also changed the <strong>MAF housing tube diameter</strong> or sensor element (for example, when fitting a larger 987 or GT3 airbox/MAF housing upstream of the throttle body). The throttle body sits <em>downstream</em> of the MAF sensor; changing the throttle butterfly diameter alone does not alter the air velocity past the MAF hot-film element for a given mass flow.</li>
+    </ul>
+
+    <h2>5. Summary: Should You Do the 74mm or 82mm Upgrade?</h2>
+    <ul>
+      <li><strong>On a bone-stock 2.7L or 3.2L 986 Boxster:</strong> Keep the stock 68mm throttle body—or, if you already bought a 74mm 996 throttle body &amp; plenum, have <code>KFMSNWDK</code> and <code>KFWDKMSN</code> calibrated properly with Porsche's tapered 996 profile so your idle, tip-in, and fuel-trim/plausibility diagnostics stay factory-clean. Don't expect 15 hp at the wheels; the math proves the real top-end restriction relief on a stock 3.2L is <strong>~1.5–2 hp</strong>.</li>
+      <li><strong>On a breathed-on 3.2L (headers, sport cats, plenum, intake, 7,400 rpm) or a 3.4L / 3.6L / 3.8L conversion:</strong> The <strong>74mm 996 throttle body</strong> is a genuine, factory-engineered OEM+ fit that drops right beneath ME7.2's internal <code>20,722</code> WDC ceiling with zero code hacks required.</li>
+      <li><strong>Skip the 82mm throttle body on street 3.2L/3.4L engines:</strong> It recovers barely ~1 hp over the 74mm body while sacrificing low-angle resolution and requiring a code-level clamp patch on ME7.2. Save the 82mm for high-RPM 3.8L+ track builds.</li>
+    </ul>
+  </article>
+
+  <footer>
+    PeeWeeSys Porsche Diagnostic &amp; Reverse-Engineering Project • Built from real Bosch ME7.2 / ME7.8 ROM disassembly &amp; live vehicle telemetry
+  </footer>
+</body>
+</html>

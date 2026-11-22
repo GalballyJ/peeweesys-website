@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PeeWeeSys Engineering Blog &amp; Porsche Tech Articles</title>
+  <meta name="description" content="Deep-dive Porsche 986, 996, 987 &amp; 997 ECU reverse engineering, airflow physics, and evidence-backed tuning articles from the PeeWeeSys project.">
+  <meta property="og:title" content="PeeWeeSys Engineering Blog &amp; Porsche Tech Articles">
+  <meta property="og:description" content="Evidence-backed Porsche 9x6/9x7 diagnostics, Bosch ME7.2/ME7.8 ECU reverse engineering, and real maths behind common hardware mods.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="/assets/brand/svg/peeweesys-mark-colour.svg">
+  <style>
+    :root {
+      --bg: #0d0f12;
+      --bg-card: #15181e;
+      --bg-elevated: #1c2028;
+      --border: #282e38;
+      --text: #eef0f4;
+      --text-muted: #9aa2b1;
+      --accent: #ff3b4e;
+      --accent-soft: rgba(255, 59, 78, 0.14);
+      --amber: #f5a623;
+      --green: #2ecc71;
+      --blue: #4da3ff;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+    }
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.9rem 1.75rem;
+      background: rgba(21, 24, 30, 0.92);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand-title {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .brand-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-left: 0.5rem;
+      padding-left: 0.6rem;
+      border-left: 1px solid var(--border);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.48rem 0.95rem;
+      border-radius: 6px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: var(--bg-elevated);
+      transition: all 0.15s ease;
+    }
+    .btn:hover { border-color: var(--accent); color: #fff; }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .hero {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 3.5rem 1.5rem 2rem;
+    }
+    .eyebrow {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: var(--accent-soft);
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      margin-bottom: 0.9rem;
+    }
+    h1 {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 2.6rem;
+      line-height: 1.15;
+      margin-bottom: 0.85rem;
+    }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.08rem;
+      max-width: 740px;
+    }
+    .grid {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem 4rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+    .article-card {
+      display: block;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem 2rem;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .article-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    .tag {
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 0.15rem 0.55rem;
+      border-radius: 4px;
+      color: #cfd5e2;
+    }
+    .tag.highlight {
+      border-color: rgba(255, 59, 78, 0.4);
+      color: #ff7b88;
+      background: var(--accent-soft);
+    }
+    .article-card h2 {
+      font-family: 'Barlow Semi Condensed', sans-serif;
+      font-size: 1.75rem;
+      margin-bottom: 0.65rem;
+      color: #fff;
+    }
+    .article-card p {
+      color: var(--text-muted);
+      margin-bottom: 1.15rem;
+    }
+    .read-more {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.92rem;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/">
+      <svg viewBox="3.5 19.5 93 60" width="38" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 57a19 19 0 1 0 38 0a19 19 0 1 0 -38 0Z" fill="#141619" stroke="#CBD0D4" stroke-width="2.2"/>
+        <path d="M56 57a19 19 0 1 0 38 0a19 19 0 1 0 -38 0Z" fill="#141619" stroke="#CBD0D4" stroke-width="2.2"/>
+        <path d="M22 50a28 28 0 1 0 56 0a28 28 0 1 0 -56 0Z" fill="#141619" stroke="#F3F4F5" stroke-width="2.4"/>
+        <path d="M71.494 56.984A22.6 22.6 0 0 1 65.981 65.981" stroke="#FF3B4E" stroke-width="3.4"/>
+        <path d="M45.955 52.939L66.989 37.657" stroke="#FF3B4E" stroke-width="2.6" stroke-linecap="round"/>
+      </svg>
+      <span class="brand-title">PeeWeeSys</span>
+      <span class="brand-sub">Engineering Blog &amp; Tech Notes</span>
+    </a>
+    <nav class="nav-links">
+      <a class="btn" href="https://www.peeweesys.app" target="_blank" rel="noopener noreferrer">Launch Diagnostic App ↗</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">Evidence-Based Porsche Engineering</span>
+    <h1>PeeWeeSys Tech Articles &amp; ECU Mythbusting</h1>
+    <p>No forum folklore, no butt-dyno placebo. Every article here comes directly from disassembling the factory Bosch Motronic ROMs, comparing Porsche OEM calibrations across models, and logging real cars on the road.</p>
+  </section>
+
+  <main class="grid" id="blogArticleList">
+    <a class="article-card" href="porsche-986-996-throttle-body-upgrade-myth-vs-maths.html">
+      <div class="meta-row">
+        <span>22 Nov 2026</span>
+        <span>•</span>
+        <span>8 min read</span>
+        <span class="tag highlight">986 Boxster / 996 Carrera</span>
+        <span class="tag">Bosch ME7.2 &amp; ME7.8</span>
+        <span class="tag">Airflow &amp; E-Gas</span>
+      </div>
+      <h2>The 68mm → 74mm → 82mm Throttle Body Upgrade on Porsche 986 &amp; 996: Myth, Maths &amp; What Your Tuner Actually Needs to Edit</h2>
+      <p>Does bolting a larger 74mm (996) or 82mm (GT3/Cayenne) throttle body onto a 3.2L Boxster S actually unlock hidden horsepower, or did you just accidentally install a mechanical "Sport Mode" pedal booster? We disassembled the Bosch ME7.2 &amp; ME7.8 throttle airflow model and ran the orifice pressure-drop maths to find out.</p>
+      <span class="read-more">Read full technical breakdown →</span>
+    </a>
+  </main>
+
+  <footer>
+    PeeWeeSys Porsche Diagnostic &amp; Reverse-Engineering Project • Built from real ROM disassembly &amp; live KWP2000 telemetry
+  </footer>
+</body>
+</html>
