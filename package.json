@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "python tools/check_branding.py && astro check && astro build",
+    "build": "python tools/check_privacy.py && python tools/check_branding.py && astro check && astro build",
+    "check:privacy": "python tools/check_privacy.py",
     "check:branding": "python tools/check_branding.py",
     "preview": "astro preview",
     "astro": "astro",

@@ -28,6 +28,11 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Privacy & Branding Gate
+        run: |
+          python3 tools/check_privacy.py
+          python3 tools/check_branding.py
+
       - name: Build Astro Site
         run: npm run build
 
