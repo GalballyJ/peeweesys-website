@@ -133,6 +133,19 @@
           }
         },
         {
+          "name": "High-Speed K-Line RAM Logging (124.8k bps / ~20 Hz)",
+          "description": "Adaptive KWP2000 high-baud escalation with contiguous 0x23 block reads and automatic speed fallback.",
+          "values": {
+            "peeweesys": "Yes (Car-verified 124.8k bps · ~20 Hz + auto-fallback)",
+            "piwis": "No (10,400 bps OEM LIDs only)",
+            "durametric": "No (10,400 bps standard K-Line)",
+            "foxwell": "No (Standard OBD / KWP)",
+            "icarsoft": "No (Standard OBD / KWP)",
+            "launch_autel": "No (Standard K-Line)",
+            "generic_elm": "No (10,400 bps OBD2)"
+          }
+        },
+        {
           "name": "Kombi 93C86 EEPROM Read over K-Line",
           "description": "Extract full instrument cluster memory for backup, repair, and coding verification.",
           "values": {

@@ -15,6 +15,21 @@
     ]
   },
   {
+    "id": "high_speed_ram_logging",
+    "title": "High-Speed ME7.2 K-Line RAM Logging (124,800 bps)",
+    "tagline": "Car-verified ~20 Hz multi-variable ECU telemetry over a standard $15 FTDI cable.",
+    "status": "supported",
+    "statusLabel": "Supported Right Now",
+    "statusColor": "green",
+    "icon": "activity",
+    "description": "Standard 10,400 bps K-Line diagnostics crawl at ~9 Hz per variable. PeeweeSys negotiates KWP2000 high-baud mode (0x10 0x86) up to 124,800 bps with a 10 ms P3 inter-frame gap and coalesces nearby IRAM/XRAM channels into contiguous 48-byte 0x23 block reads — delivering ~20 Hz live telemetry with automatic runtime fallback (124.8k → 57.6k → 38.4k → 10.4k) under electrical noise or non-FTDI adapters.",
+    "highlights": [
+      "Car-verified 100% zero-error at 124,800 bps (KOEO & engine idle) on 986 Boxster S ME7.2",
+      "Contiguous 48-byte 0x23 RAM block coalescing reads multiple fast channels in a single ~48 ms frame",
+      "Adaptive link-health monitor auto-steps down on timeouts/noise and stays compatible with macOS VCP/D2XX and non-FTDI cables"
+    ]
+  },
+  {
     "id": "multi_module_mileage",
     "title": "Multi-Module Tamper Detection",
     "tagline": "Cross-reference independent odometer & operating registers.",
