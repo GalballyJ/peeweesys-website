@@ -59,13 +59,18 @@
     <h2>Open-Source Porsche ME7.2 Disassembly, Definitions &amp; Live Telemetry</h2>
     <p>Unlike later Porsche ME7.8 ECUs where a factory A2L/DAMOS leaked years ago, no factory A2L exists in the wild for early electronic-throttle Porsche 986 Boxster (2.7 / 3.2S) and 996 Carrera (3.4) Bosch ME7.2 ECUs. This portal hosts our clean-room C167CR disassembly, cross-ECU structural correlation against the ME7.8 3.2S golden reference, live KWP2000 RAM &amp; <code>0x2C</code> DDLI telemetry maps, and free community WinOLS <code>.A2L</code> &amp; TunerPro <code>.XDF</code> definition files.</p>
     <div class="dl-bar">
-      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_VERIFIED_TUNER.xdf" download>⬇ Verified Tuner Pack .XDF (72 Maps, Sniff-Tested)</a>
-      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_VERIFIED_TUNER_FileOffset.a2l" download>⬇ Verified Tuner Pack .A2L (WinOLS File Offset)</a>
-      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_VERIFIED_TUNER_CPU.a2l" download>⬇ Verified Tuner Pack .A2L (CPU 0x800000)</a>
+      <a class="btn green" href="definitions/Porsche_986_BoxsterS_ME72_VERIFIED_TUNER.xdf" download>⬇ Verified Tuner Pack .XDF (72 Maps, Sniff-Tested)</a>
+      <a class="btn green" href="definitions/Porsche_986_BoxsterS_ME72_VERIFIED_TUNER_FileOffset.a2l" download>⬇ Verified Tuner Pack .A2L (WinOLS File Offset)</a>
+      <a class="btn green" href="definitions/Porsche_986_BoxsterS_ME72_VERIFIED_TUNER_CPU.a2l" download>⬇ Verified Tuner Pack .A2L (CPU 0x800000)</a>
     </div>
     <div class="dl-bar" style="margin-top:10px;">
-      <a class="btn muted" href="/developers/definitions/Porsche_986_BoxsterS_ME72_UNVERIFIED_CANDIDATES.xdf" download>⬇ Unverified Research Candidates .XDF (271 Objects)</a>
-      <a class="btn muted" href="/developers/definitions/Porsche_986_BoxsterS_ME72_UNVERIFIED_CANDIDATES_FileOffset.a2l" download>⬇ Unverified Research Candidates .A2L (271 Objects)</a>
+      <a class="btn muted" href="definitions/Porsche_986_BoxsterS_ME72_UNVERIFIED_CANDIDATES.xdf" download>⬇ Unverified Research Candidates .XDF (271 Objects)</a>
+      <a class="btn muted" href="definitions/Porsche_986_BoxsterS_ME72_UNVERIFIED_CANDIDATES_FileOffset.a2l" download>⬇ Unverified Research Candidates .A2L (271 Objects)</a>
+    </div>
+    <div class="dl-bar" style="margin-top:10px;">
+      <a class="btn" href="ghidra/me72_y966ohc_ImportSymbols.py" download>⬇ Ghidra Import Script (.py — 303 Functions, Maps &amp; RAM Symbols)</a>
+      <a class="btn" href="ghidra/me72_y966ohc_symbols.txt" download>⬇ Ghidra / IDA Symbol Table (.txt — 303 Symbols)</a>
+      <a class="btn" href="ghidra/me72_y966ohc_ghidra_README.md" download>⬇ Ghidra Setup Guide (.md)</a>
     </div>
     <p style="margin:10px 0 0 0; font-size:12.5px; color:#8b949e;">
       <strong>Why two packs?</strong> The green <strong>Verified Tuner Pack</strong> contains only code-verified, live-tested, and 100% sniff-tested maps (C167 Intel Little-Endian, verified X/Y axes, and exact linear scaling). All remaining auto-mined objects are quarantined in the grey <strong>Unverified Research Candidates</strong> pack so they never pollute your primary TunerPro / WinOLS workspace.
@@ -79,7 +84,7 @@
         <h3><span class="badge b-green">72 Verified / 343 Total</span> ME7.2 Interactive Calibration Workstation</h3>
         <p>Full offline 2D spreadsheet, 360° rotatable 3D surface plots, raw 512 KB hex inspector, 86 confirmed RAM variables, and C167 code consumer evidence traces for <code>y966ohc.ori</code> (<code>SW 1037357109</code>), defaulting to the 72 sniff-tested Verified Tuner maps.</p>
       </div>
-      <div><a class="btn primary" href="/developers/dashboard.html">Launch Calibration Workstation →</a></div>
+      <div><a class="btn primary" href="dashboard.html">Launch Calibration Workstation →</a></div>
     </div>
 
     <div class="card">
@@ -87,7 +92,7 @@
         <h3><span class="badge b-blue">321 Shared Maps</span> ME7.2 vs. ME7.8 3.2L Boxster S Explorer</h3>
         <p>Side-by-side comparison of the 2001 ME7.2 Boxster S 3.2L (<code>y966ohc.ori</code>) against the later ME7.8 Boxster S 3.2L (<code>S_EU_47203728.bin</code>), showing how Porsche evolved ignition, torque, fueling, and VarioCam calibrations on the M96.21/M96.24 engine.</p>
       </div>
-      <div><a class="btn primary" href="/developers/dual.html">Launch Dual-ECU Explorer →</a></div>
+      <div><a class="btn primary" href="dual.html">Launch Dual-ECU Explorer →</a></div>
     </div>
 
     <div class="card">
@@ -95,7 +100,7 @@
         <h3><span class="badge b-purple">Byte Coverage</span> 512 KB ROM Hex &amp; Axis Explorer</h3>
         <p>Interactive memory-map visualizer of the <code>0x10000..0x1FFFF</code> calibration segment showing placed tables, shared axis blocks (<code>[count][values...]</code> vs inline descriptors), and remaining unmapped regions.</p>
       </div>
-      <div><a class="btn primary" href="/developers/hex.html">Launch ROM Hex Explorer →</a></div>
+      <div><a class="btn primary" href="hex.html">Launch ROM Hex Explorer →</a></div>
     </div>
 
     <div class="card">
