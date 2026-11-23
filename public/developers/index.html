@@ -19,6 +19,8 @@
   .btn:hover { background: #30363d; }
   .btn.primary { background: #1f6feb; color: #fff; border-color: #1f6feb; }
   .btn.green { background: #238636; color: #fff; border-color: #2ea043; }
+  .btn.green:hover { background: #2ea043; }
+  .btn.muted { background: #21262d; color: #8b949e; border-color: #30363d; }
   .container { max-width: 1240px; margin: 0 auto; padding: 28px 32px; }
   .hero { background: linear-gradient(135deg, #161b22 0%, #0d1117 100%); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin-bottom: 28px; }
   .hero h2 { margin: 0 0 10px 0; font-size: 20px; color: var(--head); }
@@ -57,20 +59,27 @@
     <h2>Open-Source Porsche ME7.2 Disassembly, Definitions &amp; Live Telemetry</h2>
     <p>Unlike later Porsche ME7.8 ECUs where a factory A2L/DAMOS leaked years ago, no factory A2L exists in the wild for early electronic-throttle Porsche 986 Boxster (2.7 / 3.2S) and 996 Carrera (3.4) Bosch ME7.2 ECUs. This portal hosts our clean-room C167CR disassembly, cross-ECU structural correlation against the ME7.8 3.2S golden reference, live KWP2000 RAM &amp; <code>0x2C</code> DDLI telemetry maps, and free community WinOLS <code>.A2L</code> &amp; TunerPro <code>.XDF</code> definition files.</p>
     <div class="dl-bar">
-      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_WinOLS_FileOffset.a2l" download>⬇ Download WinOLS .A2L (File Offset 0x00000)</a>
-      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_Standard_CPU.a2l" download>⬇ Download WinOLS .A2L (CPU 0x800000)</a>
-      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_Community.xdf" download>⬇ Download TunerPro .XDF (v2.0.0-CP18)</a>
+      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_VERIFIED_TUNER.xdf" download>⬇ Verified Tuner Pack .XDF (72 Maps, Sniff-Tested)</a>
+      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_VERIFIED_TUNER_FileOffset.a2l" download>⬇ Verified Tuner Pack .A2L (WinOLS File Offset)</a>
+      <a class="btn green" href="/developers/definitions/Porsche_986_BoxsterS_ME72_VERIFIED_TUNER_CPU.a2l" download>⬇ Verified Tuner Pack .A2L (CPU 0x800000)</a>
     </div>
+    <div class="dl-bar" style="margin-top:10px;">
+      <a class="btn muted" href="/developers/definitions/Porsche_986_BoxsterS_ME72_UNVERIFIED_CANDIDATES.xdf" download>⬇ Unverified Research Candidates .XDF (271 Objects)</a>
+      <a class="btn muted" href="/developers/definitions/Porsche_986_BoxsterS_ME72_UNVERIFIED_CANDIDATES_FileOffset.a2l" download>⬇ Unverified Research Candidates .A2L (271 Objects)</a>
+    </div>
+    <p style="margin:10px 0 0 0; font-size:12.5px; color:#8b949e;">
+      <strong>Why two packs?</strong> The green <strong>Verified Tuner Pack</strong> contains only code-verified, live-tested, and 100% sniff-tested maps (C167 Intel Little-Endian, verified X/Y axes, and exact linear scaling). All remaining auto-mined objects are quarantined in the grey <strong>Unverified Research Candidates</strong> pack so they never pollute your primary TunerPro / WinOLS workspace.
+    </p>
   </div>
 
   <h2 class="sec">1. Interactive Calibration &amp; Disassembly Dashboards</h2>
   <div class="grid">
     <div class="card">
       <div>
-        <h3><span class="badge b-green">342 Objects</span> ME7.2 Interactive Calibration Workstation</h3>
-        <p>Full offline 2D spreadsheet, 360° rotatable 3D surface plots, raw 512 KB hex inspector, and C167 code consumer evidence traces for 342 calibration maps, curves, and scalars in <code>y966ohc.ori</code> (<code>SW 1037357109</code>).</p>
+        <h3><span class="badge b-green">72 Verified / 343 Total</span> ME7.2 Interactive Calibration Workstation</h3>
+        <p>Full offline 2D spreadsheet, 360° rotatable 3D surface plots, raw 512 KB hex inspector, 86 confirmed RAM variables, and C167 code consumer evidence traces for <code>y966ohc.ori</code> (<code>SW 1037357109</code>), defaulting to the 72 sniff-tested Verified Tuner maps.</p>
       </div>
-      <div><a class="btn primary" href="/developers/dashboard.html">Launch 342-Map Workstation →</a></div>
+      <div><a class="btn primary" href="/developers/dashboard.html">Launch Calibration Workstation →</a></div>
     </div>
 
     <div class="card">
@@ -181,6 +190,13 @@
         <td><code>6×6 UBYTE</code></td>
         <td>X: <code>0x19788</code> / <code>0x197BA</code> (6× RPM)<br>Y: <code>0x1978E</code> / <code>0x197C0</code> (6× load)</td>
         <td><code>CPU 0x861880 → [0x382052]</code> — <em>Saugrohrumschaltung</em> (intake manifold resonance flap switching thresholds).</td>
+      </tr>
+      <tr>
+        <td><code>NMAX</code> / <code>NMAXOG</code></td>
+        <td><code>0x1675C</code> / <code>0x1675E</code></td>
+        <td><code>1×1 UWORD LE</code> (<code>×0.25 rpm</code>)</td>
+        <td>Scalar constants</td>
+        <td>Live-proven rev limiters: OEM = <code>28800 → 7,200 rpm</code>; <code>CatsOn_7000</code> = <code>7,000 rpm</code>; <code>MildBurble_KFSU</code> = <code>7,400 rpm</code> live-tested on car.</td>
       </tr>
       <tr>
         <td><code>CRC32 Descriptors</code> / <code>Values</code></td>

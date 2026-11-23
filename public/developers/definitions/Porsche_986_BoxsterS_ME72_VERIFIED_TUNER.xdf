@@ -1,0 +1,3770 @@
+<?xml version="1.0" encoding="utf-8"?>
+<XDFFORMAT version="1.50">
+  <XDFHEADER>
+    <deftitle>Porsche 986 Boxster S ME7.2 (ROM 91003718) — VERIFIED TUNER PACK (Sniff-Tested)</deftitle>
+    <description>VERIFIED TUNER DEFINITION PACK for Porsche 986 Boxster S 3.2L ME7.2 (ROM 91003718 / y966ohc.ori).
+Contains ONLY code-verified, live-tested, and sniff-tested calibration objects (100% pass in tools/tuner_sniff_test.py).
+- C167CR 100% Intel Little-Endian (lsbfirst='1', mmedtypeflags='0x00'/'0x01', positive stride).
+- Verified axis orientation (axes.x == cols, axes.y == rows) and real embedded 1D curve X-axes.
+- Includes live-proven rev limiters NMAX (0x1675C) &amp; NMAXOG (0x1675E).</description>
+    <baseoffset>0</baseoffset>
+    <DEFAULTS datasizeinbits="8" sigdigits="3" outputtype="1" signed="0" lsbfirst="1" float="0"/>
+    <CATEGORY index="0x1" name="Ignition (Zuendung)"/>
+    <CATEGORY index="0x2" name="Fuel &amp; Lambda (Kraftstoff / Gemisch)"/>
+    <CATEGORY index="0x3" name="Airflow &amp; Throttle (Luft / Fuellung / MAF)"/>
+    <CATEGORY index="0x4" name="Torque Architecture (Momentenmanager)"/>
+    <CATEGORY index="0x5" name="Intake &amp; VarioCam (Saugrohr / Nockenwelle)"/>
+    <CATEGORY index="0x6" name="Catalyst &amp; Exhaust (Abgas / Katalysator)"/>
+    <CATEGORY index="0x7" name="Rev Limiters &amp; Idle (Drehzahlbegrenzer &amp; Leerlauf)"/>
+  </XDFHEADER>
+  <XDFTABLE uniqueid="0x1" flags="0x0">
+    <title>FVERMN - Kennlinie Faktor Vermischung Regeneriergas Tankentlüftung mit Frischluft (Kennlinie Faktor Vermischung Regeneriergas Tankentlüftung mit Frischluft)</title>
+    <description>FVERMN - Kennlinie Faktor Vermischung Regeneriergas Tankentlüftung mit Frischluft
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10013" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x10019" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="6" signed="0"/>
+      <MATH equation="0.00390625 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x2" flags="0x0">
+    <title>ETALAM - Lambda-Wirkungsgrad (Lambda-Wirkungsgrad)</title>
+    <description>ETALAM - Lambda-Wirkungsgrad
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.938).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>10</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x101e5" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>%</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x101ef" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="10" signed="0"/>
+      <MATH equation="0.5 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x3" flags="0x0">
+    <title>KFZWOP1 - Optimaler Zuendwinkel 1 (Optimal Ignition Timing Surface 1 (Economy Advance / MBT))</title>
+    <description>KFZWOP1 - Optimaler Zuendwinkel 1 (Optimal MBT Spark Advance)
+
+GERMAN: Optimaler Zuendwinkel fuer bestes Drehmoment und geringsten Kraftstoffverbrauch (Teillastbereich).
+ENGLISH: Mean Best Timing (MBT) spark advance map. Represents optimal torque efficiency timing; used by the Bosch torque model to calculate engine efficiency delta.</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>rl (load %)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x106dd" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot (RPM)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10682" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>deg BTDC</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x1023a" mmedelementsizebits="8" mmedrowcount="16" mmedcolcount="16" signed="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x4" flags="0x0">
+    <title>KFZWOP2 - Optimaler Zuendwinkel 2 (Optimal Ignition Timing Surface 2 (VarioCam Active))</title>
+    <description>KFZWOP2 - Optimaler Zuendwinkel 2 (Optimal MBT Timing with VarioCam)
+
+GERMAN: Optimaler Zuendwinkel bei aktiver VarioCam-Nockenwellensteuerung.
+ENGLISH: MBT spark advance map variant when intake camshafts are advanced.</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>rl (load %)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x106dd" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot (RPM)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10682" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>deg BTDC</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x1033a" mmedelementsizebits="8" mmedrowcount="16" mmedcolcount="16" signed="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x5" flags="0x0">
+    <title>KFAFTE - Kennfeld Durchflusscharakteristik Tankentlueftungsventil (EVAP Tank Ventilation Purge Valve Flow Curve)</title>
+    <description>KFAFTE - Kennfeld Durchflusscharakteristik Tankentlueftungsventil
+
+GERMAN: Berechneter Kraftstoffdampf-Spuelmassenstrom ueber das Tankentlueftungsventil in das Saugrohr.
+ENGLISH: Purge valve fuel vapor mass flow rate into the intake manifold across engine speed and throttle angle.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>10</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x104c4" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>wdkba (throttle %)</units>
+      <indexcount>10</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x104ce" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X*100/255">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>purge flow factor</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x104d8" mmedelementsizebits="8" mmedrowcount="10" mmedcolcount="10" signed="0"/>
+      <MATH equation="0.0078125*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x6" flags="0x0">
+    <title>LURBRL8 - Laufunruhe-Referenzwert bei Fahrzeug steht (Laufunruhe-Referenzwert bei Fahrzeug steht)</title>
+    <description>LURBRL8 - Laufunruhe-Referenzwert bei Fahrzeug steht
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.998).</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x106ba" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>(Umdr./sec)^2</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x106c2" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="8" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x7" flags="0x0">
+    <title>WDKDSVLU - Drosselklappenschwelle für Drucksensorplausibilisierung (Drosselklappenschwelle für Drucksensorplausibilisierung)</title>
+    <description>WDKDSVLU - Drosselklappenschwelle für Drucksensorplausibilisierung
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.974).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1098d" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>% DK</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x10993" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="6" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x8" flags="0x0">
+    <title>KFKSWF - Kennfeld für Kat.-Schutz-Wichtungsfaktoren (Kennfeld für Kat.-Schutz-Wichtungsfaktoren)</title>
+    <description>KFKSWF - Kennfeld für Kat.-Schutz-Wichtungsfaktoren
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="6"/>
+    <XDFAXIS id="x">
+      <units>nmot_ub_q40</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10b33" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40.0*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>rel_ub_q0p75</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10b39" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units/>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x10b3f" mmedelementsizebits="8" mmedrowcount="6" mmedcolcount="6" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x9" flags="0x0">
+    <title>RLNOT - Notlauf rl bei E_DK und E_LM (Notlauf rl bei E_DK und E_LM)</title>
+    <description>RLNOT - Notlauf rl bei E_DK und E_LM
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.998).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10e2e" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>%</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x10e34" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="6" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0xa" flags="0x0">
+    <title>KFKHFM - Korrekturkennfeld fuer Heissfilmluftmassenmesser (HFM Airflow Correction Factor Map)</title>
+    <description>KFKHFM - Korrekturkennfeld fuer HFM
+
+GERMAN: Feinabstimmung der MAF-Luftmassenmessung bei dynamischen Stroemungsturbulenzen.
+ENGLISH: 2D multiplier table to trim MAF sensor reading across RPM and load. 128 = 1.000 neutral factor.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>14</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10e3d" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>rl (load %)</units>
+      <indexcount>14</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10e4b" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>factor</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x10e59" mmedelementsizebits="8" mmedrowcount="14" mmedcolcount="14" signed="0"/>
+      <MATH equation="0.0078125*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0xb" flags="0x0">
+    <title>KFPU - Pulsations-Kennfeld 1 (Standard) (Exhaust / Intake Pulsation Correction Map 1)</title>
+    <description>KFPU - Pulsations-Kennfeld 1
+
+GERMAN: Pulsationskorrektur der Zylinderfuellung im Grundzustand.
+ENGLISH: Primary air pulsation correction map over RPM and throttle position.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>14</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10f1f" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>wdkba (% throttle)</units>
+      <indexcount>14</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10f2d" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X*100/255">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>factor</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x10f3b" mmedelementsizebits="8" mmedrowcount="14" mmedcolcount="14" signed="0"/>
+      <MATH equation="0.0078125*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0xc" flags="0x0">
+    <title>KFPUSUVS - Pulsationskennfeld bei aktiver Saugrohrumschaltung und großem Ventilhub (Pulsationskennfeld bei aktiver Saugrohrumschaltung und großem Ventilhub)</title>
+    <description>KFPUSUVS - Pulsationskennfeld bei aktiver Saugrohrumschaltung und großem Ventilhub
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.996).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot_ub_q40</units>
+      <indexcount>14</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x11001" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40.0*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>relDK_ub_b100</units>
+      <indexcount>14</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1100f" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.392157*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1101d" mmedelementsizebits="8" mmedrowcount="14" mmedcolcount="14" signed="0"/>
+      <MATH equation="0.0078125 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0xd" flags="0x0">
+    <title>KFPUSU - Pulsations-Kennfeld bei Saugrohrumschaltung (Air Pulsation Correction Map with Intake Flap Open)</title>
+    <description>KFPUSU - Pulsations-Kennfeld bei Saugrohrumschaltung
+
+GERMAN: Fuellungskorrektur bei geoeffneter Resonanzklappe im Schaltsaugrohr.
+ENGLISH: Air pulsation correction map active when the intake manifold resonance crossover flap is energized and open.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>14</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x110e3" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>wdkba (% throttle)</units>
+      <indexcount>14</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x110f1" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X*100/255">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>factor</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x110ff" mmedelementsizebits="8" mmedrowcount="14" mmedcolcount="14" signed="0"/>
+      <MATH equation="0.0078125*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0xe" flags="0x0">
+    <title>KFPUVS - Pulsations-Kennfeld Variante 4 (Air Pulsation Correction Map Variant 4)</title>
+    <description>KFPUVS - Pulsations-Kennfeld Variante 4
+
+GERMAN: Zusaetzliche Pulsationskorrektur fuer Uebergangszustaende.
+ENGLISH: Secondary pulsation correction map for transient valve overlap states.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>14</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x111c5" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>wdkba (% throttle)</units>
+      <indexcount>14</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x111d3" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X*100/255">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>factor</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x111e1" mmedelementsizebits="8" mmedrowcount="14" mmedcolcount="14" signed="0"/>
+      <MATH equation="0.0078125*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0xf" flags="0x0">
+    <title>TVLLRI - Verzögerungszeit für Freigabe I-Anteil nach Start (Verzögerungszeit für Freigabe I-Anteil nach Start)</title>
+    <description>TVLLRI - Verzögerungszeit für Freigabe I-Anteil nach Start
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.995).</description>
+    <CATEGORYMEM index="0" category="7"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x117fe" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>s</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x11804" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="6" signed="0"/>
+      <MATH equation="0.02 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x10" flags="0x0">
+    <title>FDARTM - Wichtungsfaktor Motortemperatur (Wichtungsfaktor Motortemperatur)</title>
+    <description>FDARTM - Wichtungsfaktor Motortemperatur
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.922).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1183f" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x11845" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="6" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x11" flags="0x0">
+    <title>FSWALUV - Erkennungsschwelle Schlechtwegstrecke abhängig von Fz.geschwindigkeit (Erkennungsschwelle Schlechtwegstrecke abhängig von Fz.geschwindigkeit)</title>
+    <description>FSWALUV - Erkennungsschwelle Schlechtwegstrecke abhängig von Fz.geschwindigkeit
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>4</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x11ce7" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>m/(s^2)</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x11ceb" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="4" signed="0"/>
+      <MATH equation="0.217 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x12" flags="0x0">
+    <title>FLRM - Faktor für I-Dynamik des Lambdareglers in Abhängigkeit von tmot (Faktor für I-Dynamik des Lambdareglers in Abhängigkeit von tmot)</title>
+    <description>FLRM - Faktor für I-Dynamik des Lambdareglers in Abhängigkeit von tmot
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x11cf2" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x11cf7" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="5" signed="0"/>
+      <MATH equation="0.015625 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x13" flags="0x0">
+    <title>TSPERN - Sperrzeit P-Sprung nach Sondensprung (Sperrzeit P-Sprung nach Sondensprung)</title>
+    <description>TSPERN - Sperrzeit P-Sprung nach Sondensprung
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="6"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>7</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x11cff" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>s</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x11d06" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="7" signed="0"/>
+      <MATH equation="0.01 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x14" flags="0x0">
+    <title>TSPERN2 - Sperrzeit P-Sprung nach Sondensprung, Bank 2 (Sperrzeit P-Sprung nach Sondensprung, Bank 2)</title>
+    <description>TSPERN2 - Sperrzeit P-Sprung nach Sondensprung, Bank 2
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="6"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>7</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x11d0e" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>s</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x11d15" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="7" signed="0"/>
+      <MATH equation="0.01 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x15" flags="0x0">
+    <title>KFZW - Kennfeld fuer Zuendwinkel (WOT / Teillast) (Primary Ignition Timing Base Map (WOT / Part Load))</title>
+    <description>KFZW - Kennfeld fuer Zuendwinkel (Primary Ignition Timing Base Map)
+
+GERMAN: Kennfeld fuer Zuendwinkel im Grundbereich abhaengig von Motordrehzahl (nmot) und relativer Fuellung (rlkr).
+ENGLISH: Primary ignition timing advance surface. Maps spark timing in degrees BTDC as a function of engine speed (nmot) and engine load (rlkr). Higher values = more timing advance.</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>rlkr (load %)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x106dd" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot (RPM)</units>
+      <indexcount>24</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10693" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>deg BTDC</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x11d60" mmedelementsizebits="8" mmedrowcount="24" mmedcolcount="16" signed="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x16" flags="0x0">
+    <title>KFZW2 - Kennfeld fuer Zuendwinkel Variante 2 (VarioCam aktiv) (Ignition Timing Map Variant 2 (VarioCam Cam Advance Active))</title>
+    <description>KFZW2 - Kennfeld fuer Zuendwinkel Variante 2
+
+GERMAN: Zuendwinkelkennfeld bei aktivierter VarioCam-Nockenwellenverstellung (Ueberschneidung gross).
+ENGLISH: Secondary ignition timing map active when VarioCam shifts the intake camshafts for valve overlap. Tuned specifically for fast cylinder scavenging.</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>rlkr (load %)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x106dd" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot (RPM)</units>
+      <indexcount>24</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10693" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>deg BTDC</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x11ee0" mmedelementsizebits="8" mmedrowcount="24" mmedcolcount="16" signed="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x17" flags="0x0">
+    <title>KFZWMN - Kennfeld minimaler Zuendwinkel (Minimum Ignition Timing Floor (Knock Retard Limit))</title>
+    <description>KFZWMN - Kennfeld minimaler Zuendwinkel (Minimum Ignition Timing Floor)
+
+GERMAN: Absoluter unterer Zuendwinkel-Grenzwert. Die Klopfregelung oder Drehmomentbegrenzung wird den Zuendwinkel niemals unter dieses Niveau zuruecknehmen.
+ENGLISH: Hard minimum ignition timing limit floor. The ECU knock-control and anti-slip torque intervention will never retard timing below this threshold.</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>rl (load %)</units>
+      <indexcount>12</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x106d0" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot (RPM)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10682" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>deg BTDC</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x12060" mmedelementsizebits="8" mmedrowcount="16" mmedcolcount="12" signed="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x18" flags="0x0">
+    <title>KFZWMS - Dauerhaft spaetest moeglicher Zuendwinkel (Permanent Maximum Retarded Ignition Timing Boundary)</title>
+    <description>KFZWMS - Kennfeld mit dauerhaft spaetest moeglichem Zuendwinkel
+
+GERMAN: Schutzgrenze fuer den spaetesten zulaessigen Zuendwinkel bei dynamischen Drehmomenteingriffen und Notlauf.
+ENGLISH: Permanent late ignition timing boundary floor map across RPM and load. Governs maximum allowed spark retard for dynamic torque reduction.</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>rl (load %)</units>
+      <indexcount>12</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x106d0" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot (RPM)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10682" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>deg BTDC</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x121e0" mmedelementsizebits="8" mmedrowcount="16" mmedcolcount="12" signed="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x19" flags="0x0">
+    <title>KOPWMTU - Nachbildung Kompressor-Last aus Umgebungstemperatur (Nachbildung Kompressor-Last aus Umgebungstemperatur)</title>
+    <description>KOPWMTU - Nachbildung Kompressor-Last aus Umgebungstemperatur
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x122b1" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units/>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x122b9" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="8" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1a" flags="0x0">
+    <title>DZWOM - temperaturabhängiger Offset des optimalen ZW (temperaturabhängiger Offset des optimalen ZW)</title>
+    <description>DZWOM - temperaturabhängiger Offset des optimalen ZW
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1436b" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>grad KW</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x14370" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="5" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1b" flags="0x0">
+    <title>KFMIOP - Kennfeld optimales Motormoment (Optimal Engine Torque Map (Inverse Model))</title>
+    <description>KFMIOP - Kennfeld optimales Motormoment (Load to Torque)
+
+GERMAN: Gegenstueck zu KFMIRL. Berechnet das indizierte Motormoment bei optimalem Zuendwinkel (Zuendhaken-Scheitelpunkt) aus der tatsaechlichen Fuellung.
+ENGLISH: Inverse torque model. Calculates theoretical engine torque output from actual cylinder air filling. Must be tuned in lockstep with KFMIRL to prevent torque intervention limp modes.</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>rl (load %)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x106dd" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot (RPM)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10682" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>% optimal torque</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x14376" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="16" signed="0" lsbfirst="1"/>
+      <MATH equation="0.0015258789*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1c" flags="0x0">
+    <title>KFMSNWDK - Kennfeld normierter Massenstrom ueber Drosselklappe (Normalized Air Mass Flow Over Throttle Body (BGMSZS))</title>
+    <description>KFMSNWDK - Kennfeld normierter Massenstrom ueber Drosselklappe
+
+GERMAN: Theoretischer Luftmassenstrom ueber die Drosselklappe abhaengig von Oeffnungswinkel (wdkbab_w) und Drehzahl (nmot_w).
+ENGLISH: Physical throttle outflow mapping table. Translates throttle blade opening angle into calculated mass airflow. Crucial table when upgrading to a larger GT3 74mm/82mm throttle body.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x15176" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.25*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>wdkba (throttle %)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x15156" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.0015259022*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>kg/h</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x15182" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="6" signed="0" lsbfirst="1"/>
+      <MATH equation="0.1*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1d" flags="0x0">
+    <title>KLAF - Ausflusskennlinie der Drosselklappe (501 Punkte) (Throttle Body Discharge Outflow Characteristic (501 Points))</title>
+    <description>KLAF - Ausflusskennlinie der Drosselklappe
+
+GERMAN: Stroemungsbeiwert der Drosselklappe in Abhaengigkeit vom Druckverhaeltnis vor und nach der Drosselklappe.
+ENGLISH: Aerodynamic discharge coefficient of the throttle body valve over 501 pressure ratio steps. Governs manifold model filling dynamics.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>Index / Point</units>
+      <indexcount>501</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value="1"/>
+      <LABEL index="1" value="2"/>
+      <LABEL index="2" value="3"/>
+      <LABEL index="3" value="4"/>
+      <LABEL index="4" value="5"/>
+      <LABEL index="5" value="6"/>
+      <LABEL index="6" value="7"/>
+      <LABEL index="7" value="8"/>
+      <LABEL index="8" value="9"/>
+      <LABEL index="9" value="10"/>
+      <LABEL index="10" value="11"/>
+      <LABEL index="11" value="12"/>
+      <LABEL index="12" value="13"/>
+      <LABEL index="13" value="14"/>
+      <LABEL index="14" value="15"/>
+      <LABEL index="15" value="16"/>
+      <LABEL index="16" value="17"/>
+      <LABEL index="17" value="18"/>
+      <LABEL index="18" value="19"/>
+      <LABEL index="19" value="20"/>
+      <LABEL index="20" value="21"/>
+      <LABEL index="21" value="22"/>
+      <LABEL index="22" value="23"/>
+      <LABEL index="23" value="24"/>
+      <LABEL index="24" value="25"/>
+      <LABEL index="25" value="26"/>
+      <LABEL index="26" value="27"/>
+      <LABEL index="27" value="28"/>
+      <LABEL index="28" value="29"/>
+      <LABEL index="29" value="30"/>
+      <LABEL index="30" value="31"/>
+      <LABEL index="31" value="32"/>
+      <LABEL index="32" value="33"/>
+      <LABEL index="33" value="34"/>
+      <LABEL index="34" value="35"/>
+      <LABEL index="35" value="36"/>
+      <LABEL index="36" value="37"/>
+      <LABEL index="37" value="38"/>
+      <LABEL index="38" value="39"/>
+      <LABEL index="39" value="40"/>
+      <LABEL index="40" value="41"/>
+      <LABEL index="41" value="42"/>
+      <LABEL index="42" value="43"/>
+      <LABEL index="43" value="44"/>
+      <LABEL index="44" value="45"/>
+      <LABEL index="45" value="46"/>
+      <LABEL index="46" value="47"/>
+      <LABEL index="47" value="48"/>
+      <LABEL index="48" value="49"/>
+      <LABEL index="49" value="50"/>
+      <LABEL index="50" value="51"/>
+      <LABEL index="51" value="52"/>
+      <LABEL index="52" value="53"/>
+      <LABEL index="53" value="54"/>
+      <LABEL index="54" value="55"/>
+      <LABEL index="55" value="56"/>
+      <LABEL index="56" value="57"/>
+      <LABEL index="57" value="58"/>
+      <LABEL index="58" value="59"/>
+      <LABEL index="59" value="60"/>
+      <LABEL index="60" value="61"/>
+      <LABEL index="61" value="62"/>
+      <LABEL index="62" value="63"/>
+      <LABEL index="63" value="64"/>
+      <LABEL index="64" value="65"/>
+      <LABEL index="65" value="66"/>
+      <LABEL index="66" value="67"/>
+      <LABEL index="67" value="68"/>
+      <LABEL index="68" value="69"/>
+      <LABEL index="69" value="70"/>
+      <LABEL index="70" value="71"/>
+      <LABEL index="71" value="72"/>
+      <LABEL index="72" value="73"/>
+      <LABEL index="73" value="74"/>
+      <LABEL index="74" value="75"/>
+      <LABEL index="75" value="76"/>
+      <LABEL index="76" value="77"/>
+      <LABEL index="77" value="78"/>
+      <LABEL index="78" value="79"/>
+      <LABEL index="79" value="80"/>
+      <LABEL index="80" value="81"/>
+      <LABEL index="81" value="82"/>
+      <LABEL index="82" value="83"/>
+      <LABEL index="83" value="84"/>
+      <LABEL index="84" value="85"/>
+      <LABEL index="85" value="86"/>
+      <LABEL index="86" value="87"/>
+      <LABEL index="87" value="88"/>
+      <LABEL index="88" value="89"/>
+      <LABEL index="89" value="90"/>
+      <LABEL index="90" value="91"/>
+      <LABEL index="91" value="92"/>
+      <LABEL index="92" value="93"/>
+      <LABEL index="93" value="94"/>
+      <LABEL index="94" value="95"/>
+      <LABEL index="95" value="96"/>
+      <LABEL index="96" value="97"/>
+      <LABEL index="97" value="98"/>
+      <LABEL index="98" value="99"/>
+      <LABEL index="99" value="100"/>
+      <LABEL index="100" value="101"/>
+      <LABEL index="101" value="102"/>
+      <LABEL index="102" value="103"/>
+      <LABEL index="103" value="104"/>
+      <LABEL index="104" value="105"/>
+      <LABEL index="105" value="106"/>
+      <LABEL index="106" value="107"/>
+      <LABEL index="107" value="108"/>
+      <LABEL index="108" value="109"/>
+      <LABEL index="109" value="110"/>
+      <LABEL index="110" value="111"/>
+      <LABEL index="111" value="112"/>
+      <LABEL index="112" value="113"/>
+      <LABEL index="113" value="114"/>
+      <LABEL index="114" value="115"/>
+      <LABEL index="115" value="116"/>
+      <LABEL index="116" value="117"/>
+      <LABEL index="117" value="118"/>
+      <LABEL index="118" value="119"/>
+      <LABEL index="119" value="120"/>
+      <LABEL index="120" value="121"/>
+      <LABEL index="121" value="122"/>
+      <LABEL index="122" value="123"/>
+      <LABEL index="123" value="124"/>
+      <LABEL index="124" value="125"/>
+      <LABEL index="125" value="126"/>
+      <LABEL index="126" value="127"/>
+      <LABEL index="127" value="128"/>
+      <LABEL index="128" value="129"/>
+      <LABEL index="129" value="130"/>
+      <LABEL index="130" value="131"/>
+      <LABEL index="131" value="132"/>
+      <LABEL index="132" value="133"/>
+      <LABEL index="133" value="134"/>
+      <LABEL index="134" value="135"/>
+      <LABEL index="135" value="136"/>
+      <LABEL index="136" value="137"/>
+      <LABEL index="137" value="138"/>
+      <LABEL index="138" value="139"/>
+      <LABEL index="139" value="140"/>
+      <LABEL index="140" value="141"/>
+      <LABEL index="141" value="142"/>
+      <LABEL index="142" value="143"/>
+      <LABEL index="143" value="144"/>
+      <LABEL index="144" value="145"/>
+      <LABEL index="145" value="146"/>
+      <LABEL index="146" value="147"/>
+      <LABEL index="147" value="148"/>
+      <LABEL index="148" value="149"/>
+      <LABEL index="149" value="150"/>
+      <LABEL index="150" value="151"/>
+      <LABEL index="151" value="152"/>
+      <LABEL index="152" value="153"/>
+      <LABEL index="153" value="154"/>
+      <LABEL index="154" value="155"/>
+      <LABEL index="155" value="156"/>
+      <LABEL index="156" value="157"/>
+      <LABEL index="157" value="158"/>
+      <LABEL index="158" value="159"/>
+      <LABEL index="159" value="160"/>
+      <LABEL index="160" value="161"/>
+      <LABEL index="161" value="162"/>
+      <LABEL index="162" value="163"/>
+      <LABEL index="163" value="164"/>
+      <LABEL index="164" value="165"/>
+      <LABEL index="165" value="166"/>
+      <LABEL index="166" value="167"/>
+      <LABEL index="167" value="168"/>
+      <LABEL index="168" value="169"/>
+      <LABEL index="169" value="170"/>
+      <LABEL index="170" value="171"/>
+      <LABEL index="171" value="172"/>
+      <LABEL index="172" value="173"/>
+      <LABEL index="173" value="174"/>
+      <LABEL index="174" value="175"/>
+      <LABEL index="175" value="176"/>
+      <LABEL index="176" value="177"/>
+      <LABEL index="177" value="178"/>
+      <LABEL index="178" value="179"/>
+      <LABEL index="179" value="180"/>
+      <LABEL index="180" value="181"/>
+      <LABEL index="181" value="182"/>
+      <LABEL index="182" value="183"/>
+      <LABEL index="183" value="184"/>
+      <LABEL index="184" value="185"/>
+      <LABEL index="185" value="186"/>
+      <LABEL index="186" value="187"/>
+      <LABEL index="187" value="188"/>
+      <LABEL index="188" value="189"/>
+      <LABEL index="189" value="190"/>
+      <LABEL index="190" value="191"/>
+      <LABEL index="191" value="192"/>
+      <LABEL index="192" value="193"/>
+      <LABEL index="193" value="194"/>
+      <LABEL index="194" value="195"/>
+      <LABEL index="195" value="196"/>
+      <LABEL index="196" value="197"/>
+      <LABEL index="197" value="198"/>
+      <LABEL index="198" value="199"/>
+      <LABEL index="199" value="200"/>
+      <LABEL index="200" value="201"/>
+      <LABEL index="201" value="202"/>
+      <LABEL index="202" value="203"/>
+      <LABEL index="203" value="204"/>
+      <LABEL index="204" value="205"/>
+      <LABEL index="205" value="206"/>
+      <LABEL index="206" value="207"/>
+      <LABEL index="207" value="208"/>
+      <LABEL index="208" value="209"/>
+      <LABEL index="209" value="210"/>
+      <LABEL index="210" value="211"/>
+      <LABEL index="211" value="212"/>
+      <LABEL index="212" value="213"/>
+      <LABEL index="213" value="214"/>
+      <LABEL index="214" value="215"/>
+      <LABEL index="215" value="216"/>
+      <LABEL index="216" value="217"/>
+      <LABEL index="217" value="218"/>
+      <LABEL index="218" value="219"/>
+      <LABEL index="219" value="220"/>
+      <LABEL index="220" value="221"/>
+      <LABEL index="221" value="222"/>
+      <LABEL index="222" value="223"/>
+      <LABEL index="223" value="224"/>
+      <LABEL index="224" value="225"/>
+      <LABEL index="225" value="226"/>
+      <LABEL index="226" value="227"/>
+      <LABEL index="227" value="228"/>
+      <LABEL index="228" value="229"/>
+      <LABEL index="229" value="230"/>
+      <LABEL index="230" value="231"/>
+      <LABEL index="231" value="232"/>
+      <LABEL index="232" value="233"/>
+      <LABEL index="233" value="234"/>
+      <LABEL index="234" value="235"/>
+      <LABEL index="235" value="236"/>
+      <LABEL index="236" value="237"/>
+      <LABEL index="237" value="238"/>
+      <LABEL index="238" value="239"/>
+      <LABEL index="239" value="240"/>
+      <LABEL index="240" value="241"/>
+      <LABEL index="241" value="242"/>
+      <LABEL index="242" value="243"/>
+      <LABEL index="243" value="244"/>
+      <LABEL index="244" value="245"/>
+      <LABEL index="245" value="246"/>
+      <LABEL index="246" value="247"/>
+      <LABEL index="247" value="248"/>
+      <LABEL index="248" value="249"/>
+      <LABEL index="249" value="250"/>
+      <LABEL index="250" value="251"/>
+      <LABEL index="251" value="252"/>
+      <LABEL index="252" value="253"/>
+      <LABEL index="253" value="254"/>
+      <LABEL index="254" value="255"/>
+      <LABEL index="255" value="256"/>
+      <LABEL index="256" value="257"/>
+      <LABEL index="257" value="258"/>
+      <LABEL index="258" value="259"/>
+      <LABEL index="259" value="260"/>
+      <LABEL index="260" value="261"/>
+      <LABEL index="261" value="262"/>
+      <LABEL index="262" value="263"/>
+      <LABEL index="263" value="264"/>
+      <LABEL index="264" value="265"/>
+      <LABEL index="265" value="266"/>
+      <LABEL index="266" value="267"/>
+      <LABEL index="267" value="268"/>
+      <LABEL index="268" value="269"/>
+      <LABEL index="269" value="270"/>
+      <LABEL index="270" value="271"/>
+      <LABEL index="271" value="272"/>
+      <LABEL index="272" value="273"/>
+      <LABEL index="273" value="274"/>
+      <LABEL index="274" value="275"/>
+      <LABEL index="275" value="276"/>
+      <LABEL index="276" value="277"/>
+      <LABEL index="277" value="278"/>
+      <LABEL index="278" value="279"/>
+      <LABEL index="279" value="280"/>
+      <LABEL index="280" value="281"/>
+      <LABEL index="281" value="282"/>
+      <LABEL index="282" value="283"/>
+      <LABEL index="283" value="284"/>
+      <LABEL index="284" value="285"/>
+      <LABEL index="285" value="286"/>
+      <LABEL index="286" value="287"/>
+      <LABEL index="287" value="288"/>
+      <LABEL index="288" value="289"/>
+      <LABEL index="289" value="290"/>
+      <LABEL index="290" value="291"/>
+      <LABEL index="291" value="292"/>
+      <LABEL index="292" value="293"/>
+      <LABEL index="293" value="294"/>
+      <LABEL index="294" value="295"/>
+      <LABEL index="295" value="296"/>
+      <LABEL index="296" value="297"/>
+      <LABEL index="297" value="298"/>
+      <LABEL index="298" value="299"/>
+      <LABEL index="299" value="300"/>
+      <LABEL index="300" value="301"/>
+      <LABEL index="301" value="302"/>
+      <LABEL index="302" value="303"/>
+      <LABEL index="303" value="304"/>
+      <LABEL index="304" value="305"/>
+      <LABEL index="305" value="306"/>
+      <LABEL index="306" value="307"/>
+      <LABEL index="307" value="308"/>
+      <LABEL index="308" value="309"/>
+      <LABEL index="309" value="310"/>
+      <LABEL index="310" value="311"/>
+      <LABEL index="311" value="312"/>
+      <LABEL index="312" value="313"/>
+      <LABEL index="313" value="314"/>
+      <LABEL index="314" value="315"/>
+      <LABEL index="315" value="316"/>
+      <LABEL index="316" value="317"/>
+      <LABEL index="317" value="318"/>
+      <LABEL index="318" value="319"/>
+      <LABEL index="319" value="320"/>
+      <LABEL index="320" value="321"/>
+      <LABEL index="321" value="322"/>
+      <LABEL index="322" value="323"/>
+      <LABEL index="323" value="324"/>
+      <LABEL index="324" value="325"/>
+      <LABEL index="325" value="326"/>
+      <LABEL index="326" value="327"/>
+      <LABEL index="327" value="328"/>
+      <LABEL index="328" value="329"/>
+      <LABEL index="329" value="330"/>
+      <LABEL index="330" value="331"/>
+      <LABEL index="331" value="332"/>
+      <LABEL index="332" value="333"/>
+      <LABEL index="333" value="334"/>
+      <LABEL index="334" value="335"/>
+      <LABEL index="335" value="336"/>
+      <LABEL index="336" value="337"/>
+      <LABEL index="337" value="338"/>
+      <LABEL index="338" value="339"/>
+      <LABEL index="339" value="340"/>
+      <LABEL index="340" value="341"/>
+      <LABEL index="341" value="342"/>
+      <LABEL index="342" value="343"/>
+      <LABEL index="343" value="344"/>
+      <LABEL index="344" value="345"/>
+      <LABEL index="345" value="346"/>
+      <LABEL index="346" value="347"/>
+      <LABEL index="347" value="348"/>
+      <LABEL index="348" value="349"/>
+      <LABEL index="349" value="350"/>
+      <LABEL index="350" value="351"/>
+      <LABEL index="351" value="352"/>
+      <LABEL index="352" value="353"/>
+      <LABEL index="353" value="354"/>
+      <LABEL index="354" value="355"/>
+      <LABEL index="355" value="356"/>
+      <LABEL index="356" value="357"/>
+      <LABEL index="357" value="358"/>
+      <LABEL index="358" value="359"/>
+      <LABEL index="359" value="360"/>
+      <LABEL index="360" value="361"/>
+      <LABEL index="361" value="362"/>
+      <LABEL index="362" value="363"/>
+      <LABEL index="363" value="364"/>
+      <LABEL index="364" value="365"/>
+      <LABEL index="365" value="366"/>
+      <LABEL index="366" value="367"/>
+      <LABEL index="367" value="368"/>
+      <LABEL index="368" value="369"/>
+      <LABEL index="369" value="370"/>
+      <LABEL index="370" value="371"/>
+      <LABEL index="371" value="372"/>
+      <LABEL index="372" value="373"/>
+      <LABEL index="373" value="374"/>
+      <LABEL index="374" value="375"/>
+      <LABEL index="375" value="376"/>
+      <LABEL index="376" value="377"/>
+      <LABEL index="377" value="378"/>
+      <LABEL index="378" value="379"/>
+      <LABEL index="379" value="380"/>
+      <LABEL index="380" value="381"/>
+      <LABEL index="381" value="382"/>
+      <LABEL index="382" value="383"/>
+      <LABEL index="383" value="384"/>
+      <LABEL index="384" value="385"/>
+      <LABEL index="385" value="386"/>
+      <LABEL index="386" value="387"/>
+      <LABEL index="387" value="388"/>
+      <LABEL index="388" value="389"/>
+      <LABEL index="389" value="390"/>
+      <LABEL index="390" value="391"/>
+      <LABEL index="391" value="392"/>
+      <LABEL index="392" value="393"/>
+      <LABEL index="393" value="394"/>
+      <LABEL index="394" value="395"/>
+      <LABEL index="395" value="396"/>
+      <LABEL index="396" value="397"/>
+      <LABEL index="397" value="398"/>
+      <LABEL index="398" value="399"/>
+      <LABEL index="399" value="400"/>
+      <LABEL index="400" value="401"/>
+      <LABEL index="401" value="402"/>
+      <LABEL index="402" value="403"/>
+      <LABEL index="403" value="404"/>
+      <LABEL index="404" value="405"/>
+      <LABEL index="405" value="406"/>
+      <LABEL index="406" value="407"/>
+      <LABEL index="407" value="408"/>
+      <LABEL index="408" value="409"/>
+      <LABEL index="409" value="410"/>
+      <LABEL index="410" value="411"/>
+      <LABEL index="411" value="412"/>
+      <LABEL index="412" value="413"/>
+      <LABEL index="413" value="414"/>
+      <LABEL index="414" value="415"/>
+      <LABEL index="415" value="416"/>
+      <LABEL index="416" value="417"/>
+      <LABEL index="417" value="418"/>
+      <LABEL index="418" value="419"/>
+      <LABEL index="419" value="420"/>
+      <LABEL index="420" value="421"/>
+      <LABEL index="421" value="422"/>
+      <LABEL index="422" value="423"/>
+      <LABEL index="423" value="424"/>
+      <LABEL index="424" value="425"/>
+      <LABEL index="425" value="426"/>
+      <LABEL index="426" value="427"/>
+      <LABEL index="427" value="428"/>
+      <LABEL index="428" value="429"/>
+      <LABEL index="429" value="430"/>
+      <LABEL index="430" value="431"/>
+      <LABEL index="431" value="432"/>
+      <LABEL index="432" value="433"/>
+      <LABEL index="433" value="434"/>
+      <LABEL index="434" value="435"/>
+      <LABEL index="435" value="436"/>
+      <LABEL index="436" value="437"/>
+      <LABEL index="437" value="438"/>
+      <LABEL index="438" value="439"/>
+      <LABEL index="439" value="440"/>
+      <LABEL index="440" value="441"/>
+      <LABEL index="441" value="442"/>
+      <LABEL index="442" value="443"/>
+      <LABEL index="443" value="444"/>
+      <LABEL index="444" value="445"/>
+      <LABEL index="445" value="446"/>
+      <LABEL index="446" value="447"/>
+      <LABEL index="447" value="448"/>
+      <LABEL index="448" value="449"/>
+      <LABEL index="449" value="450"/>
+      <LABEL index="450" value="451"/>
+      <LABEL index="451" value="452"/>
+      <LABEL index="452" value="453"/>
+      <LABEL index="453" value="454"/>
+      <LABEL index="454" value="455"/>
+      <LABEL index="455" value="456"/>
+      <LABEL index="456" value="457"/>
+      <LABEL index="457" value="458"/>
+      <LABEL index="458" value="459"/>
+      <LABEL index="459" value="460"/>
+      <LABEL index="460" value="461"/>
+      <LABEL index="461" value="462"/>
+      <LABEL index="462" value="463"/>
+      <LABEL index="463" value="464"/>
+      <LABEL index="464" value="465"/>
+      <LABEL index="465" value="466"/>
+      <LABEL index="466" value="467"/>
+      <LABEL index="467" value="468"/>
+      <LABEL index="468" value="469"/>
+      <LABEL index="469" value="470"/>
+      <LABEL index="470" value="471"/>
+      <LABEL index="471" value="472"/>
+      <LABEL index="472" value="473"/>
+      <LABEL index="473" value="474"/>
+      <LABEL index="474" value="475"/>
+      <LABEL index="475" value="476"/>
+      <LABEL index="476" value="477"/>
+      <LABEL index="477" value="478"/>
+      <LABEL index="478" value="479"/>
+      <LABEL index="479" value="480"/>
+      <LABEL index="480" value="481"/>
+      <LABEL index="481" value="482"/>
+      <LABEL index="482" value="483"/>
+      <LABEL index="483" value="484"/>
+      <LABEL index="484" value="485"/>
+      <LABEL index="485" value="486"/>
+      <LABEL index="486" value="487"/>
+      <LABEL index="487" value="488"/>
+      <LABEL index="488" value="489"/>
+      <LABEL index="489" value="490"/>
+      <LABEL index="490" value="491"/>
+      <LABEL index="491" value="492"/>
+      <LABEL index="492" value="493"/>
+      <LABEL index="493" value="494"/>
+      <LABEL index="494" value="495"/>
+      <LABEL index="495" value="496"/>
+      <LABEL index="496" value="497"/>
+      <LABEL index="497" value="498"/>
+      <LABEL index="498" value="499"/>
+      <LABEL index="499" value="500"/>
+      <LABEL index="500" value="501"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>outflow factor</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x15242" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="501" signed="0" lsbfirst="1"/>
+      <MATH equation="X/65536">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1e" flags="0x0">
+    <title>MLHFM - Kennlinie fuer Heissfilmluftmassenmesser (512 Punkte) (MAF Sensor 512-Point Voltage Linearization Curve)</title>
+    <description>MLHFM - Kennlinie fuer Heissfilmluftmassenmesser (MAF Transfer Curve)
+
+GERMAN: Linearisierungskurve des Bosch Heissfilm-Luftmassenmessers. Wandelt 0-5V Sensorsignal in kg/h Luftmasse um.
+ENGLISH: 512-point MAF voltage calibration curve. Calibrates raw intake air sensor voltage directly into physical air mass flow in kg/h. Essential when upgrading to larger MAF housings or intake pipes.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>Voltage (V)</units>
+      <indexcount>512</indexcount>
+      <decimalpl>2</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value="0.00V"/>
+      <LABEL index="1" value="0.01V"/>
+      <LABEL index="2" value="0.02V"/>
+      <LABEL index="3" value="0.03V"/>
+      <LABEL index="4" value="0.04V"/>
+      <LABEL index="5" value="0.05V"/>
+      <LABEL index="6" value="0.06V"/>
+      <LABEL index="7" value="0.07V"/>
+      <LABEL index="8" value="0.08V"/>
+      <LABEL index="9" value="0.09V"/>
+      <LABEL index="10" value="0.10V"/>
+      <LABEL index="11" value="0.11V"/>
+      <LABEL index="12" value="0.12V"/>
+      <LABEL index="13" value="0.13V"/>
+      <LABEL index="14" value="0.14V"/>
+      <LABEL index="15" value="0.15V"/>
+      <LABEL index="16" value="0.16V"/>
+      <LABEL index="17" value="0.17V"/>
+      <LABEL index="18" value="0.18V"/>
+      <LABEL index="19" value="0.19V"/>
+      <LABEL index="20" value="0.20V"/>
+      <LABEL index="21" value="0.21V"/>
+      <LABEL index="22" value="0.22V"/>
+      <LABEL index="23" value="0.23V"/>
+      <LABEL index="24" value="0.23V"/>
+      <LABEL index="25" value="0.24V"/>
+      <LABEL index="26" value="0.25V"/>
+      <LABEL index="27" value="0.26V"/>
+      <LABEL index="28" value="0.27V"/>
+      <LABEL index="29" value="0.28V"/>
+      <LABEL index="30" value="0.29V"/>
+      <LABEL index="31" value="0.30V"/>
+      <LABEL index="32" value="0.31V"/>
+      <LABEL index="33" value="0.32V"/>
+      <LABEL index="34" value="0.33V"/>
+      <LABEL index="35" value="0.34V"/>
+      <LABEL index="36" value="0.35V"/>
+      <LABEL index="37" value="0.36V"/>
+      <LABEL index="38" value="0.37V"/>
+      <LABEL index="39" value="0.38V"/>
+      <LABEL index="40" value="0.39V"/>
+      <LABEL index="41" value="0.40V"/>
+      <LABEL index="42" value="0.41V"/>
+      <LABEL index="43" value="0.42V"/>
+      <LABEL index="44" value="0.43V"/>
+      <LABEL index="45" value="0.44V"/>
+      <LABEL index="46" value="0.45V"/>
+      <LABEL index="47" value="0.46V"/>
+      <LABEL index="48" value="0.47V"/>
+      <LABEL index="49" value="0.48V"/>
+      <LABEL index="50" value="0.49V"/>
+      <LABEL index="51" value="0.50V"/>
+      <LABEL index="52" value="0.51V"/>
+      <LABEL index="53" value="0.52V"/>
+      <LABEL index="54" value="0.53V"/>
+      <LABEL index="55" value="0.54V"/>
+      <LABEL index="56" value="0.55V"/>
+      <LABEL index="57" value="0.56V"/>
+      <LABEL index="58" value="0.57V"/>
+      <LABEL index="59" value="0.58V"/>
+      <LABEL index="60" value="0.59V"/>
+      <LABEL index="61" value="0.60V"/>
+      <LABEL index="62" value="0.61V"/>
+      <LABEL index="63" value="0.62V"/>
+      <LABEL index="64" value="0.63V"/>
+      <LABEL index="65" value="0.64V"/>
+      <LABEL index="66" value="0.65V"/>
+      <LABEL index="67" value="0.66V"/>
+      <LABEL index="68" value="0.67V"/>
+      <LABEL index="69" value="0.68V"/>
+      <LABEL index="70" value="0.68V"/>
+      <LABEL index="71" value="0.69V"/>
+      <LABEL index="72" value="0.70V"/>
+      <LABEL index="73" value="0.71V"/>
+      <LABEL index="74" value="0.72V"/>
+      <LABEL index="75" value="0.73V"/>
+      <LABEL index="76" value="0.74V"/>
+      <LABEL index="77" value="0.75V"/>
+      <LABEL index="78" value="0.76V"/>
+      <LABEL index="79" value="0.77V"/>
+      <LABEL index="80" value="0.78V"/>
+      <LABEL index="81" value="0.79V"/>
+      <LABEL index="82" value="0.80V"/>
+      <LABEL index="83" value="0.81V"/>
+      <LABEL index="84" value="0.82V"/>
+      <LABEL index="85" value="0.83V"/>
+      <LABEL index="86" value="0.84V"/>
+      <LABEL index="87" value="0.85V"/>
+      <LABEL index="88" value="0.86V"/>
+      <LABEL index="89" value="0.87V"/>
+      <LABEL index="90" value="0.88V"/>
+      <LABEL index="91" value="0.89V"/>
+      <LABEL index="92" value="0.90V"/>
+      <LABEL index="93" value="0.91V"/>
+      <LABEL index="94" value="0.92V"/>
+      <LABEL index="95" value="0.93V"/>
+      <LABEL index="96" value="0.94V"/>
+      <LABEL index="97" value="0.95V"/>
+      <LABEL index="98" value="0.96V"/>
+      <LABEL index="99" value="0.97V"/>
+      <LABEL index="100" value="0.98V"/>
+      <LABEL index="101" value="0.99V"/>
+      <LABEL index="102" value="1.00V"/>
+      <LABEL index="103" value="1.01V"/>
+      <LABEL index="104" value="1.02V"/>
+      <LABEL index="105" value="1.03V"/>
+      <LABEL index="106" value="1.04V"/>
+      <LABEL index="107" value="1.05V"/>
+      <LABEL index="108" value="1.06V"/>
+      <LABEL index="109" value="1.07V"/>
+      <LABEL index="110" value="1.08V"/>
+      <LABEL index="111" value="1.09V"/>
+      <LABEL index="112" value="1.10V"/>
+      <LABEL index="113" value="1.11V"/>
+      <LABEL index="114" value="1.12V"/>
+      <LABEL index="115" value="1.13V"/>
+      <LABEL index="116" value="1.14V"/>
+      <LABEL index="117" value="1.14V"/>
+      <LABEL index="118" value="1.15V"/>
+      <LABEL index="119" value="1.16V"/>
+      <LABEL index="120" value="1.17V"/>
+      <LABEL index="121" value="1.18V"/>
+      <LABEL index="122" value="1.19V"/>
+      <LABEL index="123" value="1.20V"/>
+      <LABEL index="124" value="1.21V"/>
+      <LABEL index="125" value="1.22V"/>
+      <LABEL index="126" value="1.23V"/>
+      <LABEL index="127" value="1.24V"/>
+      <LABEL index="128" value="1.25V"/>
+      <LABEL index="129" value="1.26V"/>
+      <LABEL index="130" value="1.27V"/>
+      <LABEL index="131" value="1.28V"/>
+      <LABEL index="132" value="1.29V"/>
+      <LABEL index="133" value="1.30V"/>
+      <LABEL index="134" value="1.31V"/>
+      <LABEL index="135" value="1.32V"/>
+      <LABEL index="136" value="1.33V"/>
+      <LABEL index="137" value="1.34V"/>
+      <LABEL index="138" value="1.35V"/>
+      <LABEL index="139" value="1.36V"/>
+      <LABEL index="140" value="1.37V"/>
+      <LABEL index="141" value="1.38V"/>
+      <LABEL index="142" value="1.39V"/>
+      <LABEL index="143" value="1.40V"/>
+      <LABEL index="144" value="1.41V"/>
+      <LABEL index="145" value="1.42V"/>
+      <LABEL index="146" value="1.43V"/>
+      <LABEL index="147" value="1.44V"/>
+      <LABEL index="148" value="1.45V"/>
+      <LABEL index="149" value="1.46V"/>
+      <LABEL index="150" value="1.47V"/>
+      <LABEL index="151" value="1.48V"/>
+      <LABEL index="152" value="1.49V"/>
+      <LABEL index="153" value="1.50V"/>
+      <LABEL index="154" value="1.51V"/>
+      <LABEL index="155" value="1.52V"/>
+      <LABEL index="156" value="1.53V"/>
+      <LABEL index="157" value="1.54V"/>
+      <LABEL index="158" value="1.55V"/>
+      <LABEL index="159" value="1.56V"/>
+      <LABEL index="160" value="1.57V"/>
+      <LABEL index="161" value="1.58V"/>
+      <LABEL index="162" value="1.59V"/>
+      <LABEL index="163" value="1.59V"/>
+      <LABEL index="164" value="1.60V"/>
+      <LABEL index="165" value="1.61V"/>
+      <LABEL index="166" value="1.62V"/>
+      <LABEL index="167" value="1.63V"/>
+      <LABEL index="168" value="1.64V"/>
+      <LABEL index="169" value="1.65V"/>
+      <LABEL index="170" value="1.66V"/>
+      <LABEL index="171" value="1.67V"/>
+      <LABEL index="172" value="1.68V"/>
+      <LABEL index="173" value="1.69V"/>
+      <LABEL index="174" value="1.70V"/>
+      <LABEL index="175" value="1.71V"/>
+      <LABEL index="176" value="1.72V"/>
+      <LABEL index="177" value="1.73V"/>
+      <LABEL index="178" value="1.74V"/>
+      <LABEL index="179" value="1.75V"/>
+      <LABEL index="180" value="1.76V"/>
+      <LABEL index="181" value="1.77V"/>
+      <LABEL index="182" value="1.78V"/>
+      <LABEL index="183" value="1.79V"/>
+      <LABEL index="184" value="1.80V"/>
+      <LABEL index="185" value="1.81V"/>
+      <LABEL index="186" value="1.82V"/>
+      <LABEL index="187" value="1.83V"/>
+      <LABEL index="188" value="1.84V"/>
+      <LABEL index="189" value="1.85V"/>
+      <LABEL index="190" value="1.86V"/>
+      <LABEL index="191" value="1.87V"/>
+      <LABEL index="192" value="1.88V"/>
+      <LABEL index="193" value="1.89V"/>
+      <LABEL index="194" value="1.90V"/>
+      <LABEL index="195" value="1.91V"/>
+      <LABEL index="196" value="1.92V"/>
+      <LABEL index="197" value="1.93V"/>
+      <LABEL index="198" value="1.94V"/>
+      <LABEL index="199" value="1.95V"/>
+      <LABEL index="200" value="1.96V"/>
+      <LABEL index="201" value="1.97V"/>
+      <LABEL index="202" value="1.98V"/>
+      <LABEL index="203" value="1.99V"/>
+      <LABEL index="204" value="2.00V"/>
+      <LABEL index="205" value="2.01V"/>
+      <LABEL index="206" value="2.02V"/>
+      <LABEL index="207" value="2.03V"/>
+      <LABEL index="208" value="2.04V"/>
+      <LABEL index="209" value="2.05V"/>
+      <LABEL index="210" value="2.05V"/>
+      <LABEL index="211" value="2.06V"/>
+      <LABEL index="212" value="2.07V"/>
+      <LABEL index="213" value="2.08V"/>
+      <LABEL index="214" value="2.09V"/>
+      <LABEL index="215" value="2.10V"/>
+      <LABEL index="216" value="2.11V"/>
+      <LABEL index="217" value="2.12V"/>
+      <LABEL index="218" value="2.13V"/>
+      <LABEL index="219" value="2.14V"/>
+      <LABEL index="220" value="2.15V"/>
+      <LABEL index="221" value="2.16V"/>
+      <LABEL index="222" value="2.17V"/>
+      <LABEL index="223" value="2.18V"/>
+      <LABEL index="224" value="2.19V"/>
+      <LABEL index="225" value="2.20V"/>
+      <LABEL index="226" value="2.21V"/>
+      <LABEL index="227" value="2.22V"/>
+      <LABEL index="228" value="2.23V"/>
+      <LABEL index="229" value="2.24V"/>
+      <LABEL index="230" value="2.25V"/>
+      <LABEL index="231" value="2.26V"/>
+      <LABEL index="232" value="2.27V"/>
+      <LABEL index="233" value="2.28V"/>
+      <LABEL index="234" value="2.29V"/>
+      <LABEL index="235" value="2.30V"/>
+      <LABEL index="236" value="2.31V"/>
+      <LABEL index="237" value="2.32V"/>
+      <LABEL index="238" value="2.33V"/>
+      <LABEL index="239" value="2.34V"/>
+      <LABEL index="240" value="2.35V"/>
+      <LABEL index="241" value="2.36V"/>
+      <LABEL index="242" value="2.37V"/>
+      <LABEL index="243" value="2.38V"/>
+      <LABEL index="244" value="2.39V"/>
+      <LABEL index="245" value="2.40V"/>
+      <LABEL index="246" value="2.41V"/>
+      <LABEL index="247" value="2.42V"/>
+      <LABEL index="248" value="2.43V"/>
+      <LABEL index="249" value="2.44V"/>
+      <LABEL index="250" value="2.45V"/>
+      <LABEL index="251" value="2.46V"/>
+      <LABEL index="252" value="2.47V"/>
+      <LABEL index="253" value="2.48V"/>
+      <LABEL index="254" value="2.49V"/>
+      <LABEL index="255" value="2.50V"/>
+      <LABEL index="256" value="2.50V"/>
+      <LABEL index="257" value="2.51V"/>
+      <LABEL index="258" value="2.52V"/>
+      <LABEL index="259" value="2.53V"/>
+      <LABEL index="260" value="2.54V"/>
+      <LABEL index="261" value="2.55V"/>
+      <LABEL index="262" value="2.56V"/>
+      <LABEL index="263" value="2.57V"/>
+      <LABEL index="264" value="2.58V"/>
+      <LABEL index="265" value="2.59V"/>
+      <LABEL index="266" value="2.60V"/>
+      <LABEL index="267" value="2.61V"/>
+      <LABEL index="268" value="2.62V"/>
+      <LABEL index="269" value="2.63V"/>
+      <LABEL index="270" value="2.64V"/>
+      <LABEL index="271" value="2.65V"/>
+      <LABEL index="272" value="2.66V"/>
+      <LABEL index="273" value="2.67V"/>
+      <LABEL index="274" value="2.68V"/>
+      <LABEL index="275" value="2.69V"/>
+      <LABEL index="276" value="2.70V"/>
+      <LABEL index="277" value="2.71V"/>
+      <LABEL index="278" value="2.72V"/>
+      <LABEL index="279" value="2.73V"/>
+      <LABEL index="280" value="2.74V"/>
+      <LABEL index="281" value="2.75V"/>
+      <LABEL index="282" value="2.76V"/>
+      <LABEL index="283" value="2.77V"/>
+      <LABEL index="284" value="2.78V"/>
+      <LABEL index="285" value="2.79V"/>
+      <LABEL index="286" value="2.80V"/>
+      <LABEL index="287" value="2.81V"/>
+      <LABEL index="288" value="2.82V"/>
+      <LABEL index="289" value="2.83V"/>
+      <LABEL index="290" value="2.84V"/>
+      <LABEL index="291" value="2.85V"/>
+      <LABEL index="292" value="2.86V"/>
+      <LABEL index="293" value="2.87V"/>
+      <LABEL index="294" value="2.88V"/>
+      <LABEL index="295" value="2.89V"/>
+      <LABEL index="296" value="2.90V"/>
+      <LABEL index="297" value="2.91V"/>
+      <LABEL index="298" value="2.92V"/>
+      <LABEL index="299" value="2.93V"/>
+      <LABEL index="300" value="2.94V"/>
+      <LABEL index="301" value="2.95V"/>
+      <LABEL index="302" value="2.95V"/>
+      <LABEL index="303" value="2.96V"/>
+      <LABEL index="304" value="2.97V"/>
+      <LABEL index="305" value="2.98V"/>
+      <LABEL index="306" value="2.99V"/>
+      <LABEL index="307" value="3.00V"/>
+      <LABEL index="308" value="3.01V"/>
+      <LABEL index="309" value="3.02V"/>
+      <LABEL index="310" value="3.03V"/>
+      <LABEL index="311" value="3.04V"/>
+      <LABEL index="312" value="3.05V"/>
+      <LABEL index="313" value="3.06V"/>
+      <LABEL index="314" value="3.07V"/>
+      <LABEL index="315" value="3.08V"/>
+      <LABEL index="316" value="3.09V"/>
+      <LABEL index="317" value="3.10V"/>
+      <LABEL index="318" value="3.11V"/>
+      <LABEL index="319" value="3.12V"/>
+      <LABEL index="320" value="3.13V"/>
+      <LABEL index="321" value="3.14V"/>
+      <LABEL index="322" value="3.15V"/>
+      <LABEL index="323" value="3.16V"/>
+      <LABEL index="324" value="3.17V"/>
+      <LABEL index="325" value="3.18V"/>
+      <LABEL index="326" value="3.19V"/>
+      <LABEL index="327" value="3.20V"/>
+      <LABEL index="328" value="3.21V"/>
+      <LABEL index="329" value="3.22V"/>
+      <LABEL index="330" value="3.23V"/>
+      <LABEL index="331" value="3.24V"/>
+      <LABEL index="332" value="3.25V"/>
+      <LABEL index="333" value="3.26V"/>
+      <LABEL index="334" value="3.27V"/>
+      <LABEL index="335" value="3.28V"/>
+      <LABEL index="336" value="3.29V"/>
+      <LABEL index="337" value="3.30V"/>
+      <LABEL index="338" value="3.31V"/>
+      <LABEL index="339" value="3.32V"/>
+      <LABEL index="340" value="3.33V"/>
+      <LABEL index="341" value="3.34V"/>
+      <LABEL index="342" value="3.35V"/>
+      <LABEL index="343" value="3.36V"/>
+      <LABEL index="344" value="3.37V"/>
+      <LABEL index="345" value="3.38V"/>
+      <LABEL index="346" value="3.39V"/>
+      <LABEL index="347" value="3.40V"/>
+      <LABEL index="348" value="3.41V"/>
+      <LABEL index="349" value="3.41V"/>
+      <LABEL index="350" value="3.42V"/>
+      <LABEL index="351" value="3.43V"/>
+      <LABEL index="352" value="3.44V"/>
+      <LABEL index="353" value="3.45V"/>
+      <LABEL index="354" value="3.46V"/>
+      <LABEL index="355" value="3.47V"/>
+      <LABEL index="356" value="3.48V"/>
+      <LABEL index="357" value="3.49V"/>
+      <LABEL index="358" value="3.50V"/>
+      <LABEL index="359" value="3.51V"/>
+      <LABEL index="360" value="3.52V"/>
+      <LABEL index="361" value="3.53V"/>
+      <LABEL index="362" value="3.54V"/>
+      <LABEL index="363" value="3.55V"/>
+      <LABEL index="364" value="3.56V"/>
+      <LABEL index="365" value="3.57V"/>
+      <LABEL index="366" value="3.58V"/>
+      <LABEL index="367" value="3.59V"/>
+      <LABEL index="368" value="3.60V"/>
+      <LABEL index="369" value="3.61V"/>
+      <LABEL index="370" value="3.62V"/>
+      <LABEL index="371" value="3.63V"/>
+      <LABEL index="372" value="3.64V"/>
+      <LABEL index="373" value="3.65V"/>
+      <LABEL index="374" value="3.66V"/>
+      <LABEL index="375" value="3.67V"/>
+      <LABEL index="376" value="3.68V"/>
+      <LABEL index="377" value="3.69V"/>
+      <LABEL index="378" value="3.70V"/>
+      <LABEL index="379" value="3.71V"/>
+      <LABEL index="380" value="3.72V"/>
+      <LABEL index="381" value="3.73V"/>
+      <LABEL index="382" value="3.74V"/>
+      <LABEL index="383" value="3.75V"/>
+      <LABEL index="384" value="3.76V"/>
+      <LABEL index="385" value="3.77V"/>
+      <LABEL index="386" value="3.78V"/>
+      <LABEL index="387" value="3.79V"/>
+      <LABEL index="388" value="3.80V"/>
+      <LABEL index="389" value="3.81V"/>
+      <LABEL index="390" value="3.82V"/>
+      <LABEL index="391" value="3.83V"/>
+      <LABEL index="392" value="3.84V"/>
+      <LABEL index="393" value="3.85V"/>
+      <LABEL index="394" value="3.86V"/>
+      <LABEL index="395" value="3.86V"/>
+      <LABEL index="396" value="3.87V"/>
+      <LABEL index="397" value="3.88V"/>
+      <LABEL index="398" value="3.89V"/>
+      <LABEL index="399" value="3.90V"/>
+      <LABEL index="400" value="3.91V"/>
+      <LABEL index="401" value="3.92V"/>
+      <LABEL index="402" value="3.93V"/>
+      <LABEL index="403" value="3.94V"/>
+      <LABEL index="404" value="3.95V"/>
+      <LABEL index="405" value="3.96V"/>
+      <LABEL index="406" value="3.97V"/>
+      <LABEL index="407" value="3.98V"/>
+      <LABEL index="408" value="3.99V"/>
+      <LABEL index="409" value="4.00V"/>
+      <LABEL index="410" value="4.01V"/>
+      <LABEL index="411" value="4.02V"/>
+      <LABEL index="412" value="4.03V"/>
+      <LABEL index="413" value="4.04V"/>
+      <LABEL index="414" value="4.05V"/>
+      <LABEL index="415" value="4.06V"/>
+      <LABEL index="416" value="4.07V"/>
+      <LABEL index="417" value="4.08V"/>
+      <LABEL index="418" value="4.09V"/>
+      <LABEL index="419" value="4.10V"/>
+      <LABEL index="420" value="4.11V"/>
+      <LABEL index="421" value="4.12V"/>
+      <LABEL index="422" value="4.13V"/>
+      <LABEL index="423" value="4.14V"/>
+      <LABEL index="424" value="4.15V"/>
+      <LABEL index="425" value="4.16V"/>
+      <LABEL index="426" value="4.17V"/>
+      <LABEL index="427" value="4.18V"/>
+      <LABEL index="428" value="4.19V"/>
+      <LABEL index="429" value="4.20V"/>
+      <LABEL index="430" value="4.21V"/>
+      <LABEL index="431" value="4.22V"/>
+      <LABEL index="432" value="4.23V"/>
+      <LABEL index="433" value="4.24V"/>
+      <LABEL index="434" value="4.25V"/>
+      <LABEL index="435" value="4.26V"/>
+      <LABEL index="436" value="4.27V"/>
+      <LABEL index="437" value="4.28V"/>
+      <LABEL index="438" value="4.29V"/>
+      <LABEL index="439" value="4.30V"/>
+      <LABEL index="440" value="4.31V"/>
+      <LABEL index="441" value="4.32V"/>
+      <LABEL index="442" value="4.32V"/>
+      <LABEL index="443" value="4.33V"/>
+      <LABEL index="444" value="4.34V"/>
+      <LABEL index="445" value="4.35V"/>
+      <LABEL index="446" value="4.36V"/>
+      <LABEL index="447" value="4.37V"/>
+      <LABEL index="448" value="4.38V"/>
+      <LABEL index="449" value="4.39V"/>
+      <LABEL index="450" value="4.40V"/>
+      <LABEL index="451" value="4.41V"/>
+      <LABEL index="452" value="4.42V"/>
+      <LABEL index="453" value="4.43V"/>
+      <LABEL index="454" value="4.44V"/>
+      <LABEL index="455" value="4.45V"/>
+      <LABEL index="456" value="4.46V"/>
+      <LABEL index="457" value="4.47V"/>
+      <LABEL index="458" value="4.48V"/>
+      <LABEL index="459" value="4.49V"/>
+      <LABEL index="460" value="4.50V"/>
+      <LABEL index="461" value="4.51V"/>
+      <LABEL index="462" value="4.52V"/>
+      <LABEL index="463" value="4.53V"/>
+      <LABEL index="464" value="4.54V"/>
+      <LABEL index="465" value="4.55V"/>
+      <LABEL index="466" value="4.56V"/>
+      <LABEL index="467" value="4.57V"/>
+      <LABEL index="468" value="4.58V"/>
+      <LABEL index="469" value="4.59V"/>
+      <LABEL index="470" value="4.60V"/>
+      <LABEL index="471" value="4.61V"/>
+      <LABEL index="472" value="4.62V"/>
+      <LABEL index="473" value="4.63V"/>
+      <LABEL index="474" value="4.64V"/>
+      <LABEL index="475" value="4.65V"/>
+      <LABEL index="476" value="4.66V"/>
+      <LABEL index="477" value="4.67V"/>
+      <LABEL index="478" value="4.68V"/>
+      <LABEL index="479" value="4.69V"/>
+      <LABEL index="480" value="4.70V"/>
+      <LABEL index="481" value="4.71V"/>
+      <LABEL index="482" value="4.72V"/>
+      <LABEL index="483" value="4.73V"/>
+      <LABEL index="484" value="4.74V"/>
+      <LABEL index="485" value="4.75V"/>
+      <LABEL index="486" value="4.76V"/>
+      <LABEL index="487" value="4.77V"/>
+      <LABEL index="488" value="4.77V"/>
+      <LABEL index="489" value="4.78V"/>
+      <LABEL index="490" value="4.79V"/>
+      <LABEL index="491" value="4.80V"/>
+      <LABEL index="492" value="4.81V"/>
+      <LABEL index="493" value="4.82V"/>
+      <LABEL index="494" value="4.83V"/>
+      <LABEL index="495" value="4.84V"/>
+      <LABEL index="496" value="4.85V"/>
+      <LABEL index="497" value="4.86V"/>
+      <LABEL index="498" value="4.87V"/>
+      <LABEL index="499" value="4.88V"/>
+      <LABEL index="500" value="4.89V"/>
+      <LABEL index="501" value="4.90V"/>
+      <LABEL index="502" value="4.91V"/>
+      <LABEL index="503" value="4.92V"/>
+      <LABEL index="504" value="4.93V"/>
+      <LABEL index="505" value="4.94V"/>
+      <LABEL index="506" value="4.95V"/>
+      <LABEL index="507" value="4.96V"/>
+      <LABEL index="508" value="4.97V"/>
+      <LABEL index="509" value="4.98V"/>
+      <LABEL index="510" value="4.99V"/>
+      <LABEL index="511" value="5.00V"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>kg/h</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x15694" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="512" signed="0" lsbfirst="1"/>
+      <MATH equation="0.1*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x1f" flags="0x0">
+    <title>KFWDKMSN - Kennfeld fuer Drosselklappen-Sollwinkel (Target Throttle Plate Angle from Demanded Airflow)</title>
+    <description>KFWDKMSN - Kennfeld fuer Drosselklappen-Sollwinkel (Inverse Throttle Model)
+
+GERMAN: Sollwert fuer den Drosselklappenwinkel abhaengig von normiertem Luftmassenstrom (mlwdknf_w) und Drehzahl (nmot_w). Mathematisches Inverses zu KFMSNWDK.
+ENGLISH: Inverse throttle flow model. Calculates target physical throttle blade angle (%) needed to achieve demanded mass airflow at given RPM.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x15afc" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.25*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>msndko (norm flow)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x15adc" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.1*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>% throttle angle</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x15b08" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="6" signed="0" lsbfirst="1"/>
+      <MATH equation="X*100/65535">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x20" flags="0x0">
+    <title>KFMIRL - Kennfeld fuer Sollfuellung aus relativem Motormoment (Engine Load Fill Target from Requested Torque)</title>
+    <description>KFMIRL - Kennfeld fuer Sollfuellung aus relativem Motormoment (Torque to Load)
+
+GERMAN: Kernkennfeld des Bosch ME7-Momentenmanagers. Berechnet aus dem angeforderten Drehmoment (misopl) die erforderliche Zylinder-Luftfuellung (rl).
+ENGLISH: Fundamental Bosch ME7 torque-to-load translation map. Converts requested torque demand into target intake manifold cylinder fill.</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>misopl (% torque)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x15c26" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.0015258789*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot (RPM)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x15c06" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.25*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>Load % fill</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x15c46" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="16" signed="0" lsbfirst="1"/>
+      <MATH equation="0.0234375*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x21" flags="0x0">
+    <title>KFMDS - Schleppmoment Drehzahl- und Lastabhaengigkeit (Engine Mechanical Drag &amp; Friction Torque Loss Model)</title>
+    <description>KFMDS - Schleppmoment Drehzahl- und Lastabhaengigkeit
+
+GERMAN: Verlustmoment des Grundmotors (innere Reibung und Ladungswechselverluste) abhaengig von Drehzahl (nmot_w) und Motorlast (rl_w).
+ENGLISH: Internal engine friction and pumping loss drag torque map. Critical component of Bosch torque architecture (mibas = miopt - mds).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>nmot_w (RPM)</units>
+      <indexcount>10</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x161bc" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.25*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>rl_w (load %)</units>
+      <indexcount>12</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x161d0" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.0234375*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>% drag torque</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x161e8" mmedelementsizebits="16" mmedrowcount="12" mmedcolcount="10" signed="0" lsbfirst="1"/>
+      <MATH equation="0.0015259022*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x22" flags="0x0">
+    <title>KFPED - Kennfeld Fahrpedal-Wunschmoment (Driver Demanded Torque vs Accelerator Pedal Position)</title>
+    <description>KFPED - Kennfeld Fahrpedal-Wunschmoment (E-Gas Throttle Response)
+
+GERMAN: Wandelt die elektronische Fahrpedalstellung (wped) in ein Fahrer-Wunschmoment um. Bestimmt das Gaspedal-Ansprechverhalten des Autos.
+ENGLISH: Drive-by-wire accelerator pedal transfer map. Translates pedal travel percentage into commanded engine torque. Adjusting this modifies throttle sensitivity and linearity.</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>13</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x16452" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.25*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>wped (pedal %)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x16432" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.0015259*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>% demanded torque</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1646c" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="13" signed="0" lsbfirst="1"/>
+      <MATH equation="X*200/65535">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x23" flags="0x0">
+    <title>KFPEDR - Kennfeld Fahrpedal-Wunschmoment Rueckwaertsgang (Driver Demanded Torque in Reverse Gear)</title>
+    <description>KFPEDR - Kennfeld Fahrpedal-Wunschmoment Rueckwaertsgang
+
+GERMAN: Spezielle gedaempfte Gaspedalkennlinie bei eingelegtem Rueckwaertsgang fuer kontrolliertes Rangieren.
+ENGLISH: Reverse gear pedal response map. Attenuated throttle curve for smooth, safe low-speed reversing.</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x16630" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.25*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>wped (pedal %)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x16610" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.0015259*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>% demanded torque</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x16640" mmedelementsizebits="16" mmedrowcount="16" mmedcolcount="8" signed="0" lsbfirst="1"/>
+      <MATH equation="X*200/65535">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFCONSTANT uniqueid="0x24">
+    <title>NMAX - Drehzahlbegrenzung (Normalbetrieb) (Primary Rev Limiter Threshold (NMAX))</title>
+    <description>NMAX - Primary engine speed rev limiter threshold (1x1 UWORD LE, 0.25*X rpm).
+CODE_VERIFIED: OEM y966ohc.ori raw 28800 (0x7080 LE) = 7200.0 rpm; CatsOn_7000 = 7000.0 rpm; MildBurble_KFSU = 7400.0 rpm live-verified on car.</description>
+    <CATEGORYMEM index="0" category="7"/>
+    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1675c" mmedelementsizebits="16" lsbfirst="1"/>
+    <units>rpm</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0"/>
+    <MATH equation="0.25*X">
+      <VAR id="X"/>
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x25">
+    <title>NMAXOG - Obere Drehzahlgrenze (Hard Cut / Overrev) (Upper Rev Limiter Threshold (NMAXOG))</title>
+    <description>NMAXOG - Upper engine speed rev limiter / hard-cut threshold (1x1 UWORD LE, 0.25*X rpm).
+CODE_VERIFIED: OEM y966ohc.ori raw 28800 (0x7080 LE) = 7200.0 rpm; adjacent to NMAX @ 0x1675C.</description>
+    <CATEGORYMEM index="0" category="7"/>
+    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1675e" mmedelementsizebits="16" lsbfirst="1"/>
+    <units>rpm</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0"/>
+    <MATH equation="0.25*X">
+      <VAR id="X"/>
+    </MATH>
+  </XDFCONSTANT>
+  <XDFTABLE uniqueid="0x26" flags="0x0">
+    <title>DWVLSN - Delta - Zündwinkel Vollast spät Motorschutz (Delta - Zündwinkel Vollast spät Motorschutz)</title>
+    <description>DWVLSN - Delta - Zündwinkel Vollast spät Motorschutz
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="7"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>7</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x168c9" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>grad KW</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x168d0" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="7" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x27" flags="0x0">
+    <title>KFRLIP_UM - Kennfeld für rl - Berechnung aus Drosselklappenwinkel in der Funktionsüberwachg (Kennfeld für rl - Berechnung aus Drosselklappenwinkel in der Funktionsüberwachg)</title>
+    <description>KFRLIP_UM - Kennfeld für rl - Berechnung aus Drosselklappenwinkel in der Funktionsüberwachg
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.995).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>spg_ub_q0p019</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x17b14" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.019531*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot_ub_q40</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x17b1c" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40.0*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>%</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x17b24" mmedelementsizebits="8" mmedrowcount="8" mmedcolcount="8" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x28" flags="0x0">
+    <title>WDKSNLN - Sollwinkel für Drosselklappe bei Kl15 aus (Sollwinkel für Drosselklappe bei Kl15 aus)</title>
+    <description>WDKSNLN - Sollwinkel für Drosselklappe bei Kl15 aus
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.948).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x17b7f" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>% DK</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x17b87" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="8" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x29" flags="0x0">
+    <title>FVSTMKG - Gemischkorrektur Tmot-Abhängig bei VS von klein nach groß (Gemischkorrektur Tmot-Abhängig bei VS von klein nach groß)</title>
+    <description>FVSTMKG - Gemischkorrektur Tmot-Abhängig bei VS von klein nach groß
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.996).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x17c1a" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x17c22" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="8" signed="0"/>
+      <MATH equation="0.00390625 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x2a" flags="0x0">
+    <title>TVLLRPD - Maximale Verzögerungszeit für Freigabe PD-Anteil nach Start (Maximale Verzögerungszeit für Freigabe PD-Anteil nach Start)</title>
+    <description>TVLLRPD - Maximale Verzögerungszeit für Freigabe PD-Anteil nach Start
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.966).</description>
+    <CATEGORYMEM index="0" category="7"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x190f1" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>s</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x190f7" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="6" signed="0"/>
+      <MATH equation="0.02 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x2b" flags="0x0">
+    <title>FBTEB - Faktor Begrenzung Lerngeschwindigkeit für Beladung (Faktor Begrenzung Lerngeschwindigkeit für Beladung)</title>
+    <description>FBTEB - Faktor Begrenzung Lerngeschwindigkeit für Beladung
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x190ff" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x19105" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="6" signed="0"/>
+      <MATH equation="0.00390625 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x2c" flags="0x0">
+    <title>FETATEBN - Kennlinie für drehzahlabhängigen Sollwert des Motorwirkungsgrades (Kennlinie für drehzahlabhängigen Sollwert des Motorwirkungsgrades)</title>
+    <description>FETATEBN - Kennlinie für drehzahlabhängigen Sollwert des Motorwirkungsgrades
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19119" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1911e" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="5" signed="0"/>
+      <MATH equation="0.00390625 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x2d" flags="0x0">
+    <title>FQTEVA - Progression bei Spülratenaufsteuerung (Progression bei Spülratenaufsteuerung)</title>
+    <description>FQTEVA - Progression bei Spülratenaufsteuerung
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19124" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1912a" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="6" signed="0"/>
+      <MATH equation="0.0625 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x2e" flags="0x0">
+    <title>FTEINIX - Kennlinie Max. Spülrate abhängig vom Integral Massenstrom TE nach TE Stop (Kennlinie Max. Spülrate abhängig vom Integral Massenstrom TE nach TE Stop)</title>
+    <description>FTEINIX - Kennlinie Max. Spülrate abhängig vom Integral Massenstrom TE nach TE Stop
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19136" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1913b" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="5" signed="0"/>
+      <MATH equation="0.001953125 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x2f" flags="0x0">
+    <title>FLTEFUEL - Faktor Anteil TEV Strom, der direkt ins Saugrohr strömt (Faktor Anteil TEV Strom, der direkt ins Saugrohr strömt)</title>
+    <description>FLTEFUEL - Faktor Anteil TEV Strom, der direkt ins Saugrohr strömt
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.988).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>4</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1929b" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1929f" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="4" signed="0"/>
+      <MATH equation="0.00390625 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFCONSTANT uniqueid="0x30">
+    <title>TVSUNA - Verzögerungszeit für Saugrohrumschaltung, wenn nicht angesteuert (Verzögerungszeit für Saugrohrumschaltung, wenn nicht angesteuert)</title>
+    <description>TVSUNA - Verzögerungszeit für Saugrohrumschaltung, wenn nicht angesteuert
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.984).</description>
+    <CATEGORYMEM index="0" category="5"/>
+    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x19800" mmedelementsizebits="8"/>
+    <units>s</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0"/>
+    <MATH equation="0.05 * X">
+      <VAR id="X"/>
+    </MATH>
+  </XDFCONSTANT>
+  <XDFTABLE uniqueid="0x31" flags="0x0">
+    <title>FMSML - Abgasgegendruckkorrektur der Sekundärluftmasse (Abgasgegendruckkorrektur der Sekundärluftmasse)</title>
+    <description>FMSML - Abgasgegendruckkorrektur der Sekundärluftmasse
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19343" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1934b" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="8" signed="0"/>
+      <MATH equation="0.0078125 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x32" flags="0x0">
+    <title>MSLUB - Sekundärluftmasse abhängig von der Batteriespannung (Sekundärluftmasse abhängig von der Batteriespannung)</title>
+    <description>MSLUB - Sekundärluftmasse abhängig von der Batteriespannung
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19368" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>kg</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x19370" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="8" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x33" flags="0x0">
+    <title>KFTPKOR - Korrekturkennfeld fuer gemessene Periodendauer TP (Rough Road &amp; Misfire Detection TP Period Correction)</title>
+    <description>KFTPKOR - Korrekturkennfeld fuer gemessene Periodendauer TP
+
+GERMAN: Korrekturfaktor fuer die gemessene Segmentzeit (Periodendauer) zur Kompensation von Torsionsschwingungen und Lastwechseln bei der Aussetzererkennung.
+ENGLISH: Crankshaft segment period measurement correction factor used by OBD-II misfire detection and rough road dampening algorithms.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x195c9" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>rl (load %)</units>
+      <indexcount>7</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x195d2" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>factor</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x195d9" mmedelementsizebits="8" mmedrowcount="7" mmedcolcount="8" signed="0"/>
+      <MATH equation="0.0078125*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x34" flags="0x0">
+    <title>FDVANS - Temperaturfaktor für Drosselventildurchfluß (Temperaturfaktor für Drosselventildurchfluß)</title>
+    <description>FDVANS - Temperaturfaktor für Drosselventildurchfluß
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.999).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19674" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1967c" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="8" signed="0"/>
+      <MATH equation="0.0078125 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x35" flags="0x0">
+    <title>KFSU - Kennfeld fuer Saugrohrumschaltung (Klappe 1) (Intake Manifold Resonance Flap 1 Schedule)</title>
+    <description>KFSU - Kennfeld fuer Saugrohrumschaltung (Intake Resonance Flap)
+
+GERMAN: Steuerung der elektromagnetischen Resonanzklappe im Schaltsaugrohr.
+STATES: 0=Geschlossen (lange Saugrohre / Leerlauf), 1=Debounce Hysterese (Zustand halten), 2=Offen (Helmholtz-Resonanzaufladung fuer Drehmomentstoss zwischen 3040 und 4840 RPM).
+ENGLISH: Intake resonance changeover flap control. State 0=Closed (long runner), 1=Debounce hold, 2=Open (Helmholtz acoustic crossover tuning for mid-range torque).</description>
+    <CATEGORYMEM index="0" category="5"/>
+    <XDFAXIS id="x">
+      <units>temp_su_nmot (RPM)</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19788" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>rlshk (load %)</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1978e" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>state (0=Shut, 1=Hold, 2=Open)</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x19794" mmedelementsizebits="8" mmedrowcount="6" mmedcolcount="6" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x36" flags="0x0">
+    <title>KFSU2 - Kennfeld fuer Saugrohrumschaltung Klappe 2 (Inaktiv) (Intake Manifold Resonance Flap 2 (Disabled / Zeroed))</title>
+    <description>KFSU2 - Kennfeld fuer Saugrohrumschaltung Klappe 2
+
+GERMAN: Steuerkennfeld fuer zweite Resonanzklappe. Beim 986 Boxster S 3.2L stillgelegt (reine Nullen), da nur eine Klappe physisch verbaut ist.
+ENGLISH: Secondary intake flap matrix. Unused/zeroed in software on 986 Boxster S (single flap manifold).</description>
+    <CATEGORYMEM index="0" category="5"/>
+    <XDFAXIS id="x">
+      <units>temp_su_nmot (RPM)</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x197ba" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>rlshk (load %)</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x197c0" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>state (disabled/zeros)</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x197c6" mmedelementsizebits="8" mmedrowcount="6" mmedcolcount="6" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x37" flags="0x0">
+    <title>FWET - Faktor Wiedereinsetzmenge temperaturabhaengig (Faktor Wiedereinsetzmenge temperaturabhaengig)</title>
+    <description>FWET - Faktor Wiedereinsetzmenge temperaturabhaengig
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.980).</description>
+    <CATEGORYMEM index="0" category="4"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>9</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19a67" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x19a70" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="9" signed="0"/>
+      <MATH equation="0.0078125 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x38" flags="0x0">
+    <title>FQTEDL - Kennlinie Faktor für exponentielle Absteuerung Spülrate (Kennlinie Faktor für exponentielle Absteuerung Spülrate)</title>
+    <description>FQTEDL - Kennlinie Faktor für exponentielle Absteuerung Spülrate
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.988).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19c98" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x19c9d" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="5" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x39" flags="0x0">
+    <title>WDKARN - DK-Winkel-Schwelle für Gemischadaption aktiv (DK-Winkel-Schwelle für Gemischadaption aktiv)</title>
+    <description>WDKARN - DK-Winkel-Schwelle für Gemischadaption aktiv
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>10</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19f38" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>% DK</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x19f42" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="10" signed="0"/>
+      <MATH equation="0.39215686274509803 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x3a" flags="0x0">
+    <title>TMRELI - Temperatur Motorraum, Erfassung u. Linearisierung, Inverskennlinie (Temperatur Motorraum, Erfassung u. Linearisierung, Inverskennlinie)</title>
+    <description>TMRELI - Temperatur Motorraum, Erfassung u. Linearisierung, Inverskennlinie
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="5"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>15</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19fdb" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>Grad C</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x19fea" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="15" signed="0"/>
+      <MATH equation="0.75 * X + -48.0">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x3b" flags="0x0">
+    <title>MLSUS - Sollwert Luftmassen-Integral für motorisches Katheizen (Sollwert Luftmassen-Integral für motorisches Katheizen)</title>
+    <description>MLSUS - Sollwert Luftmassen-Integral für motorisches Katheizen
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.995).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>12</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1a043" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>kg</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a04f" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="12" signed="0"/>
+      <MATH equation="0.022755555555555557 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x3c" flags="0x0">
+    <title>LASTMOT - Motortemp.-Korrektur von Lambda-Abgas-Soll (Motortemp.-Korrektur von Lambda-Abgas-Soll)</title>
+    <description>LASTMOT - Motortemp.-Korrektur von Lambda-Abgas-Soll
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>4</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1a133" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a137" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="4" signed="0"/>
+      <MATH equation="0.0078125 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x3d" flags="0x0">
+    <title>FABMDWA - Faktor zur Absteuerung des Wandlermoments abhängig von nturb/nsol (Faktor zur Absteuerung des Wandlermoments abhängig von nturb/nsol)</title>
+    <description>FABMDWA - Faktor zur Absteuerung des Wandlermoments abhängig von nturb/nsol
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.998).</description>
+    <CATEGORYMEM index="0" category="4"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1a2fa" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a300" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="6" signed="0"/>
+      <MATH equation="0.00390625 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x3e" flags="0x0">
+    <title>TVZWVS1 - Einschaltverzögerung ZW-Einfluß bei Ventilhubumschaltung (Einschaltverzögerung ZW-Einfluß bei Ventilhubumschaltung)</title>
+    <description>TVZWVS1 - Einschaltverzögerung ZW-Einfluß bei Ventilhubumschaltung
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.979).</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1a337" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>s</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a33f" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="8" signed="0"/>
+      <MATH equation="0.02 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x3f" flags="0x0">
+    <title>KFTEKA - Kennfeld Sollkraftstoffanteil bei Regenerierung (Kennfeld Sollkraftstoffanteil bei Regenerierung)</title>
+    <description>KFTEKA - Kennfeld Sollkraftstoffanteil bei Regenerierung
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot_ub_q40</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1a7da" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40.0*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>rel_ub_q0p75</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1a7df" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a7e4" mmedelementsizebits="8" mmedrowcount="5" mmedcolcount="5" signed="0"/>
+      <MATH equation="0.0078125 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x40" flags="0x0">
+    <title>TVSUM - Zeitverzögerung der Saugrohrumschaltung in Abhängigkeit von der Motortemperatur (Zeitverzögerung der Saugrohrumschaltung in Abhängigkeit von der Motortemperatur)</title>
+    <description>TVSUM - Zeitverzögerung der Saugrohrumschaltung in Abhängigkeit von der Motortemperatur
+
+Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
+    <CATEGORYMEM index="0" category="5"/>
+    <XDFAXIS id="x">
+      <units>tmot</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x197f4" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X-48">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>s</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x197fa" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="6" signed="0"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x41" flags="0x0">
+    <title>LAMFA - Kennfeld fuer Soll-Lambda abhaengig von Fahreranforderung (Driver-Demanded Target Lambda Map (Full Throttle Enrichment))</title>
+    <description>LAMFA - Kennfeld fuer Soll-Lambda abhaengig von Fahreranforderung
+
+GERMAN: Vorgabe des Soll-Lambdawerts abhaengig von relativer Zylinderfuellung (rl) und Motordrehzahl (nmot).
+ENGLISH: Primary air-fuel ratio target surface. Governs power enrichment under spirited driving and WOT (e.g. 0.85 = ~12.5:1 AFR). Rescaling the load axis makes enrichment trigger earlier on naturally aspirated 3.2L engines.</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>mrfa / load (%)</units>
+      <indexcount>6</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1b424" mmedelementsizebits="16" mmedmajorstridebits="16" mmedtypeflags="0x00" lsbfirst="1"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.0030517578*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot (RPM)</units>
+      <indexcount>13</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1b416" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>Lambda</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1b430" mmedelementsizebits="8" mmedrowcount="13" mmedcolcount="6" signed="0"/>
+      <MATH equation="0.0078125*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x42" flags="0x0">
+    <title>KFDTMTE - Kennfeld Motortemperaturgradient für Ersatztemperatur (Kennfeld Motortemperaturgradient für Ersatztemperatur)</title>
+    <description>KFDTMTE - Kennfeld Motortemperaturgradient für Ersatztemperatur
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.996).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>m_ub_b1020</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1b919" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="4.0*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>temp_ub_q0p75_o48</units>
+      <indexcount>4</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1b91f" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X-48.0">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>Grad C</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1b923" mmedelementsizebits="8" mmedrowcount="4" mmedcolcount="5" signed="0"/>
+      <MATH equation="0.000732421875 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x43" flags="0x0">
+    <title>KFDTMTR - Kennfeld Motortemperaturgradient für Referenztemperatur (Kennfeld Motortemperaturgradient für Referenztemperatur)</title>
+    <description>KFDTMTR - Kennfeld Motortemperaturgradient für Referenztemperatur
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.996).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>m_ub_b1020</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1b939" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="4.0*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>temp_ub_q0p75_o48</units>
+      <indexcount>4</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1b93f" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X-48.0">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>Grad C</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1b943" mmedelementsizebits="8" mmedrowcount="4" mmedcolcount="5" signed="0"/>
+      <MATH equation="0.000732421875 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x44" flags="0x0">
+    <title>WDKPMXN - Maximaler Drosselklappenwinkel für Plausibilisierung mit Füllungssignal (Maximaler Drosselklappenwinkel für Plausibilisierung mit Füllungssignal)</title>
+    <description>WDKPMXN - Maximaler Drosselklappenwinkel für Plausibilisierung mit Füllungssignal
+
+Mined via cross-ECU correlation from ME7.8 reference (r=0.905).</description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>-</units>
+      <indexcount>12</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1beea" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>% DK</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1bef6" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="12" signed="0"/>
+      <MATH equation="0.39215686274509803 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x45" flags="0x0">
+    <title>NKTOLVS - Drehzahlkorrektur für Schaltschwellen in Abhängigkeit von Tol (Drehzahlkorrektur für Schaltschwellen in Abhängigkeit von Tol)</title>
+    <description>NKTOLVS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The monotonically increasing 1×8 curve (values 8→125) against a tolerance axis (13→150) is physically consistent with an RPM offset applied to up/down-shift thresholds that scales with the transmission tolerance window, and the strong r=0.888 correlation with the ME7.8 successor confirms structural continuity of this shift-calibration logic across Bosch generations.</description>
+    <CATEGORYMEM index="0" category="4"/>
+    <XDFAXIS id="x">
+      <units>tol</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10642" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75 * X - 48">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1064a" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="8" signed="0"/>
+      <MATH equation="40 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x46" flags="0x0">
+    <title>RLVMXN - Maximaler Volumenstrom bei offener Drosselklappe (Maximaler Volumenstrom bei offener Drosselklappe)</title>
+    <description>RLVMXN — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: </description>
+    <CATEGORYMEM index="0" category="3"/>
+    <XDFAXIS id="x">
+      <units>nmot</units>
+      <indexcount>11</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x1a3de" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>-</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a3e9" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="11" signed="0"/>
+      <MATH equation="0.75 * X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x47" flags="0x0">
+    <title>KFZWMNX - Kennfeld minimaler Zuendwinkel (Alternativ/Katheizen) (Alternate Minimum Ignition Timing Floor (Blended with KFZWMN))</title>
+    <description>KFZWMNX @ 0x12120 (16x12 SBYTE). CODE-VERIFIED in fn 0x87C2B6: looked up alongside KFZWMN (0x12060) and blended by weight [0x3826BC] before updating [0x380CED] -&gt; [0x380CEF].</description>
+    <CATEGORYMEM index="0" category="1"/>
+    <XDFAXIS id="x">
+      <units>rl (load %)</units>
+      <indexcount>12</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x106d0" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>nmot (RPM)</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10682" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>deg BTDC</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x12120" mmedelementsizebits="8" mmedrowcount="16" mmedcolcount="12" signed="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x48" flags="0x0">
+    <title>KFTVSA - Verzoegerungszeit fuer Schubabschalten (Overrun Fuel-Cut Delay Time (tmot x nmot))</title>
+    <description>KFTVSA @ 0x1A2B6 (5 tmot rows x 8 nmot cols, UBYTE x 0.1 s). CODE-VERIFIED consumer @0x86C540 reloads overrun countdown timer A24E/A24D (10 ms tick). 40/40 byte-identical to ME7.8 donor 0x1972D. Warm rows: 0.90 s &lt;= 2000 rpm, 0.50 s @ 2520-3000 rpm, 0.00 s &gt;= 3520 rpm.</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>nmot (RPM)</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x10654" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>tmot (deg C)</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x192b5" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X-48">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>s</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a2b6" mmedelementsizebits="8" mmedrowcount="5" mmedcolcount="8" signed="0"/>
+      <MATH equation="0.01*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+</XDFFORMAT>
