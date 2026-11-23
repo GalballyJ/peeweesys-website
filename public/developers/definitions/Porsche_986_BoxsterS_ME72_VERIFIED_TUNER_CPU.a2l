@@ -551,7 +551,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_ETALAM_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFZWOP1 "Optimal Ignition Timing Surface 1 (Economy Advance / MBT)" MAP 0x81023A RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
+    /begin CHARACTERISTIC KFZWOP1 "Optimal Ignition Timing Surface 1 (Economy Advance / MBT)" MAP 0x810239 RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rl_load_1 16 0.0 191.25
         AXIS_PTS_REF AXIS_KFZWOP1_X
       /end AXIS_DESCR
@@ -559,7 +559,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFZWOP1_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFZWOP2 "Optimal Ignition Timing Surface 2 (VarioCam Active)" MAP 0x81033A RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
+    /begin CHARACTERISTIC KFZWOP2 "Optimal Ignition Timing Surface 2 (VarioCam Active)" MAP 0x810339 RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rl_load_1 16 0.0 191.25
         AXIS_PTS_REF AXIS_KFZWOP2_X
       /end AXIS_DESCR

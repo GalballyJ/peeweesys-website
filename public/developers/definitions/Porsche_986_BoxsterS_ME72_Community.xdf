@@ -129,7 +129,7 @@ ENGLISH: Mean Best Timing (MBT) spark advance map. Represents optimal torque eff
       <decimalpl>2</decimalpl>
       <min>0.0</min>
       <outputtype>1</outputtype>
-      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x1023a" mmedelementsizebits="8" mmedrowcount="16" mmedcolcount="16" signed="1"/>
+      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x10239" mmedelementsizebits="8" mmedrowcount="16" mmedcolcount="16" signed="1"/>
       <MATH equation="0.75*X">
         <VAR id="X"/>
       </MATH>
@@ -167,7 +167,7 @@ ENGLISH: MBT spark advance map variant when intake camshafts are advanced.</desc
       <decimalpl>2</decimalpl>
       <min>0.0</min>
       <outputtype>1</outputtype>
-      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x1033a" mmedelementsizebits="8" mmedrowcount="16" mmedcolcount="16" signed="1"/>
+      <EMBEDDEDDATA mmedtypeflags="0x01" mmedaddress="0x10339" mmedelementsizebits="8" mmedrowcount="16" mmedcolcount="16" signed="1"/>
       <MATH equation="0.75*X">
         <VAR id="X"/>
       </MATH>

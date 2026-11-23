@@ -245,7 +245,7 @@ SYMBOLS = [
   ],
   [
     "KFZWOP1",
-    8454714,
+    8454713,
     "l",
     "[VERIFIED_TUNER MAP_3D 16x16 SBYTE] units=deg BTDC | eq=0.75*X | Optimal Ignition Timing Surface 1 (Economy Advance / MBT)"
   ],
@@ -263,7 +263,7 @@ SYMBOLS = [
   ],
   [
     "KFZWOP2",
-    8454970,
+    8454969,
     "l",
     "[VERIFIED_TUNER MAP_3D 16x16 SBYTE] units=deg BTDC | eq=0.75*X | Optimal Ignition Timing Surface 2 (VarioCam Active)"
   ],
