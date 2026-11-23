@@ -84,105 +84,133 @@ ASAP2_VERSION 1 61
     /begin COMPU_METHOD CM_LIN_tmot_deg_C_25 "Linear tmot (deg C)" LINEAR "%.2f" "tmot (deg C)"
       COEFFS_LINEAR 0.75 -48
     /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_UNIT_26 "Linear -" LINEAR "%.4f" "-"
-      COEFFS_LINEAR 0.00390625 0
+    /begin COMPU_METHOD CM_LIN_V_26 "Linear V" LINEAR "%.2f" "V"
+      COEFFS_LINEAR 0.076 0
     /end COMPU_METHOD
     /begin COMPU_METHOD CM_LIN_UNIT_27 "Linear %" LINEAR "%.2f" "%"
-      COEFFS_LINEAR 0.5 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_deg_BTDC_28 "Linear deg BTDC" LINEAR "%.2f" "deg BTDC"
       COEFFS_LINEAR 0.75 0
     /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_purge_flow_facto_29 "Linear purge flow factor" LINEAR "%.3f" "purge flow factor"
-      COEFFS_LINEAR 0.0078125 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_IDENT_Umdr_sec_2_30 "Direct (Umdr./sec)^2" IDENTICAL "%.0f" "(Umdr./sec)^2"
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_IDENT_DK_31 "Direct % DK" IDENTICAL "%.0f" "% DK"
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_IDENT_UNIT_32 "Direct %" IDENTICAL "%.0f" "%"
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_factor_33 "Linear factor" LINEAR "%.3f" "factor"
-      COEFFS_LINEAR 0.0078125 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_UNIT_34 "Linear -" LINEAR "%.3f" "-"
-      COEFFS_LINEAR 0.0078125 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_s_35 "Linear s" LINEAR "%.3f" "s"
-      COEFFS_LINEAR 0.02 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_m_s_2_36 "Linear m/(s^2)" LINEAR "%.2f" "m/(s^2)"
-      COEFFS_LINEAR 0.217 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_UNIT_37 "Linear -" LINEAR "%.3f" "-"
-      COEFFS_LINEAR 0.015625 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_s_38 "Linear s" LINEAR "%.3f" "s"
-      COEFFS_LINEAR 0.01 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_IDENT_grad_KW_39 "Direct grad KW" IDENTICAL "%.0f" "grad KW"
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_optimal_torque_40 "Linear % optimal torque" LINEAR "%.4f" "% optimal torque"
-      COEFFS_LINEAR 0.0015258789 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_kg_h_41 "Linear kg/h" LINEAR "%.2f" "kg/h"
-      COEFFS_LINEAR 0.1 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_outflow_factor_42 "Linear outflow factor" LINEAR "%.4f" "outflow factor"
-      COEFFS_LINEAR 1.525878906e-05 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_throttle_angle_43 "Linear % throttle angle" LINEAR "%.4f" "% throttle angle"
-      COEFFS_LINEAR 0.00152590219 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_Load_fill_44 "Linear Load % fill" LINEAR "%.3f" "Load % fill"
-      COEFFS_LINEAR 0.0234375 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_drag_torque_45 "Linear % drag torque" LINEAR "%.4f" "% drag torque"
-      COEFFS_LINEAR 0.0015259022 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_demanded_torque_46 "Linear % demanded torque" LINEAR "%.4f" "% demanded torque"
-      COEFFS_LINEAR 0.003051804379 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_rpm_47 "Linear rpm" LINEAR "%.2f" "rpm"
-      COEFFS_LINEAR 0.25 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_UNIT_48 "Linear -" LINEAR "%.2f" "-"
-      COEFFS_LINEAR 0.0625 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_UNIT_49 "Linear -" LINEAR "%.4f" "-"
-      COEFFS_LINEAR 0.001953125 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_s_50 "Linear s" LINEAR "%.2f" "s"
-      COEFFS_LINEAR 0.05 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_IDENT_kg_51 "Direct kg" IDENTICAL "%.0f" "kg"
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_IDENT_state_0_Shut_1_H_52 "Direct state (0=Shut, 1=Hold, 2=Open)" IDENTICAL "%.0f" "state (0=Shut, 1=Hold, 2=Open)"
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_IDENT_state_disabled_z_53 "Direct state (disabled/zeros)" IDENTICAL "%.0f" "state (disabled/zeros)"
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_DK_54 "Linear % DK" LINEAR "%.2f" "% DK"
-      COEFFS_LINEAR 0.3921568627 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_Grad_C_55 "Linear Grad C" LINEAR "%.2f" "Grad C"
-      COEFFS_LINEAR 0.75 -48
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_kg_56 "Linear kg" LINEAR "%.3f" "kg"
-      COEFFS_LINEAR 0.02275555556 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_IDENT_s_57 "Direct s" IDENTICAL "%.0f" "s"
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_Lambda_58 "Linear Lambda" LINEAR "%.3f" "Lambda"
-      COEFFS_LINEAR 0.0078125 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_Grad_C_59 "Linear Grad C" LINEAR "%.4f" "Grad C"
-      COEFFS_LINEAR 0.000732421875 0
-    /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_UNIT_60 "Linear -" LINEAR "%.1f" "-"
+    /begin COMPU_METHOD CM_LIN_rpm_28 "Linear rpm" LINEAR "%.1f" "rpm"
       COEFFS_LINEAR 40 0
     /end COMPU_METHOD
-    /begin COMPU_METHOD CM_LIN_UNIT_61 "Linear -" LINEAR "%.2f" "-"
+    /begin COMPU_METHOD CM_IDENT_gear_29 "Direct gear" IDENTICAL "%.0f" "gear"
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_UNIT_30 "Linear -" LINEAR "%.4f" "-"
+      COEFFS_LINEAR 0.00390625 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_UNIT_31 "Linear %" LINEAR "%.2f" "%"
+      COEFFS_LINEAR 0.5 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_deg_BTDC_32 "Linear deg BTDC" LINEAR "%.2f" "deg BTDC"
       COEFFS_LINEAR 0.75 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_purge_flow_facto_33 "Linear purge flow factor" LINEAR "%.3f" "purge flow factor"
+      COEFFS_LINEAR 0.0078125 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_IDENT_Umdr_sec_2_34 "Direct (Umdr./sec)^2" IDENTICAL "%.0f" "(Umdr./sec)^2"
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_IDENT_DK_35 "Direct % DK" IDENTICAL "%.0f" "% DK"
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_IDENT_UNIT_36 "Direct %" IDENTICAL "%.0f" "%"
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_factor_37 "Linear factor" LINEAR "%.3f" "factor"
+      COEFFS_LINEAR 0.0078125 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_UNIT_38 "Linear -" LINEAR "%.3f" "-"
+      COEFFS_LINEAR 0.0078125 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_s_39 "Linear s" LINEAR "%.3f" "s"
+      COEFFS_LINEAR 0.02 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_m_s_2_40 "Linear m/(s^2)" LINEAR "%.2f" "m/(s^2)"
+      COEFFS_LINEAR 0.217 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_UNIT_41 "Linear -" LINEAR "%.3f" "-"
+      COEFFS_LINEAR 0.015625 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_s_42 "Linear s" LINEAR "%.3f" "s"
+      COEFFS_LINEAR 0.01 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_IDENT_grad_KW_43 "Direct grad KW" IDENTICAL "%.0f" "grad KW"
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_optimal_torque_44 "Linear % optimal torque" LINEAR "%.4f" "% optimal torque"
+      COEFFS_LINEAR 0.0015258789 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_kg_h_45 "Linear kg/h" LINEAR "%.2f" "kg/h"
+      COEFFS_LINEAR 0.1 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_outflow_factor_46 "Linear outflow factor" LINEAR "%.4f" "outflow factor"
+      COEFFS_LINEAR 1.525878906e-05 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_throttle_angle_47 "Linear % throttle angle" LINEAR "%.4f" "% throttle angle"
+      COEFFS_LINEAR 0.00152590219 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_Load_fill_48 "Linear Load % fill" LINEAR "%.3f" "Load % fill"
+      COEFFS_LINEAR 0.0234375 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_drag_torque_49 "Linear % drag torque" LINEAR "%.4f" "% drag torque"
+      COEFFS_LINEAR 0.0015259022 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_demanded_torque_50 "Linear % demanded torque" LINEAR "%.4f" "% demanded torque"
+      COEFFS_LINEAR 0.003051804379 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_rpm_51 "Linear rpm" LINEAR "%.2f" "rpm"
+      COEFFS_LINEAR 0.25 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_UNIT_52 "Linear -" LINEAR "%.2f" "-"
+      COEFFS_LINEAR 0.0625 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_UNIT_53 "Linear -" LINEAR "%.4f" "-"
+      COEFFS_LINEAR 0.001953125 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_s_54 "Linear s" LINEAR "%.2f" "s"
+      COEFFS_LINEAR 0.05 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_IDENT_kg_55 "Direct kg" IDENTICAL "%.0f" "kg"
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_IDENT_state_0_Shut_1_H_56 "Direct state (0=Shut, 1=Hold, 2=Open)" IDENTICAL "%.0f" "state (0=Shut, 1=Hold, 2=Open)"
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_IDENT_state_disabled_z_57 "Direct state (disabled/zeros)" IDENTICAL "%.0f" "state (disabled/zeros)"
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_DK_58 "Linear % DK" LINEAR "%.2f" "% DK"
+      COEFFS_LINEAR 0.3921568627 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_Grad_C_59 "Linear Grad C" LINEAR "%.2f" "Grad C"
+      COEFFS_LINEAR 0.75 -48
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_kg_60 "Linear kg" LINEAR "%.3f" "kg"
+      COEFFS_LINEAR 0.02275555556 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_IDENT_flag_0_off_1_on_61 "Direct flag (0=off, 1=on)" IDENTICAL "%.0f" "flag (0=off, 1=on)"
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_IDENT_s_62 "Direct s" IDENTICAL "%.0f" "s"
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_Lambda_63 "Linear Lambda" LINEAR "%.3f" "Lambda"
+      COEFFS_LINEAR 0.0078125 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_Grad_C_64 "Linear Grad C" LINEAR "%.4f" "Grad C"
+      COEFFS_LINEAR 0.000732421875 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_UNIT_65 "Linear -" LINEAR "%.1f" "-"
+      COEFFS_LINEAR 40 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_UNIT_66 "Linear -" LINEAR "%.2f" "-"
+      COEFFS_LINEAR 0.75 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_ms_67 "Linear ms/%" LINEAR "%.4f" "ms/%"
+      COEFFS_LINEAR 0.002133 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_ms_68 "Linear ms" LINEAR "%.4f" "ms"
+      COEFFS_LINEAR 0.002667 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_lambda_69 "Linear lambda" LINEAR "%.3f" "lambda"
+      COEFFS_LINEAR 0.0078125 0
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_degC_70 "Linear degC" LINEAR "%.3f" "degC"
+      COEFFS_LINEAR 0.01953125 -50
+    /end COMPU_METHOD
+    /begin COMPU_METHOD CM_LIN_degC_71 "Linear degC" LINEAR "%.3f" "degC"
+      COEFFS_LINEAR 0.01953125 0
     /end COMPU_METHOD
 
     /begin RECORD_LAYOUT RL_UBYTE
@@ -501,17 +529,29 @@ ASAP2_VERSION 1 61
     /begin AXIS_PTS AXIS_KFTVSA_Y "KFTVSA Y Axis (tmot (deg C))" 0x0192B5 NO_INPUT_QUANTITY RL_AXIS_UBYTE 0 CM_LIN_tmot_deg_C_25 5 -48.0 143.25
       DEPOSIT ABSOLUT
     /end AXIS_PTS
-    /begin CHARACTERISTIC FVERMN "Kennlinie Faktor Vermischung Regeneriergas Tankentlüftung mit Frischluft" CURVE 0x010019 RL_UBYTE 0 CM_LIN_UNIT_26 0.0 0.9961
+    /begin AXIS_PTS AXIS_TVUB_X "TVUB X Axis (V)" 0x015E47 NO_INPUT_QUANTITY RL_AXIS_UBYTE 0 CM_LIN_V_26 5 0.0 19.38
+      DEPOSIT ABSOLUT
+    /end AXIS_PTS
+    /begin AXIS_PTS AXIS_KFLBTS_X "KFLBTS X Axis (%)" 0x019F01 NO_INPUT_QUANTITY RL_AXIS_UBYTE 0 CM_LIN_UNIT_27 12 0.0 191.25
+      DEPOSIT ABSOLUT
+    /end AXIS_PTS
+    /begin AXIS_PTS AXIS_KFLBTS_Y "KFLBTS Y Axis (rpm)" 0x019EF0 NO_INPUT_QUANTITY RL_AXIS_UBYTE 0 CM_LIN_rpm_28 16 0.0 10200.0
+      DEPOSIT ABSOLUT
+    /end AXIS_PTS
+    /begin AXIS_PTS AXIS_KFNWEGM_X "KFNWEGM X Axis (gear)" 0x019644 NO_INPUT_QUANTITY RL_AXIS_UBYTE 0 CM_IDENT_gear_29 8 0.0 255.0
+      DEPOSIT ABSOLUT
+    /end AXIS_PTS
+    /begin CHARACTERISTIC FVERMN "Kennlinie Faktor Vermischung Regeneriergas Tankentlüftung mit Frischluft" CURVE 0x010019 RL_UBYTE 0 CM_LIN_UNIT_30 0.0 0.9961
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 6 0.0 255.0
         AXIS_PTS_REF AXIS_FVERMN_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC ETALAM "Lambda-Wirkungsgrad" CURVE 0x0101EF RL_UBYTE 0 CM_LIN_UNIT_27 0.0 127.5
+    /begin CHARACTERISTIC ETALAM "Lambda-Wirkungsgrad" CURVE 0x0101EF RL_UBYTE 0 CM_LIN_UNIT_31 0.0 127.5
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 10 0.0 255.0
         AXIS_PTS_REF AXIS_ETALAM_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFZWOP1 "Optimal Ignition Timing Surface 1 (Economy Advance / MBT)" MAP 0x01023A RL_SBYTE 0 CM_LIN_deg_BTDC_28 -96.0 95.25
+    /begin CHARACTERISTIC KFZWOP1 "Optimal Ignition Timing Surface 1 (Economy Advance / MBT)" MAP 0x01023A RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rl_load_1 16 0.0 191.25
         AXIS_PTS_REF AXIS_KFZWOP1_X
       /end AXIS_DESCR
@@ -519,7 +559,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFZWOP1_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFZWOP2 "Optimal Ignition Timing Surface 2 (VarioCam Active)" MAP 0x01033A RL_SBYTE 0 CM_LIN_deg_BTDC_28 -96.0 95.25
+    /begin CHARACTERISTIC KFZWOP2 "Optimal Ignition Timing Surface 2 (VarioCam Active)" MAP 0x01033A RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rl_load_1 16 0.0 191.25
         AXIS_PTS_REF AXIS_KFZWOP2_X
       /end AXIS_DESCR
@@ -527,7 +567,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFZWOP2_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFAFTE "EVAP Tank Ventilation Purge Valve Flow Curve" MAP 0x0104D8 RL_UBYTE 0 CM_LIN_purge_flow_facto_29 0.0 1.9922
+    /begin CHARACTERISTIC KFAFTE "EVAP Tank Ventilation Purge Valve Flow Curve" MAP 0x0104D8 RL_UBYTE 0 CM_LIN_purge_flow_facto_33 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_2 10 0.0 10200.0
         AXIS_PTS_REF AXIS_KFAFTE_X
       /end AXIS_DESCR
@@ -535,12 +575,12 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFAFTE_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC LURBRL8 "Laufunruhe-Referenzwert bei Fahrzeug steht" CURVE 0x0106C2 RL_UBYTE 0 CM_IDENT_Umdr_sec_2_30 0.0 255.0
+    /begin CHARACTERISTIC LURBRL8 "Laufunruhe-Referenzwert bei Fahrzeug steht" CURVE 0x0106C2 RL_UBYTE 0 CM_IDENT_Umdr_sec_2_34 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 8 0.0 255.0
         AXIS_PTS_REF AXIS_LURBRL8_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC WDKDSVLU "Drosselklappenschwelle für Drucksensorplausibilisierung" CURVE 0x010993 RL_UBYTE 0 CM_IDENT_DK_31 0.0 255.0
+    /begin CHARACTERISTIC WDKDSVLU "Drosselklappenschwelle für Drucksensorplausibilisierung" CURVE 0x010993 RL_UBYTE 0 CM_IDENT_DK_35 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 6 0.0 255.0
         AXIS_PTS_REF AXIS_WDKDSVLU_X
       /end AXIS_DESCR
@@ -553,12 +593,12 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFKSWF_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC RLNOT "Notlauf rl bei E_DK und E_LM" CURVE 0x010E34 RL_UBYTE 0 CM_IDENT_UNIT_32 0.0 255.0
+    /begin CHARACTERISTIC RLNOT "Notlauf rl bei E_DK und E_LM" CURVE 0x010E34 RL_UBYTE 0 CM_IDENT_UNIT_36 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 6 0.0 255.0
         AXIS_PTS_REF AXIS_RLNOT_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFKHFM "HFM Airflow Correction Factor Map" MAP 0x010E59 RL_UBYTE 0 CM_LIN_factor_33 0.0 1.9922
+    /begin CHARACTERISTIC KFKHFM "HFM Airflow Correction Factor Map" MAP 0x010E59 RL_UBYTE 0 CM_LIN_factor_37 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_2 14 0.0 10200.0
         AXIS_PTS_REF AXIS_KFKHFM_X
       /end AXIS_DESCR
@@ -566,7 +606,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFKHFM_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFPU "Exhaust / Intake Pulsation Correction Map 1" MAP 0x010F3B RL_UBYTE 0 CM_LIN_factor_33 0.0 1.9922
+    /begin CHARACTERISTIC KFPU "Exhaust / Intake Pulsation Correction Map 1" MAP 0x010F3B RL_UBYTE 0 CM_LIN_factor_37 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_2 14 0.0 10200.0
         AXIS_PTS_REF AXIS_KFPU_X
       /end AXIS_DESCR
@@ -574,7 +614,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFPU_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFPUSUVS "Pulsationskennfeld bei aktiver Saugrohrumschaltung und großem Ventilhub" MAP 0x01101D RL_UBYTE 0 CM_LIN_UNIT_34 0.0 1.9922
+    /begin CHARACTERISTIC KFPUSUVS "Pulsationskennfeld bei aktiver Saugrohrumschaltung und großem Ventilhub" MAP 0x01101D RL_UBYTE 0 CM_LIN_UNIT_38 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_ub_q40_4 14 0.0 10200.0
         AXIS_PTS_REF AXIS_KFPUSUVS_X
       /end AXIS_DESCR
@@ -582,7 +622,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFPUSUVS_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFPUSU "Air Pulsation Correction Map with Intake Flap Open" MAP 0x0110FF RL_UBYTE 0 CM_LIN_factor_33 0.0 1.9922
+    /begin CHARACTERISTIC KFPUSU "Air Pulsation Correction Map with Intake Flap Open" MAP 0x0110FF RL_UBYTE 0 CM_LIN_factor_37 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_2 14 0.0 10200.0
         AXIS_PTS_REF AXIS_KFPUSU_X
       /end AXIS_DESCR
@@ -590,7 +630,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFPUSU_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFPUVS "Air Pulsation Correction Map Variant 4" MAP 0x0111E1 RL_UBYTE 0 CM_LIN_factor_33 0.0 1.9922
+    /begin CHARACTERISTIC KFPUVS "Air Pulsation Correction Map Variant 4" MAP 0x0111E1 RL_UBYTE 0 CM_LIN_factor_37 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_2 14 0.0 10200.0
         AXIS_PTS_REF AXIS_KFPUVS_X
       /end AXIS_DESCR
@@ -598,7 +638,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFPUVS_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC TVLLRI "Verzögerungszeit für Freigabe I-Anteil nach Start" CURVE 0x011804 RL_UBYTE 0 CM_LIN_s_35 0.0 5.1
+    /begin CHARACTERISTIC TVLLRI "Verzögerungszeit für Freigabe I-Anteil nach Start" CURVE 0x011804 RL_UBYTE 0 CM_LIN_s_39 0.0 5.1
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 6 0.0 255.0
         AXIS_PTS_REF AXIS_TVLLRI_X
       /end AXIS_DESCR
@@ -608,27 +648,27 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_FDARTM_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FSWALUV "Erkennungsschwelle Schlechtwegstrecke abhängig von Fz.geschwindigkeit" CURVE 0x011CEB RL_UBYTE 0 CM_LIN_m_s_2_36 0.0 55.335
+    /begin CHARACTERISTIC FSWALUV "Erkennungsschwelle Schlechtwegstrecke abhängig von Fz.geschwindigkeit" CURVE 0x011CEB RL_UBYTE 0 CM_LIN_m_s_2_40 0.0 55.335
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 4 0.0 255.0
         AXIS_PTS_REF AXIS_FSWALUV_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FLRM "Faktor für I-Dynamik des Lambdareglers in Abhängigkeit von tmot" CURVE 0x011CF7 RL_UBYTE 0 CM_LIN_UNIT_37 0.0 3.9844
+    /begin CHARACTERISTIC FLRM "Faktor für I-Dynamik des Lambdareglers in Abhängigkeit von tmot" CURVE 0x011CF7 RL_UBYTE 0 CM_LIN_UNIT_41 0.0 3.9844
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 5 0.0 255.0
         AXIS_PTS_REF AXIS_FLRM_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC TSPERN "Sperrzeit P-Sprung nach Sondensprung" CURVE 0x011D06 RL_UBYTE 0 CM_LIN_s_38 0.0 2.55
+    /begin CHARACTERISTIC TSPERN "Sperrzeit P-Sprung nach Sondensprung" CURVE 0x011D06 RL_UBYTE 0 CM_LIN_s_42 0.0 2.55
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 7 0.0 255.0
         AXIS_PTS_REF AXIS_TSPERN_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC TSPERN2 "Sperrzeit P-Sprung nach Sondensprung, Bank 2" CURVE 0x011D15 RL_UBYTE 0 CM_LIN_s_38 0.0 2.55
+    /begin CHARACTERISTIC TSPERN2 "Sperrzeit P-Sprung nach Sondensprung, Bank 2" CURVE 0x011D15 RL_UBYTE 0 CM_LIN_s_42 0.0 2.55
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 7 0.0 255.0
         AXIS_PTS_REF AXIS_TSPERN2_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFZW "Primary Ignition Timing Base Map (WOT / Part Load)" MAP 0x011D60 RL_SBYTE 0 CM_LIN_deg_BTDC_28 -96.0 95.25
+    /begin CHARACTERISTIC KFZW "Primary Ignition Timing Base Map (WOT / Part Load)" MAP 0x011D60 RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rlkr_load_8 16 0.0 191.25
         AXIS_PTS_REF AXIS_KFZW_X
       /end AXIS_DESCR
@@ -636,7 +676,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFZW_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFZW2 "Ignition Timing Map Variant 2 (VarioCam Cam Advance Active)" MAP 0x011EE0 RL_SBYTE 0 CM_LIN_deg_BTDC_28 -96.0 95.25
+    /begin CHARACTERISTIC KFZW2 "Ignition Timing Map Variant 2 (VarioCam Cam Advance Active)" MAP 0x011EE0 RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rlkr_load_8 16 0.0 191.25
         AXIS_PTS_REF AXIS_KFZW2_X
       /end AXIS_DESCR
@@ -644,7 +684,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFZW2_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFZWMN "Minimum Ignition Timing Floor (Knock Retard Limit)" MAP 0x012060 RL_SBYTE 0 CM_LIN_deg_BTDC_28 -96.0 95.25
+    /begin CHARACTERISTIC KFZWMN "Minimum Ignition Timing Floor (Knock Retard Limit)" MAP 0x012060 RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rl_load_1 12 0.0 191.25
         AXIS_PTS_REF AXIS_KFZWMN_X
       /end AXIS_DESCR
@@ -652,7 +692,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFZWMN_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFZWMS "Permanent Maximum Retarded Ignition Timing Boundary" MAP 0x0121E0 RL_SBYTE 0 CM_LIN_deg_BTDC_28 -96.0 95.25
+    /begin CHARACTERISTIC KFZWMS "Permanent Maximum Retarded Ignition Timing Boundary" MAP 0x0121E0 RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rl_load_1 12 0.0 191.25
         AXIS_PTS_REF AXIS_KFZWMS_X
       /end AXIS_DESCR
@@ -665,12 +705,12 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KOPWMTU_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC DZWOM "temperaturabhängiger Offset des optimalen ZW" CURVE 0x014370 RL_UBYTE 0 CM_IDENT_grad_KW_39 0.0 255.0
+    /begin CHARACTERISTIC DZWOM "temperaturabhängiger Offset des optimalen ZW" CURVE 0x014370 RL_UBYTE 0 CM_IDENT_grad_KW_43 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 5 0.0 255.0
         AXIS_PTS_REF AXIS_DZWOM_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFMIOP "Optimal Engine Torque Map (Inverse Model)" MAP 0x014376 RL_UWORD 0 CM_LIN_optimal_torque_40 0.0 99.9985
+    /begin CHARACTERISTIC KFMIOP "Optimal Engine Torque Map (Inverse Model)" MAP 0x014376 RL_UWORD 0 CM_LIN_optimal_torque_44 0.0 99.9985
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rl_load_1 16 0.0 191.25
         AXIS_PTS_REF AXIS_KFMIOP_X
       /end AXIS_DESCR
@@ -678,7 +718,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFMIOP_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFMSNWDK "Normalized Air Mass Flow Over Throttle Body (BGMSZS)" MAP 0x015182 RL_UWORD 0 CM_LIN_kg_h_41 0.0 6553.5
+    /begin CHARACTERISTIC KFMSNWDK "Normalized Air Mass Flow Over Throttle Body (BGMSZS)" MAP 0x015182 RL_UWORD 0 CM_LIN_kg_h_45 0.0 6553.5
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_9 6 0.0 16383.75
         AXIS_PTS_REF AXIS_KFMSNWDK_X
       /end AXIS_DESCR
@@ -686,15 +726,15 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFMSNWDK_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KLAF "Throttle Body Discharge Outflow Characteristic (501 Points)" CURVE 0x015242 RL_UWORD 0 CM_LIN_outflow_factor_42 0.0 1.0
+    /begin CHARACTERISTIC KLAF "Throttle Body Discharge Outflow Characteristic (501 Points)" CURVE 0x015242 RL_UWORD 0 CM_LIN_outflow_factor_46 0.0 1.0
       /begin AXIS_DESCR FIX_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 501 0 500
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC MLHFM "MAF Sensor 512-Point Voltage Linearization Curve" CURVE 0x015694 RL_UWORD 0 CM_LIN_kg_h_41 0.0 6553.5
+    /begin CHARACTERISTIC MLHFM "MAF Sensor 512-Point Voltage Linearization Curve" CURVE 0x015694 RL_UWORD 0 CM_LIN_kg_h_45 0.0 6553.5
       /begin AXIS_DESCR FIX_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 512 0 511
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFWDKMSN "Target Throttle Plate Angle from Demanded Airflow" MAP 0x015B08 RL_UWORD 0 CM_LIN_throttle_angle_43 0.0 100.0
+    /begin CHARACTERISTIC KFWDKMSN "Target Throttle Plate Angle from Demanded Airflow" MAP 0x015B08 RL_UWORD 0 CM_LIN_throttle_angle_47 0.0 100.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_9 6 0.0 16383.75
         AXIS_PTS_REF AXIS_KFWDKMSN_X
       /end AXIS_DESCR
@@ -702,7 +742,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFWDKMSN_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFMIRL "Engine Load Fill Target from Requested Torque" MAP 0x015C46 RL_UWORD 0 CM_LIN_Load_fill_44 0.0 1535.9766
+    /begin CHARACTERISTIC KFMIRL "Engine Load Fill Target from Requested Torque" MAP 0x015C46 RL_UWORD 0 CM_LIN_Load_fill_48 0.0 1535.9766
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_misopl_torque_12 16 0.0 99.9985
         AXIS_PTS_REF AXIS_KFMIRL_X
       /end AXIS_DESCR
@@ -710,7 +750,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFMIRL_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFMDS "Engine Mechanical Drag & Friction Torque Loss Model" MAP 0x0161E8 RL_UWORD 0 CM_LIN_drag_torque_45 0.0 100.0
+    /begin CHARACTERISTIC KFMDS "Engine Mechanical Drag & Friction Torque Loss Model" MAP 0x0161E8 RL_UWORD 0 CM_LIN_drag_torque_49 0.0 100.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_w_RPM_13 10 0.0 16383.75
         AXIS_PTS_REF AXIS_KFMDS_X
       /end AXIS_DESCR
@@ -718,7 +758,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFMDS_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFPED "Driver Demanded Torque vs Accelerator Pedal Position" MAP 0x01646C RL_UWORD 0 CM_LIN_demanded_torque_46 0.0 200.0
+    /begin CHARACTERISTIC KFPED "Driver Demanded Torque vs Accelerator Pedal Position" MAP 0x01646C RL_UWORD 0 CM_LIN_demanded_torque_50 0.0 200.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_9 13 0.0 16383.75
         AXIS_PTS_REF AXIS_KFPED_X
       /end AXIS_DESCR
@@ -726,7 +766,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFPED_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFPEDR "Driver Demanded Torque in Reverse Gear" MAP 0x016640 RL_UWORD 0 CM_LIN_demanded_torque_46 0.0 200.0
+    /begin CHARACTERISTIC KFPEDR "Driver Demanded Torque in Reverse Gear" MAP 0x016640 RL_UWORD 0 CM_LIN_demanded_torque_50 0.0 200.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_9 8 0.0 16383.75
         AXIS_PTS_REF AXIS_KFPEDR_X
       /end AXIS_DESCR
@@ -734,16 +774,16 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFPEDR_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC NMAX "Primary Rev Limiter Threshold (NMAX)" VALUE 0x01675C RL_UWORD 0 CM_LIN_rpm_47 0.0 16383.75
+    /begin CHARACTERISTIC NMAX "Primary Rev Limiter Threshold (NMAX)" VALUE 0x01675C RL_UWORD 0 CM_LIN_rpm_51 0.0 16383.75
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC NMAXOG "Upper Rev Limiter Threshold (NMAXOG)" VALUE 0x01675E RL_UWORD 0 CM_LIN_rpm_47 0.0 16383.75
+    /begin CHARACTERISTIC NMAXOG "Upper Rev Limiter Threshold (NMAXOG)" VALUE 0x01675E RL_UWORD 0 CM_LIN_rpm_51 0.0 16383.75
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC DWVLSN "Delta - Zündwinkel Vollast spät Motorschutz" CURVE 0x0168D0 RL_UBYTE 0 CM_IDENT_grad_KW_39 0.0 255.0
+    /begin CHARACTERISTIC DWVLSN "Delta - Zündwinkel Vollast spät Motorschutz" CURVE 0x0168D0 RL_UBYTE 0 CM_IDENT_grad_KW_43 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 7 0.0 255.0
         AXIS_PTS_REF AXIS_DWVLSN_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFRLIP_UM "Kennfeld für rl - Berechnung aus Drosselklappenwinkel in der Funktionsüberwachg" MAP 0x017B24 RL_UBYTE 0 CM_IDENT_UNIT_32 0.0 255.0
+    /begin CHARACTERISTIC KFRLIP_UM "Kennfeld für rl - Berechnung aus Drosselklappenwinkel in der Funktionsüberwachg" MAP 0x017B24 RL_UBYTE 0 CM_IDENT_UNIT_36 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_spg_ub_q0p019_16 8 0.0 4.9804
         AXIS_PTS_REF AXIS_KFRLIP_UM_X
       /end AXIS_DESCR
@@ -751,59 +791,59 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFRLIP_UM_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC WDKSNLN "Sollwinkel für Drosselklappe bei Kl15 aus" CURVE 0x017B87 RL_UBYTE 0 CM_IDENT_DK_31 0.0 255.0
+    /begin CHARACTERISTIC WDKSNLN "Sollwinkel für Drosselklappe bei Kl15 aus" CURVE 0x017B87 RL_UBYTE 0 CM_IDENT_DK_35 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 8 0.0 255.0
         AXIS_PTS_REF AXIS_WDKSNLN_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FVSTMKG "Gemischkorrektur Tmot-Abhängig bei VS von klein nach groß" CURVE 0x017C22 RL_UBYTE 0 CM_LIN_UNIT_26 0.0 0.9961
+    /begin CHARACTERISTIC FVSTMKG "Gemischkorrektur Tmot-Abhängig bei VS von klein nach groß" CURVE 0x017C22 RL_UBYTE 0 CM_LIN_UNIT_30 0.0 0.9961
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 8 0.0 255.0
         AXIS_PTS_REF AXIS_FVSTMKG_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC TVLLRPD "Maximale Verzögerungszeit für Freigabe PD-Anteil nach Start" CURVE 0x0190F7 RL_UBYTE 0 CM_LIN_s_35 0.0 5.1
+    /begin CHARACTERISTIC TVLLRPD "Maximale Verzögerungszeit für Freigabe PD-Anteil nach Start" CURVE 0x0190F7 RL_UBYTE 0 CM_LIN_s_39 0.0 5.1
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 6 0.0 255.0
         AXIS_PTS_REF AXIS_TVLLRPD_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FBTEB "Faktor Begrenzung Lerngeschwindigkeit für Beladung" CURVE 0x019105 RL_UBYTE 0 CM_LIN_UNIT_26 0.0 0.9961
+    /begin CHARACTERISTIC FBTEB "Faktor Begrenzung Lerngeschwindigkeit für Beladung" CURVE 0x019105 RL_UBYTE 0 CM_LIN_UNIT_30 0.0 0.9961
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 6 0.0 255.0
         AXIS_PTS_REF AXIS_FBTEB_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FETATEBN "Kennlinie für drehzahlabhängigen Sollwert des Motorwirkungsgrades" CURVE 0x01911E RL_UBYTE 0 CM_LIN_UNIT_26 0.0 0.9961
+    /begin CHARACTERISTIC FETATEBN "Kennlinie für drehzahlabhängigen Sollwert des Motorwirkungsgrades" CURVE 0x01911E RL_UBYTE 0 CM_LIN_UNIT_30 0.0 0.9961
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 5 0.0 255.0
         AXIS_PTS_REF AXIS_FETATEBN_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FQTEVA "Progression bei Spülratenaufsteuerung" CURVE 0x01912A RL_UBYTE 0 CM_LIN_UNIT_48 0.0 15.9375
+    /begin CHARACTERISTIC FQTEVA "Progression bei Spülratenaufsteuerung" CURVE 0x01912A RL_UBYTE 0 CM_LIN_UNIT_52 0.0 15.9375
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 6 0.0 255.0
         AXIS_PTS_REF AXIS_FQTEVA_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FTEINIX "Kennlinie Max. Spülrate abhängig vom Integral Massenstrom TE nach TE Stop" CURVE 0x01913B RL_UBYTE 0 CM_LIN_UNIT_49 0.0 0.498
+    /begin CHARACTERISTIC FTEINIX "Kennlinie Max. Spülrate abhängig vom Integral Massenstrom TE nach TE Stop" CURVE 0x01913B RL_UBYTE 0 CM_LIN_UNIT_53 0.0 0.498
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 5 0.0 255.0
         AXIS_PTS_REF AXIS_FTEINIX_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FLTEFUEL "Faktor Anteil TEV Strom, der direkt ins Saugrohr strömt" CURVE 0x01929F RL_UBYTE 0 CM_LIN_UNIT_26 0.0 0.9961
+    /begin CHARACTERISTIC FLTEFUEL "Faktor Anteil TEV Strom, der direkt ins Saugrohr strömt" CURVE 0x01929F RL_UBYTE 0 CM_LIN_UNIT_30 0.0 0.9961
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 4 0.0 255.0
         AXIS_PTS_REF AXIS_FLTEFUEL_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC TVSUNA "Verzögerungszeit für Saugrohrumschaltung, wenn nicht angesteuert" VALUE 0x019800 RL_UBYTE 0 CM_LIN_s_50 0.0 12.75
+    /begin CHARACTERISTIC TVSUNA "Verzögerungszeit für Saugrohrumschaltung, wenn nicht angesteuert" VALUE 0x019800 RL_UBYTE 0 CM_LIN_s_54 0.0 12.75
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FMSML "Abgasgegendruckkorrektur der Sekundärluftmasse" CURVE 0x01934B RL_UBYTE 0 CM_LIN_UNIT_34 0.0 1.9922
+    /begin CHARACTERISTIC FMSML "Abgasgegendruckkorrektur der Sekundärluftmasse" CURVE 0x01934B RL_UBYTE 0 CM_LIN_UNIT_38 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 8 0.0 255.0
         AXIS_PTS_REF AXIS_FMSML_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC MSLUB "Sekundärluftmasse abhängig von der Batteriespannung" CURVE 0x019370 RL_UBYTE 0 CM_IDENT_kg_51 0.0 255.0
+    /begin CHARACTERISTIC MSLUB "Sekundärluftmasse abhängig von der Batteriespannung" CURVE 0x019370 RL_UBYTE 0 CM_IDENT_kg_55 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 8 0.0 255.0
         AXIS_PTS_REF AXIS_MSLUB_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFTPKOR "Rough Road & Misfire Detection TP Period Correction" MAP 0x0195D9 RL_UBYTE 0 CM_LIN_factor_33 0.0 1.9922
+    /begin CHARACTERISTIC KFTPKOR "Rough Road & Misfire Detection TP Period Correction" MAP 0x0195D9 RL_UBYTE 0 CM_LIN_factor_37 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_2 8 0.0 10200.0
         AXIS_PTS_REF AXIS_KFTPKOR_X
       /end AXIS_DESCR
@@ -811,12 +851,12 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFTPKOR_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FDVANS "Temperaturfaktor für Drosselventildurchfluß" CURVE 0x01967C RL_UBYTE 0 CM_LIN_UNIT_34 0.0 1.9922
+    /begin CHARACTERISTIC FDVANS "Temperaturfaktor für Drosselventildurchfluß" CURVE 0x01967C RL_UBYTE 0 CM_LIN_UNIT_38 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 8 0.0 255.0
         AXIS_PTS_REF AXIS_FDVANS_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFSU "Intake Manifold Resonance Flap 1 Schedule" MAP 0x019794 RL_UBYTE 0 CM_IDENT_state_0_Shut_1_H_52 0.0 255.0
+    /begin CHARACTERISTIC KFSU "Intake Manifold Resonance Flap 1 Schedule" MAP 0x019794 RL_UBYTE 0 CM_IDENT_state_0_Shut_1_H_56 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_temp_su_nmot_RPM_17 6 0.0 10200.0
         AXIS_PTS_REF AXIS_KFSU_X
       /end AXIS_DESCR
@@ -824,7 +864,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFSU_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFSU2 "Intake Manifold Resonance Flap 2 (Disabled / Zeroed)" MAP 0x0197C6 RL_UBYTE 0 CM_IDENT_state_disabled_z_53 0.0 255.0
+    /begin CHARACTERISTIC KFSU2 "Intake Manifold Resonance Flap 2 (Disabled / Zeroed)" MAP 0x0197C6 RL_UBYTE 0 CM_IDENT_state_disabled_z_57 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_temp_su_nmot_RPM_17 6 0.0 10200.0
         AXIS_PTS_REF AXIS_KFSU2_X
       /end AXIS_DESCR
@@ -832,7 +872,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFSU2_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FWET "Faktor Wiedereinsetzmenge temperaturabhaengig" CURVE 0x019A70 RL_UBYTE 0 CM_LIN_UNIT_34 0.0 1.9922
+    /begin CHARACTERISTIC FWET "Faktor Wiedereinsetzmenge temperaturabhaengig" CURVE 0x019A70 RL_UBYTE 0 CM_LIN_UNIT_38 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 9 0.0 255.0
         AXIS_PTS_REF AXIS_FWET_X
       /end AXIS_DESCR
@@ -842,37 +882,45 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_FQTEDL_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC WDKARN "DK-Winkel-Schwelle für Gemischadaption aktiv" CURVE 0x019F42 RL_UBYTE 0 CM_LIN_DK_54 0.0 100.0
+    /begin CHARACTERISTIC WDKARN "DK-Winkel-Schwelle für Gemischadaption aktiv" CURVE 0x019F42 RL_UBYTE 0 CM_LIN_DK_58 0.0 100.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 10 0.0 255.0
         AXIS_PTS_REF AXIS_WDKARN_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC TMRELI "Temperatur Motorraum, Erfassung u. Linearisierung, Inverskennlinie" CURVE 0x019FEA RL_UBYTE 0 CM_LIN_Grad_C_55 -48.0 143.25
+    /begin CHARACTERISTIC TMRELI "Temperatur Motorraum, Erfassung u. Linearisierung, Inverskennlinie" CURVE 0x019FEA RL_UBYTE 0 CM_LIN_Grad_C_59 -48.0 143.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 15 0.0 255.0
         AXIS_PTS_REF AXIS_TMRELI_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC MLSUS "Sollwert Luftmassen-Integral für motorisches Katheizen" CURVE 0x01A04F RL_UBYTE 0 CM_LIN_kg_56 0.0 5.8027
+    /begin CHARACTERISTIC MLSUS "Sollwert Luftmassen-Integral für motorisches Katheizen" CURVE 0x01A04F RL_UBYTE 0 CM_LIN_kg_60 0.0 5.8027
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 12 0.0 255.0
         AXIS_PTS_REF AXIS_MLSUS_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC LASTMOT "Motortemp.-Korrektur von Lambda-Abgas-Soll" CURVE 0x01A137 RL_UBYTE 0 CM_LIN_UNIT_34 0.0 1.9922
+    /begin CHARACTERISTIC LASTMOT "Motortemp.-Korrektur von Lambda-Abgas-Soll" CURVE 0x01A137 RL_UBYTE 0 CM_LIN_UNIT_38 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 4 0.0 255.0
         AXIS_PTS_REF AXIS_LASTMOT_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC FABMDWA "Faktor zur Absteuerung des Wandlermoments abhängig von nturb/nsol" CURVE 0x01A300 RL_UBYTE 0 CM_LIN_UNIT_26 0.0 0.9961
+    /begin CHARACTERISTIC FABMDWA "Faktor zur Absteuerung des Wandlermoments abhängig von nturb/nsol" CURVE 0x01A300 RL_UBYTE 0 CM_LIN_UNIT_30 0.0 0.9961
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 6 0.0 255.0
         AXIS_PTS_REF AXIS_FABMDWA_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC TVZWVS1 "Einschaltverzögerung ZW-Einfluß bei Ventilhubumschaltung" CURVE 0x01A33F RL_UBYTE 0 CM_LIN_s_35 0.0 5.1
+    /begin CHARACTERISTIC TVZWVS1 "Einschaltverzögerung ZW-Einfluß bei Ventilhubumschaltung" CURVE 0x01A33F RL_UBYTE 0 CM_LIN_s_39 0.0 5.1
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 8 0.0 255.0
         AXIS_PTS_REF AXIS_TVZWVS1_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFTEKA "Kennfeld Sollkraftstoffanteil bei Regenerierung" MAP 0x01A7E4 RL_UBYTE 0 CM_LIN_UNIT_34 0.0 1.9922
+    /begin CHARACTERISTIC CDKAT "Catalytic Converter OBD-II Diagnosis Enable Codeword" VALUE 0x01A4A2 RL_UBYTE 0 CM_IDENT_flag_0_off_1_on_61 0.0 255.0
+    /end CHARACTERISTIC
+    /begin CHARACTERISTIC CDSLS "Secondary Air Injection (SAI) Diagnosis Enable Codeword" VALUE 0x01A4A3 RL_UBYTE 0 CM_IDENT_flag_0_off_1_on_61 0.0 255.0
+    /end CHARACTERISTIC
+    /begin CHARACTERISTIC CDHSH "Rear O2 Sensor Heater Diagnostic Enable Codeword" VALUE 0x01A4A7 RL_UBYTE 0 CM_IDENT_flag_0_off_1_on_61 0.0 255.0
+    /end CHARACTERISTIC
+    /begin CHARACTERISTIC CDLSH "Rear O2 Sensor Operational Diagnostic Enable Codeword" VALUE 0x01A4B2 RL_UBYTE 0 CM_IDENT_flag_0_off_1_on_61 0.0 255.0
+    /end CHARACTERISTIC
+    /begin CHARACTERISTIC KFTEKA "Kennfeld Sollkraftstoffanteil bei Regenerierung" MAP 0x01A7E4 RL_UBYTE 0 CM_LIN_UNIT_38 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_ub_q40_4 5 0.0 10200.0
         AXIS_PTS_REF AXIS_KFTEKA_X
       /end AXIS_DESCR
@@ -880,12 +928,12 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFTEKA_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC TVSUM "Zeitverzögerung der Saugrohrumschaltung in Abhängigkeit von der Motortemperatur" CURVE 0x0197FA RL_UBYTE 0 CM_IDENT_s_57 0.0 255.0
+    /begin CHARACTERISTIC TVSUM "Zeitverzögerung der Saugrohrumschaltung in Abhängigkeit von der Motortemperatur" CURVE 0x0197FA RL_UBYTE 0 CM_IDENT_s_62 0.0 255.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_tmot_19 6 -48.0 143.25
         AXIS_PTS_REF AXIS_TVSUM_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC LAMFA "Driver-Demanded Target Lambda Map (Full Throttle Enrichment)" MAP 0x01B430 RL_UBYTE 0 CM_LIN_Lambda_58 0.0 1.9922
+    /begin CHARACTERISTIC LAMFA "Driver-Demanded Target Lambda Map (Full Throttle Enrichment)" MAP 0x01B430 RL_UBYTE 0 CM_LIN_Lambda_63 0.0 1.9922
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_mrfa_load_20 6 0.0 199.9969
         AXIS_PTS_REF AXIS_LAMFA_X
       /end AXIS_DESCR
@@ -893,7 +941,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_LAMFA_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFDTMTE "Kennfeld Motortemperaturgradient für Ersatztemperatur" MAP 0x01B923 RL_UBYTE 0 CM_LIN_Grad_C_59 0.0 0.1868
+    /begin CHARACTERISTIC KFDTMTE "Kennfeld Motortemperaturgradient für Ersatztemperatur" MAP 0x01B923 RL_UBYTE 0 CM_LIN_Grad_C_64 0.0 0.1868
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_m_ub_b1020_21 5 0.0 1020.0
         AXIS_PTS_REF AXIS_KFDTMTE_X
       /end AXIS_DESCR
@@ -901,7 +949,7 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFDTMTE_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFDTMTR "Kennfeld Motortemperaturgradient für Referenztemperatur" MAP 0x01B943 RL_UBYTE 0 CM_LIN_Grad_C_59 0.0 0.1868
+    /begin CHARACTERISTIC KFDTMTR "Kennfeld Motortemperaturgradient für Referenztemperatur" MAP 0x01B943 RL_UBYTE 0 CM_LIN_Grad_C_64 0.0 0.1868
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_m_ub_b1020_21 5 0.0 1020.0
         AXIS_PTS_REF AXIS_KFDTMTR_X
       /end AXIS_DESCR
@@ -909,22 +957,22 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFDTMTR_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC WDKPMXN "Maximaler Drosselklappenwinkel für Plausibilisierung mit Füllungssignal" CURVE 0x01BEF6 RL_UBYTE 0 CM_LIN_DK_54 0.0 100.0
+    /begin CHARACTERISTIC WDKPMXN "Maximaler Drosselklappenwinkel für Plausibilisierung mit Füllungssignal" CURVE 0x01BEF6 RL_UBYTE 0 CM_LIN_DK_58 0.0 100.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_UNIT_0 12 0.0 255.0
         AXIS_PTS_REF AXIS_WDKPMXN_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC NKTOLVS "Drehzahlkorrektur für Schaltschwellen in Abhängigkeit von Tol" CURVE 0x01064A RL_UBYTE 0 CM_LIN_UNIT_60 0.0 10200.0
+    /begin CHARACTERISTIC NKTOLVS "Drehzahlkorrektur für Schaltschwellen in Abhängigkeit von Tol" CURVE 0x01064A RL_UBYTE 0 CM_LIN_UNIT_65 0.0 10200.0
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_tol_23 8 -48.0 143.25
         AXIS_PTS_REF AXIS_NKTOLVS_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC RLVMXN "Maximaler Volumenstrom bei offener Drosselklappe" CURVE 0x01A3E9 RL_UBYTE 0 CM_LIN_UNIT_61 0.0 191.25
+    /begin CHARACTERISTIC RLVMXN "Maximaler Volumenstrom bei offener Drosselklappe" CURVE 0x01A3E9 RL_UBYTE 0 CM_LIN_UNIT_66 0.0 191.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_24 11 0.0 10200.0
         AXIS_PTS_REF AXIS_RLVMXN_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFZWMNX "Alternate Minimum Ignition Timing Floor (Blended with KFZWMN)" MAP 0x012120 RL_SBYTE 0 CM_LIN_deg_BTDC_28 -96.0 95.25
+    /begin CHARACTERISTIC KFZWMNX "Alternate Minimum Ignition Timing Floor (Blended with KFZWMN)" MAP 0x012120 RL_SBYTE 0 CM_LIN_deg_BTDC_32 -96.0 95.25
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rl_load_1 12 0.0 191.25
         AXIS_PTS_REF AXIS_KFZWMNX_X
       /end AXIS_DESCR
@@ -932,12 +980,36 @@ ASAP2_VERSION 1 61
         AXIS_PTS_REF AXIS_KFZWMNX_Y
       /end AXIS_DESCR
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC KFTVSA "Overrun Fuel-Cut Delay Time (tmot x nmot)" MAP 0x01A2B6 RL_UBYTE 0 CM_LIN_s_38 0.0 2.55
+    /begin CHARACTERISTIC KFTVSA "Overrun Fuel-Cut Delay Time (tmot x nmot)" MAP 0x01A2B6 RL_UBYTE 0 CM_LIN_s_42 0.0 2.55
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_nmot_RPM_2 8 0.0 10200.0
         AXIS_PTS_REF AXIS_KFTVSA_X
       /end AXIS_DESCR
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_tmot_deg_C_25 5 -48.0 143.25
         AXIS_PTS_REF AXIS_KFTVSA_Y
+      /end AXIS_DESCR
+    /end CHARACTERISTIC
+    /begin CHARACTERISTIC KRKTE "Conversion of Relative Fuel Mass (rk) to Effective Injection Time (te)" VALUE 0x019802 RL_UBYTE 0 CM_LIN_ms_67 0.0 0.5439
+    /end CHARACTERISTIC
+    /begin CHARACTERISTIC TVUB "Injector Dead-Time / Battery Voltage Latency Correction (TVUB)" CURVE 0x015E4C RL_UWORD 0 CM_LIN_ms_68 0.0 174.7818
+      /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_V_26 5 0.0 19.38
+        AXIS_PTS_REF AXIS_TVUB_X
+      /end AXIS_DESCR
+    /end CHARACTERISTIC
+    /begin CHARACTERISTIC KFLBTS "Component Protection Target Lambda Map (KFLBTS)" MAP 0x019E2F RL_UBYTE 0 CM_LIN_lambda_69 0.0 1.9922
+      /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_UNIT_27 12 0.0 191.25
+        AXIS_PTS_REF AXIS_KFLBTS_X
+      /end AXIS_DESCR
+      /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rpm_28 16 0.0 10200.0
+        AXIS_PTS_REF AXIS_KFLBTS_Y
+      /end AXIS_DESCR
+    /end CHARACTERISTIC
+    /begin CHARACTERISTIC TABGBTS "Exhaust Gas Temperature Threshold for Component Protection (TABGBTS)" VALUE 0x01B40E RL_UWORD 0 CM_LIN_degC_70 -50.0 1229.9805
+    /end CHARACTERISTIC
+    /begin CHARACTERISTIC DTABGBTS "EGT Hysteresis for Component Protection (DTABGBTS)" VALUE 0x01B40C RL_UWORD 0 CM_LIN_degC_71 0.0 1279.9805
+    /end CHARACTERISTIC
+    /begin CHARACTERISTIC KFNWEGM "Overrun Fuel Cut Re-Engagement Engine Speed Curve vs Gear (KFNWEGM)" CURVE 0x01964C RL_UBYTE 0 CM_LIN_rpm_28 0.0 10200.0
+      /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_IDENT_gear_29 8 0.0 255.0
+        AXIS_PTS_REF AXIS_KFNWEGM_X
       /end AXIS_DESCR
     /end CHARACTERISTIC
   /end MODULE

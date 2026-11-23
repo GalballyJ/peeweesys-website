@@ -1,9 +1,9 @@
 {
-  "last_synced": "2026-11-22T23:30:52.215034+00:00",
+  "last_synced": "2026-11-23T21:40:48.011549+00:00",
   "stats": {
-    "total": 422,
-    "done": 258,
-    "percent": 61.1
+    "total": 423,
+    "done": 259,
+    "percent": 61.2
   },
   "milestones": {
     "M0": "Discovery - talk to the car, addresses, RAM, 9x7 data",
@@ -15,9 +15,9 @@
     "W": "Writes path - staged gates G0-G6 (docs/WRITES_PATH.md)"
   },
   "summary": {
-    "car_verified_count": 102,
+    "car_verified_count": 103,
     "bench_extracted_count": 23,
-    "power_features_count": 140
+    "power_features_count": 141
   },
   "highlighted": {
     "car_verified_9x6": [

@@ -16,13 +16,13 @@ Set the C167 Data Page Pointers (DPPs) in **Register Manager** (or at reset/main
 - `DPP2 = 0x0E0` (`0x380000..0x383FFF` — external SRAM)
 - `DPP3 = 0x003` (`0x00C000..0x00FFFF` — internal RAM / SFRs)
 
-## 3. Importing Symbols (303 Total)
+## 3. Importing Symbols (317 Total)
 | Category | Count | Address Domain |
 | :--- | :---: | :--- |
 | Verified C167 Functions | 31 | `0x800000..0x87FFFF` |
 | Verified KWP Tables | 3 | `0x81CD6A..0x81DCD8` |
-| `VERIFIED_TUNER` Calibration Maps | 72 | `0x810000..0x81FFFF` |
-| `VERIFIED_TUNER` Calibration Axes | 97 | `0x810000..0x81FFFF` |
+| `VERIFIED_TUNER` Calibration Maps | 82 | `0x810000..0x81FFFF` |
+| `VERIFIED_TUNER` Calibration Axes | 101 | `0x810000..0x81FFFF` |
 | Confirmed RAM Variables (Primary) | 86 | `0x00F600..0x00FFDF`, `0x380000..0x387FFF` |
 | Confirmed RAM Mirror Addresses | 14 | `0x380000..0x387FFF` |
 

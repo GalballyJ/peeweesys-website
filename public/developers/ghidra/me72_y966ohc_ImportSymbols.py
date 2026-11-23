@@ -7,11 +7,11 @@
 
 from ghidra.program.model.symbol import SourceType
 
-# Total symbols: 303
+# Total symbols: 317
 #   Campaign functions : 31
 #   Campaign tables    : 3
-#   VERIFIED_TUNER maps: 72
-#   VERIFIED_TUNER axes: 97
+#   VERIFIED_TUNER maps: 82
+#   VERIFIED_TUNER axes: 101
 #   Confirmed RAM vars : 86
 #   RAM mirror addrs   : 14
 SYMBOLS = [
@@ -1078,6 +1078,30 @@ SYMBOLS = [
     "[VERIFIED_TUNER X-Axis for TVZWVS1] 8 pts UBYTE | units=- | eq=X"
   ],
   [
+    "CDKAT",
+    8496290,
+    "l",
+    "[VERIFIED_TUNER SCALAR 1x1 UBYTE] units=flag (0=off, 1=on) | eq=X | Catalytic Converter OBD-II Diagnosis Enable Codeword"
+  ],
+  [
+    "CDSLS",
+    8496291,
+    "l",
+    "[VERIFIED_TUNER SCALAR 1x1 UBYTE] units=flag (0=off, 1=on) | eq=X | Secondary Air Injection (SAI) Diagnosis Enable Codeword"
+  ],
+  [
+    "CDHSH",
+    8496295,
+    "l",
+    "[VERIFIED_TUNER SCALAR 1x1 UBYTE] units=flag (0=off, 1=on) | eq=X | Rear O2 Sensor Heater Diagnostic Enable Codeword"
+  ],
+  [
+    "CDLSH",
+    8496306,
+    "l",
+    "[VERIFIED_TUNER SCALAR 1x1 UBYTE] units=flag (0=off, 1=on) | eq=X | Rear O2 Sensor Operational Diagnostic Enable Codeword"
+  ],
+  [
     "KFTEKA",
     8497124,
     "l",
@@ -1232,6 +1256,66 @@ SYMBOLS = [
     8491701,
     "l",
     "[VERIFIED_TUNER Y-Axis for KFTVSA] 5 pts UBYTE | units=tmot (deg C) | eq=0.75*X-48"
+  ],
+  [
+    "KRKTE",
+    8493058,
+    "l",
+    "[VERIFIED_TUNER SCALAR 1x1 UBYTE] units=ms/% | eq=0.002133*X | Conversion of Relative Fuel Mass (rk) to Effective Injection Time (te)"
+  ],
+  [
+    "TVUB",
+    8478284,
+    "l",
+    "[VERIFIED_TUNER CURVE_2D 1x5 UWORD] units=ms | eq=0.002667*X | Injector Dead-Time / Battery Voltage Latency Correction (TVUB)"
+  ],
+  [
+    "TVUB_x_axis",
+    8478279,
+    "l",
+    "[VERIFIED_TUNER X-Axis for TVUB] 5 pts UBYTE | units=V | eq=0.076*X"
+  ],
+  [
+    "KFLBTS",
+    8494639,
+    "l",
+    "[VERIFIED_TUNER MAP_3D 16x12 UBYTE] units=lambda | eq=0.0078125*X | Component Protection Target Lambda Map (KFLBTS)"
+  ],
+  [
+    "KFLBTS_x_axis",
+    8494849,
+    "l",
+    "[VERIFIED_TUNER X-Axis for KFLBTS] 12 pts UBYTE | units=% | eq=0.75*X"
+  ],
+  [
+    "KFLBTS_y_axis",
+    8494832,
+    "l",
+    "[VERIFIED_TUNER Y-Axis for KFLBTS] 16 pts UBYTE | units=rpm | eq=40.0*X"
+  ],
+  [
+    "TABGBTS",
+    8500238,
+    "l",
+    "[VERIFIED_TUNER SCALAR 1x1 UWORD] units=degC | eq=0.01953125*X - 50 | Exhaust Gas Temperature Threshold for Component Protection (TABGBTS)"
+  ],
+  [
+    "DTABGBTS",
+    8500236,
+    "l",
+    "[VERIFIED_TUNER SCALAR 1x1 UWORD] units=degC | eq=0.01953125*X | EGT Hysteresis for Component Protection (DTABGBTS)"
+  ],
+  [
+    "KFNWEGM",
+    8492620,
+    "l",
+    "[VERIFIED_TUNER CURVE_2D 1x8 UBYTE] units=rpm | eq=40.0*X | Overrun Fuel Cut Re-Engagement Engine Speed Curve vs Gear (KFNWEGM)"
+  ],
+  [
+    "KFNWEGM_x_axis",
+    8492612,
+    "l",
+    "[VERIFIED_TUNER X-Axis for KFNWEGM] 8 pts UBYTE | units=gear | eq=X"
   ],
   [
     "nmot_w",

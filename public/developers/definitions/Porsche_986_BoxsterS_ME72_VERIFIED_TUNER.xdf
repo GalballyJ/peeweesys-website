@@ -3392,7 +3392,75 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.979).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x3f" flags="0x0">
+  <XDFCONSTANT uniqueid="0x3f">
+    <title>CDKAT - Katalysator-Diagnose im OBDII-Mode (Catalytic Converter OBD-II Diagnosis Enable Codeword)</title>
+    <description>CDKAT - Katalysator-Diagnose im OBDII-Mode (invers: Europa-Mode)
+
+GERMAN: Codewort fuer Katalysatordiagnose. Bei CDKAT=1 wird der Katalysator-Wirkungsgrad ueberprueft. Bei CDKAT=0 (Euro-Modus) ist die Diagnose deaktiviert und die CARB-Readiness fuer Catalyst wird dauerhaft auf BEREIT gesetzt.
+ENGLISH: OBD-II Catalytic converter efficiency diagnostic enable codeword. Set to 0 to disable secondary O2 catalyst efficiency check (prevents P0420/P0430 DTCs) and permanently set catalyst readiness to READY without triggering CEL.</description>
+    <CATEGORYMEM index="0" category="5"/>
+    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a4a2" mmedelementsizebits="8"/>
+    <units>flag (0=off, 1=on)</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0"/>
+    <MATH equation="X">
+      <VAR id="X"/>
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x40">
+    <title>CDSLS - Diagnose Sekundaerluft-System (Secondary Air Injection (SAI) Diagnosis Enable Codeword)</title>
+    <description>CDSLS - Diagnose Sekundaerluft-System (SAI Diagnostic Enable)
+
+GERMAN: Euro-Byte fuer Diagnose des Sekundaerluft-Systems. 1=Diagnose aktiv, 0=Diagnose deaktiviert (keine Fehlereintraege / Readiness gesetzt).
+ENGLISH: Secondary air injection system diagnostic enable codeword. Set to 0 to disable air pump and valve diagnosis, keeping SAI readiness monitor in READY state and preventing SAI CELs.</description>
+    <CATEGORYMEM index="0" category="5"/>
+    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a4a3" mmedelementsizebits="8"/>
+    <units>flag (0=off, 1=on)</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0"/>
+    <MATH equation="X">
+      <VAR id="X"/>
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x41">
+    <title>CDHSH - Heizerdiagnose hinter Kat (Rear O2 Sensor Heater Diagnostic Enable Codeword)</title>
+    <description>CDHSH - Heizerdiagnose hinter Kat (Downstream O2 Heater Diag)
+
+GERMAN: Codewort fuer die elektrische Diagnose der Lambdasondenheizung hinter dem Katalysator. CDHSH=0 deaktiviert die Ueberwachung.
+ENGLISH: Downstream (post-cat) oxygen sensor heater diagnostic enable codeword. Set to 0 to disable post-cat heater circuit monitoring.</description>
+    <CATEGORYMEM index="0" category="5"/>
+    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a4a7" mmedelementsizebits="8"/>
+    <units>flag (0=off, 1=on)</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0"/>
+    <MATH equation="X">
+      <VAR id="X"/>
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x42">
+    <title>CDLSH - Sondendiagnose hinter Kat (Rear O2 Sensor Operational Diagnostic Enable Codeword)</title>
+    <description>CDLSH - Sondendiagnose hinter Kat im OBDII-Mode
+
+GERMAN: Codewort fuer die funktionale Ueberwachung der Nachkat-Lambdasonde. CDLSH=0 schaltet die Nachkat-Sondendiagnose ab.
+ENGLISH: Post-catalytic converter oxygen sensor functional diagnosis enable codeword. Set to 0 to disable post-cat sensor voltage fluctuation and aging checks.</description>
+    <CATEGORYMEM index="0" category="5"/>
+    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a4b2" mmedelementsizebits="8"/>
+    <units>flag (0=off, 1=on)</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0"/>
+    <MATH equation="X">
+      <VAR id="X"/>
+    </MATH>
+  </XDFCONSTANT>
+  <XDFTABLE uniqueid="0x43" flags="0x0">
     <title>KFTEKA - Kennfeld Sollkraftstoffanteil bei Regenerierung (Kennfeld Sollkraftstoffanteil bei Regenerierung)</title>
     <description>KFTEKA - Kennfeld Sollkraftstoffanteil bei Regenerierung
 
@@ -3429,7 +3497,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x40" flags="0x0">
+  <XDFTABLE uniqueid="0x44" flags="0x0">
     <title>TVSUM - Zeitverzögerung der Saugrohrumschaltung in Abhängigkeit von der Motortemperatur (Zeitverzögerung der Saugrohrumschaltung in Abhängigkeit von der Motortemperatur)</title>
     <description>TVSUM - Zeitverzögerung der Saugrohrumschaltung in Abhängigkeit von der Motortemperatur
 
@@ -3469,7 +3537,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x41" flags="0x0">
+  <XDFTABLE uniqueid="0x45" flags="0x0">
     <title>LAMFA - Kennfeld fuer Soll-Lambda abhaengig von Fahreranforderung (Driver-Demanded Target Lambda Map (Full Throttle Enrichment))</title>
     <description>LAMFA - Kennfeld fuer Soll-Lambda abhaengig von Fahreranforderung
 
@@ -3507,7 +3575,7 @@ ENGLISH: Primary air-fuel ratio target surface. Governs power enrichment under s
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x42" flags="0x0">
+  <XDFTABLE uniqueid="0x46" flags="0x0">
     <title>KFDTMTE - Kennfeld Motortemperaturgradient für Ersatztemperatur (Kennfeld Motortemperaturgradient für Ersatztemperatur)</title>
     <description>KFDTMTE - Kennfeld Motortemperaturgradient für Ersatztemperatur
 
@@ -3544,7 +3612,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.996).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x43" flags="0x0">
+  <XDFTABLE uniqueid="0x47" flags="0x0">
     <title>KFDTMTR - Kennfeld Motortemperaturgradient für Referenztemperatur (Kennfeld Motortemperaturgradient für Referenztemperatur)</title>
     <description>KFDTMTR - Kennfeld Motortemperaturgradient für Referenztemperatur
 
@@ -3581,7 +3649,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.996).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x44" flags="0x0">
+  <XDFTABLE uniqueid="0x48" flags="0x0">
     <title>WDKPMXN - Maximaler Drosselklappenwinkel für Plausibilisierung mit Füllungssignal (Maximaler Drosselklappenwinkel für Plausibilisierung mit Füllungssignal)</title>
     <description>WDKPMXN - Maximaler Drosselklappenwinkel für Plausibilisierung mit Füllungssignal
 
@@ -3621,7 +3689,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.905).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x45" flags="0x0">
+  <XDFTABLE uniqueid="0x49" flags="0x0">
     <title>NKTOLVS - Drehzahlkorrektur für Schaltschwellen in Abhängigkeit von Tol (Drehzahlkorrektur für Schaltschwellen in Abhängigkeit von Tol)</title>
     <description>NKTOLVS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The monotonically increasing 1×8 curve (values 8→125) against a tolerance axis (13→150) is physically consistent with an RPM offset applied to up/down-shift thresholds that scales with the transmission tolerance window, and the strong r=0.888 correlation with the ME7.8 successor confirms structural continuity of this shift-calibration logic across Bosch generations.</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -3659,7 +3727,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.905).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x46" flags="0x0">
+  <XDFTABLE uniqueid="0x4a" flags="0x0">
     <title>RLVMXN - Maximaler Volumenstrom bei offener Drosselklappe (Maximaler Volumenstrom bei offener Drosselklappe)</title>
     <description>RLVMXN — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: </description>
     <CATEGORYMEM index="0" category="3"/>
@@ -3697,7 +3765,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.905).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x47" flags="0x0">
+  <XDFTABLE uniqueid="0x4b" flags="0x0">
     <title>KFZWMNX - Kennfeld minimaler Zuendwinkel (Alternativ/Katheizen) (Alternate Minimum Ignition Timing Floor (Blended with KFZWMN))</title>
     <description>KFZWMNX @ 0x12120 (16x12 SBYTE). CODE-VERIFIED in fn 0x87C2B6: looked up alongside KFZWMN (0x12060) and blended by weight [0x3826BC] before updating [0x380CED] -&gt; [0x380CEF].</description>
     <CATEGORYMEM index="0" category="1"/>
@@ -3732,7 +3800,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.905).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x48" flags="0x0">
+  <XDFTABLE uniqueid="0x4c" flags="0x0">
     <title>KFTVSA - Verzoegerungszeit fuer Schubabschalten (Overrun Fuel-Cut Delay Time (tmot x nmot))</title>
     <description>KFTVSA @ 0x1A2B6 (5 tmot rows x 8 nmot cols, UBYTE x 0.1 s). CODE-VERIFIED consumer @0x86C540 reloads overrun countdown timer A24E/A24D (10 ms tick). 40/40 byte-identical to ME7.8 donor 0x1972D. Warm rows: 0.90 s &lt;= 2000 rpm, 0.50 s @ 2520-3000 rpm, 0.00 s &gt;= 3520 rpm.</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -3763,6 +3831,159 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.905).</description>
       <outputtype>1</outputtype>
       <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a2b6" mmedelementsizebits="8" mmedrowcount="5" mmedcolcount="8" signed="0"/>
       <MATH equation="0.01*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFCONSTANT uniqueid="0x4d">
+    <title>KRKTE - Umrechnung relative Kraftstoffmasse rk in effektive Einspritzzeit te (Conversion of Relative Fuel Mass (rk) to Effective Injection Time (te))</title>
+    <description>CODE-VERIFIED at CPU 0x861C42..0x861C4A: EXTP #206h, #1; MOVBZ R5, 1802h -&gt; file 0x19802 (raw byte 0x3B = 59 -&gt; 0.1259 ms/% at 0.0021333 ms/%, or 26.74 in donor rkti_sy 0.4533*X scale).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x19802" mmedelementsizebits="8"/>
+    <units>ms/%</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0"/>
+    <MATH equation="0.002133*X">
+      <VAR id="X"/>
+    </MATH>
+  </XDFCONSTANT>
+  <XDFTABLE uniqueid="0x4e" flags="0x0">
+    <title>TVUB - Spannungskorrektur (Einspritzzeit / Ventilverzugszeit) (Injector Dead-Time / Battery Voltage Latency Correction (TVUB))</title>
+    <description>CODE-VERIFIED at CPU 0x861C62..0x861C72 via DPP1 (0x0205 = file 0x14000): MOVBZ R12, 5E46h (count=5 @ 0x15E46), MOV R13, #5E47h (5-pt ub axis @ 0x15E47: 6.99..16.04 V), MOV R14, #5E4Ch (5x UWORD LE data @ 0x15E4C: 2.109, 1.323, 0.843, 0.509, 0.283 ms). Frontier review resolved E67 O1 (0x1DE46 was a false EXTP addition).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>V</units>
+      <indexcount>5</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x15e47" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.076*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>ms</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x15e4c" mmedelementsizebits="16" mmedrowcount="1" mmedcolcount="5" signed="0" lsbfirst="1"/>
+      <MATH equation="0.002667*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFTABLE uniqueid="0x4f" flags="0x0">
+    <title>KFLBTS - Lambdasoll fuer Bauteileschutz (Component Protection Target Lambda Map (KFLBTS))</title>
+    <description>CODE-VERIFIED at CPU 0x866838..0x86688A: 16x12 UBYTE map at file 0x19E2F..0x19EEE (page 0x206 + 0x1E2F). Y-axis nmot (16 pts @ 0x19EF0, count=16 @ 0x19EEF: 2520..7200 rpm); X-axis rl (12 pts @ 0x19F01, count=12 @ 0x19F00: 21.0..90.0 % load). Frontier review resolved E67 O3 (0x19F00 vs typo 0x19FF0).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>%</units>
+      <indexcount>12</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19f01" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="0.75*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>rpm</units>
+      <indexcount>16</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19ef0" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="40.0*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>lambda</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x19e2f" mmedelementsizebits="8" mmedrowcount="16" mmedcolcount="12" signed="0"/>
+      <MATH equation="0.0078125*X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+  </XDFTABLE>
+  <XDFCONSTANT uniqueid="0x50">
+    <title>TABGBTS - Abgastemperaturschwelle fuer Bauteileschutz (Exhaust Gas Temperature Threshold for Component Protection (TABGBTS))</title>
+    <description>CODE-VERIFIED at CPU 0x866892..0x8668A4: EXTP #206h, #1; CMP R4, 340Eh -&gt; file 0x1B40E (LE word 0xB600 = 858.5 degC). Frontier review resolved E67 O4/O6 (EXTP #206h precedes 340Eh).</description>
+    <CATEGORYMEM index="0" category="6"/>
+    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1b40e" mmedelementsizebits="16" lsbfirst="1"/>
+    <units>degC</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0"/>
+    <MATH equation="0.01953125*X - 50">
+      <VAR id="X"/>
+    </MATH>
+  </XDFCONSTANT>
+  <XDFCONSTANT uniqueid="0x51">
+    <title>DTABGBTS - Hysterese Abgastemperaturschwelle fuer Bauteileschutz (EGT Hysteresis for Component Protection (DTABGBTS))</title>
+    <description>CODE-VERIFIED at CPU 0x8668A8..0x8668AC: EXTP #206h, #1; SUB R4, 340Ch -&gt; file 0x1B40C (LE word 0x0400 = 20.0 degC hysteresis below TABGBTS).</description>
+    <CATEGORYMEM index="0" category="6"/>
+    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1b40c" mmedelementsizebits="16" lsbfirst="1"/>
+    <units>degC</units>
+    <decimalpl>2</decimalpl>
+    <datatype>0</datatype>
+    <unittype>0</unittype>
+    <DALINK index="0"/>
+    <MATH equation="0.01953125*X">
+      <VAR id="X"/>
+    </MATH>
+  </XDFCONSTANT>
+  <XDFTABLE uniqueid="0x52" flags="0x0">
+    <title>KFNWEGM - Wiedereinsetzdrehzahlkennlinie (Schubabschaltung) (Overrun Fuel Cut Re-Engagement Engine Speed Curve vs Gear (KFNWEGM))</title>
+    <description>CODE-VERIFIED at CPU 0x85C9FC..0x85CA10: MOV R12, #1643h; MOV R13, #0206h; MOVBZ R14, 8A25h (gangi @ [0x380A25]); CALLS 01h, BE3Ch (1D inline curve lookup) -&gt; output [0x381E82]. Count=8 @ 0x19643, 8-pt gear axis (0..7) @ 0x19644..0x1964B, 8-pt RPM data @ 0x1964C..0x19653 (2000, 2000, 2000, 1800, 1560, 1200, 1200, 1200 rpm). Frontier review resolved E67 O5 (1D curve over gear, not 5x8).</description>
+    <CATEGORYMEM index="0" category="2"/>
+    <XDFAXIS id="x">
+      <units>gear</units>
+      <indexcount>8</indexcount>
+      <decimalpl>2</decimalpl>
+      <EMBEDDEDDATA mmedaddress="0x19644" mmedelementsizebits="8" mmedmajorstridebits="8" mmedtypeflags="0x00"/>
+      <embedinfo type="1"/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="y">
+      <units>-</units>
+      <indexcount>1</indexcount>
+      <decimalpl>0</decimalpl>
+      <outputtype>2</outputtype>
+      <datatype>0</datatype>
+      <unittype>0</unittype>
+      <DALINK index="0"/>
+      <LABEL index="0" value=""/>
+      <MATH equation="X">
+        <VAR id="X"/>
+      </MATH>
+    </XDFAXIS>
+    <XDFAXIS id="z">
+      <units>rpm</units>
+      <decimalpl>2</decimalpl>
+      <min>0.0</min>
+      <outputtype>1</outputtype>
+      <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1964c" mmedelementsizebits="8" mmedrowcount="1" mmedcolcount="8" signed="0"/>
+      <MATH equation="40.0*X">
         <VAR id="X"/>
       </MATH>
     </XDFAXIS>

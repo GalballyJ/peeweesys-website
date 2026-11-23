@@ -1396,14 +1396,6 @@ ASAP2_VERSION 1 61
     /end CHARACTERISTIC
     /begin CHARACTERISTIC CDDST "CARB Euro Byte for Tank Pressure Sensor Diagnosis Deactivation" VALUE 0x01A49E RL_UBYTE 0 CM_IDENT_flag_0_off_1_on_76 0.0 255.0
     /end CHARACTERISTIC
-    /begin CHARACTERISTIC CDKAT "Catalytic Converter OBD-II Diagnosis Enable Codeword" VALUE 0x01A4A2 RL_UBYTE 0 CM_IDENT_flag_0_off_1_on_76 0.0 255.0
-    /end CHARACTERISTIC
-    /begin CHARACTERISTIC CDSLS "Secondary Air Injection (SAI) Diagnosis Enable Codeword" VALUE 0x01A4A3 RL_UBYTE 0 CM_IDENT_flag_0_off_1_on_76 0.0 255.0
-    /end CHARACTERISTIC
-    /begin CHARACTERISTIC CDHSH "Rear O2 Sensor Heater Diagnostic Enable Codeword" VALUE 0x01A4A7 RL_UBYTE 0 CM_IDENT_flag_0_off_1_on_76 0.0 255.0
-    /end CHARACTERISTIC
-    /begin CHARACTERISTIC CDLSH "Rear O2 Sensor Operational Diagnostic Enable Codeword" VALUE 0x01A4B2 RL_UBYTE 0 CM_IDENT_flag_0_off_1_on_76 0.0 255.0
-    /end CHARACTERISTIC
     /begin CHARACTERISTIC KFDETATE "Zündwinkelwirkungsgrad Korrektur for DTEV" MAP 0x01A4E2 RL_UBYTE 0 CM_LIN_UNIT_77 0.0 127.5
       /begin AXIS_DESCR COM_AXIS NO_INPUT_QUANTITY CM_LIN_rel_ub_b127p5_17 4 0.0 127.5
         AXIS_PTS_REF AXIS_KFDETATE_X

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fail-closed privacy gate for D:\peeweesys-website.
+r"""Fail-closed privacy gate for D:\peeweesys-website.
 
 Blocks real owner VINs and UK registration plates from leaking into src/ or public/.
 Allows:

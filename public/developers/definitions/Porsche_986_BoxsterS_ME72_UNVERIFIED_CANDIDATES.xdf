@@ -4829,75 +4829,7 @@ ENGLISH: Evaporative emission control (EVAP) tank venting diagnostic enable code
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x82">
-    <title>CDKAT - Katalysator-Diagnose im OBDII-Mode (Catalytic Converter OBD-II Diagnosis Enable Codeword)</title>
-    <description>CDKAT - Katalysator-Diagnose im OBDII-Mode (invers: Europa-Mode)
-
-GERMAN: Codewort fuer Katalysatordiagnose. Bei CDKAT=1 wird der Katalysator-Wirkungsgrad ueberprueft. Bei CDKAT=0 (Euro-Modus) ist die Diagnose deaktiviert und die CARB-Readiness fuer Catalyst wird dauerhaft auf BEREIT gesetzt.
-ENGLISH: OBD-II Catalytic converter efficiency diagnostic enable codeword. Set to 0 to disable secondary O2 catalyst efficiency check (prevents P0420/P0430 DTCs) and permanently set catalyst readiness to READY without triggering CEL.</description>
-    <CATEGORYMEM index="0" category="5"/>
-    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a4a2" mmedelementsizebits="8"/>
-    <units>flag (0=off, 1=on)</units>
-    <decimalpl>2</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0"/>
-    <MATH equation="X">
-      <VAR id="X"/>
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x83">
-    <title>CDSLS - Diagnose Sekundaerluft-System (Secondary Air Injection (SAI) Diagnosis Enable Codeword)</title>
-    <description>CDSLS - Diagnose Sekundaerluft-System (SAI Diagnostic Enable)
-
-GERMAN: Euro-Byte fuer Diagnose des Sekundaerluft-Systems. 1=Diagnose aktiv, 0=Diagnose deaktiviert (keine Fehlereintraege / Readiness gesetzt).
-ENGLISH: Secondary air injection system diagnostic enable codeword. Set to 0 to disable air pump and valve diagnosis, keeping SAI readiness monitor in READY state and preventing SAI CELs.</description>
-    <CATEGORYMEM index="0" category="5"/>
-    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a4a3" mmedelementsizebits="8"/>
-    <units>flag (0=off, 1=on)</units>
-    <decimalpl>2</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0"/>
-    <MATH equation="X">
-      <VAR id="X"/>
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x84">
-    <title>CDHSH - Heizerdiagnose hinter Kat (Rear O2 Sensor Heater Diagnostic Enable Codeword)</title>
-    <description>CDHSH - Heizerdiagnose hinter Kat (Downstream O2 Heater Diag)
-
-GERMAN: Codewort fuer die elektrische Diagnose der Lambdasondenheizung hinter dem Katalysator. CDHSH=0 deaktiviert die Ueberwachung.
-ENGLISH: Downstream (post-cat) oxygen sensor heater diagnostic enable codeword. Set to 0 to disable post-cat heater circuit monitoring.</description>
-    <CATEGORYMEM index="0" category="5"/>
-    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a4a7" mmedelementsizebits="8"/>
-    <units>flag (0=off, 1=on)</units>
-    <decimalpl>2</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0"/>
-    <MATH equation="X">
-      <VAR id="X"/>
-    </MATH>
-  </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x85">
-    <title>CDLSH - Sondendiagnose hinter Kat (Rear O2 Sensor Operational Diagnostic Enable Codeword)</title>
-    <description>CDLSH - Sondendiagnose hinter Kat im OBDII-Mode
-
-GERMAN: Codewort fuer die funktionale Ueberwachung der Nachkat-Lambdasonde. CDLSH=0 schaltet die Nachkat-Sondendiagnose ab.
-ENGLISH: Post-catalytic converter oxygen sensor functional diagnosis enable codeword. Set to 0 to disable post-cat sensor voltage fluctuation and aging checks.</description>
-    <CATEGORYMEM index="0" category="5"/>
-    <EMBEDDEDDATA mmedtypeflags="0x00" mmedaddress="0x1a4b2" mmedelementsizebits="8"/>
-    <units>flag (0=off, 1=on)</units>
-    <decimalpl>2</decimalpl>
-    <datatype>0</datatype>
-    <unittype>0</unittype>
-    <DALINK index="0"/>
-    <MATH equation="X">
-      <VAR id="X"/>
-    </MATH>
-  </XDFCONSTANT>
-  <XDFTABLE uniqueid="0x86" flags="0x0">
+  <XDFTABLE uniqueid="0x82" flags="0x0">
     <title>KFDETATE - Zündwinkelwirkungsgrad Korrektur for DTEV (Zündwinkelwirkungsgrad Korrektur for DTEV)</title>
     <description>KFDETATE - Zündwinkelwirkungsgrad Korrektur for DTEV
 
@@ -4934,7 +4866,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x87" flags="0x0">
+  <XDFTABLE uniqueid="0x83" flags="0x0">
     <title>KFTVFRR - Kennfeld: Lambda-Regler nach dieser Zeit auf Referenzwert zurücksetzen (Kennfeld: Lambda-Regler nach dieser Zeit auf Referenzwert zurücksetzen)</title>
     <description>KFTVFRR - Kennfeld: Lambda-Regler nach dieser Zeit auf Referenzwert zurücksetzen
 
@@ -4971,7 +4903,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x88" flags="0x0">
+  <XDFTABLE uniqueid="0x84" flags="0x0">
     <title>TADTEAMX - Kennlinie Max. tastverhältnis abhängig vom Integral Massenstrom TE nach TE Stop (Kennlinie Max. tastverhältnis abhängig vom Integral Massenstrom TE nach TE Stop)</title>
     <description>TADTEAMX - Kennlinie Max. tastverhältnis abhängig vom Integral Massenstrom TE nach TE Stop
 
@@ -5011,7 +4943,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x89" flags="0x0">
+  <XDFTABLE uniqueid="0x85" flags="0x0">
     <title>FFRITMS - Faktor für I-Dynamik des Lambdareglers in Abhängigkeit von tmst (Faktor für I-Dynamik des Lambdareglers in Abhängigkeit von tmst)</title>
     <description>FFRITMS - Faktor für I-Dynamik des Lambdareglers in Abhängigkeit von tmst
 
@@ -5051,7 +4983,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x8a" flags="0x0">
+  <XDFTABLE uniqueid="0x86" flags="0x0">
     <title>KFRI - I - Kennfeld (I - Kennfeld)</title>
     <description>KFRI - I - Kennfeld
 
@@ -5091,7 +5023,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x8b" flags="0x0">
+  <XDFTABLE uniqueid="0x87" flags="0x0">
     <title>KFRI2 - LR-I-Kennfeld für Bank 2 (LR-I-Kennfeld für Bank 2)</title>
     <description>KFRI2 - LR-I-Kennfeld für Bank 2
 
@@ -5131,7 +5063,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x8c" flags="0x0">
+  <XDFTABLE uniqueid="0x88" flags="0x0">
     <title>RLLRUN - Kennlinie über nmot, untere rL Regelgrenze für Regler vor KAT (Kennlinie über nmot, untere rL Regelgrenze für Regler vor KAT)</title>
     <description>RLLRUN - Kennlinie über nmot, untere rL Regelgrenze für Regler vor KAT
 
@@ -5171,7 +5103,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x8d" flags="0x0">
+  <XDFTABLE uniqueid="0x89" flags="0x0">
     <title>ZLRHML - Luftmassendurchsatz abhängige Zeitkonstante für Lambdaregler hinter Katalysator (Luftmassendurchsatz abhängige Zeitkonstante für Lambdaregler hinter Katalysator)</title>
     <description>ZLRHML - Luftmassendurchsatz abhängige Zeitkonstante für Lambdaregler hinter Katalysator
 
@@ -5211,7 +5143,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x8e" flags="0x0">
+  <XDFTABLE uniqueid="0x8a" flags="0x0">
     <title>FIMALU - Filterfaktor Mehrfachaussetzererkennung (Filterfaktor Mehrfachaussetzererkennung)</title>
     <description>FIMALU - Filterfaktor Mehrfachaussetzererkennung
 
@@ -5251,7 +5183,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x8f" flags="0x0">
+  <XDFTABLE uniqueid="0x8b" flags="0x0">
     <title>FKAXAVKAT - Gewichtungsfaktor Sauerstoffspeicher in Abhängigkeit von avkatf (Gewichtungsfaktor Sauerstoffspeicher in Abhängigkeit von avkatf)</title>
     <description>FKAXAVKAT - Gewichtungsfaktor Sauerstoffspeicher in Abhängigkeit von avkatf
 
@@ -5291,7 +5223,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x90" flags="0x0">
+  <XDFTABLE uniqueid="0x8c" flags="0x0">
     <title>FQTEFR - Kennlinie stetige Grenzwertregelung (fr) (Kennlinie stetige Grenzwertregelung (fr))</title>
     <description>FQTEFR - Kennlinie stetige Grenzwertregelung (fr)
 
@@ -5331,7 +5263,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x91" flags="0x0">
+  <XDFTABLE uniqueid="0x8d" flags="0x0">
     <title>KFURL - Umrechnungsfaktor ps-&gt;rl abhaengig von NW-Verstellung (Manifold Pressure to Load Factor vs VarioCam Angle (BGSRM))</title>
     <description>KFURL - Umrechnungsfaktor ps-&gt;rl bei Nockenwellenverstellung
 
@@ -5369,7 +5301,7 @@ ENGLISH: Saugrohrmodell (manifold filling model) translation factor linking mani
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x92" flags="0x0">
+  <XDFTABLE uniqueid="0x8e" flags="0x0">
     <title>DNLBZ - Leerlauf-Solldrehzahlanhebung für Batterie-Ladebilanz (Leerlauf-Solldrehzahlanhebung für Batterie-Ladebilanz)</title>
     <description>DNLBZ - Leerlauf-Solldrehzahlanhebung für Batterie-Ladebilanz
 
@@ -5409,7 +5341,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.988).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x93" flags="0x0">
+  <XDFTABLE uniqueid="0x8f" flags="0x0">
     <title>KFDTMTU - Kennfeld Korrekturgradient Motortemperatur bei geringer Erwärmung (Kennfeld Korrekturgradient Motortemperatur bei geringer Erwärmung)</title>
     <description>KFDTMTU - Kennfeld Korrekturgradient Motortemperatur bei geringer Erwärmung
 
@@ -5446,7 +5378,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x94" flags="0x0">
+  <XDFTABLE uniqueid="0x90" flags="0x0">
     <title>IMLLASKH - imlpr-Schwelle für Übergang auf Lambda-Abgas-Vorgabe (imlpr-Schwelle für Übergang auf Lambda-Abgas-Vorgabe)</title>
     <description>IMLLASKH - imlpr-Schwelle für Übergang auf Lambda-Abgas-Vorgabe
 
@@ -5486,7 +5418,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.982).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x95" flags="0x0">
+  <XDFTABLE uniqueid="0x91" flags="0x0">
     <title>KFTSRL - Kennfeld Schliesszeit / Zuendspulen-Ladezeit (Ignition Coil Dwell Time / Primary Charge Duration Surface)</title>
     <description>KFTSRL - Kennfeld Schliesszeit / Zuendspulen-Ladezeit
 
@@ -5524,7 +5456,7 @@ ENGLISH: Ignition coil dwell charge time map. Dictates primary ignition coil dwe
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x96" flags="0x0">
+  <XDFTABLE uniqueid="0x92" flags="0x0">
     <title>KFFRMIN - untere Regelbereichsgrenze (untere Regelbereichsgrenze)</title>
     <description>KFFRMIN - untere Regelbereichsgrenze
 
@@ -5564,7 +5496,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x97" flags="0x0">
+  <XDFTABLE uniqueid="0x93" flags="0x0">
     <title>DZWAML - Auf/Abregelgeschwindigkeit zwischen den Begrenzungskennfeldern (Auf/Abregelgeschwindigkeit zwischen den Begrenzungskennfeldern)</title>
     <description>DZWAML - Auf/Abregelgeschwindigkeit zwischen den Begrenzungskennfeldern
 
@@ -5604,7 +5536,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x98" flags="0x0">
+  <XDFTABLE uniqueid="0x94" flags="0x0">
     <title>DLAMOB - Delta Lambda bei Overboost (Delta Lambda bei Overboost)</title>
     <description>DLAMOB - Delta Lambda bei Overboost
 
@@ -5644,7 +5576,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x99" flags="0x0">
+  <XDFTABLE uniqueid="0x95" flags="0x0">
     <title>DMADFK - Maximal adaptierbares Delta-Verlustmoment pro Adaptionsphase Fahrst.+Kompr. (Maximal adaptierbares Delta-Verlustmoment pro Adaptionsphase Fahrst.+Kompr.)</title>
     <description>DMADFK - Maximal adaptierbares Delta-Verlustmoment pro Adaptionsphase Fahrst.+Kompr.
 
@@ -5684,7 +5616,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=1.000).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x9a" flags="0x0">
+  <XDFTABLE uniqueid="0x96" flags="0x0">
     <title>KFZWWLTM - Delta Zuendwinkel im Warmlauf (Warmup Ignition Timing Advance Delta)</title>
     <description>KFZWWLTM - Delta Zuendwinkel im Warmlauf
 
@@ -5722,7 +5654,7 @@ ENGLISH: Warmup spark advance adder. Adds timing advance during engine warmup as
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x9b" flags="0x0">
+  <XDFTABLE uniqueid="0x97" flags="0x0">
     <title>KFNWSE - Kennfeld fuer Nockenwellenspreizung (Einlass) (Intake Camshaft Spread / VarioCam Phasing Map)</title>
     <description>KFNWSE - Kennfeld fuer Nockenwellenspreizung (Einlass)
 
@@ -5760,7 +5692,7 @@ ENGLISH: Target intake camshaft spread / phase angle map. Dictates VarioCam cams
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x9c" flags="0x0">
+  <XDFTABLE uniqueid="0x98" flags="0x0">
     <title>VSL - Fahrzeuggeschwindigkeitsschwelle für Kompensation Servolenkung (Fahrzeuggeschwindigkeitsschwelle für Kompensation Servolenkung)</title>
     <description>VSL - Fahrzeuggeschwindigkeitsschwelle für Kompensation Servolenkung
 
@@ -5800,7 +5732,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFCONSTANT uniqueid="0x9d">
+  <XDFCONSTANT uniqueid="0x99">
     <title>CDCTESK - Codewort CARB: Tankentlüftungssystem Kleinstleck (Codewort CARB: Tankentlüftungssystem Kleinstleck)</title>
     <description>CDCTESK — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: VAL_BLK type with no unit and decimal range 0–65535 is the canonical signature of a DTC codeword identifier. Raw bytes (repeated 16-bit small integers) match standard codeword table layout, and zero C167 call sites is expected since codewords are data entries consumed by the diagnostic engine, not callable subroutines. The 'Tank' sector assignment and 0.975 ME7.8 correlation confir</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -5814,7 +5746,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x9e">
+  <XDFCONSTANT uniqueid="0x9a">
     <title>CDCTESF - Codewort CARB: Tankentlüftungssystem Feinleck (Codewort CARB: Tankentlüftungssystem Feinleck)</title>
     <description>CDCTESF — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: This is a CARB emissions codeword (Codewort) identifying the tank venting system fine-adjustment configuration. Zero C167 call sites are expected — codewords are diagnostic identifiers read by ISTA/VCDS, not referenced in real-time control loops. The 0.920 ME7.8 correlation and small integer values (0x17, 0x23) confirm it as a static configuration flag.</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -5828,7 +5760,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x9f">
+  <XDFCONSTANT uniqueid="0x9b">
     <title>CDCTHM - Codewort CARB: Thermostat-Diagnose THM (Codewort CARB: Thermostat-Diagnose THM)</title>
     <description>CDCTHM — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: CDCTHM is a 16-bit diagnostic codeword (VAL_BLK 1x1, no unit) used for thermostat status reporting in the CARB diagnostic framework. Zero C167 call sites confirm it is not part of the active control loop but rather a static status word read by OBD/UDS diagnostic routines. The repeating 0x0023 byte pattern in raw data is consistent with a flag/status register encoding thermostat sta</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -5842,7 +5774,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xa0">
+  <XDFCONSTANT uniqueid="0x9c">
     <title>CLAEV4 - Fehlerklasse: EV Endstufe 4 (Fehlerklasse: EV Endstufe 4)</title>
     <description>CLAEV4 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The symbol name and German title explicitly identify this as an error-class code for the 4th EV final-stage driver (ignition coil or injector power stage). Zero C167 call sites confirm it is a diagnostic configuration value outside the real-time control loop, consistent with a fault classification index rather than a tunable parameter.</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -5856,7 +5788,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xa1">
+  <XDFCONSTANT uniqueid="0x9d">
     <title>CDTDVEE - Codewort Tester: DV-E Endstufe (Codewort Tester: DV-E Endstufe)</title>
     <description>CDTDVEE — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The name 'Codewort Tester: DV-E Endstufe' explicitly identifies this as a diagnostic code word for the digital valve final-stage amplifier. Zero C167 call sites confirm it is not referenced in any control-loop logic, and the raw byte pattern (repeating 37 11 / 39 01 sequences) is consistent with a structured identifier/checksum rather than a functional calibration value.</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -5870,7 +5802,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xa2">
+  <XDFCONSTANT uniqueid="0x9e">
     <title>CLAKPE - Fehlerklasse: EKP-Relais Endstufe (Fehlerklasse: EKP-Relais Endstufe)</title>
     <description>CLAKPE — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title 'Fehlerklasse: EKP-Relais Endstufe' unambiguously identifies this as an error-class code for the fuel pump/injector relay final-stage driver fault. The single VALUE type and small integer raw bytes (3–30 range) are consistent with a DTC classification index rather than a performance map. The MOV_R12_TABLE_LOAD call site confirms it is read within the diagnostic/fau</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -5884,7 +5816,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xa3">
+  <XDFCONSTANT uniqueid="0x9f">
     <title>CLAKS2 - Fehlerklasse: Klopfsensor 2 (Fehlerklasse: Klopfsensor 2)</title>
     <description>CLAKS2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: German title 'Fehlerklasse: Klopfsensor 2' unambiguously identifies this as an error class code for knock sensor 2. The single VALUE type and decimal compu method are consistent with a diagnostic fault classification identifier rather than a functional tuning parameter. The MOV_R12_TABLE_LOAD call site at 0x49ECA is consistent with a diagnostic routine reading error class descripto</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -5898,7 +5830,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xa4">
+  <XDFCONSTANT uniqueid="0xa0">
     <title>SHKNWMXE - Maximale Anzahl Schüttelversuche Einlaßnockenwelle im Fahrzyklus (Maximale Anzahl Schüttelversuche Einlaßnockenwelle im Fahrzyklus)</title>
     <description>SHKNWMXE — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title explicitly defines a maximum counter for hydraulic actuation attempts of the intake VarioCam camshaft per drive cycle. The raw value of 5 (0x05) is physically consistent with a bounded retry limit for a hydraulic phaser, and the MOV_R12_TABLE_LOAD call site confirms the ECU loads this scalar into the VarioCam control state machine to gate actuator engagement.</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -5912,7 +5844,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xa5">
+  <XDFCONSTANT uniqueid="0xa1">
     <title>WAD1T0 - Wichtungsfaktor Adaptionsbereich 1 zu 0 (Wichtungsfaktor Adaptionsbereich 1 zu 0)</title>
     <description>WAD1T0 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title 'Wichtungsfaktor Adaptionsbereich 1 zu 0' explicitly identifies this as a lambda adaptation weighting coefficient governing the transition between adaptation range 1 and range 0. The C167 code confirms active use via three MOV_R12_TABLE_LOAD call sites within the Filling sector, consistent with Bosch's fuel trim architecture where scalar weighting factors modulate </description>
     <CATEGORYMEM index="0" category="4"/>
@@ -5926,7 +5858,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xa6">
+  <XDFCONSTANT uniqueid="0xa2">
     <title>SRYHS - Schwelle für Readiness-Bildung Sondenheizungs-Diagnose (Schwelle für Readiness-Bildung Sondenheizungs-Diagnose)</title>
     <description>SRYHS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title explicitly defines this as a readiness threshold for O2 sensor heater diagnosis. The single call site (MOV_R12_TABLE_LOAD @ 0x684DE) is consistent with a scalar threshold comparison in the diagnostic state machine, and placement in the Catalyst Diagnostics sector confirms functional alignment. Value of 4 (decimal) likely represents a confirmation count before heate</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -5940,7 +5872,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xa7">
+  <XDFCONSTANT uniqueid="0xa3">
     <title>TSFKS1 - Fehlersummenzeit: Klopfsensor 1 (Fehlersummenzeit: Klopfsensor 1)</title>
     <description>TSFKS1 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: TSFKS1 is a scalar time constant defining the error summation window for knock sensor 1 fault accumulation. The C167 MOV_R12_TABLE_LOAD call site confirms it is loaded into a register for use in diagnostic state-machine logic. Placement in the Catalyst Diagnostics sector is consistent with Bosch ME7 grouping of knock-related protection timing parameters, as sustained knock triggers</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -5954,7 +5886,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xa8">
+  <XDFCONSTANT uniqueid="0xa4">
     <title>UBDCAN - UBatt-Schwelle für Diagnose CAN-Timeout (UBatt-Schwelle für Diagnose CAN-Timeout)</title>
     <description>UBDCAN — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The spg_ubatt compu method and German title (battery voltage threshold for diagnostic CAN timeout) unambiguously identify this as a brownout protection value. Raw byte 0x5A = 90 → 9.0V (Bosch /10 scaling) is a physically sensible threshold below which the ECU disables or times out CAN bus communication to prevent erratic behavior during voltage sag. Three MOV_R12_TABLE_LOAD call si</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -5968,7 +5900,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xa9">
+  <XDFCONSTANT uniqueid="0xa5">
     <title>TUPWG1U - Fehlerzeit bei Bereichsverletzung von PWG-Poti 1 nach unten (Fehlerzeit bei Bereichsverletzung von PWG-Poti 1 nach unten)</title>
     <description>TUPWG1U — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The compu method t10msxs_ub_b2p55 confirms a 10ms-scaled unsigned byte timer; raw value 0x06 yields 60ms debounce before the ECU logs a fault when PWG-Potentiometer 1 voltage drops below its valid window. The MOV_R12_TABLE_LOAD call site at 0x28958 is consistent with a diagnostic routine reading a calibration constant, and sector placement under Catalyst Diagnostics aligns with emi</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -5982,7 +5914,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xaa">
+  <XDFCONSTANT uniqueid="0xa6">
     <title>CLAVFZ - Fehlerklasse: Geschwindigkeitssignal (Fehlerklasse: Geschwindigkeitssignal)</title>
     <description>CLAVFZ — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title 'Fehlerklasse: Geschwindigkeitssignal' explicitly identifies this as an error class code for speed signal faults. The VALUE(1x1) type with decimal compu method and no unit is consistent with a scalar fault severity code (typically 0–3 in Bosch ME architecture). Three MOV_R12_TABLE_LOAD call sites indicate it is consumed by diagnostic evaluation routines that classi</description>
     <CATEGORYMEM index="0" category="1"/>
@@ -5996,7 +5928,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xab">
+  <XDFCONSTANT uniqueid="0xa7">
     <title>DTAHLL - Delta Ansauglufttemperatur für Abbruch erhöhte Solldrehzahl im Heiß-Leerlauf (Delta Ansauglufttemperatur für Abbruch erhöhte Solldrehzahl im Heiß-Leerlauf)</title>
     <description>DTAHLL — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title (Delta Ansauglufttemperatur für Abbruch erhöhte Solldrehzahl im Heiß-Leerlauf) directly maps to the symbol name DTAHLL (DTA=Delta, HLL=Heiß-Leerlauf). The raw byte 0x7D with temp_ub_b191p25 yields 31.25°C — a physically sensible IAT delta threshold for aborting elevated hot-idle target RPM. Two adjacent C167 call sites (0x619C0/0x619F8) confirm usage within the idl</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6010,7 +5942,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xac">
+  <XDFCONSTANT uniqueid="0xa8">
     <title>DWDK12O - Maximal zulässige Abweichung zwischen den DK-Winkeln aus Poti 1 und 2 (Maximal zulässige Abweichung zwischen den DK-Winkeln aus Poti 1 und 2)</title>
     <description>DWDK12O — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title explicitly defines the maximum allowable deviation between TPS1 and TPS2 potentiometer angles. The compu method relDK_ub_b100 confirms a relative throttle upper-bound in percent (raw 0x04 = 4% max spread). Two MOV_R12_TABLE_LOAD call sites at 0x29E38/0x29E70 indicate the value is loaded for bidirectional plausibility comparison logic within the component protection</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -6024,7 +5956,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xad">
+  <XDFCONSTANT uniqueid="0xa9">
     <title>CDTBREMS - Fehlerpfadcode: BREMS (Bremsschalter) (Fehlerpfadcode: BREMS (Bremsschalter))</title>
     <description>CDTBREMS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title 'Fehlerpfadcode: BREMS (Bremsschalter)' explicitly identifies this as a fixed error-path code for the brake switch circuit. As a single VALUE type with no unit and decimal compu method, it serves as a static fault identifier in the ECU's DTC classification logic rather than a performance parameter. The near-zero ME7.8 shape correlation (r=0.049) is expected for a n</description>
     <CATEGORYMEM index="0" category="1"/>
@@ -6038,7 +5970,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xae">
+  <XDFCONSTANT uniqueid="0xaa">
     <title>TSFMD03 - Fehlersummenzeit: Aussetzer Zylinder 3 (Fehlersummenzeit: Aussetzer Zylinder 3)</title>
     <description>TSFMD03 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title 'Fehlersummenzeit: Aussetzer Zylinder 3' explicitly identifies this as the misfire accumulation time threshold for cylinder 3. Placement in the Catalyst Diagnostics sector and the single MOV_R12_TABLE_LOAD call site confirm it is a per-cylinder scalar loaded into the misfire detection state machine, where it gates the transition from transient ion-current deviation</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -6052,7 +5984,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xaf">
+  <XDFCONSTANT uniqueid="0xab">
     <title>CLATGET - Fehlerklasse: Getriebetemperatur TGET (Fehlerklasse: Getriebetemperatur TGET)</title>
     <description>CLATGET — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The symbol name (CLAT = Class, TGET = Getriebetemperatur) and German title explicitly identify this as a transmission temperature error class threshold. The single C167 call site via MOV_R12_TABLE_LOAD confirms active use in the diagnostic evaluation routine. Zero shape correlation is expected for a scalar VALUE parameter rather than a curve.</description>
     <CATEGORYMEM index="0" category="1"/>
@@ -6066,7 +5998,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xb0">
+  <XDFCONSTANT uniqueid="0xac">
     <title>TMHLL - Motortemperaturschwelle für erhöhte Solldrehzahl im Heiß-Leerlauf (Motortemperaturschwelle für erhöhte Solldrehzahl im Heiß-Leerlauf)</title>
     <description>TMHLL — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title explicitly defines an engine temperature threshold for elevated hot-idle target RPM. The compu method temp_ub_q0p75_o48 decodes raw 0x0086 to ~86°C, a physically consistent hot-idle switchover point. The single MOV_R12_TABLE_LOAD call site at 0x47DB6 confirms the C167 reads this value during idle speed control logic.</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -6080,7 +6012,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xb1">
+  <XDFCONSTANT uniqueid="0xad">
     <title>ZWAPPL - Applikationsschnittstelle Zündwinkelverstellung (Applikationsschnittstelle Zündwinkelverstellung)</title>
     <description>ZWAPPL — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The 'zw' compu-method prefix (Zündwinkel), single VALUE type consistent with a global ignition offset interface, and two adjacent MOV_R12_TABLE_LOAD call sites within the ignition calculation block all confirm this is a scalar advance-angle application parameter. Factory value of 0x00 (0°) indicates a neutral default offset applied to the base ZW map.</description>
     <CATEGORYMEM index="0" category="1"/>
@@ -6094,7 +6026,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xb2">
+  <XDFCONSTANT uniqueid="0xae">
     <title>TUPWG2U - Fehlerzeit bei Bereichsverletzung von PWG-Poti 2 nach unten (Fehlerzeit bei Bereichsverletzung von PWG-Poti 2 nach unten)</title>
     <description>TUPWG2U — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title explicitly defines a fault-detection timeout for PWG-Potentiometer 2 lower-range violation. The t10msxs compu method confirms a time-scaled scalar (raw 0x23 = 350 ms), and the C167 call site at 0x44C80 is consistent with a diagnostic evaluation routine loading this threshold before comparing against the live sensor reading.</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6108,7 +6040,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xb3">
+  <XDFCONSTANT uniqueid="0xaf">
     <title>CDCURRAM - Codewort CARB: Rechnerüberwachung: RAM (Codewort CARB: Rechnerüberwachung: RAM)</title>
     <description>CDCURRAM — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title 'Codewort CARB: Rechnerüberwachung: RAM' explicitly identifies this as an ECU self-monitoring code word for RAM integrity. The raw value (0x06) is a small integer consistent with a diagnostic status code, and the MOV_R12_TABLE_LOAD call site at 0x44A3A matches the pattern of reading a fault/monitor code from a lookup table during the ECU's periodic self-test cycle.</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6122,7 +6054,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xb4">
+  <XDFCONSTANT uniqueid="0xb0">
     <title>WDKNLPMI - unterer erlaubter Istwert für NLP-Stellung (unterer erlaubter Istwert für NLP-Stellung)</title>
     <description>WDKNLPMI — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title explicitly defines the lower allowed actual camshaft phase (NLP) position, and the parameter resides in the Intake/VarioCam sector. The C167 call site at 0x5DC48 uses MOV_R12_TABLE_LOAD, consistent with VarioCam control-loop parameter fetching. The raw value 0x06 (→ 0.06° via /100) is a physically plausible minimum cam-position guard against sensor drift or actuato</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6136,7 +6068,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xb5">
+  <XDFCONSTANT uniqueid="0xb1">
     <title>TSFLSV2 - Fehlersummenzeit: Lambda-Sonde 2 vor Kat (Fehlersummenzeit: Lambda-Sonde 2 vor Kat)</title>
     <description>TSFLSV2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The German title 'Fehlersummenzeit: Lambda-Sonde 2 vor Kat' unambiguously identifies this as the error accumulation time threshold for the upstream O2 sensor. The r = -0.998 shape correlation with ME7.8 confirms cross-generation functional identity (inverted scaling convention), and two MOV_R12_TABLE_LOAD call sites verify active use in the C167 diagnostic state machine for lambda </description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6150,7 +6082,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xb6">
+  <XDFCONSTANT uniqueid="0xb2">
     <title>CDCVS1E - Codeword CARB: Ventilhub1 (Endstufe) (Codeword CARB: Ventilhub1 (Endstufe))</title>
     <description>CDCVS1E — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Ventilhub1 (Endstufe)' and sector placement in the VarioCam region confirm this is a codeword identifying the final-stage valve lift profile for the intake cam. The r=0.999 correlation with ME7.8 validates structural continuity across generations. Zero call sites is expected for codewords, which are consumed via CMP/conditional logic rather than direct subroutin</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6164,7 +6096,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xb7">
+  <XDFCONSTANT uniqueid="0xb3">
     <title>CDTCGGGP - Codewort Tester: EGS; Gang unplausibel (Codewort Tester: EGS; Gang unplausibel)</title>
     <description>CDTCGGGP — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Codewort Tester: EGS; Gang unplausibel' unambiguously identifies this as a diagnostic threshold for gear-position plausibility validation. The r=0.988 correlation with ME7.8 confirms parameter continuity across generations. Zero direct C167 call sites is consistent with ME7.2's indirect pointer-table architecture for DTC threshold access.</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6178,7 +6110,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xb8">
+  <XDFCONSTANT uniqueid="0xb4">
     <title>CDCSLS - Codewort CARB: Sekundärluft-System (Codewort CARB: Sekundärluft-System)</title>
     <description>CDCSLS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The raw byte pattern (repeated 0x0023 with one 0x0017) is characteristic of a small-integer codeword flag, consistent with the 'Codewort CARB' title. Zero C167 call sites is expected for boot-time configuration words read via direct memory access rather than function calls. The r=0.986 correlation with ME7.8 confirms stable cross-generation identity for this emissions compliance </description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6192,7 +6124,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xb9">
+  <XDFCONSTANT uniqueid="0xb5">
     <title>CDKMD - Codewort Kunde: Aussetzer, Summenfehler (multiple) (Codewort Kunde: Aussetzer, Summenfehler (multiple))</title>
     <description>CDKMD — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as a customer-facing error code mapping table (misfire/sum-error classification). The raw byte pattern (repeating 0x76/0x15 with incremental 0x77, 0x78) is consistent with an internal-to-external DTC lookup table, not a scalar value. Zero direct call sites is expected for data tables accessed via indirect pointer in C167 diagnostic rout</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6206,7 +6138,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xba">
+  <XDFCONSTANT uniqueid="0xb6">
     <title>CDCLASH - Codewort CARB:	Lambda-Sondenalterung hinter Kat. (Codewort CARB:	Lambda-Sondenalterung hinter Kat.)</title>
     <description>CDCLASH — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as a downstream (post-cat) lambda sensor aging code word. The raw data shows tightly clustered 16-bit values (~4393–4401) consistent with discrete aging-state identifiers rather than continuous physical quantities, and the r=0.967 correlation with ME7.8 confirms cross-generation continuity of this compensation mechanism.</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6220,7 +6152,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xbb">
+  <XDFCONSTANT uniqueid="0xb7">
     <title>CDTDVEV - Codewort Tester: DV-E Fehler bei Verstärkerabgleich (Codewort Tester: DV-E Fehler bei Verstärkerabgleich)</title>
     <description>CDTDVEV — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as a diagnostic code word (Codewort) for DV-E amplifier calibration fault detection. The single-byte VALUE type with decimal compu method and no unit is consistent with a DTC/flag entry stored in a diagnostic lookup table. Zero direct call sites is expected since diagnostic codes are typically accessed via indirect table indexing rather</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6234,7 +6166,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xbc">
+  <XDFCONSTANT uniqueid="0xb8">
     <title>CDTNWKW - Codewort Tester: Zuordnung Nockenwelle zu Kurbelwelle (Codewort Tester: Zuordnung Nockenwelle zu Kurbelwelle)</title>
     <description>CDTNWKW — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The 'Codewort' prefix and German title confirm this is a static sensor-assignment identifier (camshaft-to-crankshaft wiring code), not a control-loop parameter. The 1x1 VALUE type with no unit and decimal compu method is consistent with a discrete configuration code. Zero direct C167 call sites is expected, as code words are typically accessed via indirect pointer tables or diagn</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6248,7 +6180,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xbd">
+  <XDFCONSTANT uniqueid="0xb9">
     <title>CDKRKAZ2 - Codewort Kunde: Lambdaregelungsadaption Kraftstoff (Bank 2) (Codewort Kunde: Lambdaregelungsadaption Kraftstoff (Bank 2))</title>
     <description>CDKRKAZ2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The symbol name (Codewort Kunde: Lambdaregelungsadaption Kraftstoff Bank 2) and 1x1 VALUE type are consistent with a Bosch codewort parameter governing fuel trim adaptation limits for the secondary bank. The raw byte pattern (repeating 0x32/0x11/0x26) matches typical codewort integer encoding, and the r=0.954 ME7.8 correlation confirms cross-generation continuity. Zero direct C16</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6262,7 +6194,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xbe">
+  <XDFCONSTANT uniqueid="0xba">
     <title>CDKRKAT - Codewort Kunde: LR- Adaption pro Zeit (Codewort Kunde: LR- Adaption pro Zeit)</title>
     <description>CDKRKAT — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The 'Codewort Kunde' prefix indicates a customer-specific configuration constant for lambda regulation adaptation timing (LR-Adaption pro Zeit). The 0.947 shape correlation with ME7.8 confirms functional continuity across generations. Zero direct call sites is consistent with Codewort parameters accessed via indirect table-pointer lookups in the C167 lambda control routine rather</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6276,7 +6208,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xbf">
+  <XDFCONSTANT uniqueid="0xbb">
     <title>CDCKAT - Codewort CARB:	Katalysator-Konvertierung (Codewort CARB:	Katalysator-Konvertierung)</title>
     <description>CDCKAT — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: CDCKAT is a 16-bit codeword identifying the catalyst conversion configuration for the CARB (fuel) subsystem. Zero C167 call sites are expected — codewords are static identifiers read by diagnostic tools (PIWIS/KTS) and stored in NVRAM, not referenced in real-time control loops. The r=0.927 correlation with ME7.8 confirms structural continuity across Bosch generations.</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -6290,7 +6222,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xc0">
+  <XDFCONSTANT uniqueid="0xbc">
     <title>CDCCRA - Codewort CARB: EKP aus bei Crash (Codewort CARB: EKP aus bei Crash)</title>
     <description>CDCCRA — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'EKP aus bei Crash' (ignition off during crash) combined with placement in the Catalyst Diagnostics sector and VAL_BLK type confirms this is a code-word flag set when crash detection triggers ignition cutoff. The high shape correlation (r=0.925) with ME7.8 validates cross-generation consistency. Zero call sites is expected for a data-only status word read by OBD/</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6304,7 +6236,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xc1">
+  <XDFCONSTANT uniqueid="0xbd">
     <title>CDKFRAO2 - Codewort Kunde: LR- Adaption mult. oderer Bereich (Codewort Kunde: LR- Adaption mult. oderer Bereich)</title>
     <description>CDKFRAO2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The 'Codewort Kunde' prefix and German title ('LR-Adaption mult. oderer Bereich') identify this as a Porsche-specific lambda adaptation range selector, choosing between multiple or upper-range closed-loop strategies. The r=0.920 shape correlation with ME7.8 confirms cross-generation functional continuity. Zero C167 call sites is expected for a VALUE(1x1) scalar accessed via direc</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6318,7 +6250,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xc2">
+  <XDFCONSTANT uniqueid="0xbe">
     <title>CDCTUM - Codewort CARB: Umgebungs(-luft)-Temperatur TUM (Codewort CARB: Umgebungs(-luft)-Temperatur TUM)</title>
     <description>CDCTUM — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: CDCTUM is a codeword threshold for ambient air temperature (TUM) used within the catalyst diagnostic logic. The value (~303 decimal) sits in a plausible range for a temperature offset or validity gate that determines whether OBD catalyst efficiency monitoring conditions are met. Zero direct C167 call sites is consistent with indirect table-based access typical of codeword structu</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6332,7 +6264,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xc3">
+  <XDFCONSTANT uniqueid="0xbf">
     <title>CDTKS2 - Codewort Tester: Klopfsensor 2 (Codewort Tester: Klopfsensor 2)</title>
     <description>CDTKS2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The 'Codewort Tester' naming convention identifies this as a diagnostic test code word for knock sensor 2, consistent with Bosch's use of single-byte code words for sensor self-test and fault classification. The high ME7.8 correlation (r=0.905) confirms cross-generation persistence, though zero C167 call sites suggests it is accessed via indirect table lookup or initialization se</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6346,7 +6278,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xc4">
+  <XDFCONSTANT uniqueid="0xc0">
     <title>CDTKS1 - Codewort Tester: Klopfsensor 1 (Codewort Tester: Klopfsensor 1)</title>
     <description>CDTKS1 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The 'Codewort Tester' prefix confirms this is a diagnostic validation threshold for knock sensor 1 signal integrity, not a functional ignition map. The single VALUE type and small byte magnitudes (0x32–0x60) are consistent with a signal plausibility check range used during ECU self-test routines. Zero direct call sites is expected since codeword parameters are typically accessed </description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6360,7 +6292,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xc5">
+  <XDFCONSTANT uniqueid="0xc1">
     <title>CWDTKWAV - Codewort Berücksichtigung Kühlwasser-Absperrventil für Diagnose (Codewort Berücksichtigung Kühlwasser-Absperrventil für Diagnose)</title>
     <description>CWDTKWAV — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: This is a diagnostic code word flag that gates whether the coolant shut-off valve (Kühlwasser-Absperrventil) status is factored into OBD catalyst monitoring routines. Its placement in the Catalyst Diagnostics sector and high ME7.8 correlation (r=0.889) confirm it as a valid cross-generation parameter. Zero direct C167 call sites is consistent with indirect table-driven diagnostic</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -6374,7 +6306,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xc6">
+  <XDFCONSTANT uniqueid="0xc2">
     <title>CDKHSHE2 - Codewort Kunde: Enstufe Heizung Sonde Hinter Kat. Bank 2 (Codewort Kunde: Enstufe Heizung Sonde Hinter Kat. Bank 2)</title>
     <description>CDKHSHE2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: Customer code word configuring staged HO2S heater activation for Bank 2 downstream sensor. Zero C167 call sites is expected — code words are accessed via diagnostic protocol (KWP2000/UDS), not the main control loop. High ME7.8 correlation (r=0.879) confirms cross-generation continuity.</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -6388,7 +6320,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xc7">
+  <XDFCONSTANT uniqueid="0xc3">
     <title>CDKMDB - Codewort Kunde: Momentbegrenzung Sollmoment (Codewort Kunde: Momentbegrenzung Sollmoment)</title>
     <description>CDKMDB — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The 'Codewort Kunde: Momentbegrenzung Sollmoment' title explicitly identifies a customer-specific torque limitation target. As a VALUE (1x1) parameter, it is accessed via direct LDR/STR memory reads rather than function calls, explaining the zero call-site count. The r=0.875 correlation with ME7.8 confirms structural continuity across Bosch generations for this derating mechanism</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -6402,7 +6334,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xc8">
+  <XDFCONSTANT uniqueid="0xc4">
     <title>CDCKPE - Codewort CARB: EKP-Relais Endstufe (Codewort CARB: EKP-Relais Endstufe)</title>
     <description>CDCKPE — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Codewort CARB: EKP-Relais Endstufe' identifies this as a diagnostic coding word for the fuel pump relay driver stage configuration. Zero C167 call sites is consistent with a Codewort read by diagnostic tools (ISTA/VCDS) rather than referenced in the main control loop. The repeating byte pattern (36 03 / 40 13) suggests a structured coding field rather than a fun</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6416,7 +6348,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xc9">
+  <XDFCONSTANT uniqueid="0xc5">
     <title>TMFRATMN - minimale Temperatur bei der ftklra_w = 1 ist (minimale Temperatur bei der ftklra_w = 1 ist)</title>
     <description>TMFRATMN — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines this as the minimum temperature threshold for lambda control flag activation (ftklra_w=1). The Q0.75/o48 compu method decodes raw 0x46 to ~48.5°C, a physically sensible O2 sensor readiness threshold. Sector placement in Component Protection/Lambda and moderate ME7.8 correlation (r=0.841) further support the identification.</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -6430,7 +6362,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xca">
+  <XDFCONSTANT uniqueid="0xc6">
     <title>CDTDPL - Codewort Tester: Dauerplus (Codewort Tester: Dauerplus)</title>
     <description>CDTDPL — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The name 'Codewort Tester: Dauerplus' directly references the Bosch diagnostic interface protocol where the Dauerplus (permanent positive) line carries tester codewords for ECU communication and test-mode activation. The two distinct 16-bit values (0x1137=4407, 0x0139=313) are consistent with timing thresholds or codeword identifiers used in the diagnostic handshake. Zero resolve</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -6444,7 +6376,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xcb">
+  <XDFCONSTANT uniqueid="0xc7">
     <title>KRVFN - Anz. Zünd./Zyl., bzw. Zeitangabe von Frühverst. zu Frühverst. (Stufenbreite-KR) (Anz. Zünd./Zyl., bzw. Zeitangabe von Frühverst. zu Frühverst. (Stufenbreite-KR))</title>
     <description>KRVFN — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines ignition advance step width (discrete count of timing steps between Frühverstärkung points), and its placement in the Pulsation Corrections sector is physically consistent — variable step width smooths torque delivery by controlling granularity of advance changes per cylinder firing event. The decimal 1×1 curve format and r=0.820 ME7.8 correlat</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -6458,7 +6390,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xcc">
+  <XDFCONSTANT uniqueid="0xc8">
     <title>USRIUH - Untere Spannungs-Schwelle für Ri-Messung der Sonde hinter KAT (Untere Spannungs-Schwelle für Ri-Messung der Sonde hinter KAT)</title>
     <description>USRIUH — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines a lower voltage threshold for the internal resistance (Ri) measurement of the post-catalytic O2 sensor, which is a standard Bosch lambda signal conditioning parameter. The repeating 0x0442 pattern in raw bytes is consistent with a per-cylinder or per-condition threshold table, and the 0.816 shape correlation with ME7.8 confirms structural conti</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -6472,7 +6404,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xcd">
+  <XDFCONSTANT uniqueid="0xc9">
     <title>CDKDMTL - Codewort Kunde: Tankentlüftungssystem, Modulefehler (Hardware) (Codewort Kunde: Tankentlüftungssystem, Modulefehler (Hardware))</title>
     <description>CDKDMTL — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as a hardware fault code for the tank venting system (EVAP). The sector placement in 'Tank Sector 2' and single-byte VALUE type are consistent with a diagnostic flag or error class identifier. Zero C167 call sites is expected for a DTC configuration value that is read by the diagnostic routine rather than referenced in control logic.</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6486,7 +6418,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xce">
+  <XDFCONSTANT uniqueid="0xca">
     <title>DVZVRWA2 - Delta zw. Ziel- und Sollgeschw. für Übergang in WA-Lande-Mode Bereich 2 (Delta zw. Ziel- und Sollgeschw. für Übergang in WA-Lande-Mode Bereich 2)</title>
     <description>DVZVRWA2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines a speed-delta threshold for VarioCam landing-mode transition in Range 2, consistent with the camshaft phasing control logic. The raw byte pattern (repeated plateau values) matches a speed-based lookup table, and the 0.799 shape correlation with ME7.8 confirms functional continuity across generations. Zero direct call sites likely reflects indir</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6500,7 +6432,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xcf">
+  <XDFCONSTANT uniqueid="0xcb">
     <title>CDCPWMEKE -  Codewort CARB:	 PWM-Signal  Endstufe EKP_SG ( Codewort CARB:	 PWM-Signal  Endstufe EKP_SG)</title>
     <description>CDCPWMEKE — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: VAL_BLK(1x1) with decimal compu method in the Catalyst Diagnostics sector is structurally consistent with a diagnostic codeword flag. The German title explicitly identifies it as a PWM-signal state identifier for the final stage (Endstufe), used by the ECU's catalyst monitoring logic to classify signal conditions. Zero C167 call sites is expected for a data constant referenced in</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -6514,7 +6446,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xd0">
+  <XDFCONSTANT uniqueid="0xcc">
     <title>VDASH - Mindestgeschwindigkeit für Dashpot (Mindestgeschwindigkeit für Dashpot)</title>
     <description>VDASH — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Mindestgeschwindigkeit für Dashpot' and Q1.25 compu method confirm a near-zero speed threshold (raw 0x03 → ~0.09 km/h) gating a software rate-limiter (dashpot) in the torque path. The single MOV_R12_TABLE_LOAD call site at 0x68944 is consistent with loading a scalar threshold for comparison against current vehicle speed before enabling exponential smoothing on t</description>
     <CATEGORYMEM index="0" category="1"/>
@@ -6528,7 +6460,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xd1">
+  <XDFCONSTANT uniqueid="0xcd">
     <title>CDTFRST2 - Codewort Tester: LR-Abweichung Bank 2 (Codewort Tester: LR-Abweichung Bank 2)</title>
     <description>CDTFRST2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The name 'Codewort Tester: LR-Abweichung Bank 2' unambiguously identifies this as a Bosch diagnostic threshold for lambda ratio deviation on Bank 2, used by external tester routines rather than runtime engine control. Zero C167 call sites are consistent with a diagnostic-only value accessed by Bosch/VCDS tools via ROM read, not referenced in the main control loop. The single VALU</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -6542,7 +6474,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xd2">
+  <XDFCONSTANT uniqueid="0xce">
     <title>NMAXSWVS - Integratorsteigung NMAX-Steuerung Ventilhubsteuerung (Integratorsteigung NMAX-Steuerung Ventilhubsteuerung)</title>
     <description>NMAXSWVS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Integratorsteigung NMAX-Steuerung Ventilhubsteuerung' unambiguously identifies this as the integrator slope for the NMAX (max-RPM) valve-lift control loop. The Q25 data shows monotonically increasing small gains (~0.0005→0.023) consistent with a PID integrator that stiffens at higher RPM to track VarioCam target lift faster. Zero C167 call sites likely reflect i</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6556,7 +6488,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xd3">
+  <XDFCONSTANT uniqueid="0xcf">
     <title>CDTDVEU - Codewort Tester: DV-E Fehler beim UMA-Lernen (Codewort Tester: DV-E Fehler beim UMA-Lernen)</title>
     <description>CDTDVEU — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/LOW: This is a fixed diagnostic test word (Codewort) identifying DV-E (RPM variation) errors during UMA ignition-timing learning. The repeating 0x5901/0x3301 byte pattern is characteristic of Bosch codeword identifiers, not physical parameters. Zero C167 call sites suggests it is read only by diagnostic routines or is a ROM-variant placeholder with no active code path in this build.</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6570,7 +6502,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xd4">
+  <XDFCONSTANT uniqueid="0xd0">
     <title>FUKABAKI - Init.-Wert adaptiver ÜK-Korrekturfaktor BA für kalten Motor (Init.-Wert adaptiver ÜK-Korrekturfaktor BA für kalten Motor)</title>
     <description>FUKABAKI — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: German title explicitly identifies this as the initial seed value for the adaptive knock correction factor (ÜK-Korrekturfaktor) on bank A during cold engine operation. The VALUE(1x1) type, dimensionless unit, and fak_ub_b4 compu method are all consistent with a scalar ignition timing offset loaded into RAM at startup before the adaptive algorithm takes over. Zero direct call site</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6584,7 +6516,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xd5">
+  <XDFCONSTANT uniqueid="0xd1">
     <title>CDKDMTKNM - Codewort Kunde: Kleinstleck, no MIL (Codewort Kunde: Kleinstleck, no MIL)</title>
     <description>CDKDMTKNM — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines the minimum EVAP system leak size threshold that sets a customer code word without illuminating the MIL. Sector assignment to 'Tank' (EVAP) is consistent with this function. Zero direct C167 call sites likely reflect indirect table-based access typical of ME7.2 diagnostic logic, but prevents full verification.</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6598,7 +6530,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xd6">
+  <XDFCONSTANT uniqueid="0xd2">
     <title>CWKBID - Codewort zur Ausgabe drehmomentmindernder Kriterien auf Kombi-Display (Codewort zur Ausgabe drehmomentmindernder Kriterien auf Kombi-Display)</title>
     <description>CWKBID — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as a code word governing the display of torque-reducing criteria on the combo instrument cluster. As a single-byte VALUE (0x19 = 25 decimal) with 31 call sites using MOV_R12_TABLE_LOAD, it functions as an identifier in the ECU's torque management state machine that maps active derate events to their corresponding dash indicators.</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6612,7 +6544,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xd7">
+  <XDFCONSTANT uniqueid="0xd3">
     <title>TVNWSAK - Umschaltverzögerung von RLNWSN auf RLNWSNK (Umschaltverzögerung von RLNWSN auf RLNWSNK)</title>
     <description>TVNWSAK — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly describes a switching delay (Umschaltverzögerung) between two torque control states (RLNWSN→RLNWSNK), the t10msxs unit with ~40–52 ms decoded values is physically consistent with a state-transition debounce, and placement in the Filling/Optimal Torque sector with MOV_R12_TABLE_LOAD call sites confirms table-indexed lookup within the torque management r</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -6626,7 +6558,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xd8">
+  <XDFCONSTANT uniqueid="0xd4">
     <title>TSFLATP - Fehlersummenzeit: Lambda-Sondenalterung TP (Fehlersummenzeit: Lambda-Sondenalterung TP)</title>
     <description>TSFLATP — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The MOV_R12_TABLE_LOAD call site at 0x50930 loads this scalar threshold into a register for comparison within the catalyst diagnostic routine, consistent with an error-accumulation time window for lambda aging detection under throttle-position conditions. The 0xFFFFFF bytes in the raw data likely represent adjacent 'disabled' entries or a default-off state, which is typical for T</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -6640,7 +6572,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xd9">
+  <XDFCONSTANT uniqueid="0xd5">
     <title>TSFFST - Fehlersummenzeit: Tankfüllstand (Fehlersummenzeit: Tankfüllstand)</title>
     <description>TSFFST — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Fehlersummenzeit: Tankfüllstand' (error summation time for fuel level) is a classic OBD-II diagnostic timeout constant. The MOV_R12_TABLE_LOAD call site at 0x508C8 is consistent with ME7.2's diagnostic parameter block access pattern, and the decoded value 0x42 (66 decimal) represents a plausible accumulation window in the ECU's internal time base for flagging a </description>
     <CATEGORYMEM index="0" category="6"/>
@@ -6654,7 +6586,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xda">
+  <XDFCONSTANT uniqueid="0xd6">
     <title>TVLLR - Einschaltverzögerung: B_llri bei Überdrehzahl (Einschaltverzögerung: B_llri bei Überdrehzahl)</title>
     <description>TVLLR — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines this as the activation delay for an overspeed protection flag (B_llri bei Überdrehzahl). The t20msxs compu method confirms a time-scaled value; raw byte 0x06 yields 120 ms, which is physically consistent with filtering transient RPM spikes during gear shifts before triggering ignition cut. The C167 call site (MOV_R12_TABLE_LOAD) loads this into</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6668,7 +6600,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xdb">
+  <XDFCONSTANT uniqueid="0xd7">
     <title>FIRNLIGN - Mindestwert für Winkelfehler nach der ersten Zündung (Mindestwert für Winkelfehler nach der ersten Zündung)</title>
     <description>FIRNLIGN — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Mindestwert für Winkelfehler nach der ersten Zündung' (minimum angle-error threshold after first ignition) is consistent with ME7.2 catalyst monitoring logic, where the ECU measures phase/timing deviation of the downstream lambda response following a diagnostic perturbation. The Q1.0 encoding yields a raw value of 6.0, a plausible normalized threshold for distin</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -6682,7 +6614,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xdc">
+  <XDFCONSTANT uniqueid="0xd8">
     <title>SRYLS - Schwelle für Readiness-Bildung Lambdasonden-Diagnose (Schwelle für Readiness-Bildung Lambdasonden-Diagnose)</title>
     <description>SRYLS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as a threshold for OBD readiness monitor formation on lambda sensors. The single C167 call site (MOV_R12_TABLE_LOAD) is consistent with a scalar threshold comparison in the diagnostic state machine, not a functional fuel/ignition map. Low ME7.8 correlation (r=0.381) is expected for a 1x1 scalar value.</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -6696,7 +6628,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xdd">
+  <XDFCONSTANT uniqueid="0xd9">
     <title>NVQUOT4O - Gangerkennung n/v 4 Gang oben (Gangerkennung n/v 4 Gang oben)</title>
     <description>NVQUOT4O — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The C167 call site at 0x5D972 (MOV_R12_TABLE_LOAD) confirms active use in the gear-recognition subroutine, and the qnv_uw_b512 bitmask compu method is consistent with a discrete gear-state flag for 4th-gear upper threshold. The low shape correlation (r=0.343) is expected for a single-value parameter rather than a multi-point table, and the Intake/VarioCam sector placement reflect</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6710,7 +6642,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xde">
+  <XDFCONSTANT uniqueid="0xda">
     <title>KSTA1INI - Initialisierungswert STADAP-Faktor in Bereich 1 (Initialisierungswert STADAP-Faktor in Bereich 1)</title>
     <description>KSTA1INI — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: KSTA1INI is the initialization value for the STADAP (Stadtanpassung/city adaptation) factor in range 1, governing the long-term lambda trim baseline. The MOV_R12_TABLE_LOAD call site at 0x79674 confirms it is read as a scalar factor into the adaptive fuel correction loop. Low ME7.8 correlation (r=0.33) is expected for a single initialization constant rather than a shaped curve, a</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -6724,7 +6656,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xdf">
+  <XDFCONSTANT uniqueid="0xdb">
     <title>DFSERES - Differenz der Adaptionswerte zum Auslösen eines Reset der fuel-on/-off adaption (Differenz der Adaptionswerte zum Auslösen eines Reset der fuel-on/-off adaption)</title>
     <description>DFSERES — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines a threshold difference for triggering reset of fuel-on/fuel-off injection adaptation. Two MOV_R12_TABLE_LOAD call sites are consistent with loading this scalar threshold into R12 for comparison against live adaptation deltas in separate fuel-on and fuel-off code paths. The dtsegn_b11p25divZyl compu method yields a small signed per-cylinder valu</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6738,7 +6670,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xe0">
+  <XDFCONSTANT uniqueid="0xdc">
     <title>DWPMDBGV - Delta Pedalwinkel zum Auslösen der geschw.-abh. Momentenaufbaubegrenzung (Delta Pedalwinkel zum Auslösen der geschw.-abh. Momentenaufbaubegrenzung)</title>
     <description>DWPMDBGV — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines a pedal-angle delta threshold for speed-dependent torque build-up limitation, consistent with the DWPMDBGV naming convention (Delta Winkels Pedal Momenten Begrenzung Geschwindigkeitsabhängig). The single MOV_R12_TABLE_LOAD call site at 0x6DB52 is consistent with scalar parameter retrieval in C167 torque management routines. The rel_sw_b100 comp</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -6752,7 +6684,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xe1">
+  <XDFCONSTANT uniqueid="0xdd">
     <title>CLACGUMV - Fehlerklasse: EGS; Versorgungsspannung Magnetventile (Fehlerklasse: EGS; Versorgungsspannung Magnetventile)</title>
     <description>CLACGUMV — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Fehlerklasse: EGS; Versorgungsspannung Magnetventile' unambiguously identifies this as a diagnostic error-classification threshold for solenoid valve supply voltage monitoring. The C167 call site (MOV_R12_TABLE_LOAD) is consistent with loading a scalar diagnostic threshold into the fault-detection routine. Low shape correlation (r=0.269) is expected for a 1x1 VA</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6766,7 +6698,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xe2">
+  <XDFCONSTANT uniqueid="0xde">
     <title>NLRSHB - Drehzahlschwelle, Abschalten LR bei Schub, in Verbindung mit LL und TLLRSHB (Drehzahlschwelle, Abschalten LR bei Schub, in Verbindung mit LL und TLLRSHB)</title>
     <description>NLRSHB — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines an RPM threshold for deactivating the idle controller (LR) during coasting (Schub), consistent with the nmot_ub_q40 compu method (RPM × 16 encoding). The single MOV_R12_TABLE_LOAD call site at 0x6FE4E is consistent with loading a scalar threshold for comparison against live engine speed in the idle management state machine. Low shape correlatio</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -6780,7 +6712,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xe3">
+  <XDFCONSTANT uniqueid="0xdf">
     <title>TWNWSE - Zeit nach Start bis zur ersten Berechnung von wnwem (Zeit nach Start bis zur ersten Berechnung von wnwem)</title>
     <description>TWNWSE — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: German title explicitly defines a post-crank startup delay before first 'wnwem' calculation; compu method t100msxs confirms a time scalar (raw 0x0C ≈ 1.2 s). Single MOV_R12_TABLE_LOAD call site at 0x6CFFE is consistent with one-time initialization read during ECU boot sequence, not a runtime lookup.</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6794,7 +6726,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xe4">
+  <XDFCONSTANT uniqueid="0xe0">
     <title>LRNST9_T - Wartezeit in Lernschritt 9 (Wartezeit in Lernschritt 9)</title>
     <description>LRNST9_T — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The compu method t20msxs_ub_b5p1 confirms a 20ms-scaled unsigned byte timing value; raw byte 0x32 (50) yields 1000 ms, a physically plausible inter-step delay in a multi-stage VarioCam adaptation routine. Sector placement in Intake/VarioCam and the MOV_R12_TABLE_LOAD call site are consistent with a scalar timer loaded into a learning-state machine.</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6808,7 +6740,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xe5">
+  <XDFCONSTANT uniqueid="0xe1">
     <title>DTIREL - Dti-Schwellwert für zweiten Nachspritzer (Dti-Schwellwert für zweiten Nachspritzer)</title>
     <description>DTIREL — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: DTIREL is a scalar threshold (Schwellwert) governing the trigger condition for the second post-injection event during catalyst warm-up. The single-value type, rel_ub_b99p6 scaling, and MOV_R12_TABLE_LOAD call site are consistent with a comparison threshold in the injection timing logic. Low ME7.8 correlation (r=0.232) is expected as ME7.8 restructured catalyst warm-up strategy in</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -6822,7 +6754,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xe6">
+  <XDFCONSTANT uniqueid="0xe2">
     <title>IVDNDTE - LLR: I-Verstärkung bei DTEV (LLR: I-Verstärkung bei DTEV)</title>
     <description>IVDNDTE — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'I-Verstärkung bei DTEV' explicitly identifies this as the integral gain for a DTEV (Drehzahlregelung) control loop, consistent with its placement in the Rev Limiter ROM sector. The single MOV_R12_TABLE_LOAD call site at 0x61472 confirms it is loaded into a register for use in one PID-style RPM control path. The raw value 0xF3 scaled by rel_q0p002383 yields ≈0.58</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6836,7 +6768,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xe7">
+  <XDFCONSTANT uniqueid="0xe3">
     <title>TDMLDMX - Entprellzeit Freigabe HFM-Diagnose nach Startende (Entprellzeit Freigabe HFM-Diagnose nach Startende)</title>
     <description>TDMLDMX — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines a debounce/settling time for releasing HFM (Hubraumfüllungsmanagement) diagnostics after engine start. The raw value 0x3A = 58 × 10ms = 580ms is physically reasonable as a post-start diagnostic gate, and the single C167 call site via MOV_R12_TABLE_LOAD confirms active use in the runtime code path.</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6850,7 +6782,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xe8">
+  <XDFCONSTANT uniqueid="0xe4">
     <title>TSFTGET - Fehlersummenzeit: Getriebetemperatur (Fehlersummenzeit: Getriebetemperatur)</title>
     <description>TSFTGET — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Fehlersummenzeit: Getriebetemperatur' explicitly identifies this as an error-summation time window for transmission temperature fault accumulation. The 1x1 VALUE type with decimal compu method and a single MOV_R12_TABLE_LOAD call site in C167 is consistent with a scalar threshold loaded into the diagnostic state machine. Low shape correlation (r=0.208) is expect</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -6864,7 +6796,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xe9">
+  <XDFCONSTANT uniqueid="0xe5">
     <title>TDKLAGDE - Zeitdelta für Fehlerzählerlöschung bei DK-Soll-/Istvergleich (Zeitdelta für Fehlerzählerlöschung bei DK-Soll-/Istvergleich)</title>
     <description>TDKLAGDE — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: TDKLAGDE (Time Delta for error counter clearing during DK target/actual comparison) is a scalar timing parameter in the Component Protection/Lambda sector. The t20msxs_ub_b5p1 compu method yields ~5ms from raw byte 0x08, consistent with a short debounce window for RPM-control fault counter reset logic. Single C167 call site via MOV_R12_TABLE_LOAD at 0x734F0 confirms it is consume</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -6878,7 +6810,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xea">
+  <XDFCONSTANT uniqueid="0xe6">
     <title>CWARMD - Codewort Antiruckelfunktion (Codewort Antiruckelfunktion)</title>
     <description>CWARMD — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Codewort Antiruckelfunktion' (anti-judder code word) directly maps to a torque smoothing/gating function within the optimal torque sector. The single VALUE type (0xCC = 204) is consistent with a bitmask configuration word that enables sub-functions of the anti-judder logic, and the C167 call site MOV_R12_TABLE_LOAD @ 0x648EE confirms active use in the torque man</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -6892,7 +6824,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xeb">
+  <XDFCONSTANT uniqueid="0xe7">
     <title>CWKHZW - Codewort für spätesten Zündwinkel bei Katheizen (Codewort für spätesten Zündwinkel bei Katheizen)</title>
     <description>CWKHZW — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines this as the latest (most retarded) ignition angle limit during catalytic converter warm-up, a standard ME7 protection strategy to prevent unburned HC from reaching a cold catalyst. The repeated 0x0E6F byte pattern indicates a per-cylinder or per-state table loaded via MOV_R12_TABLE_LOAD at two C167 call sites within the torque/ignition calculat</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -6906,7 +6838,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xec">
+  <XDFCONSTANT uniqueid="0xe8">
     <title>CLADMTKNM - Fehlerklasse: Kleinstleck, no MIL (Fehlerklasse: Kleinstleck, no MIL)</title>
     <description>CLADMTKNM — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Fehlerklasse: Kleinstleck, no MIL' unambiguously identifies this as the EVAP leak-detection threshold below which a fault is logged but the MIL remains off. The single VALUE type and decimal compu method are consistent with a scalar boundary used in the C167 leak-classification state machine (MOV_R12_TABLE_LOAD @ 0x4496A). Low shape correlation (r=0.068) is expe</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6920,7 +6852,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xed">
+  <XDFCONSTANT uniqueid="0xe9">
     <title>LURFOST - Laufruhe-Referenzwert für stop fuel-on/-off Adaption, Vergleich mit lunw (Laufruhe-Referenzwert für stop fuel-on/-off Adaption, Vergleich mit lunw)</title>
     <description>LURFOST — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: LURFOST is a scalar threshold (0x19 = 25) used to compare against the measured running-smoothness value (lunw) during fuel cut-on/off adaptation. The single MOV_R12_TABLE_LOAD call site at 0x68DB8 is consistent with loading this reference into a register for a comparison gate that inhibits or permits fuel re-engagement when vibration exceeds the limit.</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6934,7 +6866,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xee">
+  <XDFCONSTANT uniqueid="0xea">
     <title>AUFW10MS - </title>
     <description>AUFW10MS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: Located in the Intake/VarioCam sector with a t20usxus_q20 compu method indicating a microsecond-scale time constant (first value decodes to ~23.8 µs), consistent with a VarioCam actuator control-loop filter or settling threshold. The single C167 call site via MOV_R12_TABLE_LOAD confirms it feeds directly into the camshaft timing control routine rather than being a diagnostic or i</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -6948,7 +6880,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xef">
+  <XDFCONSTANT uniqueid="0xeb">
     <title>TSFTMKI - Fehlersummenzeit: Motortemperatur aus Kombiinstrument TMKI (Fehlersummenzeit: Motortemperatur aus Kombiinstrument TMKI)</title>
     <description>TSFTMKI — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as an error summation time threshold for engine temperature sourced from the combination instrument (Kombiinstrument). The single VALUE type with decimal compu method is consistent with a scalar time constant used in the DTC accumulation logic within the Catalyst Diagnostics sector. The zero shape correlation is expected since this is n</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -6962,7 +6894,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xf0">
+  <XDFCONSTANT uniqueid="0xec">
     <title>NRLIP_UM - Motordrehzahl-Schwelle für den rl/rlip-Vergleich in der Funktionsüberwachg (Motordrehzahl-Schwelle für den rl/rlip-Vergleich in der Funktionsüberwachg)</title>
     <description>NRLIP_UM — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as an engine-speed threshold gating the rl/rlip comparison within the Funktionsüberwachung (function monitoring) block. The nmot_ub_q40 compu method confirms an RPM-scaled upper-bound value, and the single MOV_R12_TABLE_LOAD call site at 0x35D24 is consistent with a scalar threshold being latched into a working register for a subsequent</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -6976,7 +6908,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xf1">
+  <XDFCONSTANT uniqueid="0xed">
     <title>CWNWREF - Nockenwellenverhalten im Start (Nockenwellenverhalten im Start)</title>
     <description>CWNWREF — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The name (CWNWREF = Camshaft Nockenwelle Reference), German title (Nockenwellenverhalten im Start), and VALUE(1x1) type are all consistent with a scalar camshaft position reference offset used during cold start VarioCam actuation. The single MOV_R12_TABLE_LOAD call site at 0x49E86 is consistent with C167 loading a scalar into R12 for subsequent camshaft angle comparison logic. Ze</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -6990,7 +6922,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xf2">
+  <XDFCONSTANT uniqueid="0xee">
     <title>ZASMASK - Zylinderabschaltmaske für CIFI aus ZAS (Zylinderabschaltmaske für CIFI aus ZAS)</title>
     <description>ZASMASK — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: ZAS (Zündabschaltung) is the Bosch ignition cut-off / over-rev protection system; this mask selects which cylinders receive fuel/ignition cut during a ZAS event via CIFI. The MOV_R12_TABLE_LOAD call site at 0x7432E is consistent with ZAS state-machine logic loading a cylinder selection mask before executing the cut command.</description>
     <CATEGORYMEM index="0" category="1"/>
@@ -7004,7 +6936,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xf3">
+  <XDFCONSTANT uniqueid="0xef">
     <title>TVKOE - Verzögerungszeit für Kompressor EIN (Verzögerungszeit für Kompressor EIN)</title>
     <description>TVKOE — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: Scalar delay timer (t100ms, ub) loaded via MOV_R12_TABLE_LOAD in the compressor control state machine; raw value 0x04 yields ~400 ms clutch engagement delay, consistent with Roots blower torque-step mitigation on the 986 S.</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7018,7 +6950,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFTABLE uniqueid="0xf4" flags="0x0">
+  <XDFTABLE uniqueid="0xf0" flags="0x0">
     <title>DMLLRMXN - Sicherheitskonzept: obere Begrenzung für dmllr (Sicherheitskonzept: obere Begrenzung für dmllr)</title>
     <description>DMLLRMXN — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as a safety-concept upper limit (Sicherheitskonzept: obere Begrenzung) for the 'dmllr' variable. The 1x1 curve type with rel_ub_b99p6 compu method confirms it is a single threshold constant, consistent with a protective ceiling value applied within the pulsation correction algorithm at the single MOV_R12_TABLE_LOAD call site.</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -7056,7 +6988,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFCONSTANT uniqueid="0xf5">
+  <XDFCONSTANT uniqueid="0xf1">
     <title>TVLLRPST - Zeitverzögerung nach Start zum Deaktivieren der P-Verstärkung im Start (Zeitverzögerung nach Start zum Deaktivieren der P-Verstärkung im Start)</title>
     <description>TVLLRPST — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly describes a time delay for deactivating proportional (P) amplification during the start phase, and the compu method t200msxs_ub_b51 (0–10.2 s range) is physically consistent with a start-enrichment decay timer. Three MOV_R12_TABLE_LOAD call sites in the pulsation-correction region confirm it feeds into the fuel-injection correction path on C167.</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -7070,7 +7002,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xf6">
+  <XDFCONSTANT uniqueid="0xf2">
     <title>RL2DVSU - Diagnoseschwelle: Untere Last bei Ventilhub groß (Diagnoseschwelle: Untere Last bei Ventilhub groß)</title>
     <description>RL2DVSU — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines a diagnostic threshold for lower load at large valve lift, consistent with the rel_ub_q0p75 compu method (relative upper bound scaled by 0.75). The single call site via MOV_R12_TABLE_LOAD in a diagnostic routine confirms it feeds fault-detection logic rather than the torque control loop. The near-zero ME7.8 shape correlation is expected for a s</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7084,7 +7016,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xf7">
+  <XDFCONSTANT uniqueid="0xf3">
     <title>TDMSDKS - Zeitverzögerung bis das Bit B_fkmsdks wirksam wird (Zeitverzögerung bis das Bit B_fkmsdks wirksam wird)</title>
     <description>TDMSDKS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines a time delay before diagnostic bit B_fkmsdks activates, consistent with the Catalyst Diagnostics sector assignment. The TABLE_LOAD call site at 0x6EC20 is the C167's generic parameter fetch routine and does not contradict a 1x1 VALUE type. The low ME7.8 shape correlation (r=-0.190) is expected for a single scalar value where shape metrics are n</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -7098,7 +7030,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xf8">
+  <XDFCONSTANT uniqueid="0xf4">
     <title>UBNACHL - Ub-Ersatzwert im Nachlauf (Ub-Ersatzwert im Nachlauf)</title>
     <description>UBNACHL — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Ub-Ersatzwert im Nachlauf' explicitly defines a fixed battery-voltage substitute used during coast-down (throttle-closed deceleration), when the alternator is not charging and the measured Ub signal becomes unreliable for fuel-trim and lambda-control calculations. The spg_ubatt_w compu method and 1x1 VALUE type are fully consistent with a single scalar replaceme</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -7112,7 +7044,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xf9">
+  <XDFCONSTANT uniqueid="0xf5">
     <title>CDCSLV2 - Codewort CARB: Sekundärluftventil, Bank 2 (Codewort CARB: Sekundärluftventil, Bank 2)</title>
     <description>CDCSLV2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The CDC prefix (Catalyst Diagnostics) and SLV2 suffix (Sekundärluftventil Bank 2) align with the German title and sector placement. The raw bytes (8,15,30,40,60,75,85,100) form a monotonically increasing threshold set consistent with diagnostic codeword state definitions. The single MOV_R12_TABLE_LOAD call site at 0x5D958 is consistent with reading a diagnostic status table durin</description>
     <CATEGORYMEM index="0" category="6"/>
@@ -7126,7 +7058,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xfa">
+  <XDFCONSTANT uniqueid="0xf6">
     <title>TMH - Motortemperatur - Schwelle heiß (Motortemperatur - Schwelle heiß)</title>
     <description>TMH — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: Decoded value of ~67.5 °C via temp_ub_q0p75_o48 is a physically correct hot-threshold for the M97 engine; placement in the Rev Limiter sector and two C167 R12-table-load call sites confirm it gates cold/hot transition logic for idle compensation and limiter behavior.</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -7140,7 +7072,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xfb">
+  <XDFCONSTANT uniqueid="0xf7">
     <title>ANZTP - Anzahl auszublendender Perioden für Periodendauerüberwachung (Anzahl auszublendender Perioden für Periodendauerüberwachung)</title>
     <description>ANZTP — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly defines a period-duration monitoring mask count (OBD/lambda or knock window exclusion). The single MOV_R12_TABLE_LOAD call site at 0x60578 is consistent with a diagnostic routine reading a masking threshold before initiating cycle-time supervision. A value of 14 periods is physically reasonable for transient exclusion during cold start or load transien</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -7154,7 +7086,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xfc">
+  <XDFCONSTANT uniqueid="0xf8">
     <title>ZDVS - Entprellung Fehlereintrag Ventlihubsteuerung (Entprellung Fehlereintrag Ventlihubsteuerung)</title>
     <description>ZDVS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as a debounce counter for VarioCam (Ventilhubsteuerung) error registration. A single VALUE of 8 (0x08) in the Ignition Sector is consistent with a threshold used in the C167 VarioCam fault-monitoring routine, where the ECU requires N consecutive error conditions before logging a DTC. The single MOV_R12_TABLE_LOAD call site aligns with a</description>
     <CATEGORYMEM index="0" category="1"/>
@@ -7168,7 +7100,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xfd">
+  <XDFCONSTANT uniqueid="0xf9">
     <title>CLAFPP - Fehlerklasse: Poti Fahrpedal (Fehlerklasse: Poti Fahrpedal)</title>
     <description>CLAFPP — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Fehlerklasse: Poti Fahrpedal' and scalar VALUE type are fully consistent with a diagnostic error-class code (0x08) assigned when the accelerator pedal potentiometer signal falls outside valid range. The TABLE_LOAD call site at 0x44A1A is slightly atypical for a single-byte scalar but plausible if the value resides within a larger diagnostic data structure loaded</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -7182,7 +7114,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xfe">
+  <XDFCONSTANT uniqueid="0xfa">
     <title>CDKSLS2 - Codewort Kunde: Sekundärluft-System Bank 2 (Codewort Kunde: Sekundärluft-System Bank 2)</title>
     <description>CDKSLS2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: This is a 'Codewort Kunde' (OEM customer configuration flag) enabling/disabling the secondary air injection system on Bank 2. As a single-byte VALUE with no unit and repeated byte patterns in raw data, it functions as a binary enablement code read at initialization rather than a runtime tuning curve. Zero C167 call sites is consistent with a one-time config word consumed during E</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7196,7 +7128,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0xff">
+  <XDFCONSTANT uniqueid="0xfb">
     <title>CDKFRAU2 - Codewort Kunde: LR- Adaption mult. untere Schwelle Bank 2 (Codewort Kunde: LR- Adaption mult. untere Schwelle Bank 2)</title>
     <description>CDKFRAU2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as the lower threshold for the lambda adaptation multiplier on Bank 2. The single-byte value of 0x5E (94 decimal) is consistent with a percentage-based boundary in the LR adaptation algorithm, and the r=0.905 shape correlation with ME7.8 confirms structural continuity across generations. Zero direct C167 call sites likely reflect indire</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -7210,7 +7142,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x100">
+  <XDFCONSTANT uniqueid="0xfc">
     <title>CDTTM - Codewort Tester: TMOT (Codewort Tester: TMOT)</title>
     <description>CDTTM — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The CDT prefix denotes a Bosch 'Codewort' (codeword) and TMOT maps to 'Temperatur Motor' (engine temperature), making this a diagnostic test flag for engine temp monitoring. Zero direct C167 call sites is consistent with codewords accessed via indirect pointer-table reads rather than direct addressing. The 0.864 ME7.8 shape correlation confirms cross-generation persistence of thi</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7224,7 +7156,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x101">
+  <XDFCONSTANT uniqueid="0xfd">
     <title>CDKHSV2 - Codewort Kunde:	Lambdasonden-Heizung vor Katalysator, Bank 2 (Codewort Kunde:	Lambdasonden-Heizung vor Katalysator, Bank 2)</title>
     <description>CDKHSV2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: This is a Bosch 'Codewort Kunde' (customer configuration flag) identifying the presence of an upstream O2 sensor heater on Bank 2. As a 1-byte dimensionless value with high ME7.8 correlation (r=0.859), it is a legitimate ECU configuration identifier rather than a real-time control parameter, explaining the zero direct call sites in C167 assembly. It is likely read during initiali</description>
     <CATEGORYMEM index="0" category="4"/>
@@ -7238,7 +7170,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x102">
+  <XDFCONSTANT uniqueid="0xfe">
     <title>CWZWVMX - Codewort Zündwinkeleingriff bei VMAX-Begrenzung (Codewort Zündwinkeleingriff bei VMAX-Begrenzung)</title>
     <description>CWZWVMX — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title explicitly identifies this as a code-word selector for ignition-angle intervention during the VMAX (RPM) limiter. A single VALUE type with no unit is consistent with a discrete strategy index (raw value 0x0A = 10), and the C167 call site at 0x5283A uses MOV_R12_TABLE_LOAD, which is the standard compiler-generated access pattern for scalar calibration values embed</description>
     <CATEGORYMEM index="0" category="1"/>
@@ -7252,7 +7184,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x103">
+  <XDFCONSTANT uniqueid="0xff">
     <title>KSTAMN1 - Min-Begrenzung des STADAP-Faktors in Bereich 1 (Min-Begrenzung des STADAP-Faktors in Bereich 1)</title>
     <description>KSTAMN1 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: STADAP (Stadt-Anpassung) is a Bosch torque-limitation factor; KSTAMN1 sets the minimum floor for this factor in Range 1, consistent with the fak_ub_b2 compu method (lower-bound signed factor). The single MOV_R12_TABLE_LOAD call site at 0x50884 aligns with scalar use in the output-limiting path. Sector placement near Rev Limiter is expected as both share the engine-output-reductio</description>
     <CATEGORYMEM index="0" category="7"/>
@@ -7266,7 +7198,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x104">
+  <XDFCONSTANT uniqueid="0x100">
     <title>CDKKROF - Codewort Kunde:	Klopfregelung Offset (Codewort Kunde:	Klopfregelung Offset)</title>
     <description>CDKKROF — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: Klopfregelung Offset is a customer-specific additive correction to the knock detection threshold, applied as a scalar bias in the knock limiting routine. As a 'Codewort Kunde' parameter it differentiates OEM knock margin between applications (e.g., Boxster S vs. base). Zero resolved call sites is consistent with a single-byte value read via pointer dereference at initialization r</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7280,7 +7212,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x105">
+  <XDFCONSTANT uniqueid="0x101">
     <title>ZLRHML2 - Luftmassendurchsatz abhängige Zeitkonstante für Lambdaregler h. Kat. Bank 2 (Luftmassendurchsatz abhängige Zeitkonstante für Lambdaregler h. Kat. Bank 2)</title>
     <description>ZLRHML2 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The symbol follows standard Bosch ME7 lambda-control naming (ZL=Zeitkonstante Lambda, L2=Bank 2), and the monotonically increasing curve from 43→255 over 0–255 g/s air mass flow is physically consistent with a flow-scaled adaptation time constant for the downstream O₂ sensor controller. The perfect r=1.000 correlation against the ME7.8 equivalent map, combined with the dimensionles</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7294,7 +7226,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFTABLE uniqueid="0x106" flags="0x0">
+  <XDFTABLE uniqueid="0x102" flags="0x0">
     <title>DMLSDUG - Delta Moment Ende Lastschlagdämpfung (Delta Moment Ende Lastschlagdämpfung)</title>
     <description>DMLSDUG — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The German title 'Delta Moment Ende Lastschlagdämpfung' (delta torque at end of load shock damping) directly maps to a torque management scalar defining the residual torque offset when a load-shock damping event concludes. The single MOV_R12_TABLE_LOAD call site at 0x6DDD4 confirms it is fetched as a register operand for a downstream torque-limit calculation within the Pulsation </description>
     <CATEGORYMEM index="0" category="4"/>
@@ -7337,7 +7269,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFCONSTANT uniqueid="0x107">
+  <XDFCONSTANT uniqueid="0x103">
     <title>CLADVEE - Fehlerklasse: DV-E Endstufe (Fehlerklasse: DV-E Endstufe)</title>
     <description>CLADVEE — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The 4-point classification curve maps DV-E final-stage amplifier fault thresholds to error-class identifiers, consistent with Bosch diagnostic protocol structure for valve-actuator power electronics. The r=0.991 cross-platform correlation with ME7.8 and the coherent CLA/DVEE naming convention confirm this is a legitimate fault-severity lookup table rather than a misidentified fue</description>
     <CATEGORYMEM index="0" category="5"/>
@@ -7351,7 +7283,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x108">
+  <XDFCONSTANT uniqueid="0x104">
     <title>FMFKR - Mittenfrequenz für Bandpaßfilter Klopfregelung (Mittenfrequenz für Bandpaßfilter Klopfregelung)</title>
     <description>FMFKR — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The name FMFKR follows standard Bosch ME7 naming for knock-control bandpass filter center frequency, and the r=0.990 correlation with the ME7.8 equivalent strongly validates the mapping; however, the duplicated X-axis entries (28×3, 32×3) suggest a 2D table misreported as 1x14, and the dimensionless unit field is atypical for a frequency parameter, warranting MEDIUM rather than H</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7365,7 +7297,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x109">
+  <XDFCONSTANT uniqueid="0x105">
     <title>DLURVS - Drehzahlabh. Laufunruhe-Referenz-Minimalwert für Ventilhubst. (Drehzahlabh. Laufunruhe-Referenz-Minimalwert für Ventilhubst.)</title>
     <description>DLURVS — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The 4-point monotonic curve (28→152) with low X-axis indices (5–13) is consistent with a dimensionless internal reference threshold for running-roughness detection tied to valve-lift actuation, and the r=0.963 correlation against the ME7.8 counterpart strongly validates structural and value continuity across Bosch generations. The dimensionless unit and sub-15 axis range are atyp</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7379,7 +7311,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x10a">
+  <XDFCONSTANT uniqueid="0x106">
     <title>FQFSTT - Quantisierungsfaktor Fuellstand (Quantisierungsfaktor Fuellstand)</title>
     <description>FQFSTT — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/HIGH: The 1×5 lookup table structure with non-uniform X-axis breakpoints [6,8,9,12,15] is consistent with a fuel-level sensor quantization table that applies different resolution factors across discrete float-sensor voltage zones to linearize the inherently non-linear float signal. The high cross-generation correlation (r=0.945) with ME7.8 confirms this is a stable, functionally critical</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7393,7 +7325,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFCONSTANT uniqueid="0x10b">
+  <XDFCONSTANT uniqueid="0x107">
     <title>DWNWES - Schwellenwert zur Aktivierung der Krafstoffkorrektur durch NWS (Schwellenwert zur Aktivierung der Krafstoffkorrektur durch NWS)</title>
     <description>DWNWES — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The monotonically increasing threshold values (5→97) across the RPM axis (16–177, likely ×100 rpm) are physically consistent with a fuel-correction activation gate that widens at higher engine speeds to prevent lambda-loop instability. The 0.895 correlation with the ME7.8 equivalent and the valid C167CR address (0x10F1E within 512 KB) confirm structural integrity, though only 8 o</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7407,7 +7339,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       <VAR id="X"/>
     </MATH>
   </XDFCONSTANT>
-  <XDFTABLE uniqueid="0x10c" flags="0x0">
+  <XDFTABLE uniqueid="0x108" flags="0x0">
     <title>DZWSTTA - Delta Zündwinkel im Start (Delta Zündwinkel im Start)</title>
     <description>DZWSTTA — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The 1×6 curve structure with X-axis values (120–200 raw) consistent with cranking-speed scaling and a monotonically increasing delta-advance profile (4→100) matches the expected physics of additional ignition advance required at higher flywheel speeds during cold start. The r=0.892 correlation against the ME7.8 equivalent confirms structural continuity across Bosch generations, w</description>
     <CATEGORYMEM index="0" category="2"/>
@@ -7450,7 +7382,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x10d" flags="0x0">
+  <XDFTABLE uniqueid="0x109" flags="0x0">
     <title>DZWMNSTN - Drehzahlabhängiger Offset auf den spätesten Zündwinkel  wr. Startüberschwingers (Drehzahlabhängiger Offset auf den spätesten Zündwinkel  wr. Startüberschwingers)</title>
     <description>DZWMNSTN — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The monotonically increasing offset values (8→55) across the RPM axis are physically consistent with a progressive ignition retardation correction applied during the start-overshoot transient, and the 6-point 1D curve structure matches standard ME7.2 ignition-correction topology. The r=0.883 cross-generation correlation with ME7.8 confirms shape fidelity while the dimensionless u</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7493,7 +7425,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFTABLE uniqueid="0x10e" flags="0x0">
+  <XDFTABLE uniqueid="0x10a" flags="0x0">
     <title>FRINH1 - Multiplikativer Faktor für RIN Sollwert hinter Kat (Multiplikativer Faktor für RIN Sollwert hinter Kat)</title>
     <description>FRINH1 — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The symbol naming (Faktor-RIN-H1), dimensionless unit, and 1×5 table structure at address 0x1181C are consistent with Bosch ME7.2 downstream O₂-sensor target-value correction tables in the lambda-control region of the C167CR map; the value pattern (≈1.04–1.52 at idle tapering to ≈0.01–0.02 above ~2800 RPM) is physically plausible as a load-dependent RIN setpoint multiplier that i</description>
     <CATEGORYMEM index="0" category="3"/>
@@ -7531,7 +7463,7 @@ Mined via cross-ECU correlation from ME7.8 reference (r=0.997).</description>
       </MATH>
     </XDFAXIS>
   </XDFTABLE>
-  <XDFCONSTANT uniqueid="0x10f">
+  <XDFCONSTANT uniqueid="0x10b">
     <title>IPA_T_UM - Fehlertoleranzzeit für unteren DK-Anschlag im ungültigen Bereich f. d. Fktüberw. (Fehlertoleranzzeit für unteren DK-Anschlag im ungültigen Bereich f. d. Fktüberw.)</title>
     <description>IPA_T_UM — promoted via Phase C 5-Gate verification. AI verdict: CONFIRMED/MEDIUM: The symbol name (IPA_T_UM), description (fault-tolerance time for lower duty-cycle limit in the invalid range for function monitoring), and ME7.2 address 0x19685 are all consistent with a diagnostic/monitoring lookup table in the Bosch ME7.2 ROM layout; the non-monotonic Y-profile (high tolerance at extreme X, sharp drop near the valid/invalid boundary, then gradual rise) is char</description>
     <CATEGORYMEM index="0" category="4"/>
