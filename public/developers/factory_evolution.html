@@ -101,7 +101,8 @@
   <div class="mode-tabs">
     <button class="mode-tab active" onclick="switchPane('paneE68', this)">1. ME7.2 Firmware &amp; Calibration Changelog (.657.01 → .02 → .03)</button>
     <button class="mode-tab" onclick="switchPane('paneE69', this)">2. ME7.2 vs. ME7.8 82-Map Factory Evolution Explorer (3.2S &amp; 2.7L)</button>
-    <button class="mode-tab" onclick="switchPane('paneOemPlus', this)">3. Evidence-Backed "OEM+" Factory Backport Menu</button>
+    <button class="mode-tab" onclick="switchPane('paneOemPlus', this)">3. Evidence-Backed "OEM+" Factory Backport Menu &amp; Physics Q&amp;A</button>
+    <button class="mode-tab" onclick="switchPane('paneAllGens', this)">4. Full Multi-Platform Lifecycle (2.7L Base, 3.2S &amp; 996 3.4L v6360 → v9320)</button>
   </div>
 
   <!-- PANE 1: E68 CHANGELOG -->
@@ -214,16 +215,20 @@
       </div>
 
       <div class="card">
-        <h3><span class="badge b-blue">2. 986.2 3.2S Overrun Decel Refinement</span> <code>KFNWEGM</code> (<code>0x1964C</code>) Low-Gear Fuel Re-Engagement RPM</h3>
-        <p><strong>What it is:</strong> Overrun fuel-cut resumption threshold (<code>Wiedereinsetzdrehzahl</code>) indexed by gear <code>gangi</code> (<code>0..7</code>).<br><br>
-        <strong>Our 986.1 ME7.2 (<code>0x1964C</code>, 1×8):</strong> <code>[2000, 2000, 2000, 1800, 1560, 1200, 1200, 1200] rpm</code> — brings fuel back in early (<code>1,560–2,000 rpm</code>) when coasting down in gears 1–3.<br><br>
-        <strong>986.2 3.2S &amp; 2.7L ME7.8 (<code>0x19705</code>, warm rows):</strong> Drops gears 1–3 down to <code>[1480, 1480, 1400, 1320, 1240, 1200, 1200, 1200] rpm</code> so low-gear deceleration stays cleanly in fuel cut longer before smoothly re-engaging near idle.</p>
+        <h3><span class="badge b-blue">2. 986.2 3.2S Overrun Decel Refinement</span> <code>KFNWEGM</code> (<code>0x1964C</code>) — How a Manual Knows What Gear You're In &amp; Burble Impact</h3>
+        <p><strong>How a manual Boxster knows the gear (NO gearbox sensor!):</strong> Disassembly at <code>CPU 0x859A84..0x859B8E</code> proves ME7.2 calculates the ratio <code>nvquot_w = nmot_w [0x00F842] / vfz_w [0x38129E]</code> (engine RPM ÷ ABS wheel speed, stored in <code>[0x38125E]</code>) and compares it against the 6-speed <code>NVQUOT1O..6U</code> window table at <code>0x14F7C..0x14F93</code> (1st: <code>85–165</code>, 2nd: <code>56–85</code>, 3rd: <code>40.5–56</code>, 4th: <code>33.5–40.5</code>, 5th: <code>27.9–33.5</code>, 6th: <code>21.0–27.9 rpm/(km/h)</code>), writing gear <code>0..6</code> to <code>gangi [0x380A25]</code>. When the clutch pedal is pressed (<code>FD32.10 = 1</code>) or stationary (<code>B8DE.0 = 1</code>), it immediately forces <code>gangi = 0</code>!<br><br>
+        <strong>Complementary or counter-productive to burbles?</strong><br>
+        • <strong>High-RPM lift-off burble (&gt;2,000 rpm via <code>KFTVSA</code>):</strong> <code>KFNWEGM</code> does <em>not</em> interfere with lift-off burbles above 2,000 rpm, and lowering in-gear columns 1–3 (<code>[2000, 2000, 1800, 1560] → [1480, 1400, 1320, 1240] rpm</code>) keeps the car smoothly in fuel-cut longer while coasting down in 1st–3rd gear.<br>
+        • <strong>Low-speed town gurgle (&lt;2,000 rpm):</strong> The stock town gurgle happens <em>because</em> fuel turns back ON at <code>2,000 rpm</code> in col 0 (clutch-in) / cols 1–2 (1st/2nd gear) while <code>KFZWMN</code> rows 0–4 are at <code>-1.50°..-8.25° ATDC</code>! If you lower col 0..2 to <code>1,480 rpm</code>, fuel stays cut from 2,000 down to 1,480 rpm — eliminating the 1,500–2,000 rpm town gurgle. <strong>Best of both worlds:</strong> keep col 0 (clutch-in) / col 1 (1st gear) at <code>1,800–2,000 rpm</code> for the town gurgle, and lower cols 2–4 (2nd–4th gear) to <code>1,400 / 1,320 / 1,240 rpm</code> for smoother in-gear decel!</p>
       </div>
 
       <div class="card">
-        <h3><span class="badge b-purple">3. 986.2 3.2S Component Protection</span> <code>KFLBTS</code> (<code>0x19E2F</code>) &amp; <code>TABGBTS</code> (<code>0x1B40E</code>)</h3>
-        <p><strong>What it is:</strong> Exhaust-gas temperature (EGT) component-protection target lambda (<code>KFLBTS</code>) and trigger threshold (<code>TABGBTS</code>).<br><br>
-        <strong>Factory evolution:</strong> Our ME7.2 triggers at <code>858.5 °C</code> (<code>0xB600</code>) with a mild <code>λ = 0.906–0.953</code> floor at 6,600–7,200 rpm. On 986.2 ME7.8 (both 2.7L and 3.2S), Porsche nudged <code>TABGBTS</code> up by <code>+10 °C</code> to <code>868.5 °C</code> (<code>0xB800</code>) while deepening the high-RPM enrichment floor to <code>λ = 0.82–0.89</code> above 6,000 rpm for stronger sustained high-load thermal protection.</p>
+        <h3><span class="badge b-purple">3. 986.2 3.2S Component Protection</span> <code>KFLBTS</code> (<code>0x19E2F</code>) &amp; <code>TABGBTS</code> (<code>0x1B40E</code>) — Does It Protect a Burble Tune?</h3>
+        <p><strong>What it protects:</strong> Exhaust-gas temperature (EGT) component-protection target lambda (<code>KFLBTS</code>, consumed at <code>CPU 0x866838..0x866A42</code>) triggers when modeled exhaust temperature exceeds <code>TABGBTS @ 0x1B40E = 858.5 °C</code> (<code>868.5 °C</code> on 986.2 ME7.8, hysteresis <code>DTABGBTS @ 0x1B40C = 20.0 °C</code>), enriching WOT / high-load mixture to cool the pistons, exhaust valves, and catalytic converters.<br><br>
+        <strong>Crucial safety distinction — WOT vs. Overrun Burbles:</strong><br>
+        1. <strong>No physical EGT probe:</strong> The 986 has no physical EGT thermocouple; <code>tabgm_w</code> is a <em>mathematical software model</em> calculated from engine load, RPM, and ignition retard.<br>
+        2. <strong>Active under WOT/high-load, NOT closed-throttle overrun:</strong> <code>KFLBTS</code> only enriches high-load cells (<code>rl &gt;= 60–85%</code>) when you are on the throttle. During closed-throttle overrun burbles (<code>rl ~ 12–15%</code>), dumping extra fuel into the exhaust with retarded spark (<code>ATDC</code>) would actually <em>increase</em> exothermic combustion inside the catalytic converter!<br>
+        3. <strong>What keeps burbles safe for stock cats:</strong> Overrun cat safety comes strictly from keeping the <code>KFTVSA</code> (<code>0x1A2B6</code>) fuel-cut delay short (<code>1.0–1.2 s</code> max) and keeping <code>KFZWMN/MS</code> timing mild (<code>-3° to -6° ATDC</code>) so unburned mixture only pops briefly on lift-off before 100% fuel cut cools the cats with fresh air.</p>
       </div>
 
       <div class="card">
@@ -239,6 +244,58 @@
         • <code>KFNW</code> / <code>KFNWWL</code>: ME7.2 is 2-state on/off VarioCam (<code>0° / 30°</code>); ME7.8 is continuous PWM VarioCam (<code>0°..40°</code>).<br>
         • <code>KFMSNWDK</code> / <code>KFWDKMSN</code>: Matched to physical throttle body diameter &amp; manifold pressure geometry.</p>
       </div>
+    </div>
+  </div>
+
+  <!-- PANE 4: FULL MULTI-PLATFORM LIFECYCLE -->
+  <div id="paneAllGens" class="pane">
+    <div class="card" style="margin-bottom:18px;">
+      <h3><span class="badge b-green">986.1 Boxster S 3.2L (ME7.2)</span> Complete 24-Version Lifecycle: <code>v6450</code> → <code>v6730</code> → <code>v9000</code> → <code>v9100</code> → <code>v9210</code> → <code>v9310 / v9320</code></h3>
+      <table class="spec" style="margin-top:10px;">
+        <thead>
+          <tr><th>Generation</th><th>Era &amp; Container</th><th>Example Versions</th><th>What Actually Changed (Content-Aligned Binary Diff)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>v6450</code></td><td>MY2000 Launch (US LEV)<br><code>157_6450.paf</code></td><td><code>64503713</code> → <code>64503733</code> (Man)<br><code>64503714</code> → <code>64503734</code> (Tip)</td><td>Initial MY2000 3.2S US LEV release. Early <code>.3713/.3714</code> carried a blanket <code>1.039 (+3.9%) KFKHFM</code> MAF multiplier; mid-year update <code>.3733/.3734</code> (<code>0 B</code> code diff, <code>1,887 B</code> cal diff) normalized <code>KFKHFM</code> to <code>1.000</code> (196/196 cells) and raised low-load <code>KFPU</code> air-pulsation fuel correction (row 0: <code>1.016..1.031</code>).</td></tr>
+          <tr><td><code>v6730</code></td><td>MY2000 Launch (RoW / D4)<br><code>157_6730.paf</code></td><td><code>67303721</code> → <code>67303731</code> (Man)<br><code>67303722</code> → <code>67303732</code> (Tip)</td><td>Initial MY2000 RoW &amp; German D4 release. Early <code>.3721/.3722</code> carried the <code>1.039 KFKHFM</code> multiplier; mid-year update <code>.3731/.3732</code> (<code>0 B</code> code diff, <code>1,807 B</code> cal diff) normalized <code>KFKHFM</code> to <code>1.000</code> and applied the smoother <code>1.016..1.031</code> low-load <code>KFPU</code> curve.</td></tr>
+          <tr><td><code>v9000</code></td><td>MY2001 Update (US LEV)<br><code>157_9000.paf</code></td><td><code>90003713 / 90003723</code> (Man)<br><code>90003714 / 90003724</code> (Tip)</td><td>MY2001 US LEV program rebuild. All 20 core torque, ignition, MAF (<code>MLHFM</code>), and pedal maps are 100% identical to <code>64503733</code>, except 11 idle/low-load cells in <code>KFPU (@0x10F3B)</code> were stepped down by <code>-1..-3</code> counts (<code>-0.8%..-2.3%</code>) to <code>1.008..1.023</code>.</td></tr>
+          <tr><td><code>v9100</code></td><td>MY2001 Update (EU3 / RoW)<br><code>157_9100.paf</code></td><td><code>91003718</code> (EU3 Man — <code>y966ohc</code>)<br><code>91003701</code> (RoW Man)</td><td>MY2001 EU3/RoW program rebuild (<code>.657.01</code>). Retains 100% identical core ignition, torque, MAF, and overrun maps to <code>67303731</code>, with the same 11-cell low-load <code>KFPU</code> step-down (<code>1.008..1.023</code>) as <code>v9000</code>.</td></tr>
+          <tr><td><code>v9210</code></td><td>MY2002 Final US LEV<br><code>157_9210.paf</code></td><td><code>92103703 / 92103713</code> (Man)<br><code>92103704 / 92103714</code> (Tip)</td><td>Adds KWP2000 diagnostic service <code>0x09</code> (Flash-Session Status) and restores the 11-byte <code>KFPU</code> idle/low-load pulsation smoothing (<code>+0.8%..+2.3%</code> back to <code>1.016..1.031</code>).</td></tr>
+          <tr><td><code>v9310 / v9320</code></td><td>MY2002+ Terminal Factory Revision<br><code>157_9320.paf</code></td><td><code>93103708</code> (<code>.657.02</code>)<br><code>93203708</code> (<code>.657.03</code> EU3)<br><code>93203701</code> (RoW)</td><td>Terminal Porsche ME7.2 factory release. Adds KWP2000 Service <code>0x09</code> (<code>CPU 0x84EDFA</code>, <code>+524 B</code> code growth) and the 11-byte <code>KFPU (@0x11004)</code> idle/low-load pulsation fix (<code>+0.8%..+2.3%</code>), plus <code>1,250 B</code> of <code>v9320</code> bitfield repacks while keeping <code>335/346</code> registry objects 100% byte-identical.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card" style="margin-bottom:18px;">
+      <h3><span class="badge b-blue">986.1 Boxster 2.7L Base (ME7.2)</span> Complete 32-Version Lifecycle: <code>v6450</code> → <code>v6730</code> → <code>v9000</code> → <code>v9100</code> → <code>v9210</code> → <code>v9310 / v9320</code></h3>
+      <table class="spec" style="margin-top:10px;">
+        <thead>
+          <tr><th>Generation</th><th>Era &amp; Container</th><th>Example Versions</th><th>What Actually Changed (Content-Aligned Binary Diff)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>v6450</code></td><td>MY2000 Launch (2.7L US / EU)<br><code>157_6450.paf</code></td><td><code>64503413</code> → <code>64503433</code> (Man)<br><code>64503414</code> → <code>64503434</code> (Tip)</td><td>Initial MY2000 2.7L release. Early <code>.3413</code> used a <code>1.039 KFKHFM</code> multiplier and <code>0.953..0.969</code> low-load <code>KFPU</code>; mid-year update <code>.3433</code> (<code>0 B</code> code diff, <code>2,178 B</code> cal diff) normalized <code>KFKHFM</code> to <code>1.000</code> and raised low-load <code>KFPU</code> to <code>0.977..1.023</code>.</td></tr>
+          <tr><td><code>v6730</code></td><td>MY2000 Launch (2.7L RoW / D4)<br><code>157_6730.paf</code></td><td><code>67303421</code> → <code>67303431</code> (Man)<br><code>67303441</code> (Belgium 155 kW)</td><td>Early <code>.3421</code> carried the <code>1.039 KFKHFM</code> offset; mid-year update <code>.3431</code> (<code>0 B</code> code diff, <code>1,817 B</code> cal diff) normalized <code>KFKHFM</code> to <code>1.000</code> and finalized the 2.7L ME7.2 <code>KFPU</code> low-load curve (<code>1.000..1.023</code>) used across all subsequent 2.7L ME7.2 revisions.</td></tr>
+          <tr><td><code>v9000</code></td><td>MY2001 Update (2.7L US LEV)<br><code>157_9000.paf</code></td><td><code>90003413 / 90003423</code></td><td>MY2001 US LEV program rebuild plus low-load/warmup ignition timing adjustments in <code>KFZW</code> (24/384 cells), <code>KFZW2</code> (28/384 cells), and <code>KFZWMS</code> (26/192 cells) for faster catalyst light-off.</td></tr>
+          <tr><td><code>v9100</code></td><td>MY2001 Update (2.7L EU3 / RoW)<br><code>157_9100.paf</code></td><td><code>91003401</code> (RoW)<br><code>91003418</code> (EU3)</td><td>RoW <code>91003401</code> keeps 100% identical core maps to <code>67303431</code>, while EU3 <code>91003418</code> (<code>0 B</code> code diff, <code>418 B</code> cal diff) applies the Euro-3 catalyst light-off ignition timing refinements in <code>KFZW</code> (24 cells), <code>KFZW2</code> (28 cells), and <code>KFZWMS</code> (26 cells).</td></tr>
+          <tr><td><code>v9210</code></td><td>MY2002 Final 2.7L US LEV<br><code>157_9210.paf</code></td><td><code>92103403 / 92103413</code></td><td>Adds KWP2000 Service <code>0x09</code> Flash-Session Status diagnostic support while keeping 17/17 core running maps 100% identical to <code>90003413</code>.</td></tr>
+          <tr><td><code>v9310 / v9320</code></td><td>MY2002+ Terminal 2.7L Revision<br><code>157_9320.paf</code></td><td><code>93103418</code> → <code>93203408</code> (EU3)<br><code>93203401</code> (RoW)</td><td>Terminal Porsche ME7.2 factory release for the 986.1 2.7L. Adds the <code>v9310/v9320</code> KWP2000 Service <code>0x09</code> Flash-Session Status handler and Code B bitfield repacks while keeping all 18 core 2.7L calibration maps 100% byte-identical to <code>91003418 / 91003401</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3><span class="badge b-amber">996.1 Carrera 3.4L (ME7.2) &amp; 986.2 Facelift (ME7.8)</span> Generation Changelogs</h3>
+      <table class="spec" style="margin-top:10px;">
+        <thead>
+          <tr><th>Platform &amp; Gen</th><th>Era &amp; Container</th><th>Example Versions</th><th>What Actually Changed (Content-Aligned Binary Diff)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>996.1 3.4L</strong> <code>v6360 → v6430</code></td><td>MY1999 Early → Mid E-Gas<br><code>157_6360 / 6430.paf</code></td><td><code>63603607</code> → <code>64303603</code></td><td>Major mid-MY1999 recalibration across 11 core maps: throttle-body airflow model (<code>KFMSNWDK</code> 58/96 cells, <code>KFWDKMSN</code> 84/96 cells), target load (<code>KFMIRL</code> 201/256 cells), base &amp; optimal ignition (<code>KFZW</code> 53 cells, <code>KFZW2</code> 66 cells, <code>KFZWOP1/2</code>), <code>LAMFA</code> (40/78 cells), and overrun delay <code>KFTVSA</code> (<code>+0.50 s</code>).</td></tr>
+          <tr><td><strong>996.1 3.4L</strong> <code>v6430 → v6450</code></td><td>MY2000 Harmonized Platform<br><code>157_6450.paf</code></td><td><code>64303603</code> → <code>64503613</code></td><td>Updates the 512-point <code>MLHFM</code> MAF curve, intake resonance flap schedules (<code>KFSU/KFSU2</code>), <code>LAMFA</code> enrichment, and <code>KFTVSA</code> overrun delay (38/40 cells).</td></tr>
+          <tr><td><strong>996.1 3.4L</strong> <code>v6730 → v7400 → v7500</code></td><td>MY2000–2001+ Terminal<br><code>157_6730 / 7400 / 7500.paf</code></td><td><code>67303615</code> → <code>74003623</code> → <code>75003628</code></td><td><code>v6730</code> refines <code>KFZWMNX</code> minimum spark floor (135/192 cells); <code>v7400</code> adjusts <code>KFTVSA</code> overrun delay (38/40 cells) and <code>KFZWMNX</code>; <code>v7500</code> (<code>75003628</code> EU3 / <code>75003611</code> RoW) is the terminal 996.1 factory release.</td></tr>
+          <tr><td><strong>986.2 2.7 / 3.2S</strong> <code>v4620 → v4630 → v4720</code></td><td>MY2003–2004 ME7.8<br><code>156_4620 / 4630 / 4720.paf</code></td><td><code>46203713</code> → <code>46303703</code> → <code>47203718</code> → <code>47203728</code></td><td><code>v4620 → v4630 → v4720</code> are full 1 MB ME7.8 program rebuilds. Within terminal <code>v4720</code>, <code>47203718 → 47203728</code> has <code>0 B</code> code diff and <code>422 B</code> cal diff updating rear-O2 aging/catalyst PI diagnosis parameters (<code>KDLASHKI/KP</code>, <code>IMLKAXTK</code>, <code>TSFAGRE/TSFKOS</code>) and <code>KFRTV</code> decel trims while keeping all 82 primary running maps 100% identical.</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
