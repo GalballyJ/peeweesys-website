@@ -62,6 +62,7 @@
   </div>
   <div class="nav-links">
     <a class="btn primary" href="dashboard.html">Open Interactive Calibration Workstation</a>
+    <a class="btn" href="factory_evolution.html">Factory Evolution &amp; Changelog (E68/E69)</a>
     <a class="btn" href="compare.html">Stage-1 vs ME7.8 Side-by-Side</a>
     <a class="btn" href="hex.html">512KB ROM Hex Explorer</a>
     <a class="btn green" href="definitions/Porsche_986_BoxsterS_ME72_VERIFIED_TUNER.xdf" download>⬇ Verified Tuner .XDF (Sniff-Tested)</a>
@@ -125,8 +126,11 @@
   </div>
 
   <div class="finding-row">
-    <h4><span class="badge b-purple">Later Factory Software Find (E63)</span> AI Found an 11-Byte <code>KFPU</code> Change in Later 986S ROMs — Worth Adding?</h4>
-    <p>We diffed my <code>y966ohc</code> (<code>91003718</code> / <code>.657.01</code>) against the final factory 986 Boxster S 3.2L revisions (<code>93103708</code> / <code>.657.02</code> and <code>93203708</code> / <code>.657.03</code>). Across all 26 core maps, the <strong>only calibration change Porsche made</strong> in the newer software was an 11-byte low-load pulsation retune in <code>KFPU</code> (<code>@0x10F3B</code>, <code>+0.8%..+2.3%</code> at <code>2–3.5%</code> throttle / <code>640–2,520 rpm</code>). Does that look like a worthwhile factory driveability tweak to cherry-pick, or too minor to matter?</p>
+    <h4><span class="badge b-purple">Later Factory Software &amp; ME7.8 OEM+ Finds (E68 &amp; E69)</span> Factory Porsche Tweaks Worth Adding? (<a href="factory_evolution.html" style="color:var(--blue);font-size:13px;">Open Full Factory Evolution Dashboard →</a>)</h4>
+    <p>• <strong>1. <code>.657.02 / .657.03</code> 11-Byte <code>KFPU</code> Low-Load Pulsation Fix (<code>@0x10F3B</code>) — [100% Drop-In Factory 986.1 3.2S Fix]:</strong> We completed a full 346-object content-aligned changelog of my <code>91003718</code> (<code>.657.01</code>) against Porsche's final 986.1 Boxster S 3.2L revisions <code>93103708</code> (<code>.657.02</code>) and <code>93203708</code> (<code>.657.03</code>). While the firmware code grew by <code>+524 B</code> strictly to add KWP2000 dealer flash-status service <code>0x09</code> (<code>CPU 0x84EDFA</code>), <strong>335 / 346 calibration objects are 100% byte-identical</strong>, and the <strong>only</strong> core tuner map Porsche retuned was an 11-byte low-load pulsation smoothing in <code>KFPU</code> (<code>@0x10F3B</code>, <code>+0.8%..+2.3%</code> at <code>2.0–3.5%</code> throttle / <code>640–2,520 rpm</code>). (We also verified against the 986.2 3.2S ME7.8 <code>47203728</code> that the larger <code>1.27</code> high-RPM <code>KFPU</code> bump in <code>E472_000</code> is 2.7L-only and should not be copied to a 3.2S.)<br>
+    • <strong>2. 986.2 3.2S Overrun Fuel Re-Engagement RPM (<code>KFNWEGM @ 0x1964C</code>, 1×8 over gear <code>0..7</code>) — [Smooth Low-Gear Decel]:</strong> Our 986.1 ME7.2 brings fuel back in quite high on overrun in gears 1–3 (<code>[2000, 2000, 2000, 1800, 1560, 1200, 1200, 1200] rpm</code>). On the later 986.2 3.2S ME7.8 (<code>47203728</code>, 260 hp), Porsche lowered warm gears 1–3 to <code>[1480, 1480, 1400, 1320, 1240, 1200, 1200, 1200] rpm</code> so low-gear deceleration stays cleanly in fuel-cut longer before re-injecting.<br>
+    • <strong>3. 986.2 3.2S EGT Component Protection (<code>KFLBTS @ 0x19E2F</code> &amp; <code>TABGBTS @ 0x1B40E</code>):</strong> On the 986.2 3.2S ME7.8, Porsche nudged <code>TABGBTS</code> from <code>858.5 °C</code> (<code>0xB600</code>) to <code>868.5 °C</code> (<code>0xB800</code>, hysteresis <code>DTABGBTS @ 0x1B40C = 20.0 °C</code>) and deepened the high-load/high-RPM <code>KFLBTS</code> protection floor to <code>λ = 0.82–0.89</code> above 6,000 rpm.<br>
+    • <strong>4. Stationary / Neutral Soft Rev Limiter Note (<code>NMAXOG @ 0x1675E</code>):</strong> On 986.2 3.2S ME7.8, <code>NMAXOG</code> is set to <code>5,000 rpm</code> (gated by stationary clutch/gear bit <code>B8DE.0</code>) while hard driving <code>NMAX</code> stays at <code>7,200 rpm</code>. What do you think of cherry-picking the 11-byte <code>KFPU</code> fix and the <code>KFNWEGM</code> low-gear decel thresholds into our OEM+ Stage-1 file?</p>
   </div>
 
   <h2 class="sec">3. Overrun Fuel-Cut Logic, Why the First Burbles File Kangarooed, &amp; Does This AI Recipe Make Sense?</h2>
